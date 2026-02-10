@@ -1,0 +1,14 @@
+Per installazione da terminale
+sudo apt update
+sudo apt install mariadb-server
+sudo service mariadb start
+
+Per avviare client
+sudo mariadb  
+
+Per creazione nuovo utente (da interfasccia Maia DB)
+CREATE USER 'pythonuser'@'localhost' IDENTIFIED BY 'password123';
+GRANT ALL PRIVILEGES ON *.* TO 'pythonuser'@'localhost' WITH GRANT OPTION;
+
+pip install mysql.connector
+pip installa Flask
