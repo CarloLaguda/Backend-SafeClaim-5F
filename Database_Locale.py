@@ -1,11 +1,14 @@
 import mysql.connector
 from mysql.connector import Error
+from pymongo import MongoClient
+from pymongo.errors import ServerSelectionTimeoutError
+from bson.objectid import ObjectId
 
 try:
     mydb = mysql.connector.connect(
-      host="localhost",
-      user="pythonuser",
-      password="password123"
+        host="localhost",
+        user="pythonuser",
+        password="password123"
     )
 
     if mydb.is_connected():
@@ -134,13 +137,33 @@ try:
         )
         """)
 
-        print("Connessione riuscita. Tutte le tabelle sono state create con successo usando mycursor.")
+        print("Connessione MySQL riuscita.")
 
+        """
+        try:
+            client = MongoClient("mongodb://localhost:27017/", serverSelectionTimeoutMS=2000)
+            client.admin.command('ping') 
+            db_nosql = client['safeclaim_db']
+            
+            print("OK")
+
+            collezioni = {
+                "sinistri": db_nosql['Sinistro'],
+                "perizie": db_nosql['Perizia'],
+                "documenti": db_nosql['documenti'],
+                "kb": db_nosql['Knowledge Base']
+            }
+
+        except ServerSelectionTimeoutError:
+            print("ERRORE: MongoDB non è attivo su localhost:27017")
+    """
 except Error as e:
-    print(f"ERRORE: Impossibile connettersi al database o eseguire le query: {e}")
+    print(f"ERRORE MySQL: {e}")
 
 finally:
     if 'mydb' in locals() and mydb.is_connected():
         mycursor.close()
         mydb.close()
-        print("Connessione chiusa.")
+        if 'client' in locals():
+            client.close()
+        print("Connessioni chiuse.")
