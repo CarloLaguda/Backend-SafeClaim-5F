@@ -146,6 +146,37 @@ for table_name in tables:
     except mysql.connector.Error as err:
         print(f"ERRORE: {err}")
 
+from pymongo import MongoClient
+from pymongo.errors import ConnectionFailure
+
+# --- CONFIGURAZIONE MONGODB ---
+
+# Dati forniti
+MONGO_URI = "mongodb://safeclaim:0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE%2BtM%3D@mongo-safeclaim.aevorastudios.com:27017/"
+DB_NAME = "safeclaim_mongo"
+
+try:
+    # Inizializzazione del client
+    print("\nConnessione a MongoDB in corso...")
+    mongo_client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
+    
+    # Selezione del database
+    mongodb = mongo_client[DB_NAME]
+    
+    # Verifica della connessione (ping al server)
+    mongo_client.admin.command('ping')
+    print(f"Connessione a MongoDB '{DB_NAME}' riuscita! OK")
+
+    # Esempio di accesso a una collezione (es. per i documenti citati nelle tue tabelle SQL)
+    # polizze_docs = mongodb.polizza_documenti 
+
+except ConnectionFailure as e:
+    print(f"ERRORE: Impossibile connettersi a MongoDB: {e}")
+except Exception as e:
+    print(f"ERRORE generico MongoDB: {e}")
+
+mongo_client.close()
+
 # Chiusura
 mycursor.close()
 mydb.close()
