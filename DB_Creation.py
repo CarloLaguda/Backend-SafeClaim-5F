@@ -1,17 +1,44 @@
 import mysql.connector
+from pymongo import MongoClient
+
+# =========================
+# CONFIGURAZIONE MYSQL
+# =========================
+MYSQL_CONFIG = {
+    "host": "mysql-safeclaim.aevorastudios.com",
+    "port": 3306,
+    "user": "safeclaim",
+    "password": "0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE+tM=",
+    "database": "safeclaim_db"
+}
+
+# =========================
+# CONFIGURAZIONE MONGODB
+# =========================
+MONGO_URI = (
+    "mongodb://safeclaim:"
+    "0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE%2BtM%3D"
+    "@mongo-safeclaim.aevorastudios.com:27017/"
+)
+MONGO_DB_NAME = "safeclaim_mongo"
+
 
 try:
+    # =========================
+    # CONNESSIONE MYSQL
+    # =========================
     mydb = mysql.connector.connect(
-        host="localhost",
-        user="pythonuser",
-        password="password123"
+        host=MYSQL_CONFIG["host"],
+        port=MYSQL_CONFIG["port"],
+        user=MYSQL_CONFIG["user"],
+        password=MYSQL_CONFIG["password"]
     )
 
     cursor = mydb.cursor()
 
     # Creazione database
-    cursor.execute("CREATE DATABASE IF NOT EXISTS SafeClaim")
-    cursor.execute("USE SafeClaim")
+    cursor.execute("CREATE DATABASE IF NOT EXISTS safeclaim_db")
+    cursor.execute("USE safeclaim_db")
 
     tables = [
 
@@ -136,17 +163,43 @@ try:
         """
     ]
 
-    # Esecuzione tabelle
     for table in tables:
         cursor.execute(table)
 
     mydb.commit()
-    print("✅ Database e tabelle create correttamente")
+    print("✅ MySQL: database e tabelle create correttamente")
+
+    # =========================
+    # CONNESSIONE MONGODB
+    # =========================
+    mongo_client = MongoClient(MONGO_URI)
+    mongo_db = mongo_client[MONGO_DB_NAME]
+
+    print("✅ MongoDB: connessione riuscita")
+
+    # Esempio collezioni
+    polizze_docs = mongo_db["polizze_documenti"]
+    anagrafica_docs = mongo_db["documenti_anagrafica"]
+
+    # Test inserimento
+    test_doc = {
+        "tipo": "polizza_pdf",
+        "descrizione": "Documento di test",
+        "data": "2026-02-10"
+    }
+
+    inserted = polizze_docs.insert_one(test_doc)
+    print(f"📄 Documento MongoDB inserito con ID: {inserted.inserted_id}")
 
 except mysql.connector.Error as err:
     print(f"❌ Errore MySQL: {err}")
 
+except Exception as e:
+    print(f"❌ Errore generale: {e}")
+
 finally:
-    if mydb.is_connected():
+    if 'cursor' in locals():
         cursor.close()
+    if 'mydb' in locals() and mydb.is_connected():
         mydb.close()
+    print("🔒 Connessioni chiuse")
