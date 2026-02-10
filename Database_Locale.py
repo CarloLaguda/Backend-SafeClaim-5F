@@ -2,7 +2,9 @@ import mysql.connector
 from mysql.connector import Error
 from pymongo import MongoClient
 from pymongo.errors import ServerSelectionTimeoutError
-from bson.objectid import ObjectId
+
+mydb = None
+client = None
 
 try:
     mydb = mysql.connector.connect(
@@ -13,7 +15,6 @@ try:
 
     if mydb.is_connected():
         mycursor = mydb.cursor()
-
         mycursor.execute("CREATE DATABASE IF NOT EXISTS Locale_DB")
         mycursor.execute("USE Locale_DB")
 
@@ -137,33 +138,23 @@ try:
         )
         """)
 
-        print("Connessione MySQL riuscita.")
+        print("MySQL: Database e tabelle create correttamente.")
 
-        """
-        try:
-            client = MongoClient("mongodb://localhost:27017/", serverSelectionTimeoutMS=2000)
-            client.admin.command('ping') 
-            db_nosql = client['safeclaim_db']
-            
-            print("OK")
+    try:
+        uri = "mongodb://safeclaim:0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE%2BtM%3D@mongo-safeclaim.aevorastudios.com:27017/"
+        client = MongoClient(uri, serverSelectionTimeoutMS=5000)
+        client.admin.command('ping')
+        db_nosql = client['safeclaim_mongo']
+        print("MongoDB: Connessione riuscita a mongo-safeclaim.aevorastudios.com.")
+    except ServerSelectionTimeoutError:
+        print("MongoDB: Errore di connessione (Timeout).")
 
-            collezioni = {
-                "sinistri": db_nosql['Sinistro'],
-                "perizie": db_nosql['Perizia'],
-                "documenti": db_nosql['documenti'],
-                "kb": db_nosql['Knowledge Base']
-            }
-
-        except ServerSelectionTimeoutError:
-            print("ERRORE: MongoDB non è attivo su localhost:27017")
-    """
 except Error as e:
-    print(f"ERRORE MySQL: {e}")
+    print(f"MySQL Error: {e}")
 
 finally:
-    if 'mydb' in locals() and mydb.is_connected():
+    if mydb and mydb.is_connected():
         mycursor.close()
         mydb.close()
-        if 'client' in locals():
-            client.close()
-        print("Connessioni chiuse.")
+    if client:
+        client.close()
