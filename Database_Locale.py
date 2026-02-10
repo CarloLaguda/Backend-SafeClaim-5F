@@ -6,6 +6,7 @@ from pymongo.errors import ServerSelectionTimeoutError
 mydb = None
 client = None
 
+
 try:
     mydb = mysql.connector.connect(
         host="localhost",
