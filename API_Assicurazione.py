@@ -13,7 +13,7 @@ db_config = {
     'password': '0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE+tM=',
     'database': 'safeclaim_db'
 }
-
+#Adesso funziona tutto, pure testato
 def valida_password(password):
     """Verifica che la password abbia 8 caratteri, lettere e numeri."""
     if len(password) < 8:
