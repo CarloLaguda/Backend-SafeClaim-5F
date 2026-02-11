@@ -1,182 +1,56 @@
 import mysql.connector
-
-# Connessione iniziale
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="pythonuser",
-  password="password123"
-)
-
-mycursor = mydb.cursor()
-
-# Creazione e selezione del Database
-mycursor.execute("CREATE DATABASE IF NOT EXISTS mydatabase")
-mycursor.execute("USE mydatabase")
-
-# --- DEFINIZIONE DELLE TABELLE ---
-tables = {}
-
-tables['Assicuratore'] = (
-    "CREATE TABLE IF NOT EXISTS Assicuratore ("
-    "  id INT PRIMARY KEY AUTO_INCREMENT,"
-    "  nome VARCHAR(50) NOT NULL,"
-    "  cognome VARCHAR(50) NOT NULL,"
-    "  cf VARCHAR(16) UNIQUE NOT NULL,"
-    "  email VARCHAR(100) UNIQUE NOT NULL,"
-    "  psw VARCHAR(255) NOT NULL"
-    ")"
-)
-
-tables['Assicurazione'] = (
-    "CREATE TABLE IF NOT EXISTS Assicurazione ("
-    "  id INT PRIMARY KEY AUTO_INCREMENT,"
-    "  ragione_sociale VARCHAR(100) NOT NULL,"
-    "  nome VARCHAR(100),"
-    "  telefono VARCHAR(20)"
-    ")"
-)
-
-tables['Automobilista'] = (
-    "CREATE TABLE IF NOT EXISTS Automobilista ("
-    "  id INT PRIMARY KEY AUTO_INCREMENT,"
-    "  nome VARCHAR(50) NOT NULL,"
-    "  cognome VARCHAR(50) NOT NULL,"
-    "  cf VARCHAR(16) UNIQUE NOT NULL,"
-    "  email VARCHAR(100) UNIQUE NOT NULL,"
-    "  psw VARCHAR(255) NOT NULL"
-    ")"
-)
-
-tables['Azienda'] = (
-    "CREATE TABLE IF NOT EXISTS Azienda ("
-    "  id INT PRIMARY KEY AUTO_INCREMENT,"
-    "  ragione_sociale VARCHAR(100) NOT NULL,"
-    "  partita_iva VARCHAR(11) UNIQUE NOT NULL,"
-    "  sede_legale VARCHAR(200),"
-    "  email VARCHAR(100),"
-    "  telefono VARCHAR(20)"
-    ")"
-)
-
-tables['Officina'] = (
-    "CREATE TABLE IF NOT EXISTS Officina ("
-    "  id INT PRIMARY KEY AUTO_INCREMENT,"
-    "  ragione_sociale VARCHAR(100) NOT NULL,"
-    "  citta VARCHAR(50),"
-    "  indirizzo VARCHAR(200),"
-    "  telefono VARCHAR(20),"
-    "  email VARCHAR(100),"
-    "  latitudine DECIMAL(10, 8),"
-    "  longitudine DECIMAL(11, 8)"
-    ")"
-)
-
-tables['Perito'] = (
-    "CREATE TABLE IF NOT EXISTS Perito ("
-    "  id INT PRIMARY KEY AUTO_INCREMENT,"
-    "  nome VARCHAR(50) NOT NULL,"
-    "  cognome VARCHAR(50) NOT NULL,"
-    "  cf VARCHAR(16) UNIQUE,"
-    "  email VARCHAR(100) UNIQUE NOT NULL,"
-    "  psw VARCHAR(255),"
-    "  latitudine DECIMAL(10, 8),"
-    "  longitudine DECIMAL(11, 8)"
-    ")"
-)
-
-tables['Veicolo'] = (
-    "CREATE TABLE IF NOT EXISTS Veicolo ("
-    "  id INT PRIMARY KEY AUTO_INCREMENT,"
-    "  targa VARCHAR(10) UNIQUE NOT NULL,"
-    "  n_telaio VARCHAR(17) UNIQUE,"
-    "  marca VARCHAR(50),"
-    "  modello VARCHAR(50),"
-    "  anno_immatricolazione YEAR,"
-    "  automobilista_id INT,"
-    "  azienda_id INT"
-    ")"
-)
-
-tables['Polizza'] = (
-    "CREATE TABLE IF NOT EXISTS Polizza ("
-    "  id INT PRIMARY KEY AUTO_INCREMENT,"
-    "  n_polizza VARCHAR(50) UNIQUE NOT NULL,"
-    "  compagnia_assicurativa VARCHAR(100),"
-    "  data_inizio DATE NOT NULL,"
-    "  data_scadenza DATE NOT NULL,"
-    "  massimale DECIMAL(12, 2),"
-    "  tipo_copertura ENUM('RCA', 'Kasko', 'Full') DEFAULT 'RCA',"
-    "  veicolo_id INT,"
-    "  assicuratore_id INT,"
-    "  documento_mongo_id VARCHAR(24)"
-    ")"
-)
-
-tables['Documenti_Anagrafica'] = (
-    "CREATE TABLE IF NOT EXISTS Documenti_Anagrafica ("
-    "  id INT PRIMARY KEY AUTO_INCREMENT,"
-    "  entita_tipo ENUM('automobilista', 'perito', 'officina', 'assicuratore', 'soccorso') NOT NULL,"
-    "  entita_id INT NOT NULL,"
-    "  mongo_doc_id VARCHAR(24) NOT NULL,"
-    "  tipo_documento VARCHAR(50) NOT NULL,"
-    "  descrizione VARCHAR(255),"
-    "  data_inserimento DATETIME DEFAULT CURRENT_TIMESTAMP,"
-    "  data_scadenza DATE"
-    ")"
-)
-
-tables['Polizza_Documenti'] = (
-    "CREATE TABLE IF NOT EXISTS Polizza_Documenti ("
-    "  id INT PRIMARY KEY AUTO_INCREMENT,"
-    "  polizza_id INT NOT NULL,"
-    "  mongo_doc_id VARCHAR(24) NOT NULL,"
-    "  tipo_documento ENUM('polizza_pdf', 'quietanza') NOT NULL,"
-    "  descrizione VARCHAR(255),"
-    "  data_inserimento DATETIME DEFAULT CURRENT_TIMESTAMP"
-    ")"
-)
-
-# --- ESECUZIONE CREAZIONE TABELLE ---
-for table_name in tables:
-    table_description = tables[table_name]
-    try:
-        print(f"Creazione tabella {table_name}: ", end="")
-        mycursor.execute(table_description)
-        print("OK")
-    except mysql.connector.Error as err:
-        print(f"ERRORE: {err}")
-
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure
 
-# --- CONFIGURAZIONE MONGODB ---
+# --- PARAMETRI REMOTI ---
+MYSQL_CONFIG = {
+    'host': "mysql-safeclaim.aevorastudios.com",
+    'port': 3306,
+    'user': "safeclaim",
+    'password': "0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE+tM=",
+    'database': "safeclaim_db"
+}
 
-# Dati forniti
 MONGO_URI = "mongodb://safeclaim:0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE%2BtM%3D@mongo-safeclaim.aevorastudios.com:27017/"
-DB_NAME = "safeclaim_mongo"
+MONGO_DB_NAME = "safeclaim_mongo"
 
 try:
-    # Inizializzazione del client
-    print("\nConnessione a MongoDB in corso...")
+    # 1. Connessione a MySQL Remoto
+    print("Tentativo di connessione a MySQL Remoto...")
+    mydb = mysql.connector.connect(**MYSQL_CONFIG)
+    mycursor = mydb.cursor()
+    print(f"Connessione a MySQL riuscita! Database: {MYSQL_CONFIG['database']}")
+
+    # Esempio rapido: conta quante tabelle ci sono nel DB remoto
+    mycursor.execute("SHOW TABLES")
+    tabelle = mycursor.fetchall()
+    print(f"Tabelle trovate nel DB MySQL: {len(tabelle)}")
+
+    # 2. Connessione a MongoDB Remoto
+    print("\nTentativo di connessione a MongoDB Remoto...")
     mongo_client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
+    mongodb = mongo_client[MONGO_DB_NAME]
     
-    # Selezione del database
-    mongodb = mongo_client[DB_NAME]
-    
-    # Verifica della connessione (ping al server)
+    # Verifica effettiva della connessione
     mongo_client.admin.command('ping')
-    print(f"Connessione a MongoDB '{DB_NAME}' riuscita! OK")
+    print(f"Connessione a MongoDB riuscita! Database: {MONGO_DB_NAME}")
 
-    # Esempio di accesso a una collezione (es. per i documenti citati nelle tue tabelle SQL)
-    # polizze_docs = mongodb.polizza_documenti 
+    # Ora puoi operare sui DB (es. mongodb.collezione.find())
 
-except ConnectionFailure as e:
-    print(f"ERRORE: Impossibile connettersi a MongoDB: {e}")
+except mysql.connector.Error as err:
+    print(f"ERRORE MYSQL: {err}")
+except ConnectionFailure:
+    print("ERRORE MONGODB: Timeout o errore di connessione")
 except Exception as e:
-    print(f"ERRORE generico MongoDB: {e}")
+    print(f"ERRORE GENERICO: {e}")
 
-mongo_client.close()
-
-# Chiusura
-mycursor.close()
-mydb.close()
+finally:
+    # Chiusura connessioni se aperte
+    if 'mydb' in locals() and mydb.is_connected():
+        mycursor.close()
+        mydb.close()
+        print("\nConnessione MySQL chiusa.")
+    
+    if 'mongo_client' in locals():
+        mongo_client.close()
+        print("Connessione MongoDB chiusa.")
