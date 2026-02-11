@@ -41,3 +41,4 @@ finally:
     if client:
         client.close()
         print("MongoDB: Connessione chiusa.")
+        
