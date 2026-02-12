@@ -11,4 +11,5 @@ CREATE USER 'pythonuser'@'localhost' IDENTIFIED BY 'password123';
 GRANT ALL PRIVILEGES ON *.* TO 'pythonuser'@'localhost' WITH GRANT OPTION;
 
 pip install mysql.connector
-pip installa Flask
+pip install Flask
+pip install pymongo
