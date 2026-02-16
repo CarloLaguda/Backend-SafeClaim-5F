@@ -23,12 +23,12 @@ mongo_db = mongo_client["safeclaim_mongo"]
 @app.route('/sinistro/<id_sinistro>/perito/<id_perito>/pratica', methods=['POST'])
 def crea_pratica(id_sinistro, id_perito):
     """
-    Inizializza una pratica di perizia verificando l'esistenza del perito su MySQL
-    e creando un nuovo documento perizia su MongoDB.
+    Inizializza la pratica verificando il perito su MySQL e salvando 
+    i riferimenti ai documenti (foto/file) su MongoDB.
     """
     data = request.get_json()
     
-    # Controllo integrità relazionale: verifica che il perito sia censito a sistema
+    # 1. Verifica Perito su MySQL per integrità dati
     conn = mysql.connector.connect(**MYSQL_CONFIG)
     cursor = conn.cursor()
     cursor.execute("SELECT id FROM Perito WHERE id = %s", (id_perito,))
@@ -39,16 +39,19 @@ def crea_pratica(id_sinistro, id_perito):
     if not perito_esiste:
         return jsonify({"error": "Perito non trovato"}), 404
 
-    # Conversione ID stringa in ObjectId per compatibilità MongoDB
     s_id = ObjectId(id_sinistro)
 
-    # Creazione della perizia come entità separata per storico e dettagli tecnici
+    # 2. Creazione documento Perizia con array 'documenti'
+    # Riceve dal JSON una lista di oggetti (es. nome file, URL, tipo documento)
+    documenti_perizia = data.get("documenti", []) 
+
     doc_perizia = {
         "sinistro_id": s_id,
         "perito_id": id_perito,
         "data_perizia": data.get("data_perizia"),
         "ora_perizia": data.get("ora_perizia"),
         "note_tecniche": data.get("note_tecniche"),
+        "documenti": documenti_perizia, # Array di file/foto caricati
         "stato": "aperta",
         "data_inserimento": datetime.now()
     }
@@ -56,7 +59,7 @@ def crea_pratica(id_sinistro, id_perito):
     res = mongo_db.perizie.insert_one(doc_perizia)
     perizia_id = res.inserted_id
 
-    # Aggiornamento dello stato del sinistro e associazione del perito incaricato
+    # 3. Aggiornamento Sinistro con i nuovi riferimenti
     update_data = {
         "$set": {
             "stato": "in_perizia",
@@ -69,8 +72,9 @@ def crea_pratica(id_sinistro, id_perito):
     mongo_db.sinistri.update_one({"_id": s_id}, update_data)
 
     return jsonify({
-        "status": "Pratica creata",
-        "id_perizia": str(perizia_id)
+        "status": "Pratica creata con documenti",
+        "id_perizia": str(perizia_id),
+        "documenti_caricati": len(documenti_perizia)
     }), 201
 
 # --- 2. REGISTRAZIONE RIMBORSO ---
