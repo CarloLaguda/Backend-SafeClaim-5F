@@ -1,83 +1,69 @@
-"""
-
+from flask import Flask, request, jsonify
 import mysql.connector
-from mysql.connector import Error
 from pymongo import MongoClient
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from bson import ObjectId
+from datetime import datetime
 
-app = FastAPI()
+app = Flask(__name__)
 
-mysql_config = {
+# Configurazione DB
+MYSQL_CONFIG = {
     "host": "mysql-safeclaim.aevorastudios.com",
-    "port": 3306,
     "user": "safeclaim",
     "password": "0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE+tM=",
     "database": "safeclaim_db"
 }
+mongo_client = MongoClient("mongodb://safeclaim:0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE%2BtM%3D@mongo-safeclaim.aevorastudios.com:27017/")
+mongo_db = mongo_client["safeclaim_mongo"]
 
-mongo_uri = "mongodb://safeclaim:0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE%2BtM%3D@mongo-safeclaim.aevorastudios.com:27017/"
+@app.route('/sinistro/<id_sinistro>/perito/<id_perito>/pratica', methods=['POST'])
+def crea_pratica(id_sinistro, id_perito):
+    data = request.get_json()
+    
+    # 1. Verifica Perito su MySQL
+    conn = mysql.connector.connect(**MYSQL_CONFIG)
+    cursor = conn.cursor()
+    cursor.execute("SELECT id FROM Perito WHERE id = %s", (id_perito,))
+    perito_esiste = cursor.fetchone()
+    cursor.close()
+    conn.close()
 
-class PraticaSchema(BaseModel):
-    codice_pratica: str
+    if not perito_esiste:
+        return jsonify({"error": "Perito non trovato"}), 404
 
-class RimborsoSchema(BaseModel):
-    importo: float
+    # 2. Operazioni MongoDB
+    s_id = ObjectId(id_sinistro)
 
-class InterventoSchema(BaseModel):
-    tipo_intervento: str
-    descrizione: str
-    costo_stimato: float
+    # Creazione documento Perizia
+    doc_perizia = {
+        "sinistro_id": s_id,
+        "perito_id": id_perito,
+        "data_perizia": data.get("data_perizia"),
+        "ora_perizia": data.get("ora_perizia"),
+        "note_tecniche": data.get("note_tecniche"),
+        "stato": "aperta",
+        "data_inserimento": datetime.now()
+    }
+    
+    res = mongo_db.perizie.insert_one(doc_perizia)
+    perizia_id = res.inserted_id
 
-@app.post("/sinistro/{sinistro_id}/perito/{perito_id}/pratica")
-def crea_pratica(sinistro_id: str, perito_id: int, data: PraticaSchema):
-    db_mysql = None
-    try:
-        db_mysql = mysql.connector.connect(**mysql_config)
-        cursor = db_mysql.cursor()
-        query = "INSERT INTO Pratica (codice_pratica, sinistro_id, perito_id) VALUES (%s, %s, %s)"
-        cursor.execute(query, (data.codice_pratica, sinistro_id, perito_id))
-        db_mysql.commit()
-        return {"status": "success", "id_pratica": cursor.lastrowid}
-    except Error as e:
-        raise HTTPException(status_code=400, detail=str(e))
-    finally:
-        if db_mysql and db_mysql.is_connected():
-            cursor.close()
-            db_mysql.close()
+    # Aggiornamento Sinistro
+    update_data = {
+        "$set": {
+            "stato": "in_perizia",
+            "perito_id": id_perito,
+            "perizia_id": perizia_id,
+            "data_aggiornamento": datetime.now()
+        }
+    }
+    
+    mongo_db.sinistri.update_one({"_id": s_id}, update_data)
 
-@app.post("/sinistro/{sinistro_id}/perito/{perito_id}/pratica/{pratica_id}/rimborso")
-def crea_rimborso(sinistro_id: str, perito_id: int, pratica_id: int, data: RimborsoSchema):
-    db_mysql = None
-    try:
-        db_mysql = mysql.connector.connect(**mysql_config)
-        cursor = db_mysql.cursor()
-        query = "INSERT INTO Rimborso (pratica_id, importo) VALUES (%s, %s)"
-        cursor.execute(query, (pratica_id, data.importo))
-        db_mysql.commit()
-        return {"status": "success", "id_rimborso": cursor.lastrowid}
-    except Error as e:
-        raise HTTPException(status_code=400, detail=str(e))
-    finally:
-        if db_mysql and db_mysql.is_connected():
-            cursor.close()
-            db_mysql.close()
+    return jsonify({
+        "status": "Pratica creata",
+        "id_perizia": str(perizia_id)
+    }), 201
 
-@app.post("/sinistro/{sinistro_id}/perito/{perito_id}/pratica/{pratica_id}/intervento")
-def crea_intervento(sinistro_id: str, perito_id: int, pratica_id: int, data: InterventoSchema):
-    db_mysql = None
-    try:
-        db_mysql = mysql.connector.connect(**mysql_config)
-        cursor = db_mysql.cursor()
-        query = "INSERT INTO Intervento (pratica_id, tipo_intervento, descrizione, costo_stimato) VALUES (%s, %s, %s, %s)"
-        cursor.execute(query, (pratica_id, data.tipo_intervento, data.descrizione, data.costo_stimato))
-        db_mysql.commit()
-        return {"status": "success", "id_intervento": cursor.lastrowid}
-    except Error as e:
-        raise HTTPException(status_code=400, detail=str(e))
-    finally:
-        if db_mysql and db_mysql.is_connected():
-            cursor.close()
-            db_mysql.close()
-            
-"""
+if __name__ == '__main__':
+    app.run(debug=True)
