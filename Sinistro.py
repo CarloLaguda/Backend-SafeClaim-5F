@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
 from datetime import datetime
+# Importiamo l'utility per gestire gli ID di MongoDB
+from bson.objectid import ObjectId
 
 # Creiamo l'oggetto 'app' che rappresenta il nostro server web
 app = Flask(__name__)
@@ -16,9 +18,9 @@ db = client['safeclaim_mongo']
 # Useremo questa variabile 'sinistri_col' per aggiungere o cercare dati.
 sinistri_col = db['sinistri']  #variabile che serve a interagire con la collezione di MongoDB
 
-# Diciamo al server di ascoltare quando qualcuno vuole entrare all'indirizzo '/apri-sinistro'
+# Diciamo al server di ascoltare quando qualcuno vuole entrare all'indirizzo '/sinistro'
 # Usiamo il metodo POST perché stiamo inviando dei nuovi dati da salvare
-@app.route('/apri-sinistro', methods=['POST'])
+@app.route('/sinistro', methods=['POST'])
 def apri_sinistro():
     data = request.json  # Prendiamo i dati che l'utente ci ha inviato 
 
@@ -59,6 +61,8 @@ def apri_sinistro():
         # Se succede qualcosa di imprevisto (es. il database è spento), 
         # inviamo un messaggio di errore 
         return jsonify({"status": "error", "message": str(e)}), 500
+
+
 
 if __name__ == '__main__':
     # Lanciamo il server sulla porta 5000. 
