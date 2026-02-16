@@ -6,22 +6,29 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-# --- CONFIGURAZIONE DB (NON MODIFICARE) ---
+# --- CONFIGURAZIONE DATABASE ---
+# Connessione a MySQL per la gestione dell'anagrafica (Periti, Officine)
 MYSQL_CONFIG = {
     "host": "mysql-safeclaim.aevorastudios.com",
     "user": "safeclaim",
     "password": "0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE+tM=",
     "database": "safeclaim_db"
 }
+
+# Connessione a MongoDB per la gestione dei documenti dinamici (Sinistri, Perizie)
 mongo_client = MongoClient("mongodb://safeclaim:0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE%2BtM%3D@mongo-safeclaim.aevorastudios.com:27017/")
 mongo_db = mongo_client["safeclaim_mongo"]
 
-# --- 1. API PRATICA (IDENTICA A PRIMA - FUNZIONANTE) ---
+# --- 1. APERTURA PRATICA ---
 @app.route('/sinistro/<id_sinistro>/perito/<id_perito>/pratica', methods=['POST'])
 def crea_pratica(id_sinistro, id_perito):
+    """
+    Inizializza una pratica di perizia verificando l'esistenza del perito su MySQL
+    e creando un nuovo documento perizia su MongoDB.
+    """
     data = request.get_json()
     
-    # 1. Verifica Perito su MySQL
+    # Controllo integrità relazionale: verifica che il perito sia censito a sistema
     conn = mysql.connector.connect(**MYSQL_CONFIG)
     cursor = conn.cursor()
     cursor.execute("SELECT id FROM Perito WHERE id = %s", (id_perito,))
@@ -32,10 +39,10 @@ def crea_pratica(id_sinistro, id_perito):
     if not perito_esiste:
         return jsonify({"error": "Perito non trovato"}), 404
 
-    # 2. Operazioni MongoDB
+    # Conversione ID stringa in ObjectId per compatibilità MongoDB
     s_id = ObjectId(id_sinistro)
 
-    # Creazione documento Perizia
+    # Creazione della perizia come entità separata per storico e dettagli tecnici
     doc_perizia = {
         "sinistro_id": s_id,
         "perito_id": id_perito,
@@ -49,7 +56,7 @@ def crea_pratica(id_sinistro, id_perito):
     res = mongo_db.perizie.insert_one(doc_perizia)
     perizia_id = res.inserted_id
 
-    # Aggiornamento Sinistro
+    # Aggiornamento dello stato del sinistro e associazione del perito incaricato
     update_data = {
         "$set": {
             "stato": "in_perizia",
@@ -66,12 +73,12 @@ def crea_pratica(id_sinistro, id_perito):
         "id_perizia": str(perizia_id)
     }), 201
 
-# --- 2. API RIMBORSO (VERSIONE AGGIORNATA PER CODESPACES) ---
+# --- 2. REGISTRAZIONE RIMBORSO ---
 @app.route('/sinistro/<id_sinistro>/perito/<id_perito>/pratica/<id_perizia>/rimborso', methods=['POST'], strict_slashes=False)
 def registra_rimborso(id_sinistro, id_perito, id_perizia):
-    # Log di debug per vedere se la chiamata arriva al server
-    print(f"Chiamata ricevuta per Sinistro: {id_sinistro}, Perizia: {id_perizia}")
-    
+    """
+    Registra i costi stimati dal perito e aggiorna la pratica per la fase di liquidazione.
+    """
     data = request.get_json()
     if not data:
         return jsonify({"error": "Body JSON mancante"}), 400
@@ -82,7 +89,7 @@ def registra_rimborso(id_sinistro, id_perito, id_perizia):
     except:
         return jsonify({"error": "Uno degli ID MongoDB non è nel formato corretto"}), 400
 
-    # 1. Aggiornamento Perizia su MongoDB
+    # Aggiornamento della perizia con i dettagli economici (stima danni e ricambi)
     res_perizia = mongo_db.perizie.update_one(
         {"_id": p_id},
         {"$set": {
@@ -96,7 +103,7 @@ def registra_rimborso(id_sinistro, id_perito, id_perizia):
     if res_perizia.matched_count == 0:
         return jsonify({"error": "Perizia non trovata su MongoDB"}), 404
 
-    # 2. Aggiornamento Sinistro su MongoDB
+    # Avanzamento dello stato del sinistro verso la proposta di rimborso
     mongo_db.sinistri.update_one(
         {"_id": s_id},
         {"$set": {
@@ -107,5 +114,58 @@ def registra_rimborso(id_sinistro, id_perito, id_perizia):
 
     return jsonify({"status": "Successo", "message": "Rimborso salvato correttamente"}), 200
 
+# --- 3. ASSEGNAZIONE INTERVENTO ---
+@app.route('/sinistro/<id_sinistro>/perito/<id_perito>/pratica/<id_perizia>/intervento', methods=['GET', 'POST'])
+def assegna_intervento(id_sinistro, id_perito, id_perizia):
+    """
+    Assegna il veicolo a un'officina convenzionata verificata su MySQL.
+    """
+    if request.method == 'GET':
+        return jsonify({"error": "Usa il metodo POST su Postman"}), 405
+
+    data = request.get_json()
+    id_officina = data.get("id_officina")
+
+    # Verifica validità dell'officina tramite database relazionale
+    conn = mysql.connector.connect(**MYSQL_CONFIG)
+    cursor = conn.cursor()
+    cursor.execute("SELECT id FROM Officina WHERE id = %s", (id_officina,))
+    officina_esiste = cursor.fetchone()
+    cursor.close()
+    conn.close()
+
+    if not officina_esiste:
+        return jsonify({"error": "Officina non trovata nel database MySQL"}), 404
+
+    try:
+        s_id = ObjectId(id_sinistro)
+        p_id = ObjectId(id_perizia)
+    except:
+        return jsonify({"error": "Formato ID MongoDB non valido"}), 400
+
+    # Aggiornamento Sinistro: collegamento con l'officina e avvio fase riparazione
+    mongo_db.sinistri.update_one(
+        {"_id": s_id},
+        {"$set": {
+            "id_officina": id_officina,
+            "stato": "in_riparazione",
+            "data_inizio_lavori": data.get("data_inizio_lavori"),
+            "data_aggiornamento": datetime.now()
+        }}
+    )
+
+    # Allineamento stato della perizia per chiusura workflow tecnico
+    mongo_db.perizie.update_one(
+        {"_id": p_id},
+        {"$set": {"stato": "inviata_officina", "id_officina": id_officina}}
+    )
+
+    return jsonify({
+        "status": "Successo", 
+        "message": "Intervento assegnato all'officina correttamente",
+        "nuovo_stato": "in_riparazione"
+    }), 200
+
 if __name__ == '__main__':
+    # Avvio del server Flask in modalità debug per lo sviluppo
     app.run(debug=True)
