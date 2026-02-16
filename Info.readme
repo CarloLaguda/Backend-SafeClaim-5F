@@ -1,3 +1,2 @@
-## 🛠️ Installazione
-pip install fastapi uvicorn mysql-connector-python pymongo
-
+## Installazione
+pip install flask mysql-connector-python pymongo
