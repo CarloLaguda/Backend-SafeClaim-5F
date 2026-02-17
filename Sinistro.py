@@ -96,6 +96,48 @@ def aggiungi_immagine(id):
         # Se l'ID è scritto male (es. mancano caratteri) o il server crasha, 
         # restituiamo l'errore per capire cosa è successo.
         return jsonify({"status": "error", "message": str(e)}), 500
+# --- ROTTA OTTIMIZZATA PER TEST (CARICA SULL'ULTIMO SINISTRO) ---
+
+# Definiamo un URL fisso. Non serve più mettere <id> perché lo cercheremo noi nel DB.
+@app.route('/sinistro/ultimo/immagini', methods=['POST'])
+def aggiungi_immagine_ultimo():
+    # Recuperiamo i dati (la stringa della foto) inviati nella richiesta
+    data = request.json
+    
+    # Verifichiamo che l'utente non si sia dimenticato di allegare la foto nel JSON
+    if 'immagine_base64' not in data:
+        return jsonify({"error": "Dati immagine mancanti"}), 400
+
+    try:
+        # 1. RICERCA AUTOMATICA DELL'ULTIMO SINISTRO
+        # Usiamo .find_one() per prendere un solo documento.
+        # sort=[("data_inserimento", -1)] dice a MongoDB: 
+        # "Ordina i sinistri dal più recente al più vecchio e prendi il primo della lista".
+        ultimo_sinistro = sinistri_col.find_one(sort=[("data_inserimento", -1)])
+
+        # Se il database è vuoto, non troverà nulla. Gestiamo il caso per evitare crash.
+        if not ultimo_sinistro:
+            return jsonify({"error": "Nessun sinistro trovato nel database"}), 404
+
+        # 2. AGGIORNAMENTO DELLA PRATICA TROVATA
+        # Ora che abbiamo l'ID dell'ultimo sinistro (ultimo_sinistro["_id"]),
+        # usiamo $push per inserire l'immagine nella sua lista di foto.
+        sinistri_col.update_one(
+            {"_id": ultimo_sinistro["_id"]}, 
+            {"$push": {"immagini": data['immagine_base64']}}
+        )
+
+        # Rispondiamo con successo, restituendo anche l'ID che abbiamo usato 
+        # così puoi verificare che sia quello corretto.
+        return jsonify({
+            "status": "success", 
+            "message": "Immagine caricata sull'ultimo sinistro creato!",
+            "id_usato": str(ultimo_sinistro["_id"])
+        }), 200
+        
+    except Exception as e:
+        # Gestione di eventuali errori tecnici (es. problemi di connessione al DB)
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 
 if __name__ == '__main__':
