@@ -62,6 +62,40 @@ def apri_sinistro():
         # inviamo un messaggio di errore 
         return jsonify({"status": "error", "message": str(e)}), 500
 
+# --- 2. CARICAMENTO IMMAGINI ---
+
+# Definiamo la rotta. <id> è una variabile
+# Usiamo POST perché stiamo inviando dei nuovi dati (l'immagine) al server.
+@app.route('/sinistro/<id>/immagini', methods=['POST'])
+def aggiungi_immagine(id):
+    # Recuperiamo il contenuto del pacchetto JSON che ci è arrivato
+    data = request.json
+    
+    # Primo controllo: se nel JSON non c'è la chiave 'immagine_base64', inutile andare avanti.
+    # Rispondiamo con un errore 400 (Bad Request).
+    if 'immagine_base64' not in data:
+        return jsonify({"error": "Dati immagine mancanti"}), 400
+
+    try:
+        # 1. Cerchiamo il documento che ha l'ID uguale a quello passato nell'URL.
+        #    Usiamo ObjectId(id) per convertire il testo in un formato che Mongo capisce.
+        # 2. Usiamo $push per dire a Mongo: "Vai nel campo 'immagini' e aggiungi questa foto
+        risultato = sinistri_col.update_one(
+            {"_id": ObjectId(id)}, 
+            {"$push": {"immagini": data['immagine_base64']}}
+        )
+
+        # Se matched_count è 0, vuol dire che Mongo non ha trovato nessun sinistro con quell'ID.
+        if risultato.matched_count == 0:
+            return jsonify({"error": "Sinistro non trovato"}), 404
+
+        # Se tutto è andato bene, rispondiamo con un messaggio di conferma.
+        return jsonify({"status": "success", "message": "Immagine caricata!"}), 200
+        
+    except Exception as e:
+        # Se l'ID è scritto male (es. mancano caratteri) o il server crasha, 
+        # restituiamo l'errore per capire cosa è successo.
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 
 if __name__ == '__main__':
