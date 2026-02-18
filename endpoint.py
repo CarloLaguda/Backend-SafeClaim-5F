@@ -15,7 +15,7 @@ db_config = {
 def get_db_connection():
     return mysql.connector.connect(**db_config)
 
-# --- CRUD POLIZZE (Solo compito di Toci) ---
+# --- CRUD POLIZZE ---
 
 # CREATE: Inserimento nuova polizza
 @app.route('/polizze', methods=['POST'])
