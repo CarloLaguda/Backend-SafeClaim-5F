@@ -139,6 +139,66 @@ def aggiungi_immagine_ultimo():
         # Gestione di eventuali errori tecnici (es. problemi di connessione al DB)
         return jsonify({"status": "error", "message": str(e)}), 500
 
+# Definiamo due rotte che puntano alla stessa funzione:
+# 1. /sinistri -> caricherà tutti i sinistri (id_sinistro sarà None)
+# 2. /sinistri/<id_sinistro> -> caricherà solo quello specifico
+@app.route('/sinistri', defaults={'id_sinistro': None}, methods=['GET'])
+@app.route('/sinistri/<id_sinistro>', methods=['GET'])
+def ottieni_sinistri(id_sinistro):
+    try:
+        # --- CASO A: RICERCA DI UN SINISTRO SPECIFICO ---
+        if id_sinistro:
+            # Cerchiamo nel database un documento che abbia lo stesso _id.
+            # Nota: usiamo ObjectId() perché MongoDB non accetta stringhe semplici per gli ID.
+            sinistro = sinistri_col.find_one({"_id": ObjectId(id_sinistro)})
+            
+            # Se il database restituisce 'None', significa che l'ID non esiste
+            if not sinistro:
+                return jsonify({"status": "error", "message": "Sinistro non trovato"}), 404
+            
+            # Trasformiamo l'ObjectId in una stringa normale per poterlo inviare in JSON
+            sinistro['_id'] = str(sinistro['_id'])
+            
+            # Se esiste una data, la convertiamo in un formato testuale leggibile (ISO)
+            if 'data_inserimento' in sinistro:
+                sinistro['data_inserimento'] = sinistro['data_inserimento'].isoformat()
+            
+            # Restituiamo il singolo sinistro trovato
+            return jsonify({"status": "success", "data": sinistro}), 200
+
+        # --- CASO B: SELEZIONE DI TUTTI I SINISTRI ---
+        else:
+            # find() senza argomenti recupera tutti i documenti della collezione
+            cursor = sinistri_col.find()
+            lista_sinistri = []
+            
+            # Cicliamo su ogni documento trovato nel database
+            for s in cursor:
+                # Convertiamo l'ID da oggetto MongoDB a stringa di testo
+                s['_id'] = str(s['_id'])
+                
+                # Convertiamo la data in formato leggibile per il JSON
+                if 'data_inserimento' in s:
+                    s['data_inserimento'] = s['data_inserimento'].isoformat()
+                
+                # Aggiungiamo il sinistro "pulito" alla nostra lista finale
+                lista_sinistri.append(s)
+            
+            # Restituiamo la lista completa, il numero di elementi (count) e lo stato
+            return jsonify({
+                "status": "success",
+                "count": len(lista_sinistri),
+                "data": lista_sinistri
+            }), 200
+
+    except Exception as e:
+        # Se qualcosa va storto (es. ID scritto male o database spento), catturiamo l'errore
+        return jsonify({
+            "status": "error", 
+            "message": f"Errore durante l'operazione: {str(e)}"
+        }), 500
+
+
 
 if __name__ == '__main__':
     # Lanciamo il server sulla porta 5000. 
