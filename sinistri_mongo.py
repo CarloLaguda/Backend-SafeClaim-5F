@@ -12,7 +12,6 @@ db = client['safeclaim_mongo']
 sinistri_col = db['Sinistro'] # Assicurati che il nome sia identico a quello su Compass
 
 # --- TASK 3.3: ASSEGNAZIONE PERITO ---
-# Questo è il tuo compito specifico
 @app.route('/sinistro/<id_sinistro>/perito', methods=['PUT'])
 def assegna_perito(id_sinistro):
     try:
