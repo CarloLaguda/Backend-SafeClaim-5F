@@ -24,7 +24,7 @@ mongo_db = mongo_client["safeclaim_mongo"]
 def crea_pratica(id_sinistro, id_perito):
     """
     Inizializza la pratica verificando il perito su MySQL e salvando 
-    i riferimenti ai documenti (foto/file) su MongoDB.
+    i riferimenti ai documenti su MongoDB.
     """
     data = request.get_json()
     
