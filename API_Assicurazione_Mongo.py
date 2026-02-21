@@ -3,13 +3,13 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 import mysql.connector
 from datetime import datetime
-import urllib.parse  # <--- Necessario per gestire i caratteri speciali della password
+import urllib.parse
 
 app = Flask(__name__)
 
 # --- CONFIGURAZIONE CONNESSIONI ---
 
-# 1. Configurazione MySQL
+# MySQL (Dati strutturati)
 mysql_config = {
     'user': 'safeclaim',
     'password': '0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE+tM=',
@@ -18,52 +18,79 @@ mysql_config = {
     'port': 3306
 }
 
-# 2. Configurazione MongoDB con Fix Authentication
+# MongoDB (Dati flessibili e Geospaziali)
 username = "safeclaim"
 password = "0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE+tM="
-# Eseguiamo l'encoding della password per evitare l'errore "Authentication failed"
 safe_password = urllib.parse.quote_plus(password)
-
 mongo_uri = f"mongodb://{username}:{safe_password}@mongo-safeclaim.aevorastudios.com:27017/safeclaim_mongo?authSource=admin"
 
 try:
     mongo_client = MongoClient(mongo_uri, serverSelectionTimeoutMS=5000)
-    mongo_db = mongo_client["safeclaim_mongo"]
-    sinistri_col = mongo_db["Sinistro"]
-    # Test connessione immediato
-    mongo_client.admin.command('ping')
-    print("Connessione MongoDB riuscita!")
+    db_mongo = mongo_client["safeclaim_mongo"]
+    sinistri_col = db_mongo["Sinistro"]
+    # Creazione indice per ricerca officine vicine (richiesto dalla WBS)
+    sinistri_col.create_index([("posizione", "2dsphere")])
+    print("Connessione MongoDB e Indice Geospaziale OK!")
 except Exception as e:
     print(f"Errore connessione MongoDB: {e}")
 
-# --- ENDPOINTS ---
+# --- ENDPOINT APERTURA SINISTRO ---
 
 @app.route('/sinistro', methods=['POST'])
 def crea_sinistro():
     data = request.json
+    db_mysql = None
+    
     try:
-        # Validazione MySQL
+        # 1. Validazione su MySQL (Verifica coerenza Polizza-Veicolo-Automobilista)
         db_mysql = mysql.connector.connect(**mysql_config)
-        cursor = db_mysql.cursor()
-        cursor.execute("SELECT id FROM Polizza WHERE id = %s", (data.get('polizza_id'),))
-        if not cursor.fetchone():
-            return jsonify({"error": "Polizza non trovata"}), 404
+        cursor = db_mysql.cursor(dictionary=True)
+        
+        query_check = """
+            SELECT p.id, v.targa, p.tipo_copertura
+            FROM Polizza p
+            JOIN Veicolo v ON p.veicolo_id = v.id
+            WHERE p.id = %s AND v.id = %s AND v.proprietario_id = %s
+        """
+        cursor.execute(query_check, (
+            data.get('polizza_id'), 
+            data.get('veicolo_id'), 
+            data.get('automobilista_id')
+        ))
+        validazione = cursor.fetchone()
 
-        # Inserimento MongoDB
-        nuovo = {
-            "automobilista_id": data['automobilista_id'],
-            "veicolo_id": data['veicolo_id'],
+        if not validazione:
+            return jsonify({"error": "Dati non validi o polizza non trovata per questo utente/veicolo"}), 403
+
+        # 2. Creazione documento su MongoDB (come da specifica Documentazione DB- SC.docx)
+        nuovo_sinistro = {
             "polizza_id": data['polizza_id'],
-            "descrizione": data['descrizione'],
-            "stato": "aperto",
-            "data_apertura": datetime.now().isoformat()
+            "automobilista_id": data['automobilista_id'],
+            "targa_veicolo": validazione['targa'],
+            "descrizione": data.get('descrizione', ''),
+            "data_apertura": datetime.now().isoformat(),
+            "stato": "APERTO",
+            # Formato GeoJSON per query spaziali (Longitudine, Latitudine)
+            "posizione": {
+                "type": "Point",
+                "coordinates": [float(data['longitudine']), float(data['latitudine'])]
+            },
+            "perizia_id": None,
+            "documenti_allegati": []
         }
-        res = sinistri_col.insert_one(nuovo)
-        return jsonify({"id": str(res.inserted_id)}), 201
+
+        res = sinistri_col.insert_one(nuovo_sinistro)
+
+        return jsonify({
+            "messaggio": "Sinistro creato con successo",
+            "sinistro_id": str(res.inserted_id),
+            "stato": "APERTO"
+        }), 201
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
     finally:
-        if 'db_mysql' in locals() and db_mysql.is_connected():
+        if db_mysql and db_mysql.is_connected():
             cursor.close()
             db_mysql.close()
 
