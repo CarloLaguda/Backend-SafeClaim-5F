@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
 import mysql.connector
+import re
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from datetime import datetime
+import urllib.parse
 
 app = Flask(__name__)
 
@@ -26,7 +28,137 @@ sinistri_col = mongo_db['Sinistro']
 def get_mysql_connection():
     return mysql.connector.connect(**db_config)
 
+# REGISTRAZIONE
+def valida_password(password):
+    """Verifica che la password abbia 8 caratteri, lettere e numeri."""
+    if len(password) < 8:
+        return False, "La password deve essere lunga almeno 8 caratteri."
+    if not re.search(r"[a-zA-Z]", password):
+        return False, "La password deve contenere almeno una lettera."
+    if not re.search(r"\d", password):
+        return False, "La password deve contenere almeno un numero."
+    return True, None
+
+def valida_dati_utente(data):
+    """Esegue tutti i controlli di robustezza sui dati ricevuti."""
+    pattern_nomi = r"^[a-zA-Zàáâäãåèéêëìíîïòóôöùúûüç \s']+$"
+    
+    if not re.match(pattern_nomi, data.get('nome', '')):
+        return False, "Il nome non è valido o contiene numeri."
+    
+    if not re.match(pattern_nomi, data.get('cognome', '')):
+        return False, "Il cognome non è valido o contiene numeri."
+    
+    if not re.match(r'^[A-Z0-9]{16}$', data.get('cf', '').upper()):
+        return False, "Il CF deve essere di esattamente 16 caratteri alfanumerici."
+    
+    if not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', data.get('email', '')):
+        return False, "Formato email non valido."
+    
+    # Validazione password
+    valida_psw, err_psw = valida_password(data.get('psw', ''))
+    if not valida_psw:
+        return False, err_psw
+        
+    return True, None
+
+@app.route('/registrazione', methods=['POST'])
+def registrazione():
+    # Ricezione dei dati JSON
+    data = request.get_json()
+    
+    if not data:
+        return jsonify({"error": "Nessun dato ricevuto"}), 400
+
+    # 1. Validazione Robustezza (quella che abbiamo testato in console)
+    is_valid, error_message = valida_dati_utente(data)
+    if not is_valid:
+        return jsonify({"error": error_message}), 400
+
+    # 2. Inserimento nel Database
+    connection = None
+    try:
+        connection = mysql.connector.connect(**db_config)
+        cursor = connection.cursor()
+
+        query = """
+        INSERT INTO Automobilista (nome, cognome, cf, email, psw) 
+        VALUES (%s, %s, %s, %s, %s)
+        """
+        
+        # Pulizia e formattazione finale
+        values = (
+            data['nome'].strip().title(), 
+            data['cognome'].strip().title(), 
+            data['cf'].strip().upper(), 
+            data['email'].strip().lower(), 
+            data['psw'] # Salvata in chiaro come richiesto
+        )
+
+        cursor.execute(query, values)
+        connection.commit()
+
+        return jsonify({
+            "status": "success",
+            "message": "Automobilista registrato con successo",
+            "id": cursor.lastrowid
+        }), 201
+
+    except mysql.connector.IntegrityError:
+        return jsonify({"error": "Email o Codice Fiscale già registrati."}), 409
+    except Error as e:
+        return jsonify({"error": f"Errore del database: {str(e)}"}), 500
+    finally:
+        if connection and connection.is_connected():
+            cursor.close()
+            connection.close()
+# LOGIN MOMENTANEA
+@app.route('/login', methods=['POST'])
+def login():
+    try:
+        data = request.get_json()
+        email_in = data.get('email')
+        psw_in = data.get('psw')
+
+        if not email_in or not psw_in:
+            return jsonify({"error": "Email e password obbligatorie"}), 400
+
+        db = get_mysql_connection()
+        cursor = db.cursor(dictionary=True)
+        
+        # Lista delle tabelle in cui cercare l'utente
+        tabelle = ["Assicuratore", "Automobilista", "Perito"]
+        user_found = None
+        ruolo_scoperto = ""
+
+        for tabella in tabelle:
+            # Cerchiamo nelle tabelle usando i nomi colonne corretti: email e psw
+            query = f"SELECT id, nome, cognome, email FROM {tabella} WHERE email = %s AND psw = %s"
+            cursor.execute(query, (email_in, psw_in))
+            user_found = cursor.fetchone()
+            
+            if user_found:
+                ruolo_scoperto = tabella.lower()
+                break
+
+        cursor.close()
+        db.close()
+
+        if user_found:
+            # Aggiungiamo il ruolo al risultato per il frontend
+            user_found['ruolo'] = ruolo_scoperto
+            return jsonify({
+                "status": "success",
+                "message": f"Bentornato {user_found['nome']}",
+                "user": user_found
+            }), 200
+        else:
+            return jsonify({"status": "error", "message": "Credenziali non valide"}), 401
+
+    except Exception as e:
+        return jsonify({"error": "Errore server", "details": str(e)}), 500
 # --- ENDPOINT POLIZZE (MySQL) ---
+
 
 @app.route('/polizze', methods=['POST'])
 def crea_polizza():
@@ -131,8 +263,51 @@ def assegna_perito(id_sinistro):
     except Exception as e:
         return jsonify({"error": "ID non valido o errore server", "details": str(e)}), 400
 
+# MODIFICA DI DATI DI UN SISNISTRO, PRESA IN CARICO DA PARTE DELL'ASSICURAZIONE
+@app.route('/sinistro/<id>', methods=['PUT'])
+def aggiorna_sinistro(id):
+    """
+    Endpoint per aggiornare lo stato e i dettagli di un sinistro esistente.
+    Permette l'avanzamento della pratica come richiesto dalla WBS.
+    """
+    data = request.json
+    
+    # Campi che la WBS permette di aggiornare durante la gestione della pratica
+    campi_ammessi = [
+        'stato',                # Es: "IN_PERIZIA", "CHIUSO", "IN_RIPARAZIONE"
+        'descrizione',          # Aggiornamenti testuali sulla dinamica
+        'perizia_id',           # Collegamento al documento Perizia su MongoDB
+        'officina_id',          # ID dell'officina scelta (da MySQL)
+        'documenti_allegati'    # Array di ID riferiti a Documenti_Anagrafica
+    ]
+    
+    # Filtro dei dati in input: accettiamo solo i campi definiti sopra
+    update_query = {k: v for k, v in data.items() if k in campi_ammessi}
+    
+    if not update_query:
+        return jsonify({"error": "Nessun dato valido fornito per l'aggiornamento"}), 400
+
+    try:
+        # Esecuzione dell'aggiornamento su MongoDB tramite ObjectId
+        result = sinistri_col.update_one(
+            {"_id": ObjectId(id)},
+            {"$set": update_query}
+        )
+
+        if result.matched_count == 0:
+            return jsonify({"error": "Sinistro non trovato o ID non valido"}), 404
+
+        return jsonify({
+            "messaggio": "Sinistro aggiornato con successo",
+            "stato_aggiornamento": "OK",
+            "campi_modificati": list(update_query.keys())
+        }), 200
+
+    except Exception as e:
+        return jsonify({"error": f"Errore durante l'aggiornamento: {str(e)}"}), 500
+
 # --- AVVIO APP ---
 
 if __name__ == '__main__':
     # Ho impostato la porta 5000 come default
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=6000, debug=True)
