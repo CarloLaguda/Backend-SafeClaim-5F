@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from datetime import datetime
-import pymysql
+import mysql.connector
 import pymongo
 from bson.objectid import ObjectId
 
@@ -17,12 +17,11 @@ mysql_config = {
     'user': 'safeclaim',
     'password': '0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE+tM=',
     'database': 'safeclaim_db',
-    'cursorclass': pymysql.cursors.DictCursor,
     'connect_timeout': 10
 }
 
 def get_db_connection():
-    return pymysql.connect(**mysql_config)
+    return mysql.connector.connect(**mysql_config)
 
 
 # ---------- MongoDB (Sinistri, GPS, Immagini) ----------
@@ -280,4 +279,4 @@ def get_dettaglio_soccorso(identificatore):
 # ==========================================================
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=6000)
