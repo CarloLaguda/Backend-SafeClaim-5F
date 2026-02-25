@@ -49,7 +49,7 @@ def crea_pratica(id_sinistro, id_perito):
         "sinistro_id": s_id,
         "perito_id": id_perito,
         "data_perizia": data.get("data_perizia"),
-        "ora_perizia": data.get("ora_perizia"),
+        "ora_perizia": data.get("ora_perizia"), 
         "note_tecniche": data.get("note_tecniche"),
         "documenti": documenti_perizia, # Array di file/foto caricati
         "stato": "aperta",
