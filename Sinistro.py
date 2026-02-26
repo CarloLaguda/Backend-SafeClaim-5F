@@ -139,13 +139,13 @@ def aggiungi_immagine_ultimo():
         # Gestione di eventuali errori tecnici (es. problemi di connessione al DB)
         return jsonify({"status": "error", "message": str(e)}), 500
 
-# Definiamo due rotte che puntano alla stessa funzione:
-# 1. /sinistri -> caricherà tutti i sinistri (id_sinistro sarà None)
-# 2. /sinistri/<id_sinistro> -> caricherà solo quello specifico
+# Definiamo due rotte per visualizzare i sinistri. 
+# /sinistri -> La route senza ID mostra tutti i sinistri, restituendo una lista completa con il numero totale (count) e lo stato di successo.
+# /sinistri/<id_sinistro> -> la route con con ID mostra solo quello specifico
 @app.route('/sinistri', defaults={'id_sinistro': None}, methods=['GET'])
 @app.route('/sinistri/<id_sinistro>', methods=['GET'])
 def ottieni_sinistri(id_sinistro):
-    try:
+    try: 
         # --- CASO A: RICERCA DI UN SINISTRO SPECIFICO ---
         if id_sinistro:
             # Cerchiamo nel database un documento che abbia lo stesso _id.

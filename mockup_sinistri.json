@@ -1,0 +1,58 @@
+[
+  {
+    "automobilista_id": "USR-001",
+    "targa": "AA123BB",
+    "data_evento": "2026-02-26T10:30:00",
+    "descrizione": "Tamponamento lieve al semaforo.",
+    "meteo": "Soleggiato",
+    "posizione": "Milano, Corso Buenos Aires",
+    "tipo_sinistro": "Tamponamento",
+    "stato": "APERTO",
+    "immagini": [
+      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
+    ]
+  },
+  {
+    "automobilista_id": "USR-002",
+    "targa": "CC456DD",
+    "data_evento": "2026-02-25T14:20:00",
+    "descrizione": "Urto contro un paletto in retromarcia.",
+    "meteo": "Sereno",
+    "posizione": "Roma, Via del Corso",
+    "tipo_sinistro": "Urto ostacolo fisso",
+    "stato": "APERTO",
+    "immagini": [
+      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg==",
+      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
+    ]
+  },
+  {
+    "automobilista_id": "USR-003",
+    "targa": "EE789FF",
+    "data_evento": "2026-02-24T18:45:00",
+    "descrizione": "Slittamento su bagnato.",
+    "meteo": "Pioggia",
+    "posizione": "Napoli, Via Toledo",
+    "tipo_sinistro": "Collisione laterale",
+    "controparte": {
+      "targa_controparte": "XY987ZT",
+      "modello": "Fiat Panda"
+    },
+    "stato": "APERTO",
+    "immagini": []
+  },
+  {
+    "automobilista_id": "USR-004",
+    "targa": "GG012HH",
+    "data_evento": "2026-02-23T08:00:00",
+    "descrizione": "Mancata precedenza all'incrocio.",
+    "meteo": "Nebbia",
+    "posizione": "Torino, Piazza Castello",
+    "tipo_sinistro": "Incrocio",
+    "testimoni": [{"nome": "Mario Rossi", "telefono": "3331122334"}],
+    "stato": "APERTO",
+    "immagini": [
+      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
+    ]
+  }
+]

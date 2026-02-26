@@ -1,19 +1,19 @@
 import requests
-# Questo è l'indirizzo di casa del server Flask, dove è in ascolto per ricevere i dati dei sinistri.
-url = "http://127.0.0.1:5000/apri-sinistro"
-# Qui prepariamo il "pacco" con tutte le info del sinistro da spedire
+
+# L'indirizzo del tuo nuovo endpoint (assicurati che il server sia acceso!)
+url = "http://127.0.0.1:5000/sinistro"
+
+# Il pacchetto JSON da inviare
 dati_sinistro = {
-    "automobilista_id": 1,
-    "targa": "AA123BB",
-    "data_evento": "2026-02-12",
-    "descrizione": "Tamponamento lieve al semaforo"
+    "automobilista_id": 101,
+    "targa": "AB123CD",
+    "data_evento": "2026-02-16",
+    "descrizione": "Tamponamento a catena causato da frenata improvvisa al semaforo."
 }
-# Spediamo il pacchetto al server usando il metodo POST. 
-# Il parametro json= trasforma automaticamente il nostro dizionario in un formato che il web capisce.
+
+# Spediamo i dati
 response = requests.post(url, json=dati_sinistro)
 
-# Dopo la spedizione, il server ci risponde. 
-# Qui stampiamo il "codice di stato": 201 significa "Ottimo, creato!", 500 significa "C'è un errore nel server".
+# Vediamo cosa ci risponde il server
 print(f"Stato Risposta: {response.status_code}")
-# Infine, leggiamo il "corpo della risposta" che il server ci ha rimandato (il JSON)
 print(f"Risposta JSON: {response.json()}")
