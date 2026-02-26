@@ -1,0 +1,44 @@
+{
+    "mysql_veicoli": [
+        {
+            "id": 1,
+            "targa": "AA123BB",
+            "marca": "Fiat",
+            "modello": "Panda",
+            "anno": 2021
+        },
+        {
+            "id": 2,
+            "targa": "CC444DD",
+            "marca": "Tesla",
+            "modello": "Model 3",
+            "anno": 2023
+        }
+    ],
+    "mongo_soccorsi": [
+        {
+            "_id": "65f8a1b2c3d4e5f6a7b8c9d0",
+            "veicolo_id": 1,
+            "targa": "AA123BB",
+            "posizione": {
+                "lat": 45.4642,
+                "lon": 9.19
+            },
+            "stato": "Richiesto",
+            "dettagli": "Batteria a terra",
+            "data_richiesta": "2024-05-21T10:30:00Z"
+        },
+        {
+            "_id": "0a810c37-e972-4520-9f25-",
+            "veicolo_id": 1,
+            "targa": "AA123BB",
+            "posizione": {
+                "lat": 45.4642,
+                "lon": 9.19
+            },
+            "stato": "In attesa",
+            "dettagli": "Batteria a terra, serve booster",
+            "data_richiesta": "2026-02-26T09:09:38.267468"
+        }
+    ]
+}
