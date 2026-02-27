@@ -6,7 +6,6 @@ app = Flask(__name__)
 
 # --- SIMULAZIONE DATABASE (LISTA IN MEMORIA) ---
 # Invece di connetterci a MongoDB, salviamo i dati qui dentro.
-# Attenzione: se riavvii il server, i dati spariranno (ma per i test è perfetto!)
 db_finto = []
 
 # --- 1. APERTURA SINISTRO ---
@@ -68,7 +67,34 @@ def aggiungi_immagine_ultimo():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
-# --- 3. VISUALIZZAZIONE TUTTI I SINISTRI ---
+# --- 3. CARICAMENTO IMMAGINI TRAMITE ID ---
+@app.route('/sinistro/<id_sinistro>/immagini', methods=['POST'])
+def aggiungi_immagine_id(id_sinistro):
+    data = request.json
+    
+    # Controllo se la foto è presente nel JSON
+    if 'immagine_base64' not in data:
+        return jsonify({"error": "Dati immagine mancanti"}), 400
+
+    try:
+        # Cerchiamo nella nostra lista 'db_finto' il sinistro con l'ID corrispondente
+        sinistro_trovato = next((s for s in db_finto if s["_id"] == id_sinistro), None)
+
+        if sinistro_trovato:
+            # Se lo troviamo, aggiungiamo l'immagine alla sua lista
+            sinistro_trovato['immagini'].append(data['immagine_base64'])
+            return jsonify({
+                "status": "success", 
+                "message": f"Immagine aggiunta correttamente al sinistro {id_sinistro}"
+            }), 200
+        else:
+            # Se l'ID non esiste nel nostro db_finto
+            return jsonify({"error": "Sinistro non trovato con questo ID"}), 404
+
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+# --- 4. VISUALIZZAZIONE TUTTI I SINISTRI ---
 @app.route('/sinistri', methods=['GET'])
 def ottieni_sinistri():
     return jsonify({

@@ -1,4 +1,6 @@
+import pymongo  # per la connessione Atlas
 from flask import Flask, request, jsonify
+from flask_cors import CORS  # <--- 1. AGGIUNGI QUESTO IMPORT
 from pymongo import MongoClient
 from datetime import datetime
 # Importiamo l'utility per gestire gli ID di MongoDB
@@ -6,17 +8,11 @@ from bson.objectid import ObjectId
 
 # Creiamo l'oggetto 'app' che rappresenta il nostro server web
 app = Flask(__name__)
+CORS(app) # <--- 2. ABILITA LE CORS PER TUTTE LE ROTTE
 
-# --- CONFIGURAZIONE MONGODB ---
-# Usiamo la stringa URL di connessione per collegarci al server
-MONGO_URI = "mongodb://safeclaim:0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE%2BtM%3D@mongo-safeclaim.aevorastudios.com:27017/"
-# Apriamo la connessione vera e propria verso il server MongoDB
-client = MongoClient(MONGO_URI)
-# Entriamo dentro il database chiamato 'safeclaim_mongo'
-db = client['safeclaim_mongo']
-# Entriamo nella collezione (il cassetto) 'sinistri'. 
-# Useremo questa variabile 'sinistri_col' per aggiungere o cercare dati.
-sinistri_col = db['sinistri']  #variabile che serve a interagire con la collezione di MongoDB
+
+
+
 
 # Diciamo al server di ascoltare quando qualcuno vuole entrare all'indirizzo '/sinistro'
 # Usiamo il metodo POST perché stiamo inviando dei nuovi dati da salvare

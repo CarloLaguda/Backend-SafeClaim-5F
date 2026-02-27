@@ -1,5 +1,14 @@
 [
   {
+    "automobilista_id": "USR-005",
+    "targa": "AA123BB",
+    "data_evento": "2026-02-26",
+    "descrizione": "Tamponamento lieve al semaforo."
+  },
+  {
+    "immagine_base64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
+  },
+  {
     "automobilista_id": "USR-001",
     "targa": "AA123BB",
     "data_evento": "2026-02-26T10:30:00",
@@ -55,4 +64,5 @@
       "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
     ]
   }
+  
 ]
