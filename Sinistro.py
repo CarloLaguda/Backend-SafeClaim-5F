@@ -1,202 +1,176 @@
-import pymongo  # per la connessione Atlas
+import pymongo
 from flask import Flask, request, jsonify
-from flask_cors import CORS  # <--- 1. AGGIUNGI QUESTO IMPORT
-from pymongo import MongoClient
+from flask_cors import CORS
 from datetime import datetime
-# Importiamo l'utility per gestire gli ID di MongoDB
 from bson.objectid import ObjectId
 
-# Creiamo l'oggetto 'app' che rappresenta il nostro server web
+# Inizializziamo l'applicazione Flask
 app = Flask(__name__)
-CORS(app) # <--- 2. ABILITA LE CORS PER TUTTE LE ROTTE
 
+# Abilitiamo CORS: permette al frontend (es. un'app React o un sito web) 
+# di comunicare con questo server anche se sono su domini diversi.
+CORS(app) 
 
+# --- CONFIGURAZIONE MONGODB ATLAS ---
+# Stringa di connessione che contiene utente, password e indirizzo del cluster
+CONNECTION_STRING = "mongodb+srv://dbFakeClaim:xxx123##@cluster0.zgw1jft.mongodb.net/?appName=Cluster0"
+DB_NAME = "FakeClaim"
 
+# Proviamo a stabilire la connessione all'avvio del server
+try:
+    # Creiamo il client MongoDB. 'serverSelectionTimeoutMS' evita che il server 
+    # resti bloccato all'infinito se il database non risponde.
+    client = pymongo.MongoClient(CONNECTION_STRING, serverSelectionTimeoutMS=5000)
+    
+    # Selezioniamo il database e la collezione specifica per i sinistri
+    db = client[DB_NAME]
+    sinistri_col = db['sinistri']
+    
+    # Forza una chiamata al server per verificare se siamo davvero connessi
+    client.server_info() 
+    print("✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!")
+except Exception as e:
+    # Se la connessione fallisce, stampiamo l'errore e impostiamo la variabile a None
+    print(f"❌ Errore critico di connessione al database: {e}")
+    sinistri_col = None
 
-
-# Diciamo al server di ascoltare quando qualcuno vuole entrare all'indirizzo '/sinistro'
-# Usiamo il metodo POST perché stiamo inviando dei nuovi dati da salvare
+# --- ROTTA 1: CREAZIONE DI UN NUOVO SINISTRO ---
 @app.route('/sinistro', methods=['POST'])
 def apri_sinistro():
-    data = request.json  # Prendiamo i dati che l'utente ci ha inviato 
+    # Controllo di sicurezza: se il DB non è connesso, restituiamo errore 503
+    if sinistri_col is None:
+        return jsonify({"status": "error", "message": "Database non disponibile"}), 503
 
-    # 1. Validazione semplice dei dati
-    # Verifichiamo che ci siano tutte le informazioni fondamentali
+    # Estraiamo i dati JSON inviati nel corpo della richiesta
+    data = request.json
+    
+    # Definiamo i campi che l'utente DEVE obbligatoriamente inviare
     required_fields = ['automobilista_id', 'targa', 'data_evento', 'descrizione']
     for field in required_fields:
         if field not in data:
-            # Se ne manca anche solo uno, rispondiamo con un errore e ci fermiamo qui
             return jsonify({"error": f"Campo mancante: {field}"}), 400
 
     try:
-        # 2. Preparazione del documento da inserire nella collezione MongoDB
-        # Creiamo un "pacchetto" con i dati ricevuti
+        # Prepariamo l'oggetto (documento) da salvare su MongoDB
         nuovo_sinistro = {
             "automobilista_id": data['automobilista_id'],
             "targa": data['targa'],
             "data_evento": data['data_evento'],
             "descrizione": data['descrizione'],
-            "stato": "APERTO",
-            "data_inserimento": datetime.now()
+            "stato": "APERTO", # Stato iniziale predefinito
+            "immagini": [],    # Lista vuota che verrà popolata in seguito
+            "data_inserimento": datetime.now() # Data e ora del server
         }
 
-        # 3. Salvataggio in MongoDB
-        # Diciamo alla nostra collezione di inserire questo pacchetto nel database
+        # Eseguiamo l'inserimento effettivo nella collezione
         risultato = sinistri_col.insert_one(nuovo_sinistro)
         
-        # 4. RISPOSTA DEL SERVER AL CLIENT
-        # Se tutto è andato bene, rispondiamo con un messaggio di conferma 
-        # e includiamo l'ID unico che MongoDB ha assegnato a questo sinistro.
+        # Restituiamo il successo e l'ID generato automaticamente da MongoDB
         return jsonify({
             "status": "success",
-            "message": "Sinistro salvato correttamente su MongoDB",
+            "message": "Sinistro salvato correttamente",
             "mongo_id": str(risultato.inserted_id)
         }), 201
-
     except Exception as e:
-        # Se succede qualcosa di imprevisto (es. il database è spento), 
-        # inviamo un messaggio di errore 
         return jsonify({"status": "error", "message": str(e)}), 500
 
-# --- 2. CARICAMENTO IMMAGINI ---
-
-# Definiamo la rotta. <id> è una variabile
-# Usiamo POST perché stiamo inviando dei nuovi dati (l'immagine) al server.
+# --- ROTTA 2: AGGIUNTA IMMAGINE TRAMITE ID ---
 @app.route('/sinistro/<id>/immagini', methods=['POST'])
 def aggiungi_immagine(id):
-    # Recuperiamo il contenuto del pacchetto JSON che ci è arrivato
+    if sinistri_col is None:
+        return jsonify({"status": "error", "message": "Database non disponibile"}), 503
+
     data = request.json
-    
-    # Primo controllo: se nel JSON non c'è la chiave 'immagine_base64', inutile andare avanti.
-    # Rispondiamo con un errore 400 (Bad Request).
     if 'immagine_base64' not in data:
         return jsonify({"error": "Dati immagine mancanti"}), 400
 
     try:
-        # 1. Cerchiamo il documento che ha l'ID uguale a quello passato nell'URL.
-        #    Usiamo ObjectId(id) per convertire il testo in un formato che Mongo capisce.
-        # 2. Usiamo $push per dire a Mongo: "Vai nel campo 'immagini' e aggiungi questa foto
+        # update_one cerca il documento con l'ID specificato.
+        # $push aggiunge il nuovo valore alla lista 'immagini' senza cancellare quelle vecchie.
         risultato = sinistri_col.update_one(
             {"_id": ObjectId(id)}, 
             {"$push": {"immagini": data['immagine_base64']}}
         )
 
-        # Se matched_count è 0, vuol dire che Mongo non ha trovato nessun sinistro con quell'ID.
+        # Se matched_count è 0, significa che l'ID fornito non esiste nel DB
         if risultato.matched_count == 0:
             return jsonify({"error": "Sinistro non trovato"}), 404
 
-        # Se tutto è andato bene, rispondiamo con un messaggio di conferma.
         return jsonify({"status": "success", "message": "Immagine caricata!"}), 200
-        
     except Exception as e:
-        # Se l'ID è scritto male (es. mancano caratteri) o il server crasha, 
-        # restituiamo l'errore per capire cosa è successo.
         return jsonify({"status": "error", "message": str(e)}), 500
-# --- ROTTA OTTIMIZZATA PER TEST (CARICA SULL'ULTIMO SINISTRO) ---
 
-# Definiamo un URL fisso. Non serve più mettere <id> perché lo cercheremo noi nel DB.
+# --- ROTTA 3: AGGIUNTA IMMAGINE ALL'ULTIMO SINISTRO (UTILE PER TEST) ---
 @app.route('/sinistro/ultimo/immagini', methods=['POST'])
 def aggiungi_immagine_ultimo():
-    # Recuperiamo i dati (la stringa della foto) inviati nella richiesta
+    if sinistri_col is None:
+        return jsonify({"status": "error", "message": "Database non disponibile"}), 503
+
     data = request.json
-    
-    # Verifichiamo che l'utente non si sia dimenticato di allegare la foto nel JSON
     if 'immagine_base64' not in data:
         return jsonify({"error": "Dati immagine mancanti"}), 400
 
     try:
-        # 1. RICERCA AUTOMATICA DELL'ULTIMO SINISTRO
-        # Usiamo .find_one() per prendere un solo documento.
-        # sort=[("data_inserimento", -1)] dice a MongoDB: 
-        # "Ordina i sinistri dal più recente al più vecchio e prendi il primo della lista".
+        # Cerchiamo il sinistro più recente ordinando per 'data_inserimento' decrescente (-1)
         ultimo_sinistro = sinistri_col.find_one(sort=[("data_inserimento", -1)])
 
-        # Se il database è vuoto, non troverà nulla. Gestiamo il caso per evitare crash.
         if not ultimo_sinistro:
-            return jsonify({"error": "Nessun sinistro trovato nel database"}), 404
+            return jsonify({"error": "Nessun sinistro trovato"}), 404
 
-        # 2. AGGIORNAMENTO DELLA PRATICA TROVATA
-        # Ora che abbiamo l'ID dell'ultimo sinistro (ultimo_sinistro["_id"]),
-        # usiamo $push per inserire l'immagine nella sua lista di foto.
+        # Aggiorniamo quel documento specifico
         sinistri_col.update_one(
             {"_id": ultimo_sinistro["_id"]}, 
             {"$push": {"immagini": data['immagine_base64']}}
         )
 
-        # Rispondiamo con successo, restituendo anche l'ID che abbiamo usato 
-        # così puoi verificare che sia quello corretto.
         return jsonify({
             "status": "success", 
             "message": "Immagine caricata sull'ultimo sinistro creato!",
             "id_usato": str(ultimo_sinistro["_id"])
         }), 200
-        
     except Exception as e:
-        # Gestione di eventuali errori tecnici (es. problemi di connessione al DB)
         return jsonify({"status": "error", "message": str(e)}), 500
 
-# Definiamo due rotte per visualizzare i sinistri. 
-# /sinistri -> La route senza ID mostra tutti i sinistri, restituendo una lista completa con il numero totale (count) e lo stato di successo.
-# /sinistri/<id_sinistro> -> la route con con ID mostra solo quello specifico
+# --- ROTTA 4: RECUPERO SINISTRI (TUTTI O SINGOLO) ---
 @app.route('/sinistri', defaults={'id_sinistro': None}, methods=['GET'])
 @app.route('/sinistri/<id_sinistro>', methods=['GET'])
 def ottieni_sinistri(id_sinistro):
+    if sinistri_col is None:
+        return jsonify({"status": "error", "message": "Database non disponibile"}), 503
+
     try: 
-        # --- CASO A: RICERCA DI UN SINISTRO SPECIFICO ---
+        # SE viene fornito un ID nell'URL, cerchiamo solo quel sinistro
         if id_sinistro:
-            # Cerchiamo nel database un documento che abbia lo stesso _id.
-            # Nota: usiamo ObjectId() perché MongoDB non accetta stringhe semplici per gli ID.
             sinistro = sinistri_col.find_one({"_id": ObjectId(id_sinistro)})
-            
-            # Se il database restituisce 'None', significa che l'ID non esiste
             if not sinistro:
                 return jsonify({"status": "error", "message": "Sinistro non trovato"}), 404
             
-            # Trasformiamo l'ObjectId in una stringa normale per poterlo inviare in JSON
+            # Convertiamo l'ObjectId e la Data in formati leggibili dal JSON (stringhe)
             sinistro['_id'] = str(sinistro['_id'])
-            
-            # Se esiste una data, la convertiamo in un formato testuale leggibile (ISO)
             if 'data_inserimento' in sinistro:
                 sinistro['data_inserimento'] = sinistro['data_inserimento'].isoformat()
             
-            # Restituiamo il singolo sinistro trovato
             return jsonify({"status": "success", "data": sinistro}), 200
-
-        # --- CASO B: SELEZIONE DI TUTTI I SINISTRI ---
+        
+        # ALTRIMENTI recuperiamo l'intera lista
         else:
-            # find() senza argomenti recupera tutti i documenti della collezione
-            cursor = sinistri_col.find()
+            cursor = sinistri_col.find() # Restituisce un cursore a tutti i documenti
             lista_sinistri = []
-            
-            # Cicliamo su ogni documento trovato nel database
             for s in cursor:
-                # Convertiamo l'ID da oggetto MongoDB a stringa di testo
                 s['_id'] = str(s['_id'])
-                
-                # Convertiamo la data in formato leggibile per il JSON
                 if 'data_inserimento' in s:
                     s['data_inserimento'] = s['data_inserimento'].isoformat()
-                
-                # Aggiungiamo il sinistro "pulito" alla nostra lista finale
                 lista_sinistri.append(s)
             
-            # Restituiamo la lista completa, il numero di elementi (count) e lo stato
             return jsonify({
                 "status": "success",
                 "count": len(lista_sinistri),
                 "data": lista_sinistri
             }), 200
-
     except Exception as e:
-        # Se qualcosa va storto (es. ID scritto male o database spento), catturiamo l'errore
-        return jsonify({
-            "status": "error", 
-            "message": f"Errore durante l'operazione: {str(e)}"
-        }), 500
+        return jsonify({"status": "error", "message": str(e)}), 500
 
-
-
+# Avvio del server Flask
 if __name__ == '__main__':
-    # Lanciamo il server sulla porta 5000. 
-    # debug=True serve a farlo riavviare da solo se modifichi il codice.
+    # debug=True permette di vedere gli errori dettagliati nel terminale durante lo sviluppo
     app.run(debug=True, port=5000)
