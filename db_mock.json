@@ -39,6 +39,18 @@
             "stato": "In attesa",
             "dettagli": "Batteria a terra, serve booster",
             "data_richiesta": "2026-02-26T09:09:38.267468"
+        },
+        {
+            "_id": "95943a7e-f8bf-4d72-8759-",
+            "veicolo_id": 1,
+            "targa": "AA123BB",
+            "posizione": {
+                "lat": 45.4642,
+                "lon": 9.19
+            },
+            "stato": "In attesa",
+            "dettagli": "Batteria a terra",
+            "data_richiesta": "2026-02-27T10:11:05.831982"
         }
     ]
 }
