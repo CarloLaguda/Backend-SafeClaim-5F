@@ -1,9 +1,13 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS  # 1. Importa CORS
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from datetime import datetime
 
 app = Flask(__name__)
+
+# 2. Configura CORS
+CORS(app)
 
 # Configurazione MongoDB
 MONGO_URI = "mongodb://safeclaim:0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE%2BtM%3D@mongo-safeclaim.aevorastudios.com:27017/"
@@ -45,4 +49,5 @@ def assegna_perito(id_sinistro):
         return jsonify({"error": "ID non valido o errore server", "details": str(e)}), 400
 
 if __name__ == '__main__':
+    # Assicurati di aver installato: pip install flask-cors
     app.run(port=5001, debug=True)

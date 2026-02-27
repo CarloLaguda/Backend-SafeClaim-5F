@@ -2,7 +2,7 @@ from gradio_client import Client, handle_file
 import os
 
 # Inserisci il tuo token di Hugging Face
-MY_TOKEN = "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" 
+MY_TOKEN = "il_tuo_token_qui" 
 
 PROMPT_PERITO = (
     "Agisci come un perito assicurativo esperto. Analizza l'immagine e descrivi l'incidente "

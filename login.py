@@ -1,7 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS  # 1. Importa CORS
 import mysql.connector
 
 app = Flask(__name__)
+
+# 2. Configura CORS per permettere le chiamate dal frontend
+CORS(app)
 
 # --- CONNESSIONE MYSQL ---
 def get_db_connection():
@@ -58,4 +62,5 @@ def login():
         return jsonify({"error": "Errore server", "details": str(e)}), 500
 
 if __name__ == '__main__':
+    # Assicurati che flask-cors sia installato: pip install flask-cors
     app.run(port=5001, debug=True)

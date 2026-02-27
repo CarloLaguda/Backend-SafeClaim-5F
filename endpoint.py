@@ -1,7 +1,12 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS  # 1. Importa CORS
 import mysql.connector
 
 app = Flask(__name__)
+
+# 2. Configura CORS
+# 'CORS(app)' abilita l'accesso da qualsiasi dominio (per sviluppo è perfetto)
+CORS(app) 
 
 # Credenziali fornite per MySQL
 db_config = {
@@ -91,4 +96,5 @@ def elimina_polizza(id):
     return jsonify({"message": "Polizza eliminata"}), 200
 
 if __name__ == '__main__':
+    # Ricorda di installare con: pip install flask-cors
     app.run(port=5000, debug=True)
