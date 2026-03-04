@@ -1,1 +1,1 @@
-pip install flask pymysql pymongo
+pip install flask flask-cors mysql-connector-python pymongo[srv]
