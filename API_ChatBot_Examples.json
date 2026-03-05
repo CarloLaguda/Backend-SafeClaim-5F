@@ -1,0 +1,32 @@
+{
+  "POST /chat/init": {},
+  
+  "POST /chat - Messaggio 1": {
+    "session_id": "REPLACE_WITH_SESSION_ID",
+    "messaggio": "Ho avuto un incidente, cosa devo fare?"
+  },
+  
+  "POST /chat - Messaggio 2": {
+    "session_id": "REPLACE_WITH_SESSION_ID",
+    "messaggio": "Quali documenti mi servono?"
+  },
+  
+  "POST /chat - Messaggio 3": {
+    "session_id": "REPLACE_WITH_SESSION_ID",
+    "messaggio": "Quanto tempo ci vuole per il rimborso?"
+  },
+  
+  "POST /chat/feedback - Rating 5": {
+    "session_id": "REPLACE_WITH_SESSION_ID",
+    "rating": 5,
+    "comment": "Risposta molto utile!"
+  },
+  
+  "POST /chat/feedback - Rating 2": {
+    "session_id": "REPLACE_WITH_SESSION_ID",
+    "rating": 2,
+    "comment": "Risposta non adeguata"
+  },
+  
+  "POST /chat/end": {}
+}

@@ -1,128 +1,228 @@
-# safeclaim_assistant.py
-# -*- coding: utf-8 -*-
-
-"""
-SafeClaim - Assistente Virtuale
-Chatbot di supporto per utenti che devono segnalare un incidente
-"""
-
-import os
-from langchain_openai import ChatOpenAI
+import requests
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+from pymongo import MongoClient
+from datetime import datetime
+import uuid
 
 
-# =========================
-# CONFIGURAZIONE
-# =========================
-
-MODEL_NAME = "gpt-4o-mini"
-TEMPERATURE = 0.4
+app = Flask(__name__)
+CORS(app)
 
 
-# =========================
-# SETUP
-# =========================
+# CONFIGURAZIONE AI
+HF_TOKEN = "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"
+API_URL = "https://api-inference.huggingface.co/models/microsoft/Phi-3-mini-4k-instruct"
 
-def setup_environment():
-    api_key = os.getenv("OPENAI_API_KEY")
-
-    if not api_key:
-        raise ValueError(
-            "⚠️ Devi impostare la variabile d'ambiente OPENAI_API_KEY prima di eseguire il programma."
-        )
-
-    print("✅ Ambiente configurato correttamente.")
+headers = {
+    "Authorization": f"Bearer {HF_TOKEN.strip()}",
+    "Content-Type": "application/json",
+    "User-Agent": "SafeClaimBot/1.0"
+}
 
 
-def initialize_llm():
-    return ChatOpenAI(
-        model=MODEL_NAME,
-        temperature=TEMPERATURE
-    )
+# CONFIGURAZIONE MONGODB
+MONGO_URI = "mongodb://safeclaim:0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE%2BtM%3D@mongo-safeclaim.aevorastudios.com:27017/"
+MONGO_DB_NAME = "safeclaim_mongo"
+
+try:
+    mongo_client = MongoClient(MONGO_URI)
+    db = mongo_client[MONGO_DB_NAME]
+    conversations_collection = db["conversations"]
+    print("✅ MongoDB: Connesso")
+except Exception as e:
+    print(f"⚠️ MongoDB: Connessione fallita ({e})")
+    mongo_client = None
 
 
-# =========================
-# PROMPT SISTEMA SAFECLAIM
-# =========================
-
-SYSTEM_PROMPT = """
-Sei l'assistente virtuale ufficiale dell'app SafeClaim.
-
-Il tuo ruolo è aiutare gli utenti a:
-- Segnalare un incidente stradale
-- Compilare correttamente la pratica
-- Caricare foto e documenti richiesti
-- Capire lo stato della loro richiesta
-- Sapere quali informazioni sono necessarie
-
-COMPORTAMENTO:
-
-- Rispondi sempre in italiano.
-- Usa un tono professionale ma rassicurante.
-- Guida l’utente passo passo.
-- Se l’utente è in stato di emergenza, suggerisci di contattare immediatamente i soccorsi.
-- Se mancano informazioni, chiedi chiarimenti.
-- Non inventare policy legali specifiche.
-- Non dare consulenza medica o legale.
-- Mantieni le risposte concise ma chiare.
-
-Quando l’utente vuole segnalare un incidente, raccogli in ordine:
-
-1. Data e ora dell'incidente
-2. Luogo
-3. Targa dei veicoli coinvolti
-4. Descrizione dinamica
-5. Presenza di feriti
-6. Foto disponibili
-7. Eventuali testimoni
-
-Guida sempre l’utente passo per passo senza sovraccaricarlo.
-"""
+# STORE IN-MEMORY PER SESSIONI
+active_sessions = {}
 
 
-# =========================
-# CHATBOT
-# =========================
+class ConversationSession:
+    def __init__(self, session_id):
+        self.session_id = session_id
+        self.messages = []
+        self.created_at = datetime.now()
+        self.feedback_data = []
+        
+    def add_message(self, role, content):
+        self.messages.append({
+            "role": role,
+            "content": content,
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    def get_context(self):
+        context = ""
+        for msg in self.messages[-6:]:
+            context += f"{msg['role'].upper()}: {msg['content']}\n"
+        return context
+    
+    def add_feedback(self, rating, comment=""):
+        self.feedback_data.append({
+            "rating": rating,
+            "comment": comment,
+            "timestamp": datetime.now().isoformat()
+        })
+    
+    def to_dict(self):
+        return {
+            "session_id": self.session_id,
+            "messages": self.messages,
+            "created_at": self.created_at.isoformat(),
+            "feedback": self.feedback_data
+        }
 
-def safeclaim_assistant():
-    llm = initialize_llm()
 
-    print("\n🤖 SafeClaim Assistant")
-    print("Sono qui per aiutarti a segnalare un incidente o gestire la tua pratica.")
-    print("Scrivi 'esci' per terminare.\n")
+def carica_conoscenza():
+    try:
+        with open("RegoleSinistriChatBot.txt", "r", encoding="utf-8") as f:
+            return f.read()
+    except FileNotFoundError:
+        return "Info: Compilare modulo CAI."
 
-    # Manteniamo memoria conversazione
-    messages = [
-        {"role": "system", "content": SYSTEM_PROMPT}
+
+def genera_suggerimenti(conversazione):
+    if len(conversazione.messages) < 2:
+        return [
+            "Come funziona il processo di sinistro?",
+            "Quali documenti mi servono?",
+            "Quanto tempo ci vuole?"
+        ]
+    return [
+        "Puoi spiegare meglio?",
+        "Quali sono i prossimi step?",
+        "Come contatto l'assistenza?"
     ]
 
-    while True:
-        user_input = input("👤 Tu: ")
 
-        if user_input.lower() == "esci":
-            print("👋 Grazie per aver utilizzato SafeClaim. A presto!")
-            break
-
-        messages.append({"role": "user", "content": user_input})
-
-        response = llm.invoke(messages)
-
-        assistant_reply = response.content
-
-        messages.append({"role": "assistant", "content": assistant_reply})
-
-        print("\n🤖 Assistente SafeClaim:")
-        print(assistant_reply)
-        print()
+@app.route('/chat/init', methods=['POST'])
+def init_chat():
+    session_id = str(uuid.uuid4())
+    active_sessions[session_id] = ConversationSession(session_id)
+    return jsonify({
+        "status": "success",
+        "session_id": session_id
+    }), 200
 
 
-# =========================
-# MAIN
-# =========================
+@app.route('/chat', methods=['POST'])
+def chat_bot():
+    data = request.json
+    session_id = data.get('session_id')
+    messaggio = data.get('messaggio')
+    
+    if not session_id or not messaggio:
+        return jsonify({"error": "Mancano session_id o messaggio"}), 400
+    
+    if session_id not in active_sessions:
+        active_sessions[session_id] = ConversationSession(session_id)
+    
+    conversazione = active_sessions[session_id]
+    conversazione.add_message("user", messaggio)
+    
+    context = carica_conoscenza()
+    context_history = conversazione.get_context()
+    
+    prompt = f"""<|user|>
+Sei l'assistente SafeClaim. Aiuta l'utente durante la sua esperienza.
 
-def main():
-    setup_environment()
-    safeclaim_assistant()
+INFO REGOLE: {context}
+
+{context_history}
+
+Domanda attuale: {messaggio}
+
+Fornisci una risposta chiara, concisa e utile. Sii empatico e disponibile.
+<|end|>
+<|assistant|>"""
+    
+    try:
+        payload = {
+            "inputs": prompt,
+            "parameters": {"max_new_tokens": 300, "temperature": 0.4, "return_full_text": False},
+            "options": {"wait_for_model": True}
+        }
+        
+        response = requests.post(API_URL, headers=headers, json=payload, timeout=30)
+        
+        if response.status_code != 200:
+            return jsonify({
+                "error": "Errore server AI",
+                "status_code": response.status_code
+            }), response.status_code
+        
+        output = response.json()
+        risposta_ai = output[0]['generated_text'].strip()
+        
+        conversazione.add_message("assistant", risposta_ai)
+        suggerimenti = genera_suggerimenti(conversazione)
+        
+        return jsonify({
+            "status": "success",
+            "session_id": session_id,
+            "risposta": risposta_ai,
+            "suggerimenti": suggerimenti,
+            "numero_messaggi": len(conversazione.messages)
+        }), 200
+    
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 
-if __name__ == "__main__":
-    main()
+@app.route('/chat/feedback', methods=['POST'])
+def submit_feedback():
+    data = request.json
+    session_id = data.get('session_id')
+    rating = data.get('rating', 0)
+    comment = data.get('comment', '')
+    
+    if not session_id or session_id not in active_sessions:
+        return jsonify({"error": "Sessione non trovata"}), 404
+    
+    conversazione = active_sessions[session_id]
+    conversazione.add_feedback(rating, comment)
+    
+    if mongo_client:
+        try:
+            conversations_collection.insert_one(conversazione.to_dict())
+        except Exception as e:
+            print(f"⚠️ Errore MongoDB: {e}")
+    
+    return jsonify({"status": "success"}), 200
+
+
+@app.route('/chat/history/<session_id>', methods=['GET'])
+def get_history(session_id):
+    if session_id not in active_sessions:
+        return jsonify({"error": "Sessione non trovata"}), 404
+    
+    conversazione = active_sessions[session_id]
+    return jsonify({
+        "status": "success",
+        "messages": conversazione.messages
+    }), 200
+
+
+@app.route('/chat/end/<session_id>', methods=['POST'])
+def end_chat(session_id):
+    if session_id not in active_sessions:
+        return jsonify({"error": "Sessione non trovata"}), 404
+    
+    conversazione = active_sessions[session_id]
+    
+    if mongo_client:
+        try:
+            conversations_collection.insert_one(conversazione.to_dict())
+        except Exception as e:
+            print(f"⚠️ Errore MongoDB: {e}")
+    
+    del active_sessions[session_id]
+    return jsonify({"status": "success"}), 200
+
+
+if __name__ == '__main__':
+    print("Chatbot SafeClaim pronto sulla porta 5001!")
+    app.run(debug=True, port=5001)
+
