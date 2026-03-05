@@ -15,7 +15,7 @@ CORS(app)
 API_URL = "https://api-inference.huggingface.co/models/microsoft/Phi-3-mini-4k-instruct"
 
 headers = {
-    "Authorization": f"Bearer {HF_TOKEN.strip()}",
+    
     "Content-Type": "application/json",
     "User-Agent": "SafeClaimBot/1.0"
 }
