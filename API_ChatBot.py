@@ -11,7 +11,7 @@ CORS(app)
 
 
 # CONFIGURAZIONE AI
-HF_TOKEN = "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"
+
 API_URL = "https://api-inference.huggingface.co/models/microsoft/Phi-3-mini-4k-instruct"
 
 headers = {
