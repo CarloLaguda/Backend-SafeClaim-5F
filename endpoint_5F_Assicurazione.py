@@ -11,12 +11,11 @@ CORS(app)
 # --- CONFIGURAZIONI DATABASE ---
 
 # Configurazione MySQL
-db_config = {
-    "host": "mysql-safeclaim.aevorastudios.com",
-    "user": "safeclaim",
-    "password": "0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE+tM=",
-    "database": "safeclaim_db",
-    "port": 3306
+MYSQL_CONFIG = {
+    "host": "localhost",
+    "user": "pythonuser",
+    "password": "password123",
+    "database": "gestione_assicurazioni" # Database aggiornato
 }
 
 # --- NUOVA CONFIGURAZIONE MONGODB ATLAS ---
@@ -36,41 +35,59 @@ except Exception as e:
     print(f"Errore critico connessione MongoDB: {e}")
 
 def get_mysql_connection():
-    return mysql.connector.connect(**db_config)
+    return mysql.connector.connect(**MYSQL_CONFIG)
 
-# --- UTILITY VALIDAZIONE ---
+# VEIOCLI 
+@app.route('/veicoli', methods=['GET'])
+@app.route('/veicoli/<int:id>', methods=['GET'])
+def get_veicoli(id=None):
+    """GET Unificata: recupera tutti i veicoli o uno specifico per ID"""
+    conn = None
+    try:
+        conn = get_mysql_connection()
+        cursor = conn.cursor(dictionary=True)
+        if id:
+            cursor.execute("SELECT * FROM Veicolo WHERE id = %s", (id,))
+            veicolo = cursor.fetchone()
+            if not veicolo: return jsonify({"error": "Veicolo non trovato"}), 404
+            return jsonify(veicolo), 200
+        else:
+            cursor.execute("SELECT * FROM Veicolo")
+            return jsonify(cursor.fetchall()), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    finally:
+        if conn: conn.close()
 
-def valida_password(password):
-    if len(password) < 8:
-        return False, "La password deve essere lunga almeno 8 caratteri."
-    if not re.search(r"[a-zA-Z]", password):
-        return False, "La password deve contenere almeno una lettera."
-    if not re.search(r"\d", password):
-        return False, "La password deve contenere almeno un numero."
-    return True, None
-
-def valida_dati_utente(data):
-    pattern_nomi = r"^[a-zA-Zàáâäãåèéêëìíîïòóôöùúûüç \s']+$"
-    if not re.match(pattern_nomi, data.get('nome', '')):
-        return False, "Il nome non è valido."
-    if not re.match(pattern_nomi, data.get('cognome', '')):
-        return False, "Il cognome non è valido."
-    if not re.match(r'^[A-Z0-9]{16}$', data.get('cf', '').upper()):
-        return False, "Il CF deve essere di 16 caratteri alfanumerici."
-    if not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', data.get('email', '')):
-        return False, "Formato email non valido."
-    
-    valida_psw, err_psw = valida_password(data.get('psw', ''))
-    if not valida_psw:
-        return False, err_psw
-    return True, None
-
+@app.route('/veicoli', methods=['POST'])
+def add_veicolo():
+    """POST Separata: inserimento nuovo veicolo"""
+    data = request.get_json()
+    conn = None
+    try:
+        conn = get_mysql_connection()
+        cursor = conn.cursor()
+        query = """
+            INSERT INTO Veicolo 
+            (targa, n_telaio, marca, modello, anno_immatricolazione, automobilista_id, azienda_id) 
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
+        """
+        values = (data.get('targa'), data.get('n_telaio'), data.get('marca'),
+                  data.get('modello'), data.get('anno_immatricolazione'),
+                  data.get('automobilista_id'), data.get('azienda_id'))
+        cursor.execute(query, values)
+        conn.commit()
+        return jsonify({"status": "success", "id": cursor.lastrowid}), 201
+    except mysql.connector.Error as err:
+        return jsonify({"error": "Errore DB", "details": str(err)}), 400
+    finally:
+        if conn: conn.close()
 # --- CRUD POLIZZE (MySQL) ---
 
 @app.route('/polizze', methods=['POST'])
 def crea_polizza():
     data = request.get_json()
-    conn = get_db_connection()
+    conn = get_mysql_connection()
     cursor = conn.cursor()
     query = """
         INSERT INTO Polizza (n_polizza, compagnia_assicurativa, data_inizio, 
@@ -92,7 +109,7 @@ def crea_polizza():
 
 @app.route('/polizze', methods=['GET'])
 def leggi_polizze():
-    conn = get_db_connection()
+    conn = get_mysql_connection()
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM Polizza")
     risultati = cursor.fetchall()
@@ -103,7 +120,7 @@ def leggi_polizze():
 @app.route('/polizze/<int:id>', methods=['PUT'])
 def modifica_polizza(id):
     data = request.get_json()
-    conn = get_db_connection()
+    conn = get_mysql_connection()
     cursor = conn.cursor()
     query = "UPDATE Polizza SET n_polizza=%s, data_scadenza=%s WHERE id=%s"
     cursor.execute(query, (data['n_polizza'], data['data_scadenza'], id))
@@ -114,7 +131,7 @@ def modifica_polizza(id):
 
 @app.route('/polizze/<int:id>', methods=['DELETE'])
 def elimina_polizza(id):
-    conn = get_db_connection()
+    conn = get_mysql_connection()
     cursor = conn.cursor()
     cursor.execute("DELETE FROM Polizza WHERE id=%s", (id,))
     conn.commit()
@@ -147,56 +164,6 @@ def ottieni_sinistri(id_sinistro):
             return jsonify({"count": len(lista), "data": lista}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-# --- REGISTRAZIONE & LOGIN (MySQL) ---
-
-@app.route('/registrazione', methods=['POST'])
-def registrazione():
-    data = request.get_json()
-    if not data: return jsonify({"error": "Nessun dato ricevuto"}), 400
-
-    is_valid, error_message = valida_dati_utente(data)
-    if not is_valid: return jsonify({"error": error_message}), 400
-
-    connection = None
-    try:
-        connection = get_mysql_connection()
-        cursor = connection.cursor()
-        query = "INSERT INTO Automobilista (nome, cognome, cf, email, psw) VALUES (%s, %s, %s, %s, %s)"
-        values = (data['nome'].strip().title(), data['cognome'].strip().title(), 
-                  data['cf'].strip().upper(), data['email'].strip().lower(), data['psw'])
-        cursor.execute(query, values)
-        connection.commit()
-        return jsonify({"status": "success", "id": cursor.lastrowid}), 201
-    except mysql.connector.IntegrityError:
-        return jsonify({"error": "Email o CF già registrati"}), 409
-    finally:
-        if connection: connection.close()
-
-@app.route('/login', methods=['POST'])
-def login():
-    data = request.get_json()
-    email_in, psw_in = data.get('email'), data.get('psw')
-    if not email_in or not psw_in: return jsonify({"error": "Credenziali mancanti"}), 400
-
-    db = get_mysql_connection()
-    cursor = db.cursor(dictionary=True)
-    tabelle = ["Assicuratore", "Automobilista", "Perito"]
-    user_found, ruolo = None, ""
-
-    for tabella in tabelle:
-        query = f"SELECT id, nome, cognome, email FROM {tabella} WHERE email = %s AND psw = %s"
-        cursor.execute(query, (email_in, psw_in))
-        user_found = cursor.fetchone()
-        if user_found:
-            ruolo = tabella.lower()
-            break
-    
-    db.close()
-    if user_found:
-        user_found['ruolo'] = ruolo
-        return jsonify({"status": "success", "user": user_found}), 200
-    return jsonify({"error": "Credenziali non valide"}), 401
 
 # --- GESTIONE SINISTRI (PUT - MongoDB Atlas) ---
 
@@ -237,4 +204,4 @@ def aggiorna_sinistro(id):
 
 if __name__ == '__main__':
     # Mantenuta porta 6000 come da tua ultima riga
-    app.run(host='0.0.0.0', port=6000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

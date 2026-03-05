@@ -14,12 +14,12 @@ CORS(app)
 
 # Configurazione connessione MySQL
 MYSQL_CONFIG = {
-    "host": "mysql-safeclaim.aevorastudios.com",
-    "user": "safeclaim",
-    "password": "0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE+tM=",
-    "database": "safeclaim_db",
-    "port": 3306
+    "host": "localhost",
+    "user": "pythonuser",
+    "password": "password123",
+    "database": "gestione_assicurazioni" # Database aggiornato
 }
+
 
 def get_mysql():
     return mysql.connector.connect(**MYSQL_CONFIG)

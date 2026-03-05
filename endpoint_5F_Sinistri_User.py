@@ -11,17 +11,16 @@ app = Flask(__name__)
 CORS(app)
 
 # Configurazione connessione MySQL
-mysql_config = {
-    'host': 'mysql-safeclaim.aevorastudios.com',
-    'port': 3306,
-    'user': 'safeclaim',
-    'password': '0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE+tM=',
-    'database': 'safeclaim_db',
-    'connect_timeout': 10
+MYSQL_CONFIG = {
+    "host": "localhost",
+    "user": "pythonuser",
+    "password": "password123",
+    "database": "gestione_assicurazioni" # Database aggiornato
 }
 
+
 def get_db_connection():
-    return mysql.connector.connect(**mysql_config)
+    return mysql.connector.connect(**MYSQL_CONFIG)
 
 # Configurazione connessione MongoDB Atlas (Database: FakeClaim)
 MONGO_URI = "mongodb+srv://dbFakeClaim:xxx123%23%23@cluster0.zgw1jft.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
@@ -179,6 +178,27 @@ def get_dettaglio_soccorso(identificatore):
     finally:
         if connection: connection.close()
 
+#PER USER: VEDERE I SUO VEICOLI
+@app.route('/veicoli/<int:id>', methods=['GET'])
+def get_veicoli(id=None):
+    """GET Unificata: recupera tutti i veicoli o uno specifico per ID"""
+    conn = None
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
+        if id:
+            cursor.execute("SELECT * FROM Veicolo WHERE id = %s", (id,))
+            veicolo = cursor.fetchone()
+            if not veicolo: return jsonify({"error": "Veicolo non trovato"}), 404
+            return jsonify(veicolo), 200
+        else:
+            cursor.execute("SELECT * FROM Veicolo")
+            return jsonify(cursor.fetchall()), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    finally:
+        if conn: conn.close()
+
 # AVVIO SERVER
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=6000)
+    app.run(debug=True, host='0.0.0.0', port=7000)

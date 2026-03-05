@@ -1,0 +1,59 @@
+@app.route('/veicoli', methods=['GET', 'POST'])
+@app.route('/veicoli/<int:id>', methods=['GET'])
+def handle_veicoli(id=None):
+    """
+    Gestore unico per i veicoli:
+    - GET /veicoli: Lista tutti i veicoli (con filtri opzionali)
+    - GET /veicoli/<id>: Cerca un veicolo specifico
+    - POST /veicoli: Inserisce un nuovo veicolo
+    """
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        # --- CASO 1: RECUPERO DATI (GET) ---
+        if request.method == 'GET':
+            if id:
+                # Ricerca per ID singolo
+                cursor.execute("SELECT * FROM Veicolo WHERE id = %s", (id,))
+                veicolo = cursor.fetchone()
+                if not veicolo:
+                    return jsonify({"error": "Veicolo non trovato"}), 404
+                return jsonify(veicolo), 200
+            else:
+                # Ricerca globale o filtrata (es. /veicoli?marca=Fiat)
+                marca = request.args.get('marca')
+                if marca:
+                    cursor.execute("SELECT * FROM Veicolo WHERE marca = %s", (marca,))
+                else:
+                    cursor.execute("SELECT * FROM Veicolo")
+                
+                veicoli = cursor.fetchall()
+                return jsonify(veicoli), 200
+
+        # --- CASO 2: INSERIMENTO DATI (POST) ---
+        elif request.method == 'POST':
+            data = request.json
+            query = """
+                INSERT INTO Veicolo 
+                (targa, n_telaio, marca, modello, anno_immatricolazione, automobilista_id, azienda_id) 
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """
+            values = (
+                data.get('targa'), data.get('n_telaio'), data.get('marca'),
+                data.get('modello'), data.get('anno_immatricolazione'),
+                data.get('automobilista_id'), data.get('azienda_id')
+            )
+            
+            cursor.execute(query, values)
+            conn.commit()
+            new_id = cursor.lastrowid
+            return jsonify({"status": "success", "id": new_id, "message": "Veicolo creato"}), 201
+
+    except mysql.connector.Error as err:
+        return jsonify({"error": "Errore Database", "details": str(err)}), 400
+    except Exception as e:
+        return jsonify({"error": "Errore Server", "details": str(e)}), 500
+    finally:
+        if 'cursor' in locals(): cursor.close()
+        if 'conn' in locals(): conn.close()
