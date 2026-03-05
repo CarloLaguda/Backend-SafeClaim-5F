@@ -6,8 +6,39 @@
     "descrizione": "Tamponamento lieve al semaforo."
   },
   {
+    "automobilista_id": "MARIO-ROSSI-1980",
+    "targa": "EB123XY",
+    "data_evento": "2023-11-15T10:30:00",
+    "descrizione": "Tamponamento a catena causato da frenata improvvisa al semaforo."
+  },
+  {
+    "automobilista_id": "LUCA-VERDI-1992",
+    "targa": "GH987TR",
+    "data_evento": "2024-02-10T22:15:00",
+    "descrizione": "Impatto con un cinghiale che ha attraversato improvvisamente la carreggiata in una zona boschiva non illuminata. Danni al radiatore e al faro sinistro."
+  },
+
+  {
+    "automobilista_id": "GIULIA-BIANCHI-1985",
+    "targa": "CC555DD",
+    "data_evento": "2024-03-01T09:00:00",
+    "descrizione": "Al ritorno dal supermercato ho riscontrato una vistosa ammaccatura sullo sportello posteriore destro. L'autore del danno non ha lasciato recapiti."
+  },
+
+  {
+    "automobilista_id": "MARCO-NERI-1970",
+    "targa": "ZA111ZZ",
+    "data_evento": "2024-02-28T23:50:00",
+    "descrizione": "Rottura del cristallo anteriore e rigatura della fiancata sinistra mediante oggetto appuntito mentre l'auto era parcheggiata sotto casa."
+  },
+
+  {
     "immagine_base64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
   },
+  {
+    "immagine_base64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+  },
+
   {
     "automobilista_id": "USR-001",
     "targa": "AA123BB",
@@ -63,6 +94,50 @@
     "immagini": [
       "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
     ]
-  }
+  },
+  {
+    "messaggio": "Cosa devo fare in caso di incidente?"
+  },
+  {
+  "targa": "GF987TR",
+  "n_telaio": "ZFA15300001234567",
+  "marca": "Fiat",
+  "modello": "Panda",
+  "anno_immatricolazione": 2021,
+  "automobilista_id": 1,
+  "azienda_id": null
+},
+{
+  "targa": "FW123AB",
+  "n_telaio": "WBA3C51000K123456",
+  "marca": "BMW",
+  "modello": "Serie 3",
+  "anno_immatricolazione": 2023,
+  "automobilista_id": null,
+  "azienda_id": 1
+},
+{
+  "targa": "FS456GG",
+  "n_telaio": "ZAC1234567890ABCD",
+  "marca": "Jeep",
+  "modello": "Renegade",
+  "anno_immatricolazione": 2021
+
+},
+{
+  "targa": "EB123CC",
+  "n_telaio": "TELAIO_PROVA_001",
+  "marca": "Alfa Romeo",
+  "modello": "Giulietta",
+  "anno_immatricolazione": 2020
+},
+
+{
+  "targa": "GK789HH",
+  "n_telaio": "5YJSA1E1234567890",
+  "marca": "Tesla",
+  "modello": "Model Y",
+  "anno_immatricolazione": 2023
+}
   
 ]
