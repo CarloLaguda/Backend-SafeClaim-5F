@@ -8,7 +8,7 @@ import os
 cloudinary.config( 
     cloud_name = "dulbwmi6t", 
     api_key = "875452392366737", 
-    api_secret = "KuKkLNZXTzLSZ0i3E8G4VPKgHek" # <--- Incolla qui il tuo segreto
+    api_secret = "KuKkLNZXTzLSZ0i3E8G4VPKgHek"
 )
 
 # ==========================================
@@ -72,3 +72,19 @@ def safeclaim_upload(file_locale, tipo_documento, id_riferimento, nome_file_pers
     except Exception as e:
         print(f"❌ Errore durante l'upload: {e}")
         return None
+    
+# ==========================================
+# 3. CARICAMENTO DELLA FOTO DI PROVA
+# ==========================================
+
+# Assicurati che il file si chiami esattamente "prova.png" nel tuo Codespace
+url_foto = safeclaim_upload(
+    file_locale="prova.png", 
+    tipo_documento="SINISTRO", 
+    id_riferimento="TEST_FOTO_01",
+    nome_file_personalizzato="foto_test_danno"
+)
+
+# Verifica l'output
+if url_foto:
+    print(f"🚀 Foto caricata con successo!")
