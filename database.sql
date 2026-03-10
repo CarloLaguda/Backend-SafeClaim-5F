@@ -2,7 +2,7 @@
 CREATE DATABASE IF NOT EXISTS safeclaim_db;
 USE safeclaim_db;
 
--- Tabella Automobilista (necessaria per la FK di Veicolo)
+-- Tabella Automobilista 
 CREATE TABLE IF NOT EXISTS Automobilista (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS Automobilista (
     psw VARCHAR(255) NOT NULL
 ) ENGINE=InnoDB;
 
--- Tabella Azienda (necessaria per la FK di Veicolo)
+-- Tabella Azienda 
 CREATE TABLE IF NOT EXISTS Azienda (
     id INT PRIMARY KEY AUTO_INCREMENT,
     ragione_sociale VARCHAR(100) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS Azienda (
     telefono VARCHAR(20)
 ) ENGINE=InnoDB;
 
--- Tabella Veicolo (quella che stavi usando)
+-- Tabella Veicolo 
 CREATE TABLE IF NOT EXISTS Veicolo (
     id INT PRIMARY KEY AUTO_INCREMENT,
     targa VARCHAR(10) UNIQUE NOT NULL,

@@ -1,97 +1,94 @@
-import mysql.connector
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+import mysql.connector # Carica la libreria per far parlare Python con il database MySQL/MariaDB
+from flask import Flask, request, jsonify # Carica i pezzi di Flask necessari per creare il sito e gestire dati JSON
+from flask_cors import CORS # Carica il modulo per permettere a pagine web esterne di chiamare questa API
 
-# Inizializzazione dell'app Flask
+# Creiamo l'applicazione Flask, che è il motore del nostro server
 app = Flask(__name__)
-# CORS permette al frontend (es. React o Vue) di comunicare con questa API anche se girano su porte diverse
+# Abilitiamo CORS: serve a evitare blocchi di sicurezza quando il frontend chiama il backend
 CORS(app)
 
-# --- CONFIGURAZIONE CREDENZIALI LOCALI ---
-# Qui definiamo i parametri per connetterci al tuo MariaDB locale
+# --- DATI PER ACCEDERE AL DATABASE ---
+# Qui scriviamo l'indirizzo, l'utente e la password per entrare nel database locale
 db_config = {
-    'host': 'localhost',
-    'user': 'pythonuser',
-    'password': 'password123',
-    'database': 'mydatabase'
+    'host': 'localhost', # Il database si trova sullo stesso computer del codice
+    'user': 'pythonuser', # Nome dell'utente creato su MariaDB
+    'password': 'password123', # Password dell'utente
+    'database': 'mydatabase' # Nome del database che vogliamo usare
 }
 
 def setup_database():
-    """
-    Funzione di inizializzazione: crea il database e la tabella Veicolo 
-    automaticamente all'avvio del programma se non sono già presenti.
-    """
+    """ Questa funzione prepara tutto il database all'inizio del programma """
     try:
-        # Prima connessione generica al server (senza specificare il database)
+        # Apre una prima connessione generale per vedere se il server è acceso
         conn = mysql.connector.connect(
             host=db_config['host'],
             user=db_config['user'],
             password=db_config['password']
         )
-        cursor = conn.cursor()
+        cursor = conn.cursor() # Crea un 'cursore', ovvero l'oggetto che scrive i comandi SQL
         
-        # Crea fisicamente il database 'mydatabase'
+        # Crea il database col nome scelto se non esiste già
         cursor.execute(f"CREATE DATABASE IF NOT EXISTS {db_config['database']}")
-        # Seleziona il database su cui lavorare
+        # Dice a Python: 'D'ora in poi lavora dentro questo database'
         cursor.execute(f"USE {db_config['database']}")
         
-        # Query SQL per creare la tabella Veicolo con i vincoli richiesti (targa e telaio unici)
+        # Scrive le istruzioni per creare la tabella dei veicoli
         query_tabella = """
         CREATE TABLE IF NOT EXISTS Veicolo (
-            id INT PRIMARY KEY AUTO_INCREMENT,
-            targa VARCHAR(10) UNIQUE NOT NULL,
-            n_telaio VARCHAR(50) UNIQUE,
-            marca VARCHAR(50),
-            modello VARCHAR(50),
-            anno_immatricolazione INT,
-            automobilista_id INT DEFAULT NULL,
-            azienda_id INT DEFAULT NULL
-        ) ENGINE=InnoDB;
+            id INT PRIMARY KEY AUTO_INCREMENT, # ID numerico che cresce da solo (1, 2, 3...)
+            targa VARCHAR(10) UNIQUE NOT NULL, # La targa deve esserci sempre e non può essere doppia
+            n_telaio VARCHAR(50) UNIQUE, # Il numero di telaio deve essere unico
+            marca VARCHAR(50), # Colonna per la marca dell'auto
+            modello VARCHAR(50), # Colonna per il modello
+            anno_immatricolazione INT, # Colonna per l'anno (numero intero)
+            automobilista_id INT DEFAULT NULL, # Collegamento opzionale a un guidatore
+            azienda_id INT DEFAULT NULL # Collegamento opzionale a un'azienda
+        ) ENGINE=InnoDB; # Usa il motore InnoDB che è standard e sicuro
         """
-        cursor.execute(query_tabella)
-        conn.commit() # Salva i cambiamenti nel database
-        cursor.close()
-        conn.close()
-        print("✅ Database e Tabella pronti!")
+        cursor.execute(query_tabella) # Esegue il comando di creazione tabella
+        conn.commit() # Salva definitivamente le modifiche fatte
+        cursor.close() # Chiude il cursore
+        conn.close() # Chiude la connessione temporanea
+        print(" Database e Tabella pronti!")
     except mysql.connector.Error as err:
-        print(f"❌ Errore Setup: {err}")
+        print(f" Errore Setup: {err}") # Se qualcosa va storto, stampa l'errore
 
 def get_db_connection():
-    """Funzione helper per aprire una connessione al DB velocemente dentro gli endpoint."""
-    return mysql.connector.connect(**db_config)
+    """ Questa funzione serve solo ad aprire velocemente la connessione quando serve """
+    return mysql.connector.connect(**db_config) # Restituisce una connessione pronta all'uso
 
-# --- ENDPOINTS API ---
+# --- FUNZIONI PER GESTIRE LE RICHIESTE (ENDPOINTS) ---
 
-@app.route('/veicoli', methods=['GET'])
+@app.route('/veicoli', methods=['GET']) # Se l'utente va all'indirizzo /veicoli con metodo GET
 def get_all_veicoli():
-    """Endpoint per leggere tutti i veicoli salvati nel sistema."""
+    """ Restituisce l'elenco di tutte le auto """
     try:
-        conn = get_db_connection()
-        # dictionary=True trasforma i risultati SQL in oggetti Python (chiave: valore)
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute("SELECT * FROM Veicolo")
-        veicoli = cursor.fetchall() # Recupera tutte le righe
-        cursor.close()
-        conn.close()
-        return jsonify(veicoli), 200 # Restituisce la lista in formato JSON
+        conn = get_db_connection() # Si connette al DB
+        # dictionary=True serve per avere i dati come {'targa': 'AA123BB'} invece di semplici liste
+        cursor = conn.cursor(dictionary=True) 
+        cursor.execute("SELECT * FROM Veicolo") # Chiede al DB tutte le righe della tabella
+        veicoli = cursor.fetchall() # Scarica tutti i risultati trovati
+        cursor.close() # Chiude il cursore
+        conn.close() # Chiude la connessione
+        return jsonify(veicoli), 200 # Trasforma i dati in JSON e li invia all'utente con codice OK (200)
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({"error": str(e)}), 500 # Se c'è un errore, risponde col codice 500
 
-@app.route('/veicoli', methods=['POST'])
+@app.route('/veicoli', methods=['POST']) # Se l'utente invia dati all'indirizzo /veicoli
 def add_veicolo():
-    """Endpoint per inserire un nuovo veicolo tramite JSON (POST)."""
-    data = request.json # Legge i dati inviati nel corpo della richiesta
+    """ Aggiunge un nuovo veicolo nel database """
+    data = request.json # Prende il pacchetto di dati JSON inviato dall'utente
     try:
-        conn = get_db_connection()
+        conn = get_db_connection() # Si connette al DB
         cursor = conn.cursor()
         
-        # Query parametrizzata (%s) per prevenire SQL Injection
+        # Scrive il comando per inserire i dati (usiamo i %s per sicurezza contro gli hacker)
         query = """
             INSERT INTO Veicolo 
             (targa, n_telaio, marca, modello, anno_immatricolazione, automobilista_id, azienda_id) 
             VALUES (%s, %s, %s, %s, %s, %s, %s)
         """
-        # Estrazione sicura dei dati dal JSON
+        # Estrae i valori dal pacchetto JSON ricevuto (se mancano, mette None)
         values = (
             data.get('targa'),
             data.get('n_telaio'),
@@ -102,37 +99,38 @@ def add_veicolo():
             data.get('azienda_id')
         )
         
-        cursor.execute(query, values)
-        conn.commit() # Rende permanente l'inserimento
-        new_id = cursor.lastrowid # Ottiene l'ID appena generato dall'auto_increment
+        cursor.execute(query, values) # Esegue l'inserimento con i valori estratti
+        conn.commit() # Salva l'inserimento nel database in modo permanente
+        new_id = cursor.lastrowid # Si segna l'ID che il database ha assegnato a questa nuova riga
         
         cursor.close()
         conn.close()
-        return jsonify({"status": "success", "id": new_id}), 201
+        return jsonify({"status": "success", "id": new_id}), 201 # Risponde 'Creato con successo' (201)
     except mysql.connector.Error as err:
-        # Se la targa è già presente, restituirà un errore 400 (Duplicate Entry)
+        # Se ad esempio la targa esiste già, il database darà errore e noi rispondiamo con errore 400
         return jsonify({"error": "Errore inserimento", "details": str(err)}), 400
 
-@app.route('/veicoli/<int:id>', methods=['GET'])
+@app.route('/veicoli/<int:id>', methods=['GET']) # Se l'utente cerca un ID specifico (es. /veicoli/5)
 def get_veicolo(id):
-    """Endpoint per cercare un veicolo specifico conoscendo il suo ID."""
+    """ Cerca un solo veicolo tramite il suo numero ID """
     try:
         conn = get_db_connection()
         cursor = conn.cursor(dictionary=True)
-        # La virgola dopo (id,) è necessaria per creare una tupla
+        # Esegue la ricerca filtrando per ID
         cursor.execute("SELECT * FROM Veicolo WHERE id = %s", (id,))
-        veicolo = cursor.fetchone() # Recupera un solo risultato
+        veicolo = cursor.fetchone() # Prende solo il primo risultato trovato
         cursor.close()
         conn.close()
         if veicolo:
-            return jsonify(veicolo), 200
-        return jsonify({"error": "Non trovato"}), 404
+            return jsonify(veicolo), 200 # Se l'auto esiste, la invia
+        return jsonify({"error": "Non trovato"}), 404 # Se non esiste, risponde 'Non trovato' (404)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+# --- AVVIO DEL PROGRAMMA ---
 if __name__ == '__main__':
-    # 1. Prepariamo il database
-    setup_database() 
+    setup_database() # Per prima cosa prepara il database e la tabella
     print("🚀 API SafeClaim Local attiva su http://127.0.0.1:5000")
-    # 2. Avviamo Flask in modalità debug (si riavvia da solo se modifichi il codice)
+    # Avvia il server Flask sulla porta 5000
+    # debug=True significa che se cambi il codice, il server si aggiorna da solo
     app.run(debug=True, port=5000)
