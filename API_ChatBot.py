@@ -4,6 +4,12 @@ from flask_cors import CORS
 from pymongo import MongoClient
 from datetime import datetime
 import uuid
+#serve a Python per andare a "pescare" le informazioni che non sono scritte nel codice, 
+#ma che si trovano nascoste nel file Token.env.
+import os 
+#Importa la funzione per caricare i file Token.env
+from dotenv import load_dotenv #Il file Token.env è come un foglietto segreto dove scrivi le tue chiavi segrete
+
 
 
 app = Flask(__name__)
@@ -11,11 +17,25 @@ CORS(app)
 
 
 # CONFIGURAZIONE AI
+load_dotenv() #Legge il file .env che hai creato e carica tutte le scritte (tipo HF_TOKEN=...) nella memoria temporanea del computer.
+# Recupera il valore associato alla chiave "HF_TOKEN" definito nel file .env.
+# La variabile 'token' ora contiene la chiave segreta da usare.
+token = os.getenv("HF_TOKEN") 
 
+# Verifica rapida all'avvio (senza stampare tutto il token per sicurezza)
+if token:
+    print(f" Token caricato correttamente: {token[:4]}***")
+else:
+    print(" ERRORE: Token non trovato nel file Token.env")
+
+# URL del modello AI
 API_URL = "https://api-inference.huggingface.co/models/microsoft/Phi-3-mini-4k-instruct"
 
+# 4. Creo gli headers con l'Authorization con il token
 headers = {
-    
+    "Authorization": f"Bearer {token}", #Invia il token segreto insieme alla richiesta. 
+    #Hugging Face deve sapere chi sta facendo la domanda. Senza questo, 
+    #il server risponderebbe con un errore, perché non sa se hai il permesso di usare quel modello.
     "Content-Type": "application/json",
     "User-Agent": "SafeClaimBot/1.0"
 }
