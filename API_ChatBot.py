@@ -17,7 +17,7 @@ CORS(app)
 
 
 # CONFIGURAZIONE AI
-load_dotenv() #Legge il file .env che hai creato e carica tutte le scritte (tipo HF_TOKEN=...) nella memoria temporanea del computer.
+load_dotenv("Token.env") #Legge il file .env che hai creato e carica tutte le scritte (tipo HF_TOKEN=...) nella memoria temporanea del computer.
 # Recupera il valore associato alla chiave "HF_TOKEN" definito nel file .env.
 # La variabile 'token' ora contiene la chiave segreta da usare.
 token = os.getenv("HF_TOKEN") 
@@ -29,7 +29,7 @@ else:
     print(" ERRORE: Token non trovato nel file Token.env")
 
 # URL del modello AI
-API_URL = "https://api-inference.huggingface.co/models/microsoft/Phi-3-mini-4k-instruct"
+API_URL = "https://api-inference.huggingface.co/models/Mistralai/Mistral-7B-Instruct-v0.2"
 
 # 4. Creo gli headers con l'Authorization con il token
 headers = {
