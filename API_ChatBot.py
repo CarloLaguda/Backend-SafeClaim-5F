@@ -33,7 +33,9 @@ else:
 # URL del modello AI
 API_URL = "https://api-inference.huggingface.co/models/microsoft/Phi-3-mini-4k-instruct"
 
-# 4. Creo gli headers con l'Authorization con il token
+# 4. Creo gli headers 
+#sono come le informazioni che scrivi sulla busta di una lettera raccomandata prima di spedirla
+#Senza queste "etichette", il server di Hugging Face non saprebbe nemmeno chi sei o come leggere il contenuto della tua richiesta.
 headers = {
     "Authorization": f"Bearer {token}", #Invia il token segreto insieme alla richiesta. 
     #Hugging Face deve sapere chi sta facendo la domanda. Senza questo, 
@@ -51,9 +53,9 @@ try:
     mongo_client = MongoClient(MONGO_URI)
     db = mongo_client[MONGO_DB_NAME]
     conversations_collection = db["conversations"]
-    print("✅ MongoDB: Connesso")
+    print(" MongoDB: Connesso")
 except Exception as e:
-    print(f"⚠️ MongoDB: Connessione fallita ({e})")
+    print(f" MongoDB: Connessione fallita ({e})")
     mongo_client = None
 
 
