@@ -4,9 +4,11 @@ from flask_cors import CORS
 from pymongo import MongoClient
 from datetime import datetime
 import uuid
-#serve a Python per andare a "pescare" le informazioni che non sono scritte nel codice, 
-#ma che si trovano nascoste nel file Token.env.
-import os 
+
+import os #serve a Python per andare a "pescare" le informazioni 
+          #che non sono scritte nel codice, 
+          #ma che si trovano nascoste nel file Token.env.
+
 #Importa la funzione per caricare i file Token.env
 from dotenv import load_dotenv #Il file Token.env è come un foglietto segreto dove scrivi le tue chiavi segrete
 
@@ -29,15 +31,15 @@ else:
     print(" ERRORE: Token non trovato nel file Token.env")
 
 # URL del modello AI
-API_URL = "https://api-inference.huggingface.co/models/Mistralai/Mistral-7B-Instruct-v0.2"
+API_URL = "https://api-inference.huggingface.co/models/microsoft/Phi-3-mini-4k-instruct"
 
 # 4. Creo gli headers con l'Authorization con il token
 headers = {
     "Authorization": f"Bearer {token}", #Invia il token segreto insieme alla richiesta. 
     #Hugging Face deve sapere chi sta facendo la domanda. Senza questo, 
     #il server risponderebbe con un errore, perché non sa se hai il permesso di usare quel modello.
-    "Content-Type": "application/json",
-    "User-Agent": "SafeClaimBot/1.0"
+    "Content-Type": "application/json", # Dice al server: " i dati che ti sto mandando sono in formato JSON".
+    "User-Agent": "SafeClaimBot/1.0" # serve per far capire chi sta facendo la richiesta.
 }
 
 
@@ -56,193 +58,132 @@ except Exception as e:
 
 
 # STORE IN-MEMORY PER SESSIONI
+# dove il server si segna le chat aperte in questo momento.
 active_sessions = {}
 
-
-class ConversationSession:
+# questa classe contiene I msg dell'utente
     def __init__(self, session_id):
         self.session_id = session_id
-        self.messages = []
+        self.messages = []  # Lista dei messaggi (Bot e Utente)
         self.created_at = datetime.now()
-        self.feedback_data = []
+        self.feedback_data = [] # Qui salviamo le stelline/voti
         
+    # Funzione per aggiungere un nuovo pezzetto alla chat
     def add_message(self, role, content):
         self.messages.append({
-            "role": role,
-            "content": content,
+            "role": role, # Chi parla? "user" o "assistant"
+            "content": content, # Cosa ha detto?
             "timestamp": datetime.now().isoformat()
         })
         
+    # Funzione per rileggere gli ultimi messaggi 
     def get_context(self):
         context = ""
+        # Prende solo gli ultimi 6 messaggi per non confondere troppo il bot
         for msg in self.messages[-6:]:
             context += f"{msg['role'].upper()}: {msg['content']}\n"
         return context
     
-    def add_feedback(self, rating, comment=""):
-        self.feedback_data.append({
-            "rating": rating,
-            "comment": comment,
-            "timestamp": datetime.now().isoformat()
-        })
-    
+    # Serve per trasformare tutto in un formato che il database (MongoDB) capisce
     def to_dict(self):
         return {
             "session_id": self.session_id,
             "messages": self.messages,
-            "created_at": self.created_at.isoformat(),
-            "feedback": self.feedback_data
+            "created_at": self.created_at.isoformat()
         }
 
 
+# Questa funzione apre il file .txt dove abbiamo scritto le regole dei sinistri.
 def carica_conoscenza():
     try:
+        # Apre il file .txt in modalità lettura
         with open("RegoleSinistriChatBot.txt", "r", encoding="utf-8") as f:
-            return f.read()
+            return f.read() # Legge tutto testo delle regole
     except FileNotFoundError:
-        return "Info: Compilare modulo CAI."
+        # Se il file non esiste, restituisce un messaggio di base
+        return "Info: Compilare modulo CAI." 
 
 
+# Decide quali tasti/domande suggerire all'utente sotto la risposta del bot
 def genera_suggerimenti(conversazione):
     if len(conversazione.messages) < 2:
-        return [
-            "Come funziona il processo di sinistro?",
-            "Quali documenti mi servono?",
-            "Quanto tempo ci vuole?"
-        ]
-    return [
-        "Puoi spiegare meglio?",
-        "Quali sono i prossimi step?",
-        "Come contatto l'assistenza?"
-    ]
+        return ["Come funziona il processo di sinistro?", "Quali documenti servono?"]
+    return ["Puoi spiegare meglio?", "Quali sono i prossimi step?"]
 
-
+# --- ROTTA: INIZIO CHAT ---
+# Quando clicchi "Inizia", genera un codice unico per la tua stanza
 @app.route('/chat/init', methods=['POST'])
 def init_chat():
-    session_id = str(uuid.uuid4())
-    active_sessions[session_id] = ConversationSession(session_id)
-    return jsonify({
-        "status": "success",
-        "session_id": session_id
-    }), 200
+    session_id = str(uuid.uuid4()) # Crea un ID 
+    active_sessions[session_id] = ConversationSession(session_id) # Crea la cartella per l'utente
+    return jsonify({"status": "success", "session_id": session_id}), 200
 
-
+# --- ROTTA: CHAT ---
+# Qui arriva il messaggio da Postman, il server lo elabora e risponde l'AI
 @app.route('/chat', methods=['POST'])
 def chat_bot():
+    # Prende i dati che arrivano dal sito e li trasforma in un formato leggibile da Python
     data = request.json
+    # Estrae l'ID della sessione e il messaggio scritto dall'utente
     session_id = data.get('session_id')
     messaggio = data.get('messaggio')
     
+    # Controllo sicurezza: se mancano i dati, dà errore
     if not session_id or not messaggio:
-        return jsonify({"error": "Mancano session_id o messaggio"}), 400
+        return jsonify({"error": "Mancano i dati"}), 400
     
-    if session_id not in active_sessions:
-        active_sessions[session_id] = ConversationSession(session_id)
+    # Cerca in (active_sessions) se esiste già questa chat; se è nuova, crea una cartella da zero per l'utente
+    conversazione = active_sessions.get(session_id, ConversationSession(session_id))
+    conversazione.add_message("user", messaggio) # Segna cosa ha scritto l'utente
     
-    conversazione = active_sessions[session_id]
-    conversazione.add_message("user", messaggio)
+    context = carica_conoscenza() # Chiama la funzione che apre il file .txt e legge tutte le regole di SafeClaim
+    # Recupera i messaggi scambiati in precedenza per permettere al bot di capire i riferimenti
+    history = conversazione.get_context() # Prende i messaggi precedenti
     
-    context = carica_conoscenza()
-    context_history = conversazione.get_context()
+    # PROMPT: con le regole, la cronologia e la nuova domanda
+    # Diamo all'AI tutte le istruzioni necessarie, gli diciamo  quali sono le regole e cosa ha detto l'utente.
+    prompt = f"<|user|>\nRegole: {context}\nChat: {history}\nDomanda: {messaggio}\n<|end|>\n<|assistant|>"
     
-    prompt = f"""<|user|>
-Sei l'assistente SafeClaim. Aiuta l'utente durante la sua esperienza.
-
-INFO REGOLE: {context}
-
-{context_history}
-
-Domanda attuale: {messaggio}
-
-Fornisci una risposta chiara, concisa e utile. Sii empatico e disponibile.
-<|end|>
-<|assistant|>"""
-    
+    # Configura le istruzioni per l'AI: quanti caratteri può scrivere e quanto deve essere "creativa" (temperature)
     try:
+        # Pacchetto da spedire a Hugging Face
         payload = {
             "inputs": prompt,
-            "parameters": {"max_new_tokens": 300, "temperature": 0.4, "return_full_text": False},
-            "options": {"wait_for_model": True}
+            "parameters": {"max_new_tokens": 300, "temperature": 0.4}
         }
         
+        # Spedisce il tutto a Hugging Face usando il Token segreto e aspetta la risposta (massimo 30 secondi)
         response = requests.post(API_URL, headers=headers, json=payload, timeout=30)
-        
-        if response.status_code != 200:
-            return jsonify({
-                "error": "Errore server AI",
-                "status_code": response.status_code
-            }), response.status_code
-        
+        # Converte la risposta che arriva dal server AI in un formato che Python può usare
         output = response.json()
+        # Estrae solo il testo generato dal bot, eliminando eventuali spazi vuoti inutili all'inizio o alla fine
         risposta_ai = output[0]['generated_text'].strip()
         
+        # Salva la risposta appena data dal bot nella cronologia, così alla prossima domanda il bot saprà cosa ha detto
         conversazione.add_message("assistant", risposta_ai)
-        suggerimenti = genera_suggerimenti(conversazione)
         
+        # Invia la risposta finale all'utente insieme ai suggerimenti per continuare la conversazione
         return jsonify({
-            "status": "success",
-            "session_id": session_id,
             "risposta": risposta_ai,
-            "suggerimenti": suggerimenti,
-            "numero_messaggi": len(conversazione.messages)
+            "suggerimenti": genera_suggerimenti(conversazione)
         }), 200
-    
+    # Se qualcosa va storto, mostra l'errore e lo mostra senza far crashare il server
     except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500
+        return jsonify({"error": str(e)}), 500
 
-
-@app.route('/chat/feedback', methods=['POST'])
-def submit_feedback():
-    data = request.json
-    session_id = data.get('session_id')
-    rating = data.get('rating', 0)
-    comment = data.get('comment', '')
-    
-    if not session_id or session_id not in active_sessions:
-        return jsonify({"error": "Sessione non trovata"}), 404
-    
-    conversazione = active_sessions[session_id]
-    conversazione.add_feedback(rating, comment)
-    
-    if mongo_client:
-        try:
-            conversations_collection.insert_one(conversazione.to_dict())
-        except Exception as e:
-            print(f"⚠️ Errore MongoDB: {e}")
-    
-    return jsonify({"status": "success"}), 200
-
-
-@app.route('/chat/history/<session_id>', methods=['GET'])
-def get_history(session_id):
-    if session_id not in active_sessions:
-        return jsonify({"error": "Sessione non trovata"}), 404
-    
-    conversazione = active_sessions[session_id]
-    return jsonify({
-        "status": "success",
-        "messages": conversazione.messages
-    }), 200
-
-
+# --- ROTTA: FINE CHAT ---
+# Quando l'utente chiude, salviamo tutta la cartella su MongoDB per non perderla
 @app.route('/chat/end/<session_id>', methods=['POST'])
 def end_chat(session_id):
-    if session_id not in active_sessions:
-        return jsonify({"error": "Sessione non trovata"}), 404
-    
-    conversazione = active_sessions[session_id]
-    
-    if mongo_client:
-        try:
-            conversations_collection.insert_one(conversazione.to_dict())
-        except Exception as e:
-            print(f"⚠️ Errore MongoDB: {e}")
-    
-    del active_sessions[session_id]
+    if session_id in active_sessions:
+        conversazione = active_sessions[session_id]
+        if mongo_client:
+            # Scrive tutto su MongoDB
+            db["conversations"].insert_one(conversazione.to_dict())
+        del active_sessions[session_id] # Pulisce la memoria del server
     return jsonify({"status": "success"}), 200
 
-
+# --- AVVIO ---
 if __name__ == '__main__':
-    print("Chatbot SafeClaim pronto sulla porta 5001!")
+    print("Il server SafeClaim è acceso e pronto!")
     app.run(debug=True, port=5001)
-
