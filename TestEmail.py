@@ -1,57 +1,66 @@
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import smtplib  # Importa la libreria per gestire il protocollo SMTP (invio mail)
+from email.mime.text import MIMEText  # Serve per creare la parte testuale della mail
+from email.mime.multipart import MIMEMultipart  # Serve per creare una mail con più parti (es. testo + allegati)
 
-# ============================================================
-# CONFIGURAZIONE SMTP (Task 9.2 - Mihali)
-# ============================================================
+# CONFIGURAZIONE SMTP 
+# Creiamo un dizionario che contiene i dati necessari per connettersi al server di Google
 EMAIL_CONFIG = {
-    "sender": "mattioni.tommaso@iisgalvanimi.edu.it",
-    # IMPORTANTE: Inserisci la password di 16 lettere SENZA SPAZI.
-    # Se la password era "abcd efgh ilmn opqr", scrivi "abcdefghilmnopqr"
+    "sender": "mattioni.tommaso@iisgalvanimi.edu.it",  # L'indirizzo email che invia il messaggio
+    # Password specifica generata da Google (App Password)
     "password": "faefkrzmkeoizviw", 
-    "smtp_server": "smtp.gmail.com",
-    "port": 465  # Porta SSL sicura
+    "smtp_server": "smtp.gmail.com",  # L'indirizzo del server di posta in uscita di Google
+    "port": 465  # La porta standard per connessioni sicure SSL
 }
 
 def test_invio_isolato(destinatario):
     """
     Funzione per testare esclusivamente il server SMTP.
     """
-    print("--- 🚀 AVVIO TEST SMTP SAFECLAIM ---")
+    print("---  AVVIO TEST SMTP SAFECLAIM ---") # Messaggio a video per l'utente
     
     try:
-        # Creazione del messaggio
-        msg = MIMEMultipart()
-        msg['From'] = EMAIL_CONFIG["sender"]
-        msg['To'] = destinatario
-        msg['Subject'] = "SAFECLAIM: Verifica Integrazione SMTP"
+        # Creazione dell'oggetto messaggio che conterrà mittente, destinatario e corpo
+        msg = MIMEMultipart() 
+        msg['From'] = EMAIL_CONFIG["sender"]  # Imposta il mittente nell'intestazione della mail
+        msg['To'] = destinatario  # Imposta il destinatario nell'intestazione
+        msg['Subject'] = "SAFECLAIM: Verifica Integrazione SMTP"  # Imposta l'oggetto della mail
         
+        # Definiamo il testo del messaggio
         corpo = "Test riuscito! Il server SMTP risponde correttamente alle credenziali fornite."
+        # Trasformiamo il testo semplice in un oggetto MIMEText e lo "agganciamo" alla mail
         msg.attach(MIMEText(corpo, 'plain'))
 
         # Tentativo di connessione
-        print(f"🔄 Tentativo di connessione a {EMAIL_CONFIG['smtp_server']}...")
+        print(f" Tentativo di connessione a {EMAIL_CONFIG['smtp_server']}...")
+        
+        # Apre una connessione sicura (SMTP_SSL) verso il server
+        # Il comando 'with' assicura che la connessione venga chiusa automaticamente alla fine
         with smtplib.SMTP_SSL(EMAIL_CONFIG["smtp_server"], EMAIL_CONFIG["port"]) as server:
             
-            print("🔐 Autenticazione in corso...")
-            # Questo è il punto dove ricevi l'errore 535 se la password è errata
+            print(" Autenticazione in corso...")
+            # Effettua il login usando l'indirizzo email e la password dell'app
             server.login(EMAIL_CONFIG["sender"], EMAIL_CONFIG["password"])
             
-            print(f"📤 Invio mail in corso a {destinatario}...")
+            print(f" Invio mail in corso a {destinatario}...")
+            # Spedisce la mail trasformando l'oggetto 'msg' in una stringa leggibile dai server
             server.sendmail(EMAIL_CONFIG["sender"], destinatario, msg.as_string())
             
-        print("✅ EMAIL INVIATA CON SUCCESSO!")
+        # Se tutto va bene, stampa il successo
+        print(" EMAIL INVIATA CON SUCCESSO!")
         return True
 
+    # Gestione specifica dell'errore di login (es. password sbagliata)
     except smtplib.SMTPAuthenticationError:
-        print("❌ ERRORE: Credenziali rifiutate (535).")
-        print("👉 Assicurati di usare una 'Password per le App' e di aver rimosso gli spazi.")
-    except Exception as e:
-        print(f"❌ ERRORE IMPREVISTO: {e}")
+        print(" ERRORE: Credenziali rifiutate.")
+        print(" Assicurati di usare una 'Password per le App' e di aver rimosso gli spazi.")
     
-    return False
+    # Gestione di qualsiasi altro errore (es. mancanza di internet o server irraggiungibile)
+    except Exception as e:
+        print(f" ERRORE IMPREVISTO: {e}")
+    
+    return False # Ritorna falso se qualcosa è andato storto
 
-# Esecuzione del test
+# Punto di ingresso del programma
 if __name__ == "__main__":
+    # Chiama la funzione passando l'indirizzo del tuo compagno
     test_invio_isolato("mihali.sebastian@iisgalvanimi.edu.it")
