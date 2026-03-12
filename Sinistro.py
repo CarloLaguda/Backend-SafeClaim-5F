@@ -5,11 +5,11 @@ from flask_cors import CORS  # Importa il modulo per evitare i blocchi di sicure
 from datetime import datetime  # Importa la gestione di date e orari
 from bson.objectid import ObjectId  # Importa il traduttore per gli ID speciali di MongoDB
 
-# --- INIZIALIZZAZIONE ---
+
 app = Flask(__name__)  # Crea l'applicazione server SafeClaim
 CORS(app)  # Permette a programmi esterni (come il frontend) di parlare con questo server
 
-# --- CONFIGURAZIONE MONGODB ATLAS ---
+# CONFIGURAZIONE MONGODB ATLAS
 # Questa è la stringa segreta per connettersi al database nel cloud
 CONNECTION_STRING = "mongodb+srv://dbFakeClaim:xxx123##@cluster0.zgw1jft.mongodb.net/?appName=Cluster0"
 DB_NAME = "FakeClaim"  # Definisce il nome del database
@@ -31,17 +31,17 @@ except Exception as e:
     print(f"Errore critico di connessione al database: {e}")
     sinistri_col = None
 
-# --- ROTTA 1: CREAZIONE DI UN NUOVO SINISTRO (POST) ---
+# ROTTA 1: CREAZIONE DI UN NUOVO SINISTRO (POST) 
 @app.route('/sinistro', methods=['POST']) # Definisce l'indirizzo per aprire una pratica
 def apri_sinistro():
     # Se il database non è connesso, restituisce errore 503 (Servizio non disponibile)
     if sinistri_col is None:
         return jsonify({"status": "error", "message": "Database non disponibile"}), 503
 
-    # Prende i dati JSON inviati dall'utente 
+    # Prende i dati JSON inviati dall'utente e li mette in una variabile 'data'
     data = request.json
     
-    # Lista dei campi obbligatori per legge/regolamento
+    # Lista dei campi obbligatori che l'utente deve inviare per aprire un sinistro
     required_fields = ['automobilista_id', 'targa', 'data_evento', 'descrizione']
     # Controlla uno per uno se i campi richiesti ci sono
     for field in required_fields:
@@ -74,7 +74,7 @@ def apri_sinistro():
         # Se c'è un errore imprevisto, restituisce errore 500
         return jsonify({"status": "error", "message": str(e)}), 500
 
-# --- ROTTA 2: AGGIUNTA IMMAGINE TRAMITE ID SPECIFICO (POST) ---
+#  ROTTA 2: AGGIUNTA IMMAGINE TRAMITE ID SPECIFICO (POST)
 @app.route('/sinistro/<id>/immagini', methods=['POST']) # Indirizzo che contiene l'ID della pratica
 def aggiungi_immagine(id):
     # Controllo se il database è acceso
@@ -89,9 +89,16 @@ def aggiungi_immagine(id):
 
     try:
         # Cerca il sinistro col suo ID e aggiunge l'immagine alla lista 'immagini'
-        risultato = sinistri_col.update_one(
-            {"_id": ObjectId(id)}, # Converte il testo dell'ID in formato MongoDB
+        risultato = sinistri_col.update_one(   # updata_one e' il comando di MongoDB che dice: 
+                                               # Cerca un solo documento e aggiornalo. Non ne crea uno nuovo, ma va a modificare quello che trova.
+            {"_id": ObjectId(id)}, #Dice al database: "Vai a cercare il sinistro che ha questo specifico documento d'identità (_id)".
+                                   #ObjectId(id): Serve perché l'ID che arriva dal sito è un semplice testo,
+                                   #mentre MongoDB vuole il suo formato speciale (l'ObjectId) per trovarlo.
+                                   # MongoDB usa "_id" come identificatore unico predefinito per garantire l'unicità di ogni documento nella collezione.
+                                   #È il modo in cui il database garantisce che non esistano mai due documenti identici: ogni _id è unico al mondo.
+
             {"$push": {"immagini": data['immagine_base64']}} # Aggiunge alla lista senza sovrascrivere
+            # $push: È il comando che invece di cancellare quello che c'è già, aggiunge un elemento in fondo a una lista.                                               
         )
 
         # Se matched_count è 0, significa che quell'ID non esiste nel database
@@ -104,7 +111,7 @@ def aggiungi_immagine(id):
         # Gestisce errori di ID scritti male o problemi del server
         return jsonify({"status": "error", "message": str(e)}), 500
 
-# --- ROTTA 3: RECUPERO SINISTRI (GET) ---
+# ROTTA 3: RECUPERO SINISTRI (GET)
 @app.route('/sinistri', defaults={'id_sinistro': None}, methods=['GET']) # Indirizzo per tutti i sinistri
 @app.route('/sinistri/<id_sinistro>', methods=['GET']) # Indirizzo per un sinistro singolo
 def ottieni_sinistri(id_sinistro):
@@ -113,10 +120,15 @@ def ottieni_sinistri(id_sinistro):
         return jsonify({"status": "error", "message": "Database non disponibile"}), 503
 
     try: 
-        # SE l'utente ha chiesto un ID specifico
+        # Se l'utente ha chiesto un ID specifico
         if id_sinistro:
             # Cerca nel DB solo quel sinistro
-            sinistro = sinistri_col.find_one({"_id": ObjectId(id_sinistro)})
+            sinistro = sinistri_col.find_one({"_id": ObjectId(id_sinistro)}) #sinistri_col sta per collezione
+                                                                             # è la variabile che punta alla "scatola" dove sono salvati tutti i sinistri.
+                                                                             #Se lo trova, lo mette nella variabile 'sinistro'.
+            #find_one Filtra tutti i documenti in base ai criteri che metti tra parentesi.
+            #Si ferma al primo: Appena trova un documento che soddisfa la ricerca, te lo restituisce e smette di cercare
+
             # Se non lo trova, risponde 404
             if not sinistro:
                 return jsonify({"status": "error", "message": "Sinistro non trovato"}), 404
@@ -125,12 +137,17 @@ def ottieni_sinistri(id_sinistro):
             sinistro['_id'] = str(sinistro['_id'])
             # Converte la data in formato leggibile ISO
             if 'data_inserimento' in sinistro:
-                sinistro['data_inserimento'] = sinistro['data_inserimento'].isoformat()
+                sinistro['data_inserimento'] = sinistro['data_inserimento'].isoformat() 
+                #isoformat è un metodo che trasforma la data in una stringa standard, 
+                #Quando vuoi inviare questi dati a una pagina web tramite JSON, il formato JSON non sa cosa sia una data: lui capisce solo il testo.
+                #Se non usassi .isoformat(), il tuo programma darebbe errore perché non saprebbe come "impacchettare" la data per spedirla.
+                #ESEMPIO: datetime(2024, 6, 1, 12, 0, 0) diventa "2024-06-01T12:00:00" a
+                #"2024-06-01T12:00:00", che è facile da leggere e usare nei programmi.
             
             # Invia i dati del sinistro trovato
             return jsonify({"status": "success", "data": sinistro}), 200
         
-        # SE l'utente non ha messo ID, vuole tutta la lista
+        # Se l'utente non ha messo ID, vuole tutta la lista
         else:
             # Prende tutti i documenti nella collezione
             cursor = sinistri_col.find() 
@@ -141,12 +158,13 @@ def ottieni_sinistri(id_sinistro):
                 if 'data_inserimento' in s:
                     s['data_inserimento'] = s['data_inserimento'].isoformat()
                 # Aggiunge il sinistro sistemato alla lista finale
-                lista_sinistri.append(s)
+                lista_sinistri.append(s) # Aggiunge il sinistro sistemato alla lista finale
             
             # Invia tutta la lista dei sinistri
             return jsonify({
                 "status": "success",
-                "count": len(lista_sinistri), # Dice quanti ne ha trovati
+                "count": len(lista_sinistri), # Dice quanti ne ha trovati nella lista
+                                              # len Serve a contare quanti elementi ci sono dentro una lista.
                 "data": lista_sinistri
             }), 200
     except Exception as e:
@@ -154,7 +172,7 @@ def ottieni_sinistri(id_sinistro):
         return jsonify({"status": "error", "message": str(e)}), 500
 
 
-# --- AVVIO DEL SERVER ---
+# AVVIO DEL SERVER 
 if __name__ == '__main__':
     # Avvia Flask sulla porta 5000 in modalità debug (si riavvia se modifichi il file)
     app.run(debug=True, port=5000)

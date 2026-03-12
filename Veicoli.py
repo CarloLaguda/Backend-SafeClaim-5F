@@ -4,10 +4,10 @@ from flask_cors import CORS # Carica il modulo per permettere a pagine web ester
 
 # Creiamo l'applicazione Flask, che è il motore del nostro server
 app = Flask(__name__)
-# Abilitiamo CORS: serve a evitare blocchi di sicurezza quando il frontend chiama il backend
+#CORS serve a evitare blocchi di sicurezza quando il frontend chiama il backend
 CORS(app)
 
-# --- DATI PER ACCEDERE AL DATABASE ---
+# DATI PER ACCEDERE AL DATABASE
 # Qui scriviamo l'indirizzo, l'utente e la password per entrare nel database locale
 db_config = {
     'host': 'localhost', # Il database si trova sullo stesso computer del codice
@@ -26,7 +26,12 @@ def setup_database():
             password=db_config['password']
         )
         cursor = conn.cursor() # Crea un 'cursore', ovvero l'oggetto che scrive i comandi SQL
-        
+                               # Con questo cursore possiamo dire al database cosa fare, come se fosse una tastiera che scrive comandi
+                               # Il nome cursor è uno standard in quasi tutti i linguaggi di programmazione che parlano con i database SQL.
+                               # conn: È il tunnel (la connessione) che collega il nostro programma al database. Senza questa connessione, non possiamo comunicare con il database.
+                               # cursor: È lo strumento (il cursore) che usiamo per inviare comandi SQL attraverso la connessione.
+                               # () È il comando "Attiva/Crea"
+
         # Crea il database col nome scelto se non esiste già
         cursor.execute(f"CREATE DATABASE IF NOT EXISTS {db_config['database']}")
         # Dice a Python: 'D'ora in poi lavora dentro questo database'
@@ -57,14 +62,16 @@ def get_db_connection():
     """ Questa funzione serve solo ad aprire velocemente la connessione quando serve """
     return mysql.connector.connect(**db_config) # Restituisce una connessione pronta all'uso
 
-# --- FUNZIONI PER GESTIRE LE RICHIESTE (ENDPOINTS) ---
+# FUNZIONI PER GESTIRE LE RICHIESTE (ENDPOINTS) 
+
+#ROTTA PER PRENDERE TUTTI I VEICOLI (GET)
 
 @app.route('/veicoli', methods=['GET']) # Se l'utente va all'indirizzo /veicoli con metodo GET
 def get_all_veicoli():
     """ Restituisce l'elenco di tutte le auto """
     try:
         conn = get_db_connection() # Si connette al DB
-        # dictionary=True serve per avere i dati come {'targa': 'AA123BB'} invece di semplici liste
+        # dictionary=True serve per ricevere i dati come {'targa': 'AA123BB'} come un dizionario 
         cursor = conn.cursor(dictionary=True) 
         cursor.execute("SELECT * FROM Veicolo") # Chiede al DB tutte le righe della tabella
         veicoli = cursor.fetchall() # Scarica tutti i risultati trovati
@@ -74,21 +81,28 @@ def get_all_veicoli():
     except Exception as e:
         return jsonify({"error": str(e)}), 500 # Se c'è un errore, risponde col codice 500
 
+
+#ROTTA PER AGGIUNGERE UN NUOVO VEICOLO (POST)
+
 @app.route('/veicoli', methods=['POST']) # Se l'utente invia dati all'indirizzo /veicoli
 def add_veicolo():
     """ Aggiunge un nuovo veicolo nel database """
     data = request.json # Prende il pacchetto di dati JSON inviato dall'utente
     try:
         conn = get_db_connection() # Si connette al DB
-        cursor = conn.cursor()
+        cursor = conn.cursor() # Inizializza il cursore per eseguire query SQL e gestire i risultati
         
-        # Scrive il comando per inserire i dati (usiamo i %s per sicurezza contro gli hacker)
+        # Query con comando per inserire i dati (usiamo i %s per sicurezza contro gli hacker)
         query = """
             INSERT INTO Veicolo 
             (targa, n_telaio, marca, modello, anno_immatricolazione, automobilista_id, azienda_id) 
             VALUES (%s, %s, %s, %s, %s, %s, %s)
         """
-        # Estrae i valori dal pacchetto JSON ricevuto (se mancano, mette None)
+        # Le percentuali servono a creare una struttura fissa della frase, 
+        # lasciando dei "posti vuoti" che verranno riempiti solo all'ultimo secondo con i dati veri, 
+        # rendendo il tutto sicuro, ordinato e a prova di errore.
+
+        # Estrae i valori dal pacchetto JSON ricevuto 
         values = (
             data.get('targa'),
             data.get('n_telaio'),
@@ -103,12 +117,16 @@ def add_veicolo():
         conn.commit() # Salva l'inserimento nel database in modo permanente
         new_id = cursor.lastrowid # Si segna l'ID che il database ha assegnato a questa nuova riga
         
-        cursor.close()
-        conn.close()
+        cursor.close()  #Libera la memoria che serviva a gestire i risultati della tua domanda SQL. 
+                        #Chiudere il cursore è utile per evitare di consumare risorse inutilmente,.
+        conn.close()    #Chiude la connessione al database. 
+                        #È importante chiudere la connessione quando hai finito di usarla per liberare risorse e permettere ad altri processi di connettersi.
         return jsonify({"status": "success", "id": new_id}), 201 # Risponde 'Creato con successo' (201)
     except mysql.connector.Error as err:
         # Se ad esempio la targa esiste già, il database darà errore e noi rispondiamo con errore 400
         return jsonify({"error": "Errore inserimento", "details": str(err)}), 400
+
+#ROTTA PER PRENDERE UN VEICOLO SPECIFICO (GET)
 
 @app.route('/veicoli/<int:id>', methods=['GET']) # Se l'utente cerca un ID specifico (es. /veicoli/5)
 def get_veicolo(id):
@@ -117,7 +135,14 @@ def get_veicolo(id):
         conn = get_db_connection()
         cursor = conn.cursor(dictionary=True)
         # Esegue la ricerca filtrando per ID
-        cursor.execute("SELECT * FROM Veicolo WHERE id = %s", (id,))
+        cursor.execute("SELECT * FROM Veicolo WHERE id = %s", (id,)) 
+
+        #Con WHERE id = %s, gli dici Prendi solo quella riga dove la colonna id corrisponde al valore che ti sto per dare".
+        #Il %s,è il posto vuoto che verrà riempito in modo sicuro con il valore che ricevera da id
+        # (id,). Questo è il valore che andrà a riempire il %s nella query. La virgola è necessaria per indicare che stiamo passando una tupla
+        # In Python, per passare i valori al cursore, dobbiamo usare una "Tupla" (una lista fissa).
+                                                                 
+        
         veicolo = cursor.fetchone() # Prende solo il primo risultato trovato
         cursor.close()
         conn.close()
@@ -127,7 +152,7 @@ def get_veicolo(id):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# --- AVVIO DEL PROGRAMMA ---
+# AVVIO DEL PROGRAMMA 
 if __name__ == '__main__':
     setup_database() # Per prima cosa prepara il database e la tabella
     print("🚀 API SafeClaim Local attiva su http://127.0.0.1:5000")

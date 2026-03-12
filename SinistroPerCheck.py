@@ -9,7 +9,7 @@ app = Flask(__name__) # Crea l'istanza dell'applicazione SafeClaim
 # Se riavvii il server, questa lista torna vuota (per questo è una simulazione).
 db_finto = []
 
-# --- 1. APERTURA SINISTRO (METODO POST) ---
+# 1. APERTURA SINISTRO (POST) 
 @app.route('/sinistro', methods=['POST']) # Definisce l'indirizzo per creare una nuova pratica
 def apri_sinistro():
     data = request.json # Legge il pacchetto di dati inviato (es. da Postman)
@@ -48,7 +48,7 @@ def apri_sinistro():
         # Se succede un errore imprevisto, risponde con codice 500
         return jsonify({"status": "error", "message": str(e)}), 500
 
-# --- 2. CARICAMENTO IMMAGINI SULL'ULTIMO SINISTRO (METODO POST) ---
+# 2. CARICAMENTO IMMAGINI SULL'ULTIMO SINISTRO (POST) 
 @app.route('/sinistro/ultimo/immagini', methods=['POST']) # Indirizzo per aggiungere foto all'ultima pratica
 def aggiungi_immagine_ultimo():
     data = request.json # Legge i dati della foto
@@ -62,7 +62,8 @@ def aggiungi_immagine_ultimo():
 
     try:
         # db_finto[-1] seleziona l'ultimo elemento inserito nella lista
-        ultimo = db_finto[-1]
+        ultimo = db_finto[-1] # Seleziona l'ultimo sinistro creato (quello più recente) per aggiungere la foto 
+                              # -1 è l'indice che dice "prendi l'ultimo elemento della lista"
         # Aggiunge la stringa della foto alla lista 'immagini' di quel sinistro
         ultimo['immagini'].append(data['immagine_base64'])
 
@@ -75,7 +76,7 @@ def aggiungi_immagine_ultimo():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
-# --- 3. CARICAMENTO IMMAGINI TRAMITE ID SPECIFICO (METODO POST) ---
+# 3. CARICAMENTO IMMAGINI TRAMITE ID SPECIFICO (POST) 
 @app.route('/sinistro/<id_sinistro>/immagini', methods=['POST']) # L'ID viene passato direttamente nell'URL
 def aggiungi_immagine_id(id_sinistro):
     data = request.json # Legge i dati JSON
@@ -86,7 +87,10 @@ def aggiungi_immagine_id(id_sinistro):
 
     try:
         # Cerca dentro db_finto il primo sinistro che ha lo stesso ID passato nell'URL
-        sinistro_trovato = next((s for s in db_finto if s["_id"] == id_sinistro), None)
+        sinistro_trovato = next((s for s in db_finto if s["_id"] == id_sinistro), None) #s sta per "Singolo Sinistro"
+        # next è una funzione che serve a cercare dentro una lista (db_finto) un elemento che soddisfa una condizione (s["_id"] == id_sinistro).
+        # Se lo trova, lo mette in sinistro_trovato. 
+        # None dice a Python  se non trovi nulla, restituisci None
 
         if sinistro_trovato:
             # Se lo trova, aggiunge l'immagine alla lista di quel sinistro specifico
@@ -102,7 +106,7 @@ def aggiungi_immagine_id(id_sinistro):
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
-# --- 4. VISUALIZZAZIONE TUTTI I SINISTRI (METODO GET) ---
+#  4. VISUALIZZAZIONE TUTTI I SINISTRI (GET)
 @app.route('/sinistri', methods=['GET']) # Indirizzo per leggere tutto il "database"
 def ottieni_sinistri():
     # Restituisce l'intera lista db_finto trasformata in JSON
@@ -112,7 +116,7 @@ def ottieni_sinistri():
         "data": db_finto # Invia la lista completa dei dati
     }), 200
 
-# --- AVVIO DEL SERVER ---
+# AVVIO DEL SERVER 
 if __name__ == '__main__':
     # Stampa un messaggio per avvisare che stiamo lavorando in RAM (Offline)
     print("🚀 Server in MODALITÀ OFFLINE attivo sulla porta 5000")
