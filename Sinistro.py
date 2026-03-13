@@ -16,15 +16,17 @@ DB_NAME = "FakeClaim"  # Definisce il nome del database
 
 try:
     # Prova a stabilire il contatto con il server di MongoDB Atlas
-    client = pymongo.MongoClient(CONNECTION_STRING, serverSelectionTimeoutMS=5000)
+    #configura client con l'indirizzo giusto CONNECTION_STRING
+    client = pymongo.MongoClient(CONNECTION_STRING, serverSelectionTimeoutMS=5000) 
+    #Se il database è offline, il tuo programma restituirà un errore dopo soli 5 secondi.
     
     # Seleziona il database 'FakeClaim'
     db = client[DB_NAME]
-    # Seleziona la collezione (tabella) chiamata 'sinistri'
+    # Seleziona la collezione (tabella) chiamata 'sinistri e la mette nella variabile sinistri_col'
     sinistri_col = db['sinistri']
     
     # Chiede al database se è davvero attivo (test di connessione)
-    client.server_info() 
+    client.server_info()  #è il metodo per verificare che la comunicazione sia effettivamente stabilita
     print("Connessione a MongoDB Atlas (FakeClaim) riuscita!") # Messaggio di successo
 except Exception as e:
     # Se qualcosa non va (es. internet assente), stampa l'errore e mette la collezione a None
