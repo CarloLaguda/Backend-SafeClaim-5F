@@ -155,7 +155,7 @@ def get_veicolo(id):
 # AVVIO DEL PROGRAMMA 
 if __name__ == '__main__':
     setup_database() # Per prima cosa prepara il database e la tabella
-    print("🚀 API SafeClaim Local attiva su http://127.0.0.1:5000")
+    print("API SafeClaim Local attiva su http://127.0.0.1:5000")
     # Avvia il server Flask sulla porta 5000
     # debug=True significa che se cambi il codice, il server si aggiorna da solo
     app.run(debug=True, port=5000)
