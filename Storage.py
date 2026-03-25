@@ -1,68 +1,87 @@
+"""
+Storage.py — Gestione upload/download immagini su Cloudinary
+Usato da endpoint_5F_log_reg.py per salvare le immagini dei sinistri.
+
+Installazione:
+    pip install cloudinary
+"""
+
 import cloudinary
 import cloudinary.uploader
+import cloudinary.api
+import base64
+import tempfile
 import os
 
-# 1. CONFIGURAZIONE
-cloudinary.config( 
-    cloud_name = "dm6estjhs", 
-    api_key = "281163362143651", 
-    api_secret = "sOMrD7f2PNomO1JyTEobaGzyWkg"
+# --- CONFIGURAZIONE CLOUDINARY ---
+# Sostituisci con le tue credenziali dal dashboard Cloudinary
+cloudinary.config(
+    cloud_name="dm6estjhs",   # <-- es. "safeclaim"
+    api_key="281163362143651",          # <-- es. "123456789012345"
+    api_secret="sOMrD7f2PNomO1JyTEobaGzyWkg",    # <-- es. "abc123XYZ..."
+    secure=True
 )
 
-# 2. MOTORE DI STORAGE ORGANIZZATO
-def safeclaim_upload(file_locale, macro_categoria, id_riferimento, sottocartella=None):
+# Cartella su Cloudinary dove verranno salvate le immagini
+CARTELLA_SINISTRI = "safeclaim/sinistri"
+
+
+def carica_immagine(immagine_b64: str, sinistro_id: str) -> dict:
     """
-    Gestisce l'upload rispettando l'albero delle cartelle di SafeClaim.
-    
-    Esempio per l'API /sinistro/{id}/immagini:
-    safeclaim_upload("foto.jpg", "Sinistri", "SIN_001", "Foto_Danni")
+    Carica un'immagine base64 su Cloudinary.
+
+    Args:
+        immagine_b64: immagine codificata in base64
+        sinistro_id:  ID del sinistro MongoDB (usato come nome file)
+
+    Returns:
+        dict con:
+            - url:        URL pubblico dell'immagine
+            - public_id:  ID Cloudinary (serve per eliminarla)
+            - secure_url: URL HTTPS
     """
-    if not os.path.exists(file_locale):
-        print(f"❌ File '{file_locale}' non trovato.")
-        return None
-
-    estensione = file_locale.lower().split('.')[-1]
-    r_type = "image" if estensione in ['jpg', 'jpeg', 'png', 'webp'] else "raw"
-
-    # Costruzione del percorso basata sulla tua struttura
-    # SafeClaim_Storage / MacroCategoria / ID / [Sottocartella opzionale]
-    if sottocartella:
-        percorso_cloud = f"SafeClaim_Storage/{macro_categoria}/{id_riferimento}/{sottocartella}"
-    else:
-        percorso_cloud = f"SafeClaim_Storage/{macro_categoria}/{id_riferimento}"
-
-    nome_file = file_locale.split('.')[0]
+    # Decodifica base64 → file temporaneo
+    image_data = base64.b64decode(immagine_b64)
+    tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".jpg")
+    tmp.write(image_data)
+    tmp.close()
 
     try:
         risultato = cloudinary.uploader.upload(
-            file_locale,
-            public_id=f"{percorso_cloud}/{nome_file}",
-            resource_type=r_type,
-            asset_folder=percorso_cloud,
-            use_asset_folder_as_public_id_prefix=True,
-            format=estensione if estensione == 'pdf' else None
+            tmp.name,
+            folder=CARTELLA_SINISTRI,
+            public_id=f"sinistro_{sinistro_id}",
+            overwrite=True,
+            resource_type="image"
         )
-        
-        url = risultato['secure_url']
-        if estensione == "pdf":
-            url = url.replace("/upload/", "/upload/fl_attachment/")
+        return {
+            "url":        risultato["url"],
+            "secure_url": risultato["secure_url"],
+            "public_id":  risultato["public_id"]
+        }
+    finally:
+        # Pulizia file temporaneo locale
+        if os.path.exists(tmp.name):
+            os.remove(tmp.name)
 
-        print(f"✅ Archiviato in: {percorso_cloud}")
-        print(f"🔗 URL: {url}")
-        return url
+
+def elimina_immagine(public_id: str) -> bool:
+    """
+    Elimina un'immagine da Cloudinary tramite il suo public_id.
+
+    Returns:
+        True se eliminata con successo, False altrimenti.
+    """
+    try:
+        risultato = cloudinary.uploader.destroy(public_id)
+        return risultato.get("result") == "ok"
     except Exception as e:
-        print(f"❌ Errore: {e}")
-        return None
+        print(f"❌ Errore eliminazione immagine Cloudinary: {e}")
+        return False
 
-# ==========================================
-# 3. ESEMPIO PER L'API: /sinistro/{id}/immagini
-# ==========================================
 
-# Quando ricevi una chiamata a /sinistro/SIN_123/immagini:
-id_sinistro_da_api = "SIN_123" # Questo verrebbe dall'URL dell'API
-safeclaim_upload(
-    file_locale="incidente.jpg", 
-    macro_categoria="Sinistri", 
-    id_riferimento=id_sinistro_da_api, 
-    sottocartella="Foto_Danni"
-)
+def ottieni_url(public_id: str) -> str:
+    """
+    Restituisce l'URL HTTPS di un'immagine dato il suo public_id.
+    """
+    return cloudinary.CloudinaryImage(public_id).build_url(secure=True)
