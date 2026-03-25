@@ -44,16 +44,24 @@ except Exception as e:
 # READ: Recupero dei dati di una pratica specifica
 @app.route("/sinistro/<sinistro_id>/perito/<perito_id>/pratica", methods=["GET"])
 def get_pratica(sinistro_id, perito_id):
-    pratica = col_pratiche.find_one({
-        "sinistro_id": sinistro_id,
-        "perito_id": perito_id
-    })
+    try:
+        query = {
+            "sinistro_id": ObjectId(sinistro_id), 
+            "perito_id": perito_id
+        }
 
-    if not pratica:
-        return jsonify({"error": "Pratica non trovata"}), 404
+        pratica = col_perizie.find_one(query) 
 
-    pratica["_id"] = str(pratica["_id"])
-    return jsonify(pratica), 200
+        if not pratica:
+            return jsonify({"error": "Pratica non trovata nel database Atlas"}), 404
+
+        pratica["_id"] = str(pratica["_id"])
+        pratica["sinistro_id"] = str(pratica["sinistro_id"])
+        
+        return jsonify(pratica), 200
+
+    except Exception as e:
+        return jsonify({"error": "ID sinistro malformato o errore server", "details": str(e)}), 400
 
 # UPDATE/UPSERT: Aggiornamento o creazione rapida di una pratica base
 @app.route("/sinistro/<sinistro_id>/perito/<perito_id>/pratica", methods=["PUT"])
