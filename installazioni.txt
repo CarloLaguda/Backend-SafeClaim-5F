@@ -5,3 +5,5 @@ sudo apt-get update
 sudo apt-get install -y mariadb-server
 sudo service mariadb start
 sudo mariadb
+CREATE USER 'pythonuser'@'localhost' IDENTIFIED BY 'password123';
+GRANT ALL PRIVILEGES ON *.* TO 'pythonuser'@'localhost' WITH GRANT OPTION;

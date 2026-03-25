@@ -61,17 +61,6 @@ def apri_sinistro():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# READ: Visualizza TUTTI i sinistri (La rotta che mancava!)
-@app.route('/sinistri', methods=['GET'])
-def get_tutti_sinistri():
-    try:
-        sinistri = list(sinistri_col.find())
-        for s in sinistri:
-            s['_id'] = str(s['_id']) # Converte ID per JSON
-        return jsonify(sinistri), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
 # UPDATE: Aggiunta immagine all'ultimo sinistro creato
 @app.route('/sinistro/ultimo/immagini', methods=['POST'])
 def aggiungi_immagine_ultimo():
@@ -132,21 +121,58 @@ def crea_richiesta_soccorso():
     finally:
         if conn: conn.close()
 
-@app.route('/veicoli/<int:id>', methods=['GET'])
-def get_veicoli(id=None):
+#VEICOLI PER UN DETERMINATO USER ID
+@app.route('/veicoli-utente/<int:user_id>', methods=['GET'])
+def get_veicoli_utente(user_id):
     conn = None
     try:
         conn = get_db_connection()
         cursor = conn.cursor(dictionary=True)
-        if id:
-            cursor.execute("SELECT * FROM Veicolo WHERE id = %s", (id,))
-            res = cursor.fetchone()
-        else:
-            cursor.execute("SELECT * FROM Veicolo")
-            res = cursor.fetchall()
-        return jsonify(res), 200
+        
+        # Seleziona i veicoli associati all'ID, sia esso un privato o un'azienda
+        query = """
+            SELECT 
+                v.id, v.targa, v.marca, v.modello, v.anno_immatricolazione,
+                a.nome AS nome_proprietario, a.cognome AS cognome_proprietario,
+                az.ragione_sociale AS azienda_proprietaria
+            FROM Veicolo v
+            LEFT JOIN Automobilista a ON v.automobilista_id = a.id
+            LEFT JOIN Azienda az ON v.azienda_id = az.id
+            WHERE v.automobilista_id = %s OR v.azienda_id = %s
+        """
+        
+        cursor.execute(query, (user_id, user_id))
+        veicoli = cursor.fetchall()
+        
+        return jsonify(veicoli), 200
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    finally:
+        if conn:
+            conn.close()
+
+@app.route('/veicoli', methods=['POST'])
+def add_veicolo():
+    """POST Separata: inserimento nuovo veicolo"""
+    data = request.get_json()
+    conn = None
+    try:
+        conn = get_mysql_connection()
+        cursor = conn.cursor()
+        query = """
+            INSERT INTO Veicolo 
+            (targa, n_telaio, marca, modello, anno_immatricolazione, automobilista_id, azienda_id) 
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
+        """
+        values = (data.get('targa'), data.get('n_telaio'), data.get('marca'),
+                  data.get('modello'), data.get('anno_immatricolazione'),
+                  data.get('automobilista_id'), data.get('azienda_id'))
+        cursor.execute(query, values)
+        conn.commit()
+        return jsonify({"status": "success", "id": cursor.lastrowid}), 201
+    except mysql.connector.Error as err:
+        return jsonify({"error": "Errore DB", "details": str(err)}), 400
     finally:
         if conn: conn.close()
 
