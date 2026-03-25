@@ -52,88 +52,6 @@ def valida_dati_utente(data):
     if not valida_psw: return False, err_psw
     return True, None
 
-# --- ENDPOINT VEICOLI (GET UNIFICATA + POST SEPARATA) ---
-
-@app.route('/veicoli', methods=['GET'])
-@app.route('/veicoli/<int:id>', methods=['GET'])
-def get_veicoli(id=None):
-    conn = None
-    try:
-        conn = get_mysql_connection()
-        cursor = conn.cursor(dictionary=True)
-        if id:
-            cursor.execute("SELECT * FROM Veicolo WHERE id = %s", (id,))
-            veicolo = cursor.fetchone()
-            if not veicolo: return jsonify({"error": "Veicolo non trovato"}), 404
-            return jsonify(veicolo), 200
-        else:
-            cursor.execute("SELECT * FROM Veicolo")
-            return jsonify(cursor.fetchall()), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-    finally:
-        if conn: conn.close()
-
-@app.route('/veicoli', methods=['POST'])
-def add_veicolo():
-    data = request.get_json()
-    conn = None
-    try:
-        conn = get_mysql_connection()
-        cursor = conn.cursor()
-        query = """INSERT INTO Veicolo (targa, n_telaio, marca, modello, anno_immatricolazione, automobilista_id, azienda_id) 
-                   VALUES (%s, %s, %s, %s, %s, %s, %s)"""
-        values = (data.get('targa'), data.get('n_telaio'), data.get('marca'), data.get('modello'),
-                  data.get('anno_immatricolazione'), data.get('automobilista_id'), data.get('azienda_id'))
-        cursor.execute(query, values)
-        conn.commit()
-        return jsonify({"status": "success", "id": cursor.lastrowid}), 201
-    except mysql.connector.Error as err:
-        return jsonify({"error": "Errore inserimento", "details": str(err)}), 400
-    finally:
-        if conn: conn.close()
-
-# --- ENDPOINT POLIZZE ---
-
-@app.route('/polizze', methods=['GET'])
-@app.route('/polizze/<int:id>', methods=['GET'])
-def get_polizze(id=None):
-    conn = None
-    try:
-        conn = get_mysql_connection()
-        cursor = conn.cursor(dictionary=True)
-        if id:
-            cursor.execute("SELECT * FROM Polizza WHERE id = %s", (id,))
-            polizza = cursor.fetchone()
-            if not polizza: return jsonify({"error": "Polizza non trovata"}), 404
-            return jsonify(polizza), 200
-        else:
-            cursor.execute("SELECT * FROM Polizza")
-            return jsonify(cursor.fetchall()), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-    finally:
-        if conn: conn.close()
-
-@app.route('/polizze', methods=['POST'])
-def crea_polizza():
-    data = request.get_json()
-    conn = None
-    try:
-        conn = get_mysql_connection()
-        cursor = conn.cursor()
-        query = """INSERT INTO Polizza (n_polizza, compagnia_assicurativa, data_inizio, data_scadenza, massimale, tipo_copertura, veicolo_id, assicuratore_id)
-                   VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
-        values = (data['n_polizza'], data.get('compagnia_assicurativa'), data['data_inizio'], data['data_scadenza'], 
-                  data.get('massimale'), data.get('tipo_copertura', 'RCA'), data['veicolo_id'], data['assicuratore_id'])
-        cursor.execute(query, values)
-        conn.commit()
-        return jsonify({"message": "Polizza inserita!", "id": cursor.lastrowid}), 201
-    except Exception as e:
-        return jsonify({"error": str(e)}), 400
-    finally:
-        if conn: conn.close()
-
 # --- REGISTRAZIONE & LOGIN ---
 
 @app.route('/registrazione', methods=['POST'])
@@ -176,24 +94,6 @@ def login():
         return jsonify({"error": "Credenziali non valide"}), 401
     finally:
         if conn: conn.close()
-
-# --- SINISTRI (MongoDB) ---
-
-@app.route('/sinistri', defaults={'id_sinistro': None}, methods=['GET'])
-@app.route('/sinistri/<id_sinistro>', methods=['GET'])
-def ottieni_sinistri(id_sinistro):
-    try:
-        if id_sinistro:
-            if not ObjectId.is_valid(id_sinistro): return jsonify({"error": "Formato ID non valido"}), 400
-            sinistro = sinistri_col.find_one({"_id": ObjectId(id_sinistro)})
-            if not sinistro: return jsonify({"error": "Sinistro non trovato"}), 404
-            sinistro['_id'] = str(sinistro['_id'])
-            return jsonify(sinistro), 200
-        else:
-            lista = [dict(s, _id=str(s['_id'])) for s in sinistri_col.find()]
-            return jsonify({"count": len(lista), "data": lista}), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=6000, debug=True)
