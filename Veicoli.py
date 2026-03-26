@@ -117,7 +117,7 @@ def add_veicolo():
         conn.commit() # Salva l'inserimento nel database in modo permanente
         new_id = cursor.lastrowid # Si segna l'ID che il database ha assegnato a questa nuova riga
         
-        cursor.close()  #Libera la memoria che serviva a gestire i risultati della tua domanda SQL. 
+        cursor.close()  #Libera la memoria che serviva a gestire i risultati della domanda SQL. 
                         #Chiudere il cursore è utile per evitare di consumare risorse inutilmente,.
         conn.close()    #Chiude la connessione al database. 
                         #È importante chiudere la connessione quando hai finito di usarla per liberare risorse e permettere ad altri processi di connettersi.
@@ -133,7 +133,7 @@ def get_veicolo(id):
     """ Cerca un solo veicolo tramite il suo numero ID """
     try:
         conn = get_db_connection()
-        cursor = conn.cursor(dictionary=True)
+        cursor = conn.cursor(dictionary=True) # Per ricevere i dati come un dizionario, ad esempio {'targa': 'AA123BB'} invece di una tupla (1, 'AA123BB', ...)
         # Esegue la ricerca filtrando per ID
         cursor.execute("SELECT * FROM Veicolo WHERE id = %s", (id,)) 
 
