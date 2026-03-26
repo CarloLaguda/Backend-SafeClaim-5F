@@ -7,7 +7,7 @@ from bson.objectid import ObjectId  # Importa il traduttore per gli ID speciali 
 
 
 app = Flask(__name__)  # Crea l'applicazione server SafeClaim
-CORS(app)  # Permette a programmi esterni (come il frontend) di parlare con questo server
+CORS(app)  # Permette a programmi esterni di parlare con questo server
 
 # CONFIGURAZIONE MONGODB ATLAS
 # Questa è la stringa segreta per connettersi al database nel cloud
@@ -29,7 +29,7 @@ try:
     client.server_info()  #è il metodo per verificare che la comunicazione sia effettivamente stabilita
     print("Connessione a MongoDB Atlas (FakeClaim) riuscita!") # Messaggio di successo
 except Exception as e:
-    # Se qualcosa non va (es. internet assente), stampa l'errore e mette la collezione a None
+    # Se qualcosa non va, stampa l'errore e mette la collezione a None
     print(f"Errore critico di connessione al database: {e}")
     sinistri_col = None
 
@@ -173,6 +173,57 @@ def ottieni_sinistri(id_sinistro):
         # Invia l'errore se qualcosa fallisce nel recupero dati
         return jsonify({"status": "error", "message": str(e)}), 500
 
+# Definisce l'indirizzo (endpoint) per cercare i sinistri filtrando solo per targa
+@app.route('/sinistri/ricerca/targa', methods=['GET'])
+def ricerca_per_targa():
+    # Verifica se la connessione al database MongoDB è funzionante
+    if sinistri_col is None:
+        # Se il database è offline, risponde con errore 503
+        return jsonify({"status": "error", "message": "Database non disponibile"}), 503
+
+    # Recupera il valore della targa dall'URL (es: /targa?valore=AB123CD)
+    targa_da_cercare = request.args.get('valore') #request.args.get è il modo per leggere i parametri che l'utente mette dopo il punto interrogativo nell'indirizzo.
+
+    # Controlla se l'utente ha effettivamente scritto qualcosa come targa
+    if not targa_da_cercare:
+        # Se il parametro è vuoto, risponde con errore 400
+        return jsonify({"error": "Inserire una targa per effettuare la ricerca"}), 400
+
+    try:
+        # dice a MongoDB di trovare tutti i documenti con quella targa 
+        query = {"targa": targa_da_cercare} # La targa è il campo del documento che vogliamo filtrare, e targa_da_cercare è il valore che l'utente ha scritto.
+        
+        # Esegue la ricerca. .find() restituirà TUTTI i sinistri di quella targa
+        cursor = sinistri_col.find(query) # La funzione find() è il comando di MongoDB che dice: "Vai a cercare tutti i documenti che soddisfano questo criterio (query) e restituiceli".
+        
+        
+        # Prepara la lista vuota per contenere i risultati
+        risultati = []
+        
+        # Esplora i risultati trovati nel database
+        for s in cursor:
+            # Converte l'ID tecnico di MongoDB in una stringa leggibile
+            s['_id'] = str(s['_id'])
+            
+            # Se esiste la data di inserimento, la trasforma in formato testo ISO per poterla inviare via JSON
+            if 'data_inserimento' in s:
+                s['data_inserimento'] = s['data_inserimento'].isoformat()
+            
+            # Aggiunge il sinistro sistemato alla lista dei risultati
+            risultati.append(s)
+
+        # Invia la risposta finale al client (Postman o Browser)
+        return jsonify({
+            "status": "success",
+            "targa_cercata": targa_da_cercare,
+            "numero_sinistri": len(risultati), # Conta quanti incidenti ha fatto quell'auto
+            "data": risultati
+        }), 200
+
+    # Gestisce eventuali errori improvvisi del server o del database
+    except Exception as e:
+        # Restituisce il dettaglio dell'errore con codice 500
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 # AVVIO DEL SERVER 
 if __name__ == '__main__':

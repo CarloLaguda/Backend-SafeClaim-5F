@@ -1,0 +1,14 @@
+Per Installazione da Terminale:
+sudo apt update
+sudo apt install mariadb-server
+sudo service mariadb start
+
+Per avviare Client:
+sudo mariadb
+
+Per creare nuovo utente (da interfaccia mariadb):
+CREATE USER 'pythonuser'@'localhost' IDENTIFIED BY 'password123';
+GRANT ALL PRIVILEGES ON *.* TO 'pythonuser'@'localhost' WITH GRANT OPTION;
+
+pip install mysql.connector
+pip install Flask
