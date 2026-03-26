@@ -98,6 +98,22 @@ def aggiorna_sinistro(id):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route('/veicoli-utente/<int:user_id>', methods=['GET'])
+def get_veicoli_utente(user_id):
+    conn = None
+    try:
+        conn = get_mysql_connection()
+        cursor = conn.cursor(dictionary=True)
+        # Questa query va a cercare nel tuo MySQL i veicoli di quell'utente
+        query = "SELECT * FROM Veicolo WHERE automobilista_id = %s"
+        cursor.execute(query, (user_id,))
+        veicoli = cursor.fetchall()
+        return jsonify(veicoli), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    finally:
+        if conn: conn.close()
+
 if __name__ == '__main__':
     # Mantenuta porta 6000 come da tua ultima riga
     app.run(host='0.0.0.0', port=5000, debug=True)

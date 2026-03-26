@@ -61,6 +61,20 @@ def apri_sinistro():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route('/sinistri', methods=['GET'])
+def get_tutti_i_sinistri():
+    try:
+        # Prende tutti i sinistri dalla collezione MongoDB
+        sinistri = list(sinistri_col.find())
+        
+        # Converte l'_id di MongoDB (che è un oggetto strano) in una stringa leggibile
+        for s in sinistri:
+            s['_id'] = str(s['_id'])
+            
+        return jsonify(sinistri), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 # UPDATE: Aggiunta immagine all'ultimo sinistro creato
 @app.route('/sinistro/ultimo/immagini', methods=['POST'])
 def aggiungi_immagine_ultimo():
