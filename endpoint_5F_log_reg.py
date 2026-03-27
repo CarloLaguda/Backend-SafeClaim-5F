@@ -42,9 +42,9 @@ try:
     soccorso_col = mongo_db["Soccorso"]
 
     mongo_client.admin.command('ping')
-    print("✅ Connessione a MongoDB Atlas riuscita!")
+    print("Connessione a MongoDB Atlas riuscita!")
 except Exception as e:
-    print(f"❌ Errore connessione MongoDB: {e}")
+    print(f"Errore connessione MongoDB: {e}")
 
 # --- CONFIGURAZIONE JOY-CAPTION ---
 
@@ -65,7 +65,7 @@ def analizza_immagine_ai(sinistro_id: str, image_url: str):
     e salva il risultato su MongoDB.
     """
     try:
-        print(f"🤖 [AI] Avvio analisi per sinistro {sinistro_id}...")
+        print(f"[AI] Avvio analisi per sinistro {sinistro_id}...")
 
         # Joy-Caption accetta URL direttamente tramite handle_file
         client = Client("fancyfeast/joy-caption-beta-one", token=HF_TOKEN)
@@ -94,10 +94,10 @@ def analizza_immagine_ai(sinistro_id: str, image_url: str):
                 }
             }
         )
-        print(f"💾 [AI] Risultato salvato su MongoDB per sinistro {sinistro_id}")
+        print(f"[AI] Risultato salvato su MongoDB per sinistro {sinistro_id}")
 
     except Exception as e:
-        print(f"❌ [AI] Errore analisi sinistro {sinistro_id}: {e}")
+        print(f"[AI] Errore analisi sinistro {sinistro_id}: {e}")
         try:
             sinistri_col.update_one(
                 {"_id": ObjectId(sinistro_id)},
@@ -179,7 +179,7 @@ def aggiungi_immagine_ultimo():
         # 1. Carica su Cloudinary tramite Storage.py
         print(f"☁️  Caricamento immagine su Cloudinary per sinistro {sinistro_id}...")
         info_cloudinary = carica_immagine(data['immagine_base64'], sinistro_id)
-        print(f"✅ Immagine caricata: {info_cloudinary['secure_url']}")
+        print(f"Immagine caricata: {info_cloudinary['secure_url']}")
 
         # 2. Salva URL Cloudinary su MongoDB + segna analisi in elaborazione
         sinistri_col.update_one(
