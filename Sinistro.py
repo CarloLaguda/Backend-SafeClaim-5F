@@ -25,6 +25,9 @@ try:
     db = client[DB_NAME]
     # Seleziona la collezione (tabella) chiamata 'sinistri e la mette nella variabile sinistri_col'
     sinistri_col = db['sinistri']
+
+    # Qui salveremo ogni ricerca effettuata per monitorare lo storico
+    log_ricerche_col = db['log_ricerche'] #il LOG e' un registro cronologico di eventi
     
     # Chiede al database se è davvero attivo (test di connessione)
     client.server_info()  #è il metodo per verificare che la comunicazione sia effettivamente stabilita
@@ -229,6 +232,16 @@ def ricerca_per_targa():
             # Aggiunge il sinistro sistemato alla lista dei risultati
             risultati.append(s)
 
+        #  Salviamo il la ricerca effettuata 
+        # Creiamo un documento che descrive l'azione appena compiuta
+        log_ricerca = {
+            "targa_cercata": targa_da_cercare,        # Quale targa è stata cercata
+            "data_ricerca": datetime.now(),           # Quando è stata cercata
+            "quanti_trovati": len(risultati)          # Quanti risultati ha prodotto la ricerca
+        }
+        # Salviamo questo log nella collezione dedicata 'log_ricerche'
+        log_ricerche_col.insert_one(log_ricerca)
+
         # Invia la risposta finale al client 
         return jsonify({
             "status": "success",
@@ -240,6 +253,47 @@ def ricerca_per_targa():
     # Gestisce eventuali errori improvvisi del server o del database
     except Exception as e:
         # Restituisce il dettaglio dell'errore con codice 500
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+# --- ROTTA 5: STORICO DELLE RICERCHE PER UNA TARGA (GET) ---
+@app.route('/sinistri/ricerca/targa/storico', methods=['GET'])
+def visualizza_storico_targa():
+    # Verifica che il database sia disponibile
+    if log_ricerche_col is None:
+        return jsonify({"status": "error", "message": "Database non disponibile"}), 503
+
+    # Legge la targa dall'URL (?valore=...)
+    targa_da_controllare = request.args.get('valore')
+
+    # Se l'utente non specifica la targa, restituisce errore
+    if not targa_da_controllare:
+        return jsonify({"error": "Devi specificare una targa per vedere lo storico delle ricerche"}), 400
+
+    try:
+        # Cerca tutti i log salvati precedentemente per questa targa specifica
+        #è un puntatore ai risultati. Ti permette di scorrere i risultati uno per uno per elaborarli
+        cursor = log_ricerche_col.find({"targa_cercata": targa_da_controllare}) 
+        # Cerca tutti i documenti nella collezione 'log_ricerche' dove il campo 'targa_cercata' è uguale alla targa che l'utente ha scritto.
+        
+        cronologia = [] # Crea una lista vuota dove metteremo tutti i log di ricerca trovati per quella targa
+        for l in cursor: # Scorre tutti i log trovati uno per uno
+            # Converte l'ID tecnico di MongoDB in testo e li metti in l che sta per log
+            l['_id'] = str(l['_id'])
+            # Trasforma la data della ricerca in formato testo leggibile
+            if 'data_ricerca' in l:
+                l['data_ricerca'] = l['data_ricerca'].isoformat() 
+            # Aggiunge il log alla lista dei risultati
+            cronologia.append(l)
+
+        # Restituisce l'elenco completo di quante volte quella targa è stata cercata nel sistema
+        return jsonify({
+            "status": "success",
+            "targa": targa_da_controllare,
+            "totale_ricerche_effettuate": len(cronologia),
+            "elenco_ricerche": cronologia
+        }), 200
+
+    except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
 # Definisce l'indirizzo (URL) che useremo su Postman per cercare i sinistri di un guidatore specifico
@@ -284,6 +338,16 @@ def ricerca_per_automobilista():
             # Aggiunge il sinistro sistemato alla nostra lista dei risultati
             risultati.append(s)
 
+        # --- PARTE NUOVA: SALVATAGGIO LOG PER NOME ---
+        log_nome = {
+            "nome_cercato": nome_cercato,             # Salviamo chi è stato cercato
+            "tipo_ricerca": "automobilista",         # Specifichiamo che è una ricerca per nome
+            "data_ricerca": datetime.now(),          # Quando è successo
+            "quanti_trovati": len(risultati)         # Quanti sinistri ha questo automobilista
+        }
+        # Salviamo nella stessa collezione dei log
+        db['log_ricerche'].insert_one(log_nome)
+
         # Invia la risposta finale con lo stato di successo e la lista dei sinistri trovati
         return jsonify({
             "status": "success",
@@ -295,6 +359,63 @@ def ricerca_per_automobilista():
     # Se succede un errore imprevisto durante la comunicazione con il database
     except Exception as e:
         # Restituisce l'errore tecnico con codice 500 (Errore interno del server)
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+# --- NUOVA ROTTA: STORICO RICERCHE PER NOME ---
+
+# Definiamo l'indirizzo (endpoint) per consultare quante volte un guidatore è stato cercato
+@app.route('/sinistri/ricerca/automobilista/storico', methods=['GET'])
+def visualizza_storico_nome():
+    # verifichiamo che la connessione al database sia attiva
+    if db is None:
+        # Se il database è spento o non raggiungibile, restituiamo errore 503
+        return jsonify({"status": "error", "message": "Database non disponibile"}), 503
+
+    # Leggiamo il nome passato dall'utente nell'URL (es: .../storico?valore=MARIO-ROSSI)
+    # 'request.args.get' cerca il parametro 'valore' dopo il punto di domanda
+    nome_da_controllare = request.args.get('valore')
+
+    # Se l'utente non ha scritto nessun nome nel parametro 'valore'
+    if not nome_da_controllare:
+        # Restituiamo un errore 400 (Richiesta errata) avvisando dell'omissione
+        return jsonify({"error": "Devi specificare un nome per vedere lo storico"}), 400
+
+    try:
+        # Indichiamo al programma di usare la tabella chiamata 'log_ricerche'
+        log_col = db['log_ricerche'] #log_col è la variabile che rappresenta dove sono salvati tutti i log delle ricerche.
+        
+        # Chiediamo a MongoDB di trovare tutti i log che hanno quel nome specifico nel campo 'nome_cercato'
+        # .find() ci restituisce il "cursore" per scorrere i risultati
+        cursor = log_col.find({"nome_cercato": nome_da_controllare})
+        
+        # Prepariamo una lista vuota per raccogliere i log dopo averli "puliti" e sistemati
+        cronologia = []
+        
+        # Iniziamo il ciclo: per ogni log ('l') trovato dal cursore
+        for l in cursor:
+            # Trasformiamo l'ID speciale di MongoDB (_id) in una stringa di testo semplice
+            # (Altrimenti il formato JSON darebbe errore durante l'invio)
+            l['_id'] = str(l['_id']) 
+            
+            # Controlliamo se nel log è presente la data della ricerca
+            if 'data_ricerca' in l:
+                # Trasformiamo l'oggetto data di Python in un testo standard ISO (es. 2024-05-20T...)
+                l['data_ricerca'] = l['data_ricerca'].isoformat()
+            
+            # Aggiungiamo il log sistemato alla nostra lista 'cronologia'
+            cronologia.append(l)
+
+        # Risposta finale di successo inviata all'utente (Postman o Browser)
+        return jsonify({
+            "status": "success",                          # Confermiamo che tutto è andato bene
+            "automobilista": nome_da_controllare,         # Ripetiamo il nome cercato per chiarezza
+            "volte_cercato": len(cronologia),             # Usiamo len() per contare quanti log abbiamo trovato
+            "dettaglio_ricerche": cronologia              # Inviamo l'intera lista dei log trovati
+        }), 200 # Codice 200: Operazione completata con successo
+
+    # Se accade un imprevisto durante la lettura dal database
+    except Exception as e:
+        # Restituiamo il dettaglio dell'errore tecnico con codice 500
         return jsonify({"status": "error", "message": str(e)}), 500
 
 # AVVIO DEL SERVER 
