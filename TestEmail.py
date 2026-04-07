@@ -55,7 +55,7 @@ def test_invio_isolato(destinatario):  # Definisce la funzione per testare l'inv
         return True  # Ritorna True se riuscito
 
     # Gestione specifica dell'errore di login (es. password sbagliata)
-    except smtplib.SMTPAuthenticationError:  # Cattura errore autenticazione
+    except smtplib.SMTPAuthenticationError:  # Cattura errore autenticaziones
         print(" ERRORE: Credenziali rifiutate.")  # Messaggio errore credenziali
         print(" Assicurati di usare una 'Password per le App' e di aver rimosso gli spazi.")  # Suggerimento
 
