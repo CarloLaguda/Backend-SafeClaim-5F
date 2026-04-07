@@ -137,6 +137,33 @@
   "marca": "Tesla",
   "modello": "Model Y",
   "anno_immatricolazione": 2023
+},
+{
+  "nome": "foto_incidente_01.jpg",
+  "percorso": "/cartella/immagini/sinistri/2024/"
+},
+
+{
+  "nome": "fari_rotti_dettaglio.jpg",
+  "percorso": "https://res.cloudinary.com/dm6estjhs/image/upload/v12345/sinistro_69d5033f.jpg"
+},
+
+{
+  "nome": "paraurti_anteriore_danneggiato.jpg",
+  "percorso": "C:/SafeClaim/Archivio/2026/Marzo/Sinistro_001/"
+},
+
+{
+  "nome": "auto_danneggiata.jpg"
+},
+
+{
+  "nome": "incidente.jpg",
+  "data_caricamento": "2026-04-07..."
+},
+
+{
+  "nome": "foto_danno.jpg"
 }
   
 ]

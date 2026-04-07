@@ -1,3 +1,4 @@
+import os  # Serve per creare cartelle e gestire i file sul PC
 import pymongo  # Importa la libreria per gestire il database MongoDB
 import requests  # Importa la libreria per inviare messaggi via internet (all'AI)
 from flask import Flask, request, jsonify  # Importa i componenti per creare il server web
@@ -77,40 +78,56 @@ def apri_sinistro():
         return jsonify({"status": "error", "message": str(e)}), 500
 
 #  ROTTA 2: AGGIUNTA IMMAGINE TRAMITE ID SPECIFICO (POST)
-@app.route('/sinistro/<id>/immagini', methods=['POST']) # Indirizzo che contiene l'ID della pratica
+@app.route('/sinistro/<id>/immagini', methods=['POST']) # Definisce l'indirizzo per aggiungere un'immagine a un sinistro specifico (es: /sinistro/12345/immagini)
+# Definiamo la funzione 'aggiungi_immagine' che accetta solo il nome dell'immagine da salvare e l'ID del sinistro a cui aggiungerla
 def aggiungi_immagine(id):
-    # Controllo se il database è acceso
+    
+    # Controllo se la connessione esiste (se MongoDB è spento)
     if sinistri_col is None:
+        # Restituisce un errore 503 indicando che il servizio database non è pronto
         return jsonify({"status": "error", "message": "Database non disponibile"}), 503
 
-    # Legge l'immagine inviata nel corpo della richiesta
+    # Legge il corpo della richiesta HTTP  e lo converte in un json e lo mette nella variabile 'data'
     data = request.json
-    # Verifica che ci sia il campo con la stringa dell'immagine
-    if 'immagine_base64' not in data:
-        return jsonify({"error": "Dati immagine mancanti"}), 400
+    
+    # Verifica che nel pacchetto dati ricevuto ci sia almeno il campo 'nome'
+    if 'nome' not in data:
+        # Se il nome manca, risponde con errore 400 (Bad Request) spiegando il motivo
+        return jsonify({"error": "Dati mancanti: assicurati di inviare il 'nome'"}), 400
 
     try:
-        # Cerca il sinistro col suo ID e aggiunge l'immagine alla lista 'immagini'
-        risultato = sinistri_col.update_one(   # updata_one e' il comando di MongoDB che dice: 
-                                               # Cerca un solo documento e aggiornalo. Non ne crea uno nuovo, ma va a modificare quello che trova.
-            {"_id": ObjectId(id)}, #Dice al database: "Vai a cercare il sinistro che ha questo specifico documento d'identità (_id)".
-                                   #ObjectId(id): Serve perché l'ID che arriva dal sito è un semplice testo,
-                                   #mentre MongoDB vuole il suo formato speciale (l'ObjectId) per trovarlo.
-                                   # MongoDB usa "_id" come identificatore unico predefinito per garantire l'unicità di ogni documento nella collezione.
-                                   #È il modo in cui il database garantisce che non esistano mai due documenti identici: ogni _id è unico al mondo.
+        # Prepariamo l'oggetto da inserire nella lista 'immagini' del sinistro, con il nome del file e la data di caricamento
+        nuova_foto = {
+            "nome_file": data['nome'],         # Qui inseriamo il nome del file (es. "macchina.jpg")
+            "data_caricamento": datetime.now()  # Registriamo data e ora esatta del salvataggio
+        }
 
-            {"$push": {"immagini": data['immagine_base64']}} # Aggiunge alla lista senza sovrascrivere
-            # $push: È il comando che invece di cancellare quello che c'è già, aggiunge un elemento in fondo a una lista.                                               
+        # Esegue l'aggiornamento nel database MongoDB
+        # EseguE l'operazione e scrive in 'risultato' com'è andata
+        risultato = sinistri_col.update_one( #update_one è il comando di MongoDB per modificare il documento esistente aggiungendo un nuovo elemento alla lista 'immagini'
+            # Cerca il documento che ha l'ID univoco specificato (convertito in formato MongoDB ObjectId)
+            {"_id": ObjectId(id)}, 
+            
+            # Usa $push per "spingere" il nuovo oggetto 'nuova_foto' dentro la lista 'immagini'
+            # Se la lista è già piena, aggiunge in coda; se non esiste, la crea da zero.
+            {"$push": {"immagini": nuova_foto}}
         )
 
-        # Se matched_count è 0, significa che quell'ID non esiste nel database
+        # Controllo post-operazione: verifichiamo se l'ID cercato esisteva davvero
         if risultato.matched_count == 0:
+            # Se matched_count è 0, MongoDB non ha trovato nessun sinistro con quell'ID
             return jsonify({"error": "Sinistro non trovato"}), 404
 
-        # Conferma il caricamento della foto
-        return jsonify({"status": "success", "message": "Immagine caricata!"}), 200
+        # Risposta finale di successo se tutto è andato a buon fine
+        return jsonify({
+            "status": "success", 
+            "message": "Nome immagine salvato con successo!",
+            "nome_inserito": data['nome'] # Confermiamo all'utente quale nome abbiamo registrato
+        }), 200
+
+    # Gestione delle eccezioni: se succede un imprevisto (es. ID scritto male o bug nel codice)
     except Exception as e:
-        # Gestisce errori di ID scritti male o problemi del server
+        # Restituisce il dettaglio dell'errore tecnico con codice 500 (Errore interno del server)
         return jsonify({"status": "error", "message": str(e)}), 500
 
 # ROTTA 3: RECUPERO SINISTRI (GET)
@@ -193,7 +210,7 @@ def ricerca_per_targa():
         # dice a MongoDB di trovare tutti i documenti con quella targa 
         query = {"targa": targa_da_cercare} # La targa è il campo del documento che vogliamo filtrare, e targa_da_cercare è il valore che l'utente ha scritto.
         
-        # Esegue la ricerca. .find() restituirà TUTTI i sinistri di quella targa
+        # Esegue la ricerca find() restituirà TUTTI i sinistri di quella targa
         cursor = sinistri_col.find(query) # La funzione find() è il comando di MongoDB che dice: "Vai a cercare tutti i documenti che soddisfano questo criterio (query) e restituiceli".
         
         
@@ -212,7 +229,7 @@ def ricerca_per_targa():
             # Aggiunge il sinistro sistemato alla lista dei risultati
             risultati.append(s)
 
-        # Invia la risposta finale al client (Postman o Browser)
+        # Invia la risposta finale al client 
         return jsonify({
             "status": "success",
             "targa_cercata": targa_da_cercare,
@@ -225,7 +242,61 @@ def ricerca_per_targa():
         # Restituisce il dettaglio dell'errore con codice 500
         return jsonify({"status": "error", "message": str(e)}), 500
 
+# Definisce l'indirizzo (URL) che useremo su Postman per cercare i sinistri di un guidatore specifico
+@app.route('/sinistri/ricerca/automobilista', methods=['GET'])
+def ricerca_per_automobilista():
+    # Controlla che il server sia effettivamente connesso a MongoDB Atlas
+    if sinistri_col is None:
+        # Se non c'è connessione, restituisce un errore 503 (Servizio non disponibile)
+        return jsonify({"status": "error", "message": "Database non disponibile"}), 503
+
+    # Legge il valore dopo il punto di domanda nell'URL (es: ...?nome=GIULIA-BIANCHI-1985)
+    # request.args.get('nome') cerca proprio la parola 'nome' nella stringa dell'indirizzo
+    nome_cercato = request.args.get('nome') #nome_cercato è la variabile che conterrà il valore che l'utente ha scritto dopo nome= nell'indirizzo.
+
+    # Verifica se l'utente ha dimenticato di scrivere il nome nell'URL
+    if not nome_cercato:
+        # Se il nome è vuoto, restituisce errore 400 (Richiesta errata)
+        return jsonify({"error": "Inserire un nome per la ricerca"}), 400
+
+    try:
+        # Prepara il filtro per MongoDB: "Cerca tutti i documenti dove il campo automobilista_id è uguale a id_cercato"
+        query = {"automobilista_id": nome_cercato}
+        
+        # Esegue la ricerca nella collezione. .find() ci restituisce un "cursore" per scorrere i risultati
+        cursor = sinistri_col.find(query)
+        
+        # Crea una lista vuota dove salveremo i sinistri trovati dopo averli "puliti"
+        risultati = []
+        
+        # Inizia a scorrere tutti i documenti trovati dal database uno per uno
+        for s in cursor:
+            # Trasforma l'ID speciale di MongoDB (_id) in una stringa di testo semplice
+            # Questo è obbligatorio perché il formato JSON non accetta gli "ObjectId" nativi di MongoDB
+            s['_id'] = str(s['_id'])
+            
+            # Controlla se il documento ha una data di registrazione
+            if 'data_inserimento' in s:
+                # Trasforma l'oggetto Data in una stringa di testo (formato ISO)
+                # Serve a evitare che il server crashi quando prova a inviare la risposta
+                s['data_inserimento'] = s['data_inserimento'].isoformat()
+            
+            # Aggiunge il sinistro sistemato alla nostra lista dei risultati
+            risultati.append(s)
+
+        # Invia la risposta finale con lo stato di successo e la lista dei sinistri trovati
+        return jsonify({
+            "status": "success",
+            "automobilista_id": nome_cercato,
+            "numero_sinistri": len(risultati), # Conta quanti elementi ci sono nella lista
+            "data": risultati                  # La lista effettiva dei sinistri
+        }), 200 # Codice 200: Tutto OK
+
+    # Se succede un errore imprevisto durante la comunicazione con il database
+    except Exception as e:
+        # Restituisce l'errore tecnico con codice 500 (Errore interno del server)
+        return jsonify({"status": "error", "message": str(e)}), 500
+
 # AVVIO DEL SERVER 
 if __name__ == '__main__':
-    # Avvia Flask sulla porta 5000 in modalità debug (si riavvia se modifichi il file)
-    app.run(debug=True, port=5000)
+    app.run()
