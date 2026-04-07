@@ -8,27 +8,27 @@
     "descrizione": "Tamponamento lieve al semaforo."
   },
   {
-    "automobilista_id": "MARIO-ROSSI-1980",
+    "automobilista_id": "MARIO-ROSSI",
     "targa": "EB123XY",
     "data_evento": "2023-11-15T10:30:00",
     "descrizione": "Tamponamento a catena causato da frenata improvvisa al semaforo."
   },
   {
-    "automobilista_id": "LUCA-VERDI-1992",
+    "automobilista_id": "LUCA-VERDI",
     "targa": "GH987TR",
     "data_evento": "2024-02-10T22:15:00",
     "descrizione": "Impatto con un cinghiale che ha attraversato improvvisamente la carreggiata in una zona boschiva non illuminata. Danni al radiatore e al faro sinistro."
   },
 
   {
-    "automobilista_id": "GIULIA-BIANCHI-1985",
+    "automobilista_id": "GIULIA-BIANCHI",
     "targa": "CC555DD",
     "data_evento": "2024-03-01T09:00:00",
     "descrizione": "Al ritorno dal supermercato ho riscontrato una vistosa ammaccatura sullo sportello posteriore destro. L'autore del danno non ha lasciato recapiti."
   },
 
   {
-    "automobilista_id": "MARCO-NERI-1970",
+    "automobilista_id": "MARCO-NERI",
     "targa": "ZA111ZZ",
     "data_evento": "2024-02-28T23:50:00",
     "descrizione": "Rottura del cristallo anteriore e rigatura della fiancata sinistra mediante oggetto appuntito mentre l'auto era parcheggiata sotto casa."
@@ -164,6 +164,14 @@
 
 {
   "nome": "foto_danno.jpg"
+},
+
+{
+  "automobilista_id": "Mario Rossi",
+  "targa": "TEST123AA",
+  "data_evento": "2024-04-07",
+  "descrizione": "Tamponamento in parcheggio"
 }
+
   
 ]
