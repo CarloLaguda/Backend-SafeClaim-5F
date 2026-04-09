@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 # --- CONFIGURAZIONE FIREBASE ---
 # Sostituisci "nome-del-tuo-file.json" col nome del file che hai caricato su Codespace
-cred = credentials.Certificate("nome-del-tuo-file.json")
+cred = credentials.Certificate("notificheproject-ff2be-firebase-adminsdk-fbsvc-edbd0c9123.json")
 firebase_admin.initialize_app(cred)
 
 # --- CONNESSIONI ---
