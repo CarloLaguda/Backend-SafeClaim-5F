@@ -1,8 +1,15 @@
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
 import mysql.connector
+import firebase_admin # <-- AGGIUNTO
+from firebase_admin import credentials, messaging # <-- AGGIUNTO
 
 app = Flask(__name__)
+
+# --- CONFIGURAZIONE FIREBASE ---
+# Sostituisci "nome-del-tuo-file.json" col nome del file che hai caricato su Codespace
+cred = credentials.Certificate("nome-del-tuo-file.json")
+firebase_admin.initialize_app(cred)
 
 # --- CONNESSIONI ---
 
@@ -22,28 +29,50 @@ def get_mysql():
 
 # --- ENDPOINTS ---
 
+# Nuovo Endpoint per inviare notifiche push
+@app.route("/invia-notifica", methods=["POST"])
+def invia_notifica():
+    data = request.get_json()
+    token_dispositivo = data.get('token') # Il token che arriva dal frontend
+    titolo = data.get('titolo', 'SafeClaim Update')
+    messaggio = data.get('messaggio', 'C\'è una novità sulla tua pratica.')
+
+    if not token_dispositivo:
+        return jsonify({"error": "Token mancante"}), 400
+
+    message = messaging.Message(
+        notification=messaging.Notification(
+            title=titolo,
+            body=messaggio,
+        ),
+        token=token_dispositivo,
+    )
+
+    try:
+        response = messaging.send(message)
+        return jsonify({"success": True, "fcm_id": response}), 200
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
 @app.route("/sinistro/<sinistro_id>/perito/<perito_id>/pratica", methods=["GET"])
 def get_pratica(sinistro_id, perito_id):
     query = {"sinistro_id": sinistro_id, "perito_id": perito_id}
     pratica = col_pratiche.find_one(query)
     
     if pratica:
-        pratica["_id"] = str(pratica["_id"])  # Converte l'ID di Mongo in stringa
+        pratica["_id"] = str(pratica["_id"])
         return jsonify(pratica), 200
     
     return jsonify({"error": "Pratica non trovata"}), 404
 
 @app.route("/sinistro/<sinistro_id>/perito/<perito_id>/pratica", methods=["PUT"])
 def update_pratica(sinistro_id, perito_id):
-    # Recupera i dati dal corpo della richiesta JSON
     data = request.get_json()
-    
     if not data:
         return jsonify({"error": "Dati mancanti"}), 400
 
     query = {"sinistro_id": sinistro_id, "perito_id": perito_id}
     
-    # Prepara i dati per l'aggiornamento
     update_data = {
         "$set": {
             "titolo": data.get("titolo"),
@@ -60,5 +89,4 @@ def update_pratica(sinistro_id, perito_id):
 
 # --- AVVIO ---
 if __name__ == "__main__":
-    # Avvio del server Flask sulla porta 8000
     app.run(host="0.0.0.0", port=8000, debug=True)

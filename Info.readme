@@ -1,2 +1,25 @@
 ## Installazione
 pip install flask mysql-connector-python pymongo
+
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCerAkdZ4GeN_Q5iEQ7N0vVIRtU0I4bH5Y",
+  authDomain: "notificheproject-ff2be.firebaseapp.com",
+  projectId: "notificheproject-ff2be",
+  storageBucket: "notificheproject-ff2be.firebasestorage.app",
+  messagingSenderId: "142302409444",
+  appId: "1:142302409444:web:3212325bb04b8627e832f1",
+  measurementId: "G-5XXB3ME747"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
