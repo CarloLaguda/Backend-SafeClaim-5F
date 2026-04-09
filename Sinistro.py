@@ -240,10 +240,16 @@ def ricerca_per_targa():
             {"targa_cercata": targa_da_cercare}, # Cerca se esiste già un log per questa targa
             {
                 "$set": { "data_ultima_ricerca": datetime.now() }, # Sovrascrive l'orario con quello dell'ultimo click
+                #set sovrascrive questo campo con il nuovo valore. In questo caso, aggiorna sempre la data dell'ultima ricerca.
                 "$inc": { "numero_totale_ricerche": 1 },          # Incrementa di +1 il contatore delle ricerche fatte
+                #inc Incrementa il campo numerico di questa quantità. Ogni volta che qualcuno cerca quella targa, aggiunge +1 al contatore totale delle ricerche.
                 "$setOnInsert": { "tipo_ricerca": "targa" }       # Imposta il tipo di ricerca solo se il documento viene creato da zero
+                #setOnInsert dice: Se devi creare un nuovo documento perché non ne esiste uno con questa targa, allora imposta questo campo con questo valore". 
+                #In questo caso, se è la prima volta che viene cercata quella targa, crea un nuovo record e imposta il campo "tipo_ricerca" a "targa". 
+                #Se invece il record esiste già, non tocca quel campo.
             },
             upsert=True # Se la targa non è mai stata cercata, crea un nuovo record; se esiste, lo aggiorna
+            #upsert dice che "Se non trovi un documento che soddisfa il criterio, allora creane uno nuovo con questi dati".
         )
 
         # Invia la risposta finale al client 
@@ -348,11 +354,17 @@ def ricerca_per_automobilista():
         #"Cerca un documento che soddisfa questo criterio, e se lo trovi, aggiornalo così; se non lo trovi, creane uno nuovo con questi dati"
             {"nome_cercato": nome_cercato}, # Cerca se esiste già un log per questo automobilista
             {
-                "$set": { "data_ultima_ricerca": datetime.now() }, # Aggiorna la data all'ultima ricerca effettuata
-                "$inc": { "numero_totale_ricerche": 1 },          # Aggiunge 1 al totale delle ricerche per questo nome
-                "$setOnInsert": { "tipo_ricerca": "automobilista" } # Specifica il tipo solo alla creazione del record
+                "$set": { "data_ultima_ricerca": datetime.now() }, # Aggiorna la data all'ultima ricerca effettuata e l'ora esatta
+                # set è un operatore di MongoDB che dice: "Sovrascrivi questo campo con questo nuovo valore". In questo caso, aggiorna sempre la data dell'ultima ricerca.
+                "$inc": { "numero_totale_ricerche": 1 },          # Aggiunge 1 al totale delle ricerche per questo nome e lo aggiorna nel database
+                #inc Incrementa questo campo numerico di questa quantità. Ogni volta che qualcuno cerca quel nome, aggiunge +1 al contatore totale delle ricerche.
+                "$setOnInsert": { "tipo_ricerca": "automobilista" }   # Imposta il tipo di ricerca solo se il documento viene creato da zero
+                #setOnInsert dice: Se devi creare un nuovo documento perché non ne esiste uno con questo nome, allora imposta questo campo con questo valore". 
+                #In questo caso, se è la prima volta che viene cercato quel nome, crea un nuovo record e imposta il campo "tipo_ricerca" a "automobilista". 
+                #Se invece il record esiste già, non tocca quel campo.
             },
             upsert=True # Crea il record se non esiste, altrimenti aggiorna quello esistente
+            #upsert dice che "Se non trovi un documento che soddisfa il criterio, allora creane uno nuovo con questi dati".
         )
 
         # Invia la risposta finale con lo stato di successo e la lista dei sinistri trovati
