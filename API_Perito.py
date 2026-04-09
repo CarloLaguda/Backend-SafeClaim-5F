@@ -1,10 +1,12 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from pymongo import MongoClient
 import mysql.connector
 import firebase_admin # <-- AGGIUNTO
 from firebase_admin import credentials, messaging # <-- AGGIUNTO
 
 app = Flask(__name__)
+CORS(app)
 
 # --- CONFIGURAZIONE FIREBASE ---
 cred = credentials.Certificate("firebase-key.json")
