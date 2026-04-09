@@ -1,5 +1,17 @@
-{
-  "destinatario": "mihali.sebastian@iisgalvanimi.edu.it",
-  "oggetto": "Test da PythonAnywhere",
-  "messaggio": "Ciao , questo messaggio arriva dal server Flask!"
-}
+[
+  {
+    "destinatario": "mihali.sebastian@iisgalvanimi.edu.it",
+    "oggetto": "Test per Email",
+    "messaggio": "Ciao , questo messaggio arriva dal server Flask!"
+  },
+  {
+    "destinatario": "sbarra.matteo@iisgalvanimi.edu.it",
+    "oggetto": "Test per Email",
+    "messaggio": "Ciao , questo messaggio arriva dal server Flask!"
+  },
+  {
+    "destinatario": "graziano.gabriel@iisgalvanimi.edu.it",
+    "oggetto": "Test per Email",
+    "messaggio": "Ciao , questo messaggio arriva dal server Flask!"
+  }
+]

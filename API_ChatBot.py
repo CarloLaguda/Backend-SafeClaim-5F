@@ -1,6 +1,6 @@
 import requests  # Importa la libreria per effettuare richieste HTTP ai server esterni
 from flask import Flask, request, jsonify  # Importa Flask per creare l'API web, request per gestire i dati in entrata, jsonify per restituire risposte JSON
-from flask_cors import CORS  # Importa CORS per permettere richieste da domini diversi (cross-origin)
+from flask_cors import CORS  # Importa CORS per permettere richieste da domini diversi 
 from pymongo import MongoClient  # Importa MongoClient per connettersi al database MongoDB
 from datetime import datetime  # Importa datetime per gestire date e orari
 import uuid  # Importa uuid per generare ID unici per le sessioni
@@ -11,7 +11,7 @@ import os  # Importa os per accedere alle variabili d'ambiente e al sistema oper
 # ma che si trovano nascoste nel file Token.env.
 
 # Importa la funzione per caricare i file Token.env
-from dotenv import load_dotenv  # Importa load_dotenv per caricare le variabili dal file .env
+from dotenv import load_dotenv  # Importa load_dotenv per caricare le variabili dal file Token.env
 # Il file Token.env è come un foglietto segreto dove scrivi le tue chiavi segrete
 
 app = Flask(__name__)  # Crea un'istanza dell'applicazione Flask
@@ -19,8 +19,8 @@ CORS(app)  # Abilita CORS per l'app Flask
 
 # CONFIGURAZIONE AI
 load_dotenv("Token.env")  # Carica le variabili d'ambiente dal file Token.env
-# Legge il file .env che hai creato e carica tutte le scritte (tipo HF_TOKEN=...) nella memoria temporanea del computer.
-# Recupera il valore associato alla chiave "HF_TOKEN" definito nel file .env.
+# Legge il file Token.env che hai creato e carica tutte le scritte (tipo HF_TOKEN=...) nella memoria temporanea del computer.
+# Recupera il valore associato alla chiave "HF_TOKEN" definito nel file Token.env.
 # La variabile 'token' ora contiene la chiave segreta da usare.
 token = os.getenv("HF_TOKEN")  # Ottiene il token Hugging Face dalla variabile d'ambiente
 
@@ -31,7 +31,8 @@ else:  # Altrimenti
     print(" ERRORE: Token non trovato nel file Token.env")  # Stampa un messaggio di errore
 
 # URL del modello AI
-API_URL = "https://api-inference.huggingface.co/models/microsoft/Phi-3-mini-4k-instruct"  # URL dell'endpoint Hugging Face per il modello AI
+# Endpoint di Hugging Face per il modello Phi-3 Mini (4K context) - utilizzato per generare risposte intelligenti
+API_URL = "https://api-inference.huggingface.co/models/microsoft/Phi-3-mini-4k-instruct"   
 
 # 4. Creo gli headers
 # sono come le informazioni che scrivi sulla busta di una lettera raccomandata prima di spedirla
@@ -147,31 +148,70 @@ def chat_bot():  # Funzione principale del chatbot
     prompt = f"<|user|>\nRegole: {context}\nChat: {history}\nDomanda: {messaggio}\n<|end|>\n<|assistant|>"  # Costruisce il prompt per l'AI
 
     # Configura le istruzioni per l'AI: quanti caratteri può scrivere e quanto deve essere "creativa" (temperature)
-    try:  # Prova a fare la richiesta all'AI
-        # Pacchetto da spedire a Hugging Face
-        payload = {  # Definisce il payload per la richiesta
-            "inputs": prompt,  # Input per il modello
-            "parameters": {"max_new_tokens": 300, "temperature": 0.4}  # Parametri per la generazione
+    try:
+        # Prepariamo i dati per Hugging Face
+        payload = { # Il pacchetto di dati che stiamo inviando a Hugging Face
+            "inputs": prompt, 
+            "parameters": {"max_new_tokens": 300, "temperature": 0.4},
+            "options": {"wait_for_model": True} # Forza l'attesa se il modello è in standby
         }
 
-        # Spedisce il tutto a Hugging Face usando il Token segreto e aspetta la risposta (massimo 30 secondi)
-        response = requests.post(API_URL, headers=headers, json=payload, timeout=30)  # Fa la richiesta POST
-        # Converte la risposta che arriva dal server AI in un formato che Python può usare
-        output = response.json()  # Ottiene la risposta JSON
-        # Estrae solo il testo generato dal bot, eliminando eventuali spazi vuoti inutili all'inizio o alla fine
-        risposta_ai = output[0]['generated_text'].strip()  # Estrae e pulisce il testo generato
+        # Invio richiesta all'AI
+        response = requests.post(API_URL, headers=headers, json=payload, timeout=30) # Invia la richiesta POST a Hugging Face con un timeout di 30 secondi
+        
+        if response.status_code != 200:
+            
+            # Stampiamo nel TUO terminale (non lo vede l'utente) il codice errore e il testo tecnico
+            # Questo ti serve per capire se il token è scaduto (401) o se hai finito i crediti (429)
+            print(f"ERRORE API HF: Stato {response.status_code} - Messaggio: {response.text}")
+            
+            # Restituiamo una risposta JSON "pulita" a chi ha fatto la chiamata (es. Postman)
+            # Usiamo il codice 503 che significa "Servizio non disponibile"
+            return jsonify({
+                "error": "L'IA non è disponibile al momento", 
+                "dettaglio": f"Hugging Face Status {response.status_code}"
+            }), 503
 
-        # Salva la risposta appena data dal bot nella cronologia, così alla prossima domanda il bot saprà cosa ha detto
-        conversazione.add_message("assistant", risposta_ai)  # Aggiunge la risposta alla conversazione
+        # 2. Se siamo arrivati qui, lo stato è 200, ma la risposta potrebbe essere malformata
+        try:
+            # Proviamo a trasformare il corpo della risposta in un dizionario Python (JSON)
+            output = response.json()
 
-        # Invia la risposta finale all'utente insieme ai suggerimenti per continuare la conversazione
-        return jsonify({  # Restituisce JSON con risposta e suggerimenti
-            "risposta": risposta_ai,  # Risposta del bot
-            "suggerimenti": genera_suggerimenti(conversazione)  # Suggerimenti generati
-        }), 200  # Codice di successo
-    # Se qualcosa va storto, mostra l'errore e lo mostra senza far crashare il server
-    except Exception as e:  # Cattura eventuali eccezioni
-        return jsonify({"error": str(e)}), 500  # Restituisce errore 500 con messaggio
+        # 3. Se la trasformazione fallisce (perché la risposta è vuota o non è un JSON)
+        except Exception as json_err:
+            
+            # Stampiamo l'errore tecnico nel terminale per il debug
+            print(f"ERRORE DECODIFICA JSON: {json_err}")
+            
+            # Restituiamo un errore 502 (Bad Gateway), dicendo che i dati ricevuti non sono validi
+            return jsonify({"error": "Risposta non valida dal server AI"}), 502
+
+        # Debug: stampa nel terminale cosa risponde l'AI (utile per capire errori 500)
+        print(f" DEBUG AI RESPONSE \n{output}\n------------------------")
+
+        # Controllo se la risposta è nel formato lista previsto
+        if isinstance(output, list) and len(output) > 0:
+            # Estraiamo il testo e puliamo eventuali rimasugli del prompt
+            risposta_full = output[0].get('generated_text', '') 
+            # Prendiamo solo la parte dopo <|assistant|> per evitare ripetizioni
+            risposta_ai = risposta_full.split("<|assistant|>")[-1].strip() # Pulisce la risposta per mostrare solo il testo generato dall'AI
+        else:
+            # Se Hugging Face risponde con un errore (es. quota superata)
+            risposta_ai = "Scusa, sto ricaricando i miei sistemi. Riprova tra un istante."
+
+        # Salviamo la risposta nella cronologia
+        conversazione.add_message("assistant", risposta_ai)
+
+        # Rispondiamo al client
+        return jsonify({
+            "risposta": risposta_ai,
+            "suggerimenti": genera_suggerimenti(conversazione)
+        }), 200
+
+    except Exception as e:
+        # Se il server crasha, stampiamo l'errore esatto nel terminale
+        print(f" ERRORE CRITICO: {str(e)}")
+        return jsonify({"error": "Errore interno del server", "dettaglio": str(e)}), 500
 
 # --- ROTTA: FINE CHAT ---
 # Quando l'utente chiude, salviamo tutta la cartella su MongoDB per non perderla
