@@ -23,3 +23,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+## La riga in API_Perito cred = credentials.Certificate("notificheproject-ff2be-firebase-adminsdk-fbsvc-edbd0c9123.json")
+attenzione è una pass
