@@ -113,6 +113,7 @@ def ricerca_cronologia_soccorsi():
         nome = request.args.get('nome')
         cognome = request.args.get('cognome')
         targa = request.args.get('targa')
+        descrizione = request.args.get('descrizione')
 
         # Dizionario vuoto che si riempirà man mano in base a cosa cerca l'operatore
         query = {}
@@ -126,8 +127,11 @@ def ricerca_cronologia_soccorsi():
         if targa:
             query['targa'] = {'$regex': targa, '$options': 'i'}
 
+        if descrizione:
+            query['dettagli'] = {'$regex': descrizione, '$options': 'i'}    
+
         if not query:  # Blocca la ricerca se non è stato inserito nessun filtro
-            return jsonify({"error": "Fornire almeno un parametro di ricerca (?nome=... o ?cognome=... o ?targa=...)"}), 400
+            return jsonify({"error": "Fornire almeno un parametro di ricerca (?nome=... o ?cognome=... o ?targa=... o ?descrizione=...)"}), 400
 
         # Esegue la ricerca con i filtri creati e ordina tutto per data decrescente (dal più nuovo al più vecchio)
         cursor = mongo_db.Sinistro.find(query).sort("data_richiesta", -1)
