@@ -116,6 +116,13 @@
   "azienda_id": 1
 },
 {
+  "id": 1,
+  "targa": "AA123BB",
+  "marca": "Fiat",
+  "modello": "Panda",
+  "anno": 2021
+},
+{
   "targa": "FS456GG",
   "n_telaio": "ZAC1234567890ABCD",
   "marca": "Jeep",
@@ -138,6 +145,27 @@
   "modello": "Model Y",
   "anno_immatricolazione": 2023
 },
+{
+    "id": 3,
+    "targa": "GF456HH",
+    "marca": "Volkswagen",
+    "modello": "Golf",
+    "anno": 2019
+  },
+  {
+    "id": 4,
+    "targa": "LM789NP",
+    "marca": "Tesla",
+    "modello": "Model 3",
+    "anno": 2023
+  },
+  {
+    "id": 5,
+    "targa": "RS012TU",
+    "marca": "Toyota",
+    "modello": "Yaris Hybrid",
+    "anno": 2020
+  },
 {
   "nome": "foto_incidente_01.jpg",
   "percorso": "/cartella/immagini/sinistri/2024/"

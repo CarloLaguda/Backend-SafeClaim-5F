@@ -2,160 +2,146 @@ import mysql.connector # Carica la libreria per far parlare Python con il databa
 from flask import Flask, request, jsonify # Carica i pezzi di Flask necessari per creare il sito e gestire dati JSON
 from flask_cors import CORS # Carica il modulo per permettere a pagine web esterne di chiamare questa API
 
-# Creiamo l'applicazione Flask, che è il motore del nostro server
-app = Flask(__name__)
-#CORS serve a evitare blocchi di sicurezza quando il frontend chiama il backend
-CORS(app)
+app = Flask(__name__) # Creiamo l'applicazione Flask, che è il motore del nostro server
+CORS(app) # CORS serve a evitare blocchi di sicurezza quando il frontend chiama il backend
 
-# DATI PER ACCEDERE AL DATABASE
-# Qui scriviamo l'indirizzo, l'utente e la password per entrare nel database locale
-db_config = {
+db_config = { # Inizio della configurazione dei dati per il database
     'host': 'localhost', # Il database si trova sullo stesso computer del codice
     'user': 'pythonuser', # Nome dell'utente creato su MariaDB
     'password': 'password123', # Password dell'utente
     'database': 'mydatabase' # Nome del database che vogliamo usare
-}
+} # Fine configurazione database
 
-def setup_database():
-    """ Questa funzione prepara tutto il database all'inizio del programma """
-    try:
-        # Apre una prima connessione generale per vedere se il server è acceso
-        conn = mysql.connector.connect(
-            host=db_config['host'],
-            user=db_config['user'],
-            password=db_config['password']
-        )
-        cursor = conn.cursor() # Crea un 'cursore', ovvero l'oggetto che scrive i comandi SQL
-                               # Con questo cursore possiamo dire al database cosa fare, come se fosse una tastiera che scrive comandi
-                               # Il nome cursor è uno standard in quasi tutti i linguaggi di programmazione che parlano con i database SQL.
-                               # conn: È il tunnel (la connessione) che collega il nostro programma al database. Senza questa connessione, non possiamo comunicare con il database.
-                               # cursor: È lo strumento (il cursore) che usiamo per inviare comandi SQL attraverso la connessione.
-                               # () È il comando "Attiva/Crea"
+def setup_database(): # Inizio funzione per preparare il database all'avvio
+    try: # Prova a eseguire i comandi seguenti
+        conn = mysql.connector.connect( # Apre una connessione generale al server MySQL
+            host=db_config['host'], # Usa l'host configurato sopra
+            user=db_config['user'], # Usa l'utente configurato sopra
+            password=db_config['password'] # Usa la password configurata sopra
+        ) # Fine comando connessione
+        cursor = conn.cursor() # Crea un cursore per inviare comandi SQL
 
-        # Crea il database col nome scelto se non esiste già
-        cursor.execute(f"CREATE DATABASE IF NOT EXISTS {db_config['database']}")
-        # Dice a Python: 'D'ora in poi lavora dentro questo database'
-        cursor.execute(f"USE {db_config['database']}")
+        cursor.execute(f"CREATE DATABASE IF NOT EXISTS {db_config['database']}") # Crea il database se non esiste
+        cursor.execute(f"USE {db_config['database']}") # Seleziona il database su cui lavorare
         
-        # Scrive le istruzioni per creare la tabella dei veicoli
-        query_tabella = """
+        query_tabella_veicoli = """ 
         CREATE TABLE IF NOT EXISTS Veicolo (
-            id INT PRIMARY KEY AUTO_INCREMENT, # ID numerico che cresce da solo (1, 2, 3...)
-            targa VARCHAR(10) UNIQUE NOT NULL, # La targa deve esserci sempre e non può essere doppia
-            n_telaio VARCHAR(50) UNIQUE, # Il numero di telaio deve essere unico
-            marca VARCHAR(50), # Colonna per la marca dell'auto
-            modello VARCHAR(50), # Colonna per il modello
-            anno_immatricolazione INT, # Colonna per l'anno (numero intero)
-            automobilista_id INT DEFAULT NULL, # Collegamento opzionale a un guidatore
-            azienda_id INT DEFAULT NULL # Collegamento opzionale a un'azienda
-        ) ENGINE=InnoDB; # Usa il motore InnoDB che è standard e sicuro
-        """
-        cursor.execute(query_tabella) # Esegue il comando di creazione tabella
-        conn.commit() # Salva definitivamente le modifiche fatte
-        cursor.close() # Chiude il cursore
-        conn.close() # Chiude la connessione temporanea
-        print(" Database e Tabella pronti!")
-    except mysql.connector.Error as err:
-        print(f" Errore Setup: {err}") # Se qualcosa va storto, stampa l'errore
+            id INT PRIMARY KEY AUTO_INCREMENT,
+            targa VARCHAR(10) UNIQUE NOT NULL,
+            n_telaio VARCHAR(50) UNIQUE,
+            marca VARCHAR(50),
+            modello VARCHAR(50),
+            anno_immatricolazione INT,
+            automobilista_id INT DEFAULT NULL,
+            azienda_id INT DEFAULT NULL
+        ) ENGINE=InnoDB;
+        """ # Definizione della struttura della tabella Veicolo
+        cursor.execute(query_tabella_veicoli) # Esegue il comando per creare la tabella Veicolo
 
-def get_db_connection():
-    """ Questa funzione serve solo ad aprire velocemente la connessione quando serve """
-    return mysql.connector.connect(**db_config) # Restituisce una connessione pronta all'uso
+        query_tabella_log = """ 
+        CREATE TABLE IF NOT EXISTS LogRicerca (
+            id INT PRIMARY KEY AUTO_INCREMENT,
+            targa_cercata VARCHAR(10) NOT NULL,
+            data_ricerca TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            risultati_trovati INT
+        ) ENGINE=InnoDB;
+        """ # Definizione della struttura della tabella LogRicerca
+        cursor.execute(query_tabella_log) # Esegue il comando per creare la tabella dei log nel database
 
-# FUNZIONI PER GESTIRE LE RICHIESTE (ENDPOINTS) 
+        conn.commit() # Salva definitivamente le tabelle create nel database
+        cursor.close() # Chiude il cursore per liberare risorse
+        conn.close() # Chiude la connessione al database
+        print(" Database e Tabelle pronti!") # Stampa un messaggio di successo nel terminale
+    except mysql.connector.Error as err: # Se c'è un errore nel database
+        print(f" Errore Setup: {err}") # Stampa l'errore specifico nel terminale
 
-#ROTTA PER PRENDERE TUTTI I VEICOLI (GET)
+def get_db_connection(): # Funzione per aprire la connessione al DB velocemente
+    return mysql.connector.connect(**db_config) # Restituisce una connessione pronta usando i dati db_config
 
-@app.route('/veicoli', methods=['GET']) # Se l'utente va all'indirizzo /veicoli con metodo GET
-def get_all_veicoli():
-    """ Restituisce l'elenco di tutte le auto """
-    try:
-        conn = get_db_connection() # Si connette al DB
-        # dictionary=True serve per ricevere i dati come {'targa': 'AA123BB'} come un dizionario 
-        cursor = conn.cursor(dictionary=True) 
-        cursor.execute("SELECT * FROM Veicolo") # Chiede al DB tutte le righe della tabella
+@app.route('/veicoli', methods=['GET']) # Rotta per ricevere tutti i veicoli via GET
+def get_all_veicoli(): # Definizione della funzione per la rotta GET
+    try: # Prova a eseguire la lettura
+        conn = get_db_connection() # Apre la connessione al DB
+        cursor = conn.cursor(dictionary=True) # Crea un cursore che restituisce i dati come dizionari
+        cursor.execute("SELECT * FROM Veicolo") # Invia il comando per prendere tutte le righe
         veicoli = cursor.fetchall() # Scarica tutti i risultati trovati
         cursor.close() # Chiude il cursore
         conn.close() # Chiude la connessione
-        return jsonify(veicoli), 200 # Trasforma i dati in JSON e li invia all'utente con codice OK (200)
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500 # Se c'è un errore, risponde col codice 500
+        return jsonify(veicoli), 200 # Restituisce i dati in formato JSON all'utente
+    except Exception as e: # Se c'è un errore generico
+        return jsonify({"error": str(e)}), 500 # Restituisce l'errore all'utente col codice 500
 
-
-#ROTTA PER AGGIUNGERE UN NUOVO VEICOLO (POST)
-
-@app.route('/veicoli', methods=['POST']) # Se l'utente invia dati all'indirizzo /veicoli
-def add_veicolo():
-    """ Aggiunge un nuovo veicolo nel database """
-    data = request.json # Prende il pacchetto di dati JSON inviato dall'utente
-    try:
-        conn = get_db_connection() # Si connette al DB
-        cursor = conn.cursor() # Inizializza il cursore per eseguire query SQL e gestire i risultati
-        
-        # Query con comando per inserire i dati (usiamo i %s per sicurezza contro gli hacker)
+@app.route('/veicoli', methods=['POST']) # Rotta per aggiungere un veicolo via POST
+def add_veicolo(): # Definizione della funzione per la rotta POST
+    data = request.json # Legge i dati inviati dall'utente in formato JSON
+    try: # Prova a eseguire l'inserimento
+        conn = get_db_connection() # Apre la connessione al DB
+        cursor = conn.cursor() # Crea il cursore SQL
         query = """
             INSERT INTO Veicolo 
             (targa, n_telaio, marca, modello, anno_immatricolazione, automobilista_id, azienda_id) 
             VALUES (%s, %s, %s, %s, %s, %s, %s)
-        """
-        # Le percentuali servono a creare una struttura fissa della frase, 
-        # lasciando dei "posti vuoti" che verranno riempiti solo all'ultimo secondo con i dati veri, 
-        # rendendo il tutto sicuro, ordinato e a prova di errore.
+        """ # Prepara il comando di inserimento sicuro con i segnaposto %s
+        values = ( # Crea una tupla con i valori estratti dal JSON
+            data.get('targa'), data.get('n_telaio'), data.get('marca'),
+            data.get('modello'), data.get('anno_immatricolazione'),
+            data.get('automobilista_id'), data.get('azienda_id')
+        ) # Fine tupla valori
+        cursor.execute(query, values) # Esegue l'inserimento nel database
+        conn.commit() # Salva l'inserimento in modo permanente
+        new_id = cursor.lastrowid # Recupera l'ID generato automaticamente per la nuova riga
+        cursor.close() # Chiude il cursore
+        conn.close() # Chiude la connessione
+        return jsonify({"status": "success", "id": new_id}), 201 # Conferma il successo con ID e codice 201
+    except mysql.connector.Error as err: # Se l'inserimento fallisce (es. targa doppia)
+        return jsonify({"error": "Errore inserimento", "details": str(err)}), 400 # Invia l'errore all'utente
 
-        # Estrae i valori dal pacchetto JSON ricevuto 
-        values = (
-            data.get('targa'),
-            data.get('n_telaio'),
-            data.get('marca'),
-            data.get('modello'),
-            data.get('anno_immatricolazione'),
-            data.get('automobilista_id'),
-            data.get('azienda_id')
-        )
+@app.route('/veicoli/ricerca', methods=['GET']) # Rotta per cercare una targa specifica
+def cerca_veicolo_per_targa(): # Definizione della funzione di ricerca
+    targa_da_cercare = request.args.get('valore') # Legge il parametro 'valore' dall'URL
+    if not targa_da_cercare: # Se l'utente non ha scritto nulla
+        return jsonify({"error": "Inserire una targa per la ricerca"}), 400 # Restituisce errore 400
+    try: # Prova a eseguire la ricerca e il log
+        conn = get_db_connection() # Apre la connessione al DB
+        cursor = conn.cursor(dictionary=True) # Cursore in modalità dizionario
+        query_auto = "SELECT * FROM Veicolo WHERE targa = %s" # Comando per cercare la targa
+        cursor.execute(query_auto, (targa_da_cercare,)) # Esegue la ricerca in modo sicuro
+        risultati = cursor.fetchall() # Mette i risultati nella lista 'risultati'
+
+        query_log = "INSERT INTO LogRicerca (targa_cercata, risultati_trovati) VALUES (%s, %s)" # Comando per scrivere il log
+        cursor.execute(query_log, (targa_da_cercare, len(risultati))) # Scrive nel database la targa cercata e quanti veicoli sono stati trovati
         
-        cursor.execute(query, values) # Esegue l'inserimento con i valori estratti
-        conn.commit() # Salva l'inserimento nel database in modo permanente
-        new_id = cursor.lastrowid # Si segna l'ID che il database ha assegnato a questa nuova riga
-        
-        cursor.close()  #Libera la memoria che serviva a gestire i risultati della domanda SQL. 
-                        #Chiudere il cursore è utile per evitare di consumare risorse inutilmente,.
-        conn.close()    #Chiude la connessione al database. 
-                        #È importante chiudere la connessione quando hai finito di usarla per liberare risorse e permettere ad altri processi di connettersi.
-        return jsonify({"status": "success", "id": new_id}), 201 # Risponde 'Creato con successo' (201)
-    except mysql.connector.Error as err:
-        # Se ad esempio la targa esiste già, il database darà errore e noi rispondiamo con errore 400
-        return jsonify({"error": "Errore inserimento", "details": str(err)}), 400
+        conn.commit() # Salva il log nel database in modo definitivo
+        cursor.close() # Chiude il cursore
+        conn.close() # Chiude la connessione
+        return jsonify({ # Invia la risposta JSON finale all'utente
+            "status": "success", # Stato dell'operazione
+            "targa_cercata": targa_da_cercare, # Conferma della targa cercata
+            "veicoli_trovati": risultati # Invia i dati delle auto trovate
+        }), 200 # Fine risposta con successo
+    except Exception as e: 
+        return jsonify({"error": str(e)}), 500 # Restituisce l'errore (ora correttamente indentato)
 
-#ROTTA PER PRENDERE UN VEICOLO SPECIFICO (GET)
+@app.route('/veicoli/storico/<targa>', methods=['GET']) # Nuova rotta per vedere quante volte è stata cercata una targa
+def visualizza_storico_targa(targa): # Definizione della funzione storico
+    try: # Prova a leggere lo storico
+        conn = get_db_connection() # Connessione al DB
+        cursor = conn.cursor(dictionary=True) # Cursore dizionario
+        query_storico = "SELECT * FROM LogRicerca WHERE targa_cercata = %s" # Prende tutti i log per quella targa
+        cursor.execute(query_storico, (targa,)) # Esegue la ricerca nello storico
+        cronologia = cursor.fetchall() # Salva i log trovati in 'cronologia'
+        cursor.close() # Chiude il cursore
+        conn.close() # Chiude la connessione
+        return jsonify({ # Risposta all'utente
+            "status": "success", # Stato operazione
+            "targa": targa, # Targa analizzata
+            "totale_volte_cercata": len(cronologia), # Conta quante volte appare nei log
+            "dettaglio_log": cronologia # Invia la lista di tutte le date di ricerca
+        }), 200 # Fine risposta con successo
+    except Exception as e: # Se qualcosa fallisce
+        return jsonify({"error": str(e)}), 500 # Restituisce l'errore col codice 500
 
-@app.route('/veicoli/<int:id>', methods=['GET']) # Se l'utente cerca un ID specifico (es. /veicoli/5)
-def get_veicolo(id):
-    """ Cerca un solo veicolo tramite il suo numero ID """
-    try:
-        conn = get_db_connection()
-        cursor = conn.cursor(dictionary=True) # Per ricevere i dati come un dizionario, ad esempio {'targa': 'AA123BB'} invece di una tupla (1, 'AA123BB', ...)
-        # Esegue la ricerca filtrando per ID
-        cursor.execute("SELECT * FROM Veicolo WHERE id = %s", (id,)) 
-
-        #Con WHERE id = %s, gli dici Prendi solo quella riga dove la colonna id corrisponde al valore che ti sto per dare".
-        #Il %s,è il posto vuoto che verrà riempito in modo sicuro con il valore che ricevera da id
-        # (id,). Questo è il valore che andrà a riempire il %s nella query. La virgola è necessaria per indicare che stiamo passando una tupla
-        # In Python, per passare i valori al cursore, dobbiamo usare una "Tupla" (una lista fissa).
-                                                                 
-        
-        veicolo = cursor.fetchone() # Prende solo il primo risultato trovato
-        cursor.close()
-        conn.close()
-        if veicolo:
-            return jsonify(veicolo), 200 # Se l'auto esiste, la invia
-        return jsonify({"error": "Non trovato"}), 404 # Se non esiste, risponde 'Non trovato' (404)
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-# AVVIO DEL PROGRAMMA 
-if __name__ == '__main__':
-    setup_database() # Per prima cosa prepara il database e la tabella
-    print("API SafeClaim Local attiva su http://127.0.0.1:5000")
-    # Avvia il server Flask sulla porta 5000
-    # debug=True significa che se cambi il codice, il server si aggiorna da solo
-    app.run(debug=True, port=5000)
+if __name__ == '__main__': # Se il file viene eseguito direttamente
+    setup_database() # Avvia la creazione del database e delle tabelle
+    print("API SafeClaim Local attiva su http://127.0.0.1:5000") # Messaggio di avvio server nel terminale
+    app.run(debug=True, port=5000) # Avvia il server Flask sulla porta 5000 (assicurati di aver chiuso Sinistro.py)
