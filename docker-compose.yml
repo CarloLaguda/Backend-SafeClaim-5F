@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # Servizio Python (API Flask)
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api-automobilista
+    environment:
+      - FLASK_ENV=production
+      - FLASK_APP=API_Automobilista.py
+    ports:
+      - "5000:5000"
+    networks:
+      - safeclaim-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Servizio Nginx (Reverse Proxy)
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-safeclaim
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api
+    networks:
+      - safeclaim-network
+    restart: unless-stopped
+
+networks:
+  safeclaim-network:
+    driver: bridge
