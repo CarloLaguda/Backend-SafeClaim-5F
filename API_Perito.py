@@ -114,6 +114,48 @@ def crea_pratica(id_sinistro, id_perito):
             cursor.close()
             conn.close()
 
+# A. RICERCA PERIZIA
+@app.route('/sinistri/ricerca', methods=['GET'])
+def cerca_perizie_per_data():
+    # 1. Recupero i parametri dalla query string: ?inizio=YYYY-MM-DD&fine=YYYY-MM-DD
+    inizio = request.args.get('inizio')
+    fine = request.args.get('fine')
+
+    if not inizio or not fine:
+        return jsonify({"error": "Specificare i parametri 'inizio' e 'fine' nel formato YYYY-MM-DD"}), 400
+
+    try:
+        # 2. Costruzione della query MongoDB
+        # Usiamo i campi esatti che hai definito negli endpoint precedenti
+        query = {
+            "data_perizia": {
+                "$gte": inizio,
+                "$lte": fine
+            }
+        }
+
+        # 3. Esecuzione della ricerca sulla collezione sinistri
+        # (visto che ora salviamo tutto lì)
+        cursor = db.sinistri.find(query)
+        
+        risultati = []
+        for doc in cursor:
+            # Convertiamo l'ObjectId in stringa per renderlo leggibile in JSON
+            doc['_id'] = str(doc['_id'])
+            # Se hai salvato l'id_perizia come ObjectId, converti anche quello
+            if "perizia_id" in doc:
+                doc['perizia_id'] = str(doc['perizia_id'])
+            
+            risultati.append(doc)
+
+        return jsonify({
+            "totale_trovati": len(risultati),
+            "perizie": risultati
+        }), 200
+
+    except Exception as e:
+        return jsonify({"error": f"Errore durante la ricerca: {str(e)}"}), 500
+
 # B. REGISTRAZIONE RIMBORSO
 @app.route('/sinistro/<id_sinistro>/perito/<id_perito>/pratica/<id_perizia>/rimborso', methods=['POST'])
 def registra_rimborso(id_sinistro, id_perito, id_perizia):
