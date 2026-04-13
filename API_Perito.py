@@ -4,56 +4,42 @@ from pymongo import MongoClient
 import mysql.connector
 import firebase_admin
 from firebase_admin import credentials, messaging 
+import urllib.parse # <--- MANCAVA QUESTO
 
 app = Flask(__name__)
+# CORS è fondamentale per permettere al frontend (su GitHub o altro) di parlare col tuo PC
 CORS(app)
 
 # --- CONFIGURAZIONE FIREBASE ---
+# Assicurati che il file firebase-key.json sia nella stessa cartella!
 cred = credentials.Certificate("firebase-key.json")
 firebase_admin.initialize_app(cred)
 
-# --- CONNESSIONI ---
-
-# Credenziali e stringa di connessione per il Database NoSQL (MongoDB Atlas)
+# --- CONNESSIONI MONGODB ---
 user = "dbFakeClaim"
 password = "xxx123##"
-# Il password encoding serve per gestire caratteri speciali nella URL di connessione
 encoded_password = urllib.parse.quote_plus(password)
 CONNECTION_STRING = f"mongodb+srv://{user}:{encoded_password}@cluster0.zgw1jft.mongodb.net/?appName=Cluster0"
 DB_NAME = "FakeClaim"
 
 try:
-    # Inizializzazione del client MongoDB con timeout di 5 secondi
     mongo_client = MongoClient(CONNECTION_STRING, serverSelectionTimeoutMS=5000)
     db = mongo_client[DB_NAME]
-    # Il comando 'ping' verifica se il server è effettivamente raggiungibile
+    # Definisco col_pratiche qui, altrimenti le funzioni sotto danno errore
+    col_pratiche = db["pratiche"] 
     mongo_client.admin.command('ping')
     print("✅ MongoDB Connesso!")
 except Exception as e:
     print(f"❌ Errore MongoDB: {e}")
 
-def get_mysql_connection():
-    """Ritorna un oggetto di connessione MySQL attivo."""
-    return mysql.connector.connect(**mysql_config)
-
-# MySQL (Dati strutturati)
-def get_mysql():
-    return mysql.connector.connect(
-        host="mysql-safeclaim.aevorastudios.com",
-        user="safeclaim",
-        password="0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE+tM=",
-        database="safeclaim_db"
-    )
-
 # --- ENDPOINTS ---
 
-# Nuovo Endpoint per inviare notifiche push
 @app.route("/invia-notifica", methods=["POST"])
 def invia_notifica():
     data = request.get_json()
-    token_dispositivo = data.get('token') # Il token che arriva dal frontend
+    token_dispositivo = data.get('token') 
     titolo = data.get('titolo', 'SafeClaim Update')
-    messaggio = data.get('messaggio', 'C\'è una novità sulla tua pratica.')
+    messaggio = data.get('messaggio', "C'è una novità sulla tua pratica.")
 
     if not token_dispositivo:
         return jsonify({"error": "Token mancante"}), 400
@@ -70,6 +56,7 @@ def invia_notifica():
         response = messaging.send(message)
         return jsonify({"success": True, "fcm_id": response}), 200
     except Exception as e:
+        print(f"❌ Errore Invio: {e}")
         return jsonify({"success": False, "error": str(e)}), 500
 
 @app.route("/sinistro/<sinistro_id>/perito/<perito_id>/pratica", methods=["GET"])
@@ -90,7 +77,6 @@ def update_pratica(sinistro_id, perito_id):
         return jsonify({"error": "Dati mancanti"}), 400
 
     query = {"sinistro_id": sinistro_id, "perito_id": perito_id}
-    
     update_data = {
         "$set": {
             "titolo": data.get("titolo"),
@@ -105,6 +91,6 @@ def update_pratica(sinistro_id, perito_id):
     col_pratiche.update_one(query, update_data, upsert=True)
     return jsonify({"status": "success"}), 200
 
-# --- AVVIO ---
 if __name__ == "__main__":
+    # host="0.0.0.0" è corretto per il test da cellulare
     app.run(host="0.0.0.0", port=8000, debug=True)
