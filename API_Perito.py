@@ -2,8 +2,8 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymongo import MongoClient
 import mysql.connector
-import firebase_admin # <-- AGGIUNTO
-from firebase_admin import credentials, messaging # <-- AGGIUNTO
+import firebase_admin
+from firebase_admin import credentials, messaging 
 
 app = Flask(__name__)
 CORS(app)
@@ -14,10 +14,27 @@ firebase_admin.initialize_app(cred)
 
 # --- CONNESSIONI ---
 
-# MongoDB (Pratiche)
-mongo_client = MongoClient("mongodb://safeclaim:0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE%2BtM%3D@mongo-safeclaim.aevorastudios.com:27017/")
-db_mongo = mongo_client['safeclaim_mongo']
-col_pratiche = db_mongo['pratiche']
+# Credenziali e stringa di connessione per il Database NoSQL (MongoDB Atlas)
+user = "dbFakeClaim"
+password = "xxx123##"
+# Il password encoding serve per gestire caratteri speciali nella URL di connessione
+encoded_password = urllib.parse.quote_plus(password)
+CONNECTION_STRING = f"mongodb+srv://{user}:{encoded_password}@cluster0.zgw1jft.mongodb.net/?appName=Cluster0"
+DB_NAME = "FakeClaim"
+
+try:
+    # Inizializzazione del client MongoDB con timeout di 5 secondi
+    mongo_client = MongoClient(CONNECTION_STRING, serverSelectionTimeoutMS=5000)
+    db = mongo_client[DB_NAME]
+    # Il comando 'ping' verifica se il server è effettivamente raggiungibile
+    mongo_client.admin.command('ping')
+    print("✅ MongoDB Connesso!")
+except Exception as e:
+    print(f"❌ Errore MongoDB: {e}")
+
+def get_mysql_connection():
+    """Ritorna un oggetto di connessione MySQL attivo."""
+    return mysql.connector.connect(**mysql_config)
 
 # MySQL (Dati strutturati)
 def get_mysql():
