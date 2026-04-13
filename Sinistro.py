@@ -10,6 +10,16 @@ from bson.objectid import ObjectId  # Importa il traduttore per gli ID speciali 
 app = Flask(__name__)  # Crea l'applicazione server SafeClaim
 CORS(app)  # Permette a programmi esterni di parlare con questo server
 
+# ROTTA 0: HOME (GET) - Serve solo a testare se il server è online e risponde correttamente
+@app.route('/', methods=['GET']) 
+def home(): # Quando qualcuno va su http://localhost:5000/ con il browser o un programma di test, 
+            #questa funzione risponde con un messaggio di benvenuto e lo stato del server.
+    return jsonify({
+        "status": "success",
+        "message": "Backend SafeClaim è online!",
+        "version": "1.0"
+    }), 200
+
 # CONFIGURAZIONE MONGODB ATLAS
 # Questa è la stringa segreta per connettersi al database nel cloud
 CONNECTION_STRING = "mongodb+srv://dbFakeClaim:xxx123##@cluster0.zgw1jft.mongodb.net/?appName=Cluster0"

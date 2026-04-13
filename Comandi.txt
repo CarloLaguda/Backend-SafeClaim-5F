@@ -12,3 +12,22 @@ GRANT ALL PRIVILEGES ON *.* TO 'pythonuser'@'localhost' WITH GRANT OPTION;
 
 pip install mysql.connector
 pip install Flask
+
+docker-compose up -d PER ESEGUIRE IL DOCKER COMPOSER
+
+curl http://localhost TEST PORTA 80
+
+curl http://localhost:5000  TEST PORTA 5000
+
+docker ps CONTROLLO RAPIDO DELLO STATO DELLE PORTE 
+
+serve a riavviare completamente i servizi Docker in modo pulito: 
+docker-compose down && docker-compose up -d && sleep 3 
+
+////////////////
+docker-compose down - Ferma tutti i container in esecuzione e rimuove la rete, i volumi e i container stessi. È come "spegnere tutto" per partire da zero.
+
+docker-compose up -d - Ricostruisce e avvia i servizi in background (modalità detached, senza bloccare il terminale).
+
+sleep 3 - Aspetta 3 secondi per dare tempo ai servizi di avviarsi completamente prima di eventuali comandi successivi.
+////////////////
