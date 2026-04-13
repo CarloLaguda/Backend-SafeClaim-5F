@@ -1,4 +1,4 @@
-Installazioni --> pip install flask flask-cors mysql-connector-python pymongo[srv]
+Installazioni --> pip install flask flask-cors mysql-connector-python pymongo[srv] dnspython requests
 
 Per MariaDB --> 
 sudo apt-get update
