@@ -26,7 +26,7 @@ try:
     mongo_client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
     # Database rinominato in 'FakeClaim' come da tua configurazione Atlas
     mongo_db = mongo_client['FakeClaim']
-    sinistri_col = mongo_db['Sinistro']
+    sinistri_col = mongo_db['Sinistri']
     
     # Verifica immediata della connessione
     mongo_client.admin.command('ping')

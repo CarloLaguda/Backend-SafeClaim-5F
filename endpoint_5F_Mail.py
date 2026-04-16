@@ -29,7 +29,7 @@ try:
     # Tenta di collegarsi a MongoDB con un tempo massimo di attesa di 5 secondi
     client = pymongo.MongoClient(CONNECTION_STRING, serverSelectionTimeoutMS=5000)
     db = client[DB_NAME]  # Seleziona il database specifico
-    sinistri_col = db['sinistri']  # Seleziona la tabella dove salvi gli incidenti
+    sinistri_col = db['Sinistri']  # Seleziona la tabella dove salvi gli incidenti
     client.server_info()  # controllo per vedere se il database risponde davvero
     print("Connessione a MongoDB Atlas riuscita!")  # Messaggio di conferma nel terminale
 except Exception as e:
