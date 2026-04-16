@@ -42,7 +42,7 @@ def get_veicoli(id=None):
     """GET Unificata: recupera tutti i veicoli o uno specifico per ID"""
     conn = None
     try:
-        conn = get_mysql_connection()
+        conn = get_db_connection()
         cursor = conn.cursor(dictionary=True)
         if id:
             cursor.execute("SELECT * FROM Veicolo WHERE id = %s", (id,))
