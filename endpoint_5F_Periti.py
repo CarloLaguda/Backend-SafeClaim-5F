@@ -56,6 +56,44 @@ def get_pratica(sinistro_id, perito_id):
         return jsonify({"error": str(e)}), 400
 
 
+# ── GET tutte le pratiche per l'Assicurazione ──────────────────────────────────
+
+@app.route("/pratiche_assicurazione", methods=["GET"])
+def get_pratiche_assicurazione():
+    try:
+        # Recuperiamo tutte le pratiche dalla collezione 'Pratica'
+        # Se in futuro vorrai filtrare per una specifica compagnia, potrai aggiungere un filtro qui
+        pratiche_cursor = col_pratiche.find()
+        risultati = []
+
+        for pratica in pratiche_cursor:
+            # Convertiamo l'ID primario di MongoDB in stringa
+            pratica["_id"] = str(pratica["_id"])
+            
+            # Gestione date: conversione in formato ISO (stringa) per evitare errori JSON
+            if "data_inserimento" in pratica and isinstance(pratica["data_inserimento"], datetime):
+                pratica["data_inserimento"] = pratica["data_inserimento"].isoformat()
+            
+            if "data_aggiornamento" in pratica and isinstance(pratica["data_aggiornamento"], datetime):
+                pratica["data_aggiornamento"] = pratica["data_aggiornamento"].isoformat()
+            
+            # Pulizia degli ID collegati (sinistro, perito, etc.)
+            for key in ["sinistro_id", "perito_id", "perizia_id"]:
+                if key in pratica and pratica[key] is not None:
+                    pratica[key] = str(pratica[key])
+
+            risultati.append(pratica)
+
+        # Restituiamo una struttura pulita pronta per la dashboard assicurativa
+        return jsonify({
+            "totale": len(risultati),
+            "pratiche": risultati
+        }), 200
+
+    except Exception as e:
+        return jsonify({"error": f"Errore nel recupero pratiche assicurazione: {str(e)}"}), 500
+
+
 # ── PUT pratica (upsert) ───────────────────────────────────────────────────────
 
 @app.route("/sinistro/<sinistro_id>/perito/<perito_id>/pratica", methods=["PUT"])
