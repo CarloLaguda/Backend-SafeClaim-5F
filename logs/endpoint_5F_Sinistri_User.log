@@ -1,0 +1,33 @@
+✅ Connessione a MongoDB Atlas riuscita!
+ * Serving Flask app 'endpoint_5F_Sinistri_User'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7000
+ * Running on http://10.0.11.176:7000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 215-828-358
+127.0.0.1 - - [16/Apr/2026 07:13:50] "GET /perito/1/sinistri HTTP/1.1" 404 -
+127.0.0.1 - - [16/Apr/2026 07:13:50] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:15:32] "GET /perito/1/sinistri HTTP/1.1" 404 -
+127.0.0.1 - - [16/Apr/2026 07:15:32] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:16:05] "GET /perito/1/sinistri HTTP/1.1" 404 -
+127.0.0.1 - - [16/Apr/2026 07:16:05] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:16:45] "GET /perito/1/sinistri HTTP/1.1" 404 -
+127.0.0.1 - - [16/Apr/2026 07:16:45] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:19:40] "GET /perito/1/sinistri HTTP/1.1" 404 -
+127.0.0.1 - - [16/Apr/2026 07:19:40] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:19:54] "GET /perito/1/sinistri HTTP/1.1" 404 -
+127.0.0.1 - - [16/Apr/2026 07:19:54] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:21:57] "GET /perito/1/sinistri HTTP/1.1" 404 -
+127.0.0.1 - - [16/Apr/2026 07:21:57] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:22:07] "GET /perito/1/sinistri HTTP/1.1" 404 -
+127.0.0.1 - - [16/Apr/2026 07:22:07] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:34:14] "GET /perito/1/sinistri HTTP/1.1" 404 -
+127.0.0.1 - - [16/Apr/2026 07:34:14] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:41:13] "GET /perito/1/sinistri HTTP/1.1" 404 -
+127.0.0.1 - - [16/Apr/2026 07:41:13] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:41:54] "GET /perito/1/sinistri HTTP/1.1" 404 -
+127.0.0.1 - - [16/Apr/2026 07:41:55] "GET /sinistri HTTP/1.1" 200 -

@@ -1,0 +1,45 @@
+{
+    "name": "SafeClaim Backend",
+
+    "postStartCommand": "pip install flask flask-cors mysql-connector-python 'pymongo[srv]' dnspython requests --quiet && chmod +x avvia_tutti.sh && bash avvia_tutti.sh",
+
+    "forwardPorts": [5000, 6000, 7000, 8000, 9000, 10000, 11000],
+
+    "portsAttributes": {
+        "5000": {
+            "label": "Assicurazione",
+            "onAutoForward": "silent",
+            "visibility": "public"
+        },
+        "6000": {
+            "label": "Login / Registrazione",
+            "onAutoForward": "silent",
+            "visibility": "public"
+        },
+        "7000": {
+            "label": "Sinistri Utente",
+            "onAutoForward": "silent",
+            "visibility": "public"
+        },
+        "8000": {
+            "label": "Periti",
+            "onAutoForward": "silent",
+            "visibility": "public"
+        },
+        "9000": {
+            "label": "Polizze",
+            "onAutoForward": "silent",
+            "visibility": "public"
+        },
+        "10000": {
+            "label": "Veicoli",
+            "onAutoForward": "silent",
+            "visibility": "public"
+        },
+        "11000": {
+            "label": "Mail",
+            "onAutoForward": "silent",
+            "visibility": "public"
+        }
+    }
+}

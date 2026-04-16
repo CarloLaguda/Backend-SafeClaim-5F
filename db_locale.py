@@ -99,9 +99,11 @@ def setup_database():
         "Officina": ("INSERT IGNORE INTO Officina (ragione_sociale, citta, telefono, latitudine, longitudine) VALUES (%s,%s,%s,%s,%s)", [
             (f'Garage {i}', 'Milano', f'0211111{i}', 45.4642, 9.1900) for i in range(1, 11)
         ]),
-       "Perito": ("INSERT IGNORE INTO Perito (nome, cognome, cf, email, psw, latitudine, longitudine) VALUES (%s,%s,%s,%s,%s,%s,%s)", [
-            (f'Perito{i}', f'Rossi{i}', f'CFPERITO{i:07}', f'perito{i}@studiovr.it', 'hash_psw', 45.0, 9.0) for i in range(1, 11)
+        # --- MODIFICA QUI: Aggiunta psw per i Periti ---
+        "Perito": ("INSERT IGNORE INTO Perito (nome, cognome, cf, email, psw, latitudine, longitudine) VALUES (%s,%s,%s,%s,%s,%s,%s)", [
+            (f'Perito{i}', f'Rossi{i}', f'CFPERITO{i:07}', f'perito{i}@studiovr.it', f'psw_perito{i}', 45.0, 9.0) for i in range(1, 11)
         ]),
+        # ----------------------------------------------
         "Veicolo": ("INSERT IGNORE INTO Veicolo (targa, n_telaio, marca, modello, anno_immatricolazione, automobilista_id) VALUES (%s,%s,%s,%s,%s,%s)", [
             (f'AA{i:03}BB', f'VIN{i:014}', 'Fiat', 'Panda', 2020, i) for i in range(1, 11)
         ]),

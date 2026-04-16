@@ -1,0 +1,53 @@
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Serving Flask app 'endpoint_5F_Periti'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://10.0.11.176:8000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 215-828-358
+127.0.0.1 - - [16/Apr/2026 07:13:50] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:13:58] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:15:32] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:16:05] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:16:08] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:16:37] "OPTIONS /sinistro/69a171438280f55abd4a97c5/perito/1/pratica HTTP/1.1" 200 -
+/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:82: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "data_aggiornamento": datetime.utcnow()
+127.0.0.1 - - [16/Apr/2026 07:16:37] "PUT /sinistro/69a171438280f55abd4a97c5/perito/1/pratica HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:16:45] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:16:48] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:19:19] "OPTIONS /sinistro/69ae8998dc297691aa718189/perito/1/pratica HTTP/1.1" 200 -
+/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:124: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "data_inserimento":  datetime.utcnow()
+/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:138: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "data_aggiornamento": datetime.utcnow()
+127.0.0.1 - - [16/Apr/2026 07:19:20] "POST /sinistro/69ae8998dc297691aa718189/perito/1/pratica HTTP/1.1" 201 -
+127.0.0.1 - - [16/Apr/2026 07:19:23] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:19:40] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:19:54] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:19:56] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:21:57] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:22:00] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:22:04] "OPTIONS /sinistro/69a171438280f55abd4a97c5/perito/1/pratica HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:22:04] "POST /sinistro/69a171438280f55abd4a97c5/perito/1/pratica HTTP/1.1" 201 -
+127.0.0.1 - - [16/Apr/2026 07:22:07] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:23:01] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:34:14] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:40:33] "OPTIONS /sinistro/69a171438280f55abd4a97c5/perito/1/pratica HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:40:34] "POST /sinistro/69a171438280f55abd4a97c5/perito/1/pratica HTTP/1.1" 201 -
+127.0.0.1 - - [16/Apr/2026 07:40:36] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:40:40] "OPTIONS /perizia/69de7ba7420d6ca642929422 HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:40:40] "DELETE /perizia/69de7ba7420d6ca642929422 HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:40:43] "OPTIONS /perizia/69e08d7841f116a0d19e73ca HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:40:43] "DELETE /perizia/69e08d7841f116a0d19e73ca HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:40:45] "OPTIONS /perizia/69e08e1c41f116a0d19e73cb HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:40:45] "DELETE /perizia/69e08e1c41f116a0d19e73cb HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:41:13] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:41:14] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:41:36] "OPTIONS /sinistro/69a171438280f55abd4a97c5/perito/1/pratica HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:41:36] "PUT /sinistro/69a171438280f55abd4a97c5/perito/1/pratica HTTP/1.1" 200 -
+127.0.0.1 - - [16/Apr/2026 07:41:54] "GET /perito/1/perizie HTTP/1.1" 200 -
