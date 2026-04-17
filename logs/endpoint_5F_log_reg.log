@@ -4,8 +4,10 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:6000
- * Running on http://10.0.13.156:6000
+ * Running on http://10.0.3.10:6000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 142-316-269
+ * Debugger PIN: 584-207-773
+127.0.0.1 - - [17/Apr/2026 10:51:31] "OPTIONS /login HTTP/1.1" 200 -
+127.0.0.1 - - [17/Apr/2026 10:51:31] "POST /login HTTP/1.1" 200 -

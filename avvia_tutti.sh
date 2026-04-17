@@ -7,6 +7,7 @@
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 RED='\033[0;31m'
+CYAN='\033[0;36m'
 NC='\033[0m'
 
 LOG_DIR="logs"
@@ -17,11 +18,10 @@ echo -e " SafeClaim – Avvio endpoint"
 echo -e "==============================${NC}"
 
 # --- MARIADB: INSTALLAZIONE E AVVIO ---
-echo -e "${YELLOW}[*] Controllo MariaDB...${NC}"
+echo -e "\n${CYAN}[1/4] Controllo MariaDB...${NC}"
 
 if ! command -v mariadb &>/dev/null; then
     echo -e "${YELLOW}    MariaDB non trovata – installo...${NC}"
-    # Ignora errori di repo non firmati (es. Yarn) e installa comunque
     sudo apt-get update -qq --allow-insecure-repositories 2>/dev/null || true
     sudo apt-get install -y mariadb-server -qq 2>/dev/null
 fi
@@ -31,37 +31,82 @@ if command -v mariadb &>/dev/null; then
     sleep 2
     echo -e "${GREEN}[✓] MariaDB in esecuzione${NC}"
 
-    # Crea utente pythonuser se non esiste
     sudo mariadb -e "CREATE USER IF NOT EXISTS 'pythonuser'@'localhost' IDENTIFIED BY 'password123';" 2>/dev/null
     sudo mariadb -e "GRANT ALL PRIVILEGES ON *.* TO 'pythonuser'@'localhost' WITH GRANT OPTION;" 2>/dev/null
     sudo mariadb -e "FLUSH PRIVILEGES;" 2>/dev/null
 
-    # Crea tabelle e dati solo se il DB non esiste ancora
     DB_EXISTS=$(sudo mariadb -u pythonuser -ppassword123 -e "SHOW DATABASES LIKE 'gestione_assicurazioni';" 2>/dev/null | grep -c "gestione_assicurazioni")
     if [ "$DB_EXISTS" -eq 0 ]; then
         echo -e "${YELLOW}    Prima installazione: creo il database...${NC}"
-        python3 db_locale.py && echo -e "${GREEN}[✓] Database creato con successo${NC}"
+        python3 db_locale.py && echo -e "${GREEN}[✓] Database creato con successo${NC}" \
+                             || echo -e "${RED}[✗] Errore creazione database – controlla db_locale.py${NC}"
     else
         echo -e "${GREEN}[✓] Database già esistente – salto la creazione${NC}"
     fi
 else
-    echo -e "${RED}[✗] Impossibile installare MariaDB – gli endpoint che usano MySQL non funzioneranno${NC}"
+    echo -e "${RED}[✗] Impossibile installare MariaDB – gli endpoint MySQL non funzioneranno${NC}"
 fi
 
 # --- INSTALLAZIONE DIPENDENZE PYTHON ---
-echo -e "${YELLOW}[*] Installo le dipendenze Python...${NC}"
-pip install flask flask-cors mysql-connector-python "pymongo[srv]" dnspython requests --quiet --break-system-packages 2>/dev/null \
-    || pip install flask flask-cors mysql-connector-python "pymongo[srv]" dnspython requests --quiet
+echo -e "\n${CYAN}[2/4] Installo le dipendenze Python...${NC}"
 
-if python3 -c "import flask, pymongo" 2>/dev/null; then
-    echo -e "${GREEN}[✓] Dipendenze installate correttamente${NC}"
+# Pacchetti necessari (aggiornati con cloudinary e gradio_client per Storage.py)
+PACKAGES=(
+    "flask"
+    "flask-cors"
+    "mysql-connector-python"
+    "pymongo[srv]"
+    "dnspython"
+    "requests"
+    "cloudinary"          # Usato da Storage.py per upload immagini sinistri
+    "gradio_client"       # Usato da endpoint_5F_Sinistri_User.py per analisi AI (Joy-Caption)
+)
+
+# Tenta installazione con --break-system-packages (per ambienti di sistema), poi senza
+pip install "${PACKAGES[@]}" --quiet --break-system-packages 2>/dev/null \
+    || pip install "${PACKAGES[@]}" --quiet 2>/dev/null
+
+# Verifica che i moduli critici siano importabili
+MISSING_MODULES=()
+for mod in flask pymongo cloudinary gradio_client; do
+    if ! python3 -c "import $mod" 2>/dev/null; then
+        MISSING_MODULES+=("$mod")
+    fi
+done
+
+if [ ${#MISSING_MODULES[@]} -eq 0 ]; then
+    echo -e "${GREEN}[✓] Tutte le dipendenze installate correttamente${NC}"
 else
-    echo -e "${RED}[✗] Errore installazione dipendenze – controlla la connessione${NC}"
-    exit 1
+    echo -e "${RED}[✗] Moduli ancora mancanti: ${MISSING_MODULES[*]}${NC}"
+    echo -e "${YELLOW}    Provo installazione singola dei moduli mancanti...${NC}"
+    for mod in "${MISSING_MODULES[@]}"; do
+        pip install "$mod" --quiet --break-system-packages 2>/dev/null \
+            || pip install "$mod" --quiet 2>/dev/null \
+            && echo -e "${GREEN}    [✓] $mod installato${NC}" \
+            || echo -e "${RED}    [✗] $mod – installazione fallita${NC}"
+    done
+fi
+
+# --- CONTROLLO FILE NECESSARI ---
+echo -e "\n${CYAN}[3/4] Controllo file necessari...${NC}"
+
+# Storage.py è importato da endpoint_5F_Sinistri_User.py – deve essere presente
+if [ ! -f "Storage.py" ]; then
+    echo -e "${RED}[✗] Storage.py non trovato – endpoint_5F_Sinistri_User.py non potrà avviarsi${NC}"
+else
+    echo -e "${GREEN}[✓] Storage.py presente${NC}"
+fi
+
+# db_locale.py deve essere presente per la creazione del database
+if [ ! -f "db_locale.py" ]; then
+    echo -e "${RED}[✗] db_locale.py non trovato – il database non verrà inizializzato${NC}"
+else
+    echo -e "${GREEN}[✓] db_locale.py presente${NC}"
 fi
 
 # --- CHIUDI PROCESSI PRECEDENTI ---
-echo -e "${YELLOW}[*] Chiudo eventuali processi precedenti...${NC}"
+echo -e "\n${CYAN}[4/4] Avvio endpoint Flask...${NC}"
+echo -e "${YELLOW}    Chiudo eventuali processi precedenti sulle porte...${NC}"
 for port in 5000 6000 7000 8000 9000 10000 11000; do
     fuser -k "${port}/tcp" 2>/dev/null
 done
@@ -79,24 +124,31 @@ declare -A ENDPOINTS=(
 )
 
 # --- AVVIO ENDPOINT ---
+STARTED=0
+FAILED=0
+
 for file in "${!ENDPOINTS[@]}"; do
     port="${ENDPOINTS[$file]}"
     log="$LOG_DIR/${file%.py}.log"
 
     if [ ! -f "$file" ]; then
         echo -e "${RED}[✗] $file non trovato – salto${NC}"
+        (( FAILED++ ))
         continue
     fi
 
     python3 "$file" > "$log" 2>&1 &
     PID=$!
-    sleep 1
+    sleep 1.5  # Attesa leggermente più lunga per endpoint con import pesanti (cloudinary, gradio)
 
     if kill -0 "$PID" 2>/dev/null; then
         echo -e "${GREEN}[✓] $file  →  porta $port  (PID $PID)${NC}"
+        (( STARTED++ ))
     else
-        echo -e "${RED}[✗] $file  →  avvio fallito – controlla $log${NC}"
-        tail -n 3 "$log"
+        echo -e "${RED}[✗] $file  →  avvio fallito (porta $port)${NC}"
+        echo -e "${YELLOW}    Ultime righe del log:${NC}"
+        tail -n 5 "$log" | sed 's/^/    /'
+        (( FAILED++ ))
     fi
 done
 
@@ -110,12 +162,32 @@ if command -v gh &>/dev/null && [ -n "$CODESPACE_NAME" ]; then
     done
 fi
 
+# --- RIEPILOGO FINALE ---
 echo -e "\n${GREEN}=============================="
-echo -e " Tutti gli endpoint avviati!"
-echo -e " Log nella cartella: $LOG_DIR/"
+echo -e " Riepilogo avvio SafeClaim"
+echo -e "=============================="
+echo -e " Avviati con successo : ${STARTED}"
+echo -e " Falliti              : ${FAILED}"
+echo -e " Log nella cartella   : ${LOG_DIR}/"
 echo -e "==============================${NC}"
-echo -e "${YELLOW}[Premi CTRL+C per fermare tutto]\n${NC}"
 
-trap "echo -e '\n${RED}Arresto in corso...${NC}'; fuser -k 5000/tcp 6000/tcp 7000/tcp 8000/tcp 9000/tcp 10000/tcp 11000/tcp 2>/dev/null; exit" INT
+if [ "$STARTED" -gt 0 ]; then
+    echo -e "\n${CYAN}Endpoint attivi:${NC}"
+    echo -e "  5000  → Assicurazione (sinistri MongoDB + veicoli)"
+    echo -e "  6000  → Login / Registrazione"
+    echo -e "  7000  → Sinistri Utente (upload immagini + AI)"
+    echo -e "  8000  → Periti (perizie, rimborsi, officine)"
+    echo -e "  9000  → Polizze (CRUD)"
+    echo -e "  10000 → Veicoli"
+    echo -e "  11000 → Mail (SMTP Gmail)"
+fi
+
+echo -e "\n${YELLOW}[Premi CTRL+C per fermare tutto]\n${NC}"
+
+# --- GESTIONE USCITA ---
+trap 'echo -e "\n${RED}Arresto in corso...${NC}"; \
+      fuser -k 5000/tcp 6000/tcp 7000/tcp 8000/tcp 9000/tcp 10000/tcp 11000/tcp 2>/dev/null; \
+      echo -e "${GREEN}Tutti gli endpoint fermati.${NC}"; \
+      exit 0' INT TERM
 
 tail -f $LOG_DIR/*.log
