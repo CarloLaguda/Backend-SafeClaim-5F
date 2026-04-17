@@ -27,7 +27,7 @@ MONGO_URI = "mongodb+srv://dbFakeClaim:xxx123%23%23@cluster0.zgw1jft.mongodb.net
 try:
     mongo_client = pymongo.MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
     mongo_db = mongo_client["FakeClaim"]
-    sinistri_col = mongo_db["Sinistro"]
+    sinistri_col = mongo_db["Sinistri"]
     soccorso_col = mongo_db["Soccorso"]
     
     mongo_client.admin.command('ping')
