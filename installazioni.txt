@@ -2,6 +2,7 @@ Installazioni --> pip install flask flask-cors mysql-connector-python pymongo[sr
 
 Per MariaDB --> 
 sudo apt-get update
+pip install cloudinary gradio_client
 sudo apt-get install -y mariadb-server
 sudo service mariadb start
 sudo mariadb
