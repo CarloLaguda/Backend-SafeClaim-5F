@@ -43,7 +43,7 @@ try:
     mongo_db     = mongo_client["FakeClaim"]
     col_pratiche = mongo_db["Pratica"]
     col_perizie  = mongo_db["Perizia"]
-    col_sinistri = mongo_db["Sinistro"]
+    col_sinistri = mongo_db["Sinistri"]
     soccorso_col = mongo_db["Soccorso"]
     mongo_client.admin.command('ping')
     print("✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!")
