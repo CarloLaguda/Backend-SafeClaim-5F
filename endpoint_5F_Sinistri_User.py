@@ -356,6 +356,47 @@ def crea_pratica_completa(id_sinistro, id_perito):
         pass
     return jsonify({"status": "Pratica creata", "id_perizia": str(perizia_id)}), 201
 
+# ── GET sinistro completo per il perito (immagini + analisi AI inclusi) ───────
+
+@app.route('/sinistro/<sinistro_id>', methods=['GET'])
+def get_sinistro_by_id(sinistro_id):
+    """
+    Restituisce tutti i campi di un sinistro, incluso l'array 'immagini'
+    con gli URL Cloudinary e il blocco 'analisi_ai' completo.
+    Usato dal pannello di dettaglio del perito.
+    """
+    if not ObjectId.is_valid(sinistro_id):
+        return jsonify({"error": "ID sinistro non valido"}), 400
+    try:
+        s = col_sinistri.find_one({"_id": ObjectId(sinistro_id)})
+        if not s:
+            return jsonify({"error": "Sinistro non trovato"}), 404
+
+        s['_id'] = str(s['_id'])
+
+        # Serializza datetime
+        if isinstance(s.get('data_evento'), datetime):
+            s['data_evento'] = s['data_evento'].isoformat()
+        if isinstance(s.get('data_inserimento'), datetime):
+            s['data_inserimento'] = s['data_inserimento'].isoformat()
+
+        # Serializza datetime dentro analisi_ai
+        analisi = s.get('analisi_ai')
+        if analisi and isinstance(analisi.get('data_analisi'), datetime):
+            analisi['data_analisi'] = analisi['data_analisi'].isoformat()
+
+        # Assicura che analisi_ai abbia sempre il campo 'stato'
+        if not analisi:
+            s['analisi_ai'] = {'stato': 'non_avviata'}
+
+        # Assicura che immagini sia sempre una lista
+        if 'immagini' not in s or s['immagini'] is None:
+            s['immagini'] = []
+
+        return jsonify(s), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.route('/perito/<perito_id>/perizie', methods=['GET'])
 def get_perizie_perito(perito_id):

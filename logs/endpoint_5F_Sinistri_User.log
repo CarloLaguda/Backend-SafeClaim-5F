@@ -4,10 +4,30 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:7000
- * Running on http://10.0.3.10:7000
+ * Running on http://10.0.10.113:7000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 584-207-773
-127.0.0.1 - - [17/Apr/2026 10:51:31] "GET /perito/1/sinistri HTTP/1.1" 404 -
-127.0.0.1 - - [17/Apr/2026 10:51:31] "GET /sinistri HTTP/1.1" 200 -
+ * Debugger PIN: 160-101-110
+127.0.0.1 - - [20/Apr/2026 20:02:05] "GET /perito/1/sinistri HTTP/1.1" 404 -
+127.0.0.1 - - [20/Apr/2026 20:02:05] "GET /sinistri HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 160-101-110
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 160-101-110
+127.0.0.1 - - [20/Apr/2026 20:23:40] "GET /sinistro/69e68100a5f8b5f339c3f654 HTTP/1.1" 200 -
+127.0.0.1 - - [20/Apr/2026 20:23:48] "GET /sinistro/69e68100a5f8b5f339c3f653 HTTP/1.1" 200 -
+127.0.0.1 - - [20/Apr/2026 20:23:49] "GET /sinistro/69e68100a5f8b5f339c3f654 HTTP/1.1" 200 -
+127.0.0.1 - - [20/Apr/2026 20:23:50] "GET /sinistro/69e68100a5f8b5f339c3f654 HTTP/1.1" 200 -
+127.0.0.1 - - [20/Apr/2026 20:23:51] "GET /sinistro/69e68100a5f8b5f339c3f653 HTTP/1.1" 200 -
+127.0.0.1 - - [20/Apr/2026 20:24:08] "GET /sinistro/69e68100a5f8b5f339c3f654 HTTP/1.1" 200 -
+127.0.0.1 - - [20/Apr/2026 20:24:51] "GET /sinistro/69e68100a5f8b5f339c3f654 HTTP/1.1" 200 -
+127.0.0.1 - - [20/Apr/2026 20:26:07] "GET /sinistro/69e68100a5f8b5f339c3f654 HTTP/1.1" 200 -
+127.0.0.1 - - [20/Apr/2026 20:26:08] "GET /sinistro/69e68100a5f8b5f339c3f654 HTTP/1.1" 200 -
+127.0.0.1 - - [20/Apr/2026 20:26:12] "GET /sinistro/69e68100a5f8b5f339c3f654 HTTP/1.1" 200 -

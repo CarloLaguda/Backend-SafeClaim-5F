@@ -4,10 +4,22 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:6000
- * Running on http://10.0.3.10:6000
+ * Running on http://10.0.10.113:6000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 584-207-773
-127.0.0.1 - - [17/Apr/2026 10:51:31] "OPTIONS /login HTTP/1.1" 200 -
-127.0.0.1 - - [17/Apr/2026 10:51:31] "POST /login HTTP/1.1" 200 -
+ * Debugger PIN: 160-101-110
+127.0.0.1 - - [20/Apr/2026 20:02:04] "OPTIONS /login HTTP/1.1" 200 -
+127.0.0.1 - - [20/Apr/2026 20:02:04] "POST /login HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+✅ Connessione a MongoDB Atlas riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 160-101-110
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
+✅ Connessione a MongoDB Atlas riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 160-101-110
+127.0.0.1 - - [20/Apr/2026 20:23:28] "OPTIONS /login HTTP/1.1" 200 -
+127.0.0.1 - - [20/Apr/2026 20:23:28] "POST /login HTTP/1.1" 200 -

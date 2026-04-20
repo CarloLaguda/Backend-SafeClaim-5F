@@ -94,6 +94,71 @@ def get_pratiche_assicurazione():
         return jsonify({"error": f"Errore nel recupero pratiche assicurazione: {str(e)}"}), 500
 
 
+# ── GET pratiche assegnate a un perito (con sinistro embedded) ────────────────
+
+@app.route('/perito/<perito_id>/pratiche', methods=['GET'])
+def get_pratiche_perito(perito_id):
+    """
+    Restituisce tutte le pratiche della collezione 'Pratica' assegnate al perito.
+    Per ogni pratica incorpora un riepilogo del sinistro collegato (senza immagini)
+    così il frontend può popolare le card senza ulteriori chiamate.
+    """
+    try:
+        pratiche = list(col_pratiche.find({"perito_id": perito_id}))
+        result = []
+
+        for p in pratiche:
+            # Serializza _id e campi ObjectId
+            p['_id'] = str(p['_id'])
+            for key in ['sinistro_id', 'perizia_id']:
+                if key in p and p[key] is not None:
+                    p[key] = str(p[key])
+            # Serializza datetime
+            for key in ['data_inserimento', 'data_aggiornamento', 'data_creazione']:
+                if key in p and isinstance(p[key], datetime):
+                    p[key] = p[key].isoformat()
+
+            # Incorpora riepilogo sinistro (senza immagini per alleggerire la risposta)
+            sin_id = p.get('sinistro_id')
+            if sin_id:
+                try:
+                    sinistro = col_sinistri.find_one({"_id": ObjectId(sin_id)})
+                    if sinistro:
+                        sinistro['_id'] = str(sinistro['_id'])
+                        if isinstance(sinistro.get('data_evento'), datetime):
+                            sinistro['data_evento'] = sinistro['data_evento'].isoformat()
+                        if isinstance(sinistro.get('data_inserimento'), datetime):
+                            sinistro['data_inserimento'] = sinistro['data_inserimento'].isoformat()
+
+                        analisi = sinistro.get('analisi_ai')
+                        p['sinistro'] = {
+                            '_id':                   sinistro['_id'],
+                            'targa':                 sinistro.get('targa'),
+                            'marca':                 sinistro.get('marca'),
+                            'modello':               sinistro.get('modello'),
+                            'data_evento':           sinistro.get('data_evento'),
+                            'descrizione':           sinistro.get('descrizione'),
+                            'luogo':                 sinistro.get('luogo'),
+                            'tipo_sinistro':         sinistro.get('tipo_sinistro'),
+                            'stima_danno':           sinistro.get('stima_danno'),
+                            'stato':                 sinistro.get('stato'),
+                            'compagnia_assicurativa': sinistro.get('compagnia_assicurativa'),
+                            'priorita':              sinistro.get('priorita'),
+                            # Numero foto senza mandare gli URL (caricati on-demand)
+                            'num_immagini':          len(sinistro.get('immagini', [])),
+                            # Solo lo stato AI per mostrare eventuale badge nella card
+                            'analisi_ai_stato':      analisi.get('stato') if analisi else 'non_avviata',
+                        }
+                except Exception as inner_err:
+                    print(f"[pratiche] Errore caricamento sinistro {sin_id}: {inner_err}")
+
+            result.append(p)
+
+        return jsonify(result), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 # ── PUT pratica (upsert) ───────────────────────────────────────────────────────
 
 @app.route("/sinistro/<sinistro_id>/perito/<perito_id>/pratica", methods=["PUT"])
