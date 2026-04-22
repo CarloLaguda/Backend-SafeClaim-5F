@@ -4,34 +4,27 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:8000
- * Running on http://10.0.10.113:8000
+ * Running on http://10.0.0.207:8000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 160-101-110
-127.0.0.1 - - [20/Apr/2026 20:02:05] "GET /perito/1/perizie HTTP/1.1" 200 -
-127.0.0.1 - - [20/Apr/2026 20:02:11] "GET /perito/1/perizie HTTP/1.1" 200 -
-127.0.0.1 - - [20/Apr/2026 20:02:23] "GET /perito/1/perizie HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 160-101-110
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 160-101-110
-127.0.0.1 - - [20/Apr/2026 20:23:28] "GET /perito/1/pratiche HTTP/1.1" 200 -
-127.0.0.1 - - [20/Apr/2026 20:23:28] "GET /perito/1/perizie HTTP/1.1" 200 -
-127.0.0.1 - - [20/Apr/2026 20:23:37] "GET /perito/1/perizie HTTP/1.1" 200 -
-127.0.0.1 - - [20/Apr/2026 20:26:15] "GET /perito/1/perizie HTTP/1.1" 200 -
-127.0.0.1 - - [20/Apr/2026 20:28:12] "GET /perito/1/perizie HTTP/1.1" 200 -
-127.0.0.1 - - [20/Apr/2026 20:30:26] "OPTIONS /sinistro/69e68100a5f8b5f339c3f654/perito/1/pratica HTTP/1.1" 200 -
-/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:227: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
-  "data_inserimento":  datetime.utcnow()
-/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:241: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
-  "data_aggiornamento": datetime.utcnow()
-127.0.0.1 - - [20/Apr/2026 20:30:26] "POST /sinistro/69e68100a5f8b5f339c3f654/perito/1/pratica HTTP/1.1" 201 -
-127.0.0.1 - - [20/Apr/2026 20:35:00] "GET /perito/1/perizie HTTP/1.1" 200 -
-127.0.0.1 - - [20/Apr/2026 20:37:02] "GET /perito/1/perizie HTTP/1.1" 200 -
+ * Debugger PIN: 114-752-097
+127.0.0.1 - - [22/Apr/2026 19:34:36] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [22/Apr/2026 19:34:36] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [22/Apr/2026 19:36:43] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [22/Apr/2026 19:36:43] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [22/Apr/2026 19:36:46] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [22/Apr/2026 19:36:56] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [22/Apr/2026 19:37:06] "OPTIONS /perizia/69e91ed36b6d9e1a5fa10b2d HTTP/1.1" 200 -
+127.0.0.1 - - [22/Apr/2026 19:37:06] "DELETE /perizia/69e91ed36b6d9e1a5fa10b2d HTTP/1.1" 200 -
+127.0.0.1 - - [22/Apr/2026 19:37:09] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [22/Apr/2026 19:37:09] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [22/Apr/2026 19:37:11] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [22/Apr/2026 19:37:13] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [22/Apr/2026 19:37:15] "OPTIONS /perizia/69e91ed76b6d9e1a5fa10b2e HTTP/1.1" 200 -
+127.0.0.1 - - [22/Apr/2026 19:37:15] "DELETE /perizia/69e91ed76b6d9e1a5fa10b2e HTTP/1.1" 200 -
+127.0.0.1 - - [22/Apr/2026 19:37:16] "OPTIONS /perizia/69e91ed76b6d9e1a5fa10b2f HTTP/1.1" 200 -
+127.0.0.1 - - [22/Apr/2026 19:37:16] "DELETE /perizia/69e91ed76b6d9e1a5fa10b2f HTTP/1.1" 200 -
+127.0.0.1 - - [22/Apr/2026 19:37:17] "OPTIONS /perizia/69e91edf6b6d9e1a5fa10b30 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Apr/2026 19:37:17] "DELETE /perizia/69e91edf6b6d9e1a5fa10b30 HTTP/1.1" 200 -
+127.0.0.1 - - [22/Apr/2026 19:37:18] "GET /perito/1/perizie HTTP/1.1" 200 -
