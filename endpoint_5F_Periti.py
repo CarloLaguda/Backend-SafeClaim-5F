@@ -211,7 +211,7 @@ def crea_pratica_completa(id_sinistro, id_perito):
 
     # --- DEFINIZIONE COLLECTION PRATICHE ---
     # Supponendo che 'db' sia il tuo oggetto database MongoDB
-    col_pratiche = db['pratiche'] 
+    col_pratiche = db['Pratica'] 
 
     perizia_doc = {
         "sinistro_id":       id_sinistro,
