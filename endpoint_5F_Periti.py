@@ -204,11 +204,14 @@ def crea_pratica_completa(id_sinistro, id_perito):
         cursor.close()
         conn.close()
     except Exception as e:
-        # Se MySQL non è raggiungibile, procediamo comunque con MongoDB
         perito_esiste = True
 
     if not perito_esiste:
         return jsonify({"error": "Perito non trovato"}), 404
+
+    # --- DEFINIZIONE COLLECTION PRATICHE ---
+    # Supponendo che 'db' sia il tuo oggetto database MongoDB
+    col_pratiche = db['pratiche'] 
 
     perizia_doc = {
         "sinistro_id":       id_sinistro,
@@ -227,10 +230,11 @@ def crea_pratica_completa(id_sinistro, id_perito):
         "data_inserimento":  datetime.utcnow()
     }
 
-    result     = col_perizie.insert_one(perizia_doc)
+    # Cambiato da col_perizie.insert_one a col_pratiche.insert_one
+    result     = col_pratiche.insert_one(perizia_doc)
     perizia_id = result.inserted_id
 
-    # Aggiorna stato sinistro (non bloccante)
+    # Aggiorna stato sinistro
     try:
         col_sinistri.update_one(
             {"_id": ObjectId(id_sinistro)},
@@ -248,7 +252,6 @@ def crea_pratica_completa(id_sinistro, id_perito):
         "status":     "Pratica creata",
         "id_perizia": str(perizia_id)
     }), 201
-
 
 # ── POST rimborso ──────────────────────────────────────────────────────────────
 
