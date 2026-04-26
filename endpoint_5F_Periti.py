@@ -185,7 +185,7 @@ def update_pratica(sinistro_id, perito_id):
             "data_aggiornamento": datetime.utcnow()
         }
     }
-    col_perizie.update_one(query, update_data, upsert=True)
+    col_pratiche.update_one(query, update_data, upsert=True)
     return jsonify({"status": "success"}), 200
 
 
