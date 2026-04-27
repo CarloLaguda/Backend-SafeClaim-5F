@@ -38,8 +38,8 @@ try:
     print("✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!")
 except Exception as e:
     print(f"❌ Errore connessione MongoDB: {e}")
-
-
+    
+    
 # ── GET pratica ────────────────────────────────────────────────────────────────
 
 @app.route("/sinistro/<sinistro_id>/perito/<perito_id>/pratica", methods=["GET"])
@@ -362,58 +362,36 @@ def assegna_intervento(id_sinistro, id_perito, id_perizia):
 
 # ── GET pratiche per uno specifico perito ─────────────────────────────────────
 
-@app.route('/perito/<perito_id>/pratiche', methods=['GET'])
-def get_pratiche_perito_v2(perito_id):
-    """
-    Restituisce la lista delle pratiche assegnate a un perito specifico,
-    includendo i dati del sinistro e il preventivo (se presente).
-    """
+@app.route('/automobilista/<automobilista_id>/pratiche', methods=['GET'])
+def get_pratiche_automobilista(automobilista_id):
     try:
-        # 1. Cerchiamo tutte le pratiche assegnate a questo ID perito
-        # Usiamo list() per consumare il cursore di MongoDB
-        pratiche_cursor = col_pratiche.find({"perito_id": perito_id})
+        # Cerchiamo le pratiche dove l'ID automobilista corrisponde
+        # (Assicurati che i documenti in MongoDB abbiano questo campo)
+        query = {"automobilista_id": automobilista_id}
+        pratiche_cursor = col_pratiche.find(query)
+        
         risultati = []
-
-        for pratica in pratiche_cursor:
-            # Serializzazione ID principale
-            pratica["_id"] = str(pratica["_id"])
+        for p in pratiche_cursor:
+            p["_id"] = str(p["_id"])
             
-            # Serializzazione date per evitare errori JSON
-            for campo_data in ["data_inserimento", "data_aggiornamento"]:
-                if campo_data in pratica and isinstance(pratica[campo_data], datetime):
-                    pratica[campo_data] = pratica[campo_data].isoformat()
-
-            # 2. Recupero del sinistro collegato per arricchire la risposta
-            sin_id = pratica.get("sinistro_id")
-            if sin_id:
-                try:
-                    # Cerchiamo nella collezione 'Sinistri' (con la S maiuscola come confermato)
-                    sinistro = col_sinistri.find_one({"_id": ObjectId(sin_id)})
-                    if sinistro:
-                        # Puliamo il sinistro dagli ID e dalle immagini pesanti
-                        pratica["sinistro_dettaglio"] = {
-                            "targa": sinistro.get("targa"),
-                            "veicolo": sinistro.get("veicolo") or f"{sinistro.get('marca')} {sinistro.get('modello')}",
-                            "luogo": sinistro.get("luogo"),
-                            "stato_sinistro": sinistro.get("stato")
-                        }
-                except Exception as e:
-                    print(f"Errore recupero sinistro {sin_id}: {e}")
-
-            # 3. Pulizia ID perito e sinistro (da ObjectId a stringa)
-            if "sinistro_id" in pratica:
-                pratica["sinistro_id"] = str(pratica["sinistro_id"])
+            # Formattiamo le date per il frontend
+            if "data_inserimento" in p and isinstance(p["data_inserimento"], datetime):
+                p["data_inserimento"] = p["data_inserimento"].isoformat()
             
-            risultati.append(pratica)
+            # Rendiamo gli ID stringhe
+            p["sinistro_id"] = str(p.get("sinistro_id"))
+            p["perito_id"] = str(p.get("perito_id"))
+
+            risultati.append(p)
 
         return jsonify({
-            "perito_id": perito_id,
-            "numero_pratiche": len(risultati),
+            "automobilista_id": automobilista_id,
+            "count": len(risultati),
             "pratiche": risultati
         }), 200
 
     except Exception as e:
-        return jsonify({"error": f"Errore nel recupero perizie: {str(e)}"}), 500
+        return jsonify({"error": str(e)}), 500
 
 # ── GET tutte le perizie di un perito ─────────────────────────────────────────
 
