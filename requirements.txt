@@ -9,3 +9,5 @@ langchain-community==0.0.9
 sentence-transformers==2.2.2
 faiss-cpu==1.7.4
 huggingface-hub==0.19.4
+COMANDO PER INSTALLARE TUTTE LE LIBRERIE NEL FILE API CHATBOT
+pip install flask flask-cors pymongo requests python-dotenv langchain langchain-community faiss-cpu sentence-transformers 
