@@ -114,7 +114,7 @@ def crea_pratica(id_sinistro, id_perito):
             cursor.close()
             conn.close()
 
-# A. RICERCA PERIZIA
+# Aggiunta: RICERCA PERIZIA
 @app.route('/sinistri/ricerca', methods=['GET'])
 def cerca_perizie_per_data():
     # 1. Recupero i parametri dalla query string: ?inizio=YYYY-MM-DD&fine=YYYY-MM-DD
