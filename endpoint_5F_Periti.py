@@ -252,6 +252,22 @@ def crea_pratica_completa(id_sinistro, id_perito):
         "id_perizia": str(perizia_id)
     }), 201
 
+#ELIMINA PRATICA
+@app.route('/pratica/<pratica_id>/perito/<perito_id>', methods=['DELETE'])
+def elimina_pratica(pratica_id, perito_id):
+    if not ObjectId.is_valid(pratica_id):
+        return jsonify({"error": "ID pratica non valido"}), 400
+    try:
+        result = col_pratiche.delete_one({
+            "_id": ObjectId(pratica_id),
+            "perito_id": perito_id
+        })
+        if result.deleted_count == 0:
+            return jsonify({"error": "Pratica non trovata o non appartiene a questo perito"}), 404
+        return jsonify({"status": "eliminata", "pratica_id": pratica_id, "perito_id": perito_id}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 # ── POST rimborso ──────────────────────────────────────────────────────────────
 
 @app.route('/sinistro/<id_sinistro>/perito/<id_perito>/pratica/<id_perizia>/rimborso', methods=['POST'])

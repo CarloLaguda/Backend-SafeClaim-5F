@@ -24,11 +24,10 @@ CORS(app)
 # --- CONFIGURAZIONE DATABASE ---
 
 MYSQL_CONFIG = {
-    "host": "mysql-safeclaim.aevorastudios.com",
-    "port": 3306,
-    "user": "safeclaim",
-    "password": "0tHz31nhJ2hDOIccHehWamwNH8ItCklyZHGIISuE+tM=",
-    "database": "safeclaim_db"
+    "host": "localhost",
+    "user": "pythonuser",
+    "password": "password123",
+    "database": "gestione_assicurazioni"
 }
 
 def get_mysql():
@@ -208,8 +207,27 @@ def aggiungi_immagine(sinistro_id):
         return jsonify({"error": str(e)}), 500
 
 
-# --- POLLING STATO ANALISI AI ---
+@app.route('/sinistro/<sinistro_id>', methods=['DELETE'])
+def elimina_sinistro(sinistro_id):
+    if not ObjectId.is_valid(sinistro_id):
+        return jsonify({"error": "ID sinistro non valido"}), 400
+    try:
+        result = col_sinistri.delete_one({"_id": ObjectId(sinistro_id)})
+        if result.deleted_count == 0:
+            return jsonify({"error": "Sinistro non trovato"}), 404
 
+        # Cancella anche le perizie collegate
+        perizie_eliminate = col_perizie.delete_many({"sinistro_id": sinistro_id})
+
+        return jsonify({
+            "status": "eliminato",
+            "id": sinistro_id,
+            "perizie_eliminate": perizie_eliminate.deleted_count
+        }), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+# --- POLLING STATO ANALISI AI ---
 @app.route('/sinistro/<sinistro_id>/analisi', methods=['GET'])
 def get_analisi_ai(sinistro_id):
     if not ObjectId.is_valid(sinistro_id):
@@ -288,76 +306,60 @@ def get_veicoli_utente(user_id):
     finally:
         if conn: conn.close()
 
-
-# --- PERIZIE ---
-
-@app.route("/sinistro/<sinistro_id>/perito/<perito_id>/pratica", methods=["GET"])
-def get_pratica(sinistro_id, perito_id):
-    try:
-        pratica = col_perizie.find_one({"sinistro_id": sinistro_id, "perito_id": perito_id})
-        if not pratica:
-            return jsonify({"error": "Pratica non trovata"}), 404
-        pratica["_id"] = str(pratica["_id"])
-        return jsonify(pratica), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 400
-
-
-@app.route("/sinistro/<sinistro_id>/perito/<perito_id>/pratica", methods=["PUT"])
-def update_pratica(sinistro_id, perito_id):
+@app.route('/veicolo/user/<int:user_id>', methods=['POST'])
+def crea_veicolo_utente(user_id):
     data = request.get_json()
-    if not data:
-        return jsonify({"error": "Dati mancanti"}), 400
-    query = {"sinistro_id": sinistro_id, "perito_id": perito_id}
-    update_data = {"$set": {
-        "titolo": data.get("titolo"), "tipo_danno": data.get("tipo_danno"),
-        "stima_danno": data.get("stima_danno"), "parti_danneggiate": data.get("parti_danneggiate", []),
-        "descrizione": data.get("descrizione"), "conclusione": data.get("conclusione"),
-        "veicolo": data.get("veicolo"), "claim_code": data.get("claim_code"),
-        "stato": data.get("stato", "Bozza"), "note_perito": data.get("note_perito"),
-        "sinistro_id": sinistro_id, "perito_id": perito_id,
-        "data_aggiornamento": datetime.utcnow()
-    }}
-    col_perizie.update_one(query, update_data, upsert=True)
-    return jsonify({"status": "success"}), 200
 
+    # Campi obbligatori
+    required = ['targa']
+    if not all(k in data for k in required):
+        return jsonify({"error": "Campo obbligatorio mancante: targa"}), 400
 
-@app.route('/sinistro/<id_sinistro>/perito/<id_perito>/pratica', methods=['POST'])
-def crea_pratica_completa(id_sinistro, id_perito):
-    data = request.get_json()
+    conn = None
     try:
         conn = get_mysql()
-        cursor = conn.cursor()
-        cursor.execute("SELECT id FROM Perito WHERE id = %s", (id_perito,))
-        perito_esiste = cursor.fetchone()
-        cursor.close(); conn.close()
-    except Exception:
-        perito_esiste = True
-    if not perito_esiste:
-        return jsonify({"error": "Perito non trovato"}), 404
-    perizia_doc = {
-        "sinistro_id": id_sinistro, "perito_id": id_perito,
-        "titolo": data.get("titolo"), "tipo_danno": data.get("tipo_danno"),
-        "stima_danno": data.get("stima_danno"), "parti_danneggiate": data.get("parti_danneggiate", []),
-        "descrizione": data.get("descrizione"), "conclusione": data.get("conclusione"),
-        "veicolo": data.get("veicolo"), "claim_code": data.get("claim_code"),
-        "stato": data.get("stato", "Bozza"), "note_tecniche": data.get("note_tecniche"),
-        "documenti": data.get("documenti", []), "data_inserimento": datetime.now(UTC)
-    }
-    result = col_perizie.insert_one(perizia_doc)
-    perizia_id = result.inserted_id
-    try:
-        col_sinistri.update_one(
-            {"_id": ObjectId(id_sinistro)},
-            {"$set": {"stato": "in_perizia", "perito_id": id_perito,
-                      "perizia_id": str(perizia_id), "data_aggiornamento": datetime.now(UTC)}}
-        )
-    except Exception:
-        pass
-    return jsonify({"status": "Pratica creata", "id_perizia": str(perizia_id)}), 201
+        cursor = conn.cursor(dictionary=True)
 
-# ── GET sinistro completo per il perito (immagini + analisi AI inclusi) ───────
+        # Verifica che l'automobilista esista
+        cursor.execute("SELECT id FROM Automobilista WHERE id = %s", (user_id,))
+        utente = cursor.fetchone()
+        if not utente:
+            return jsonify({"error": f"Utente con id {user_id} non trovato"}), 404
 
+        # Inserisce il veicolo
+        query = """
+            INSERT INTO Veicolo (targa, n_telaio, marca, modello, anno_immatricolazione, automobilista_id)
+            VALUES (%s, %s, %s, %s, %s, %s)
+        """
+        cursor.execute(query, (
+            data.get('targa'),
+            data.get('n_telaio'),
+            data.get('marca'),
+            data.get('modello'),
+            data.get('anno_immatricolazione'),
+            user_id
+        ))
+        conn.commit()
+        nuovo_id = cursor.lastrowid
+
+        return jsonify({
+            "status": "success",
+            "message": "Veicolo creato con successo",
+            "veicolo_id": nuovo_id,
+            "automobilista_id": user_id
+        }), 201
+
+    except mysql.connector.IntegrityError as e:
+        if conn: conn.rollback()
+        # Targa o n_telaio duplicati
+        return jsonify({"error": "Targa o numero telaio già esistente"}), 409
+    except Exception as e:
+        if conn: conn.rollback()
+        return jsonify({"error": str(e)}), 500
+    finally:
+        if conn: conn.close()
+
+# --- PERIZIE ---
 @app.route('/sinistro/<sinistro_id>', methods=['GET'])
 def get_sinistro_by_id(sinistro_id):
     """
@@ -395,33 +397,6 @@ def get_sinistro_by_id(sinistro_id):
 
         return jsonify(s), 200
 
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-@app.route('/perito/<perito_id>/perizie', methods=['GET'])
-def get_perizie_perito(perito_id):
-    try:
-        docs = list(col_perizie.find({"perito_id": perito_id}))
-        for d in docs:
-            d['_id'] = str(d['_id'])
-            if isinstance(d.get('sinistro_id'), ObjectId):
-                d['sinistro_id'] = str(d['sinistro_id'])
-            if isinstance(d.get('data_inserimento'), datetime):
-                d['data_inserimento'] = d['data_inserimento'].isoformat()
-            if isinstance(d.get('data_aggiornamento'), datetime):
-                d['data_aggiornamento'] = d['data_aggiornamento'].isoformat()
-        return jsonify(docs), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-
-@app.route('/perizia/<perizia_id>', methods=['DELETE'])
-def elimina_perizia(perizia_id):
-    try:
-        result = col_perizie.delete_one({"_id": ObjectId(perizia_id)})
-        if result.deleted_count == 0:
-            return jsonify({"error": "Perizia non trovata"}), 404
-        return jsonify({"status": "eliminata"}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
