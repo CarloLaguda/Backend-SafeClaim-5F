@@ -360,47 +360,60 @@ def assegna_intervento(id_sinistro, id_perito, id_perizia):
         "nuovo_stato": "in_riparazione"
     }), 200
 
-# ── GET pratiche di un specifico utente (Automobilista) ───────────────────────
+# ── GET pratiche per uno specifico perito ─────────────────────────────────────
 
-@app.route("/utente/<id_utente>/pratiche", methods=["GET"])
-def get_pratiche_utente(id_utente):
+@app.route('/perito/<perito_id>/pratiche', methods=['GET'])
+def get_pratiche_perito_v2(perito_id):
     """
-    Restituisce tutte le pratiche collegate a un determinato utente/automobilista.
+    Restituisce la lista delle pratiche assegnate a un perito specifico,
+    includendo i dati del sinistro e il preventivo (se presente).
     """
     try:
-        # Cerchiamo nella collezione 'Pratica' i documenti dove l'utente_id corrisponde.
-        # Nota: Assicurati che quando crei la pratica, salvi anche l'id_utente o l'id_automobilista.
-        # Se l'id_utente è nel Sinistro, dovremmo fare una ricerca incrociata.
-        
-        # Esempio basato su campo 'utente_id' presente nella Pratica:
-        query = {"utente_id": id_utente}
-        pratiche_cursor = col_pratiche.find(query)
-        
+        # 1. Cerchiamo tutte le pratiche assegnate a questo ID perito
+        # Usiamo list() per consumare il cursore di MongoDB
+        pratiche_cursor = col_pratiche.find({"perito_id": perito_id})
         risultati = []
 
         for pratica in pratiche_cursor:
+            # Serializzazione ID principale
             pratica["_id"] = str(pratica["_id"])
             
-            # Formattazione date
-            for data_key in ["data_inserimento", "data_aggiornamento"]:
-                if data_key in pratica and isinstance(pratica[data_key], datetime):
-                    pratica[data_key] = pratica[data_key].isoformat()
-            
-            # Pulizia ID
-            for key in ["sinistro_id", "perito_id", "perizia_id"]:
-                if key in pratica and pratica[key] is not None:
-                    pratica[key] = str(pratica[key])
+            # Serializzazione date per evitare errori JSON
+            for campo_data in ["data_inserimento", "data_aggiornamento"]:
+                if campo_data in pratica and isinstance(pratica[campo_data], datetime):
+                    pratica[campo_data] = pratica[campo_data].isoformat()
 
+            # 2. Recupero del sinistro collegato per arricchire la risposta
+            sin_id = pratica.get("sinistro_id")
+            if sin_id:
+                try:
+                    # Cerchiamo nella collezione 'Sinistri' (con la S maiuscola come confermato)
+                    sinistro = col_sinistri.find_one({"_id": ObjectId(sin_id)})
+                    if sinistro:
+                        # Puliamo il sinistro dagli ID e dalle immagini pesanti
+                        pratica["sinistro_dettaglio"] = {
+                            "targa": sinistro.get("targa"),
+                            "veicolo": sinistro.get("veicolo") or f"{sinistro.get('marca')} {sinistro.get('modello')}",
+                            "luogo": sinistro.get("luogo"),
+                            "stato_sinistro": sinistro.get("stato")
+                        }
+                except Exception as e:
+                    print(f"Errore recupero sinistro {sin_id}: {e}")
+
+            # 3. Pulizia ID perito e sinistro (da ObjectId a stringa)
+            if "sinistro_id" in pratica:
+                pratica["sinistro_id"] = str(pratica["sinistro_id"])
+            
             risultati.append(pratica)
 
         return jsonify({
-            "utente_id": id_utente,
-            "totale": len(risultati),
+            "perito_id": perito_id,
+            "numero_pratiche": len(risultati),
             "pratiche": risultati
         }), 200
 
     except Exception as e:
-        return jsonify({"error": f"Errore nel recupero pratiche utente: {str(e)}"}), 500
+        return jsonify({"error": f"Errore nel recupero perizie: {str(e)}"}), 500
 
 # ── GET tutte le perizie di un perito ─────────────────────────────────────────
 
