@@ -14,6 +14,7 @@ from datetime import datetime, UTC
 import urllib.parse
 import threading
 from gradio_client import Client, handle_file
+from pymongo import DESCENDING
 
 # Modulo storage Cloudinary
 from Storage import carica_immagine
@@ -131,16 +132,26 @@ def apri_sinistro():
         return jsonify({"error": str(e)}), 500
 
 
+ # Importa la costante per l'ordine decrescente
+
 @app.route('/sinistri', methods=['GET'])
 def get_tutti_sinistri():
     try:
-        sinistri = list(col_sinistri.find())
+        filtro = {}
+        automobilista_id = request.args.get('automobilista_id')
+        if automobilista_id:
+            filtro['automobilista_id'] = int(automobilista_id)
+            
+        # Aggiungiamo .sort("nome_campo_data", -1) o DESCENDING
+        # Sostituisci 'data_evento' con il nome esatto del campo nel tuo DB
+        sinistri = list(col_sinistri.find(filtro).sort("data_evento", DESCENDING))
+        
         for s in sinistri:
             s['_id'] = str(s['_id'])
+            
         return jsonify(sinistri), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
 
 # --- UPLOAD IMMAGINE + ANALISI AI ---
 

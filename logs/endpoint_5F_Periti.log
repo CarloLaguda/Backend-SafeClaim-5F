@@ -4,127 +4,463 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:8000
- * Running on http://10.0.11.74:8000
+ * Running on http://10.0.0.160:8000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 552-498-904
+ * Debugger PIN: 242-116-882
+127.0.0.1 - - [27/Apr/2026 17:05:21] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:09:33] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:10:03] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:10:24] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:10:54] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:11:24] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:11:54] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:12:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:12:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:13:24] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:13:54] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:14:24] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:14:54] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:15:00] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00÷\x01\x00\x00ó\x03\x03Ì¥R`\x01kcj¶¿Ï²2LT\x1a\x90ý%\x00')
+127.0.0.1 - - [27/Apr/2026 17:15:00] "\x16\x03\x01\x00÷\x01\x00\x00ó\x03\x03Ì¥R`\x01kcj¶¿Ï²2LT\x1a\x90ý%\x00\x1f\x9f¨\x88\x14Æ\x9b\x8bU`­È\x00\x00\x84\x003\x009\x005\x00/À,À0\x00£\x00\x9fÌ©Ì¨ÌªÀ¯À­À£À\x9fÀ+À/\x00¢\x00\x9eÀ®À¬À¢À\x9eÀ$À(\x00k\x00jÀsÀw\x00Ä\x00ÃÀ#À'\x00g\x00@ÀrÀv\x00¾\x00½À" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:00] "HEAD / HTTP/1.1" 404 -
+127.0.0.1 - - [27/Apr/2026 17:15:00] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00')
+127.0.0.1 - - [27/Apr/2026 17:15:00] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iï\x99\x94®ª\x8c\x0bü@Vù\x10\x94\x19è\x89,\x86%Î\x09åpä\x02\x0fxç¨ÒN\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:00] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x006\x00')
+127.0.0.1 - - [27/Apr/2026 17:15:00] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x03\x00\x8c\x01\x00\x00\x88\x03\x03iï\x99\x94\x9eí')
+127.0.0.1 - - [27/Apr/2026 17:15:00] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00')
+127.0.0.1 - - [27/Apr/2026 17:15:00] code 400, message Bad request syntax ('\x16\x03\x01\x00W\x01\x00\x00S\x03\x03iï\x99\x94¡6k9³ãÚ?ÐØ8dÁ\x7f½p$X«9°r\x05\x8e\x7f"Æ^\x00\x00')
+127.0.0.1 - - [27/Apr/2026 17:15:00] "\x16\x03\x01\x00W\x01\x00\x00S\x03\x03iï\x99\x94¡6k9³ãÚ?ÐØ8dÁ\x7f½p$X«9°r\x05\x8e\x7f"Æ^\x00\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:00] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iï\x99\x94y¶ßàÂrÃ·\x91i\x09\x9fÓù¶\x8då-\x01ö&Ï´AÏÛ\x06ÿ\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x006\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:00] "\x16\x03\x03\x00\x8c\x01\x00\x00\x88\x03\x03iï\x99\x94\x9eí\x85\x04Ê¯~\x05\x10E$>rÀø³^\x1b¬\x11KÁË¯/ÒàÛ\x00\x00\x1a\x13\x05\x13\x04\x13\x01\x13\x02\x13\x03À´Àµ\x00Ç\x00ÆÀ²À°À³À±\x01\x00\x00E\x00+\x00\x03\x02\x03\x04\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:00] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iï\x99\x94£\x07ND»ä\x09\x1c<ÅÝH\x0e\x1c(2"í\x18ßîÚeKð1&\x1d\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:00] code 400, message Bad request version ('åQô°\x8f')
+127.0.0.1 - - [27/Apr/2026 17:15:00] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iï\x99\x94\x90ì\x955$×¾*¯]7Â\x85ÜEÊú\x18>êÆ\x1eåQô°\x8f" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:00] code 400, message Bad request version ('\x00/\x00')
+127.0.0.1 - - [27/Apr/2026 17:15:00] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00')
+127.0.0.1 - - [27/Apr/2026 17:15:00] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iï\x99\x94³Lû?\x18üÚ¸j\x0bÊ¦t\x0cÿ-ãJ§Hï\x09,\x1fýÒDX\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:00] "\x16\x03\x00\x00i\x01\x00\x00e\x03\x03U\x1c§ärandom1random2random3random4\x00\x00\x0c\x00/\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:00] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00')
+127.0.0.1 - - [27/Apr/2026 17:15:00] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iï\x99\x94Ý·"\x9c\x18ãh¾B[Ò\x8aFÇ¶´¿hU\x9ex^8\x0fÄ^³\x7f\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:00] "GET / HTTP/1.1" 404 -
+127.0.0.1 - - [27/Apr/2026 17:15:00] code 400, message Bad request version ('À#À¬À®À+À')
+127.0.0.1 - - [27/Apr/2026 17:15:00] code 400, message Bad request version ('À#À¬À®À+À')
+127.0.0.1 - - [27/Apr/2026 17:15:00] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iï\x99\x94ñL\x9e\x03ìyä\x04\x92A<*­)\x805f÷9í\x97\x9f\x09Àú\x06%ÿ\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:00] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iï\x99\x94Á\x1bâ\x82#\x85/þ\x80\x01÷ù§»9íýÐ9$÷\x1eJòÄ?w>\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:00] code 400, message Bad request version ('À#À¬À®À+À')
+127.0.0.1 - - [27/Apr/2026 17:15:00] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iï\x99\x94Ö\x92\x8eHSPÚ\x1d\x87#}L§y\x86QpT/«¿\x8e\x0ei\x1eétm\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:01] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x006\x00')
+127.0.0.1 - - [27/Apr/2026 17:15:01] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00')
+127.0.0.1 - - [27/Apr/2026 17:15:01] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iï\x99\x95\x8f|"£\x8b^\x05\x13\x96\x1f¸ÉÒüH\x17L\x12CK+Ô»¿CÛ\x19\x99\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:01] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iï\x99\x95®³Æ\x013Ä­¨\x87»n¨_q÷°/\x18¼\x07«\x0bè\x83?D\x0c@\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x006\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:01] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00')
+127.0.0.1 - - [27/Apr/2026 17:15:01] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iï\x99\x95°å±\x90¼h\x7f\x88Í+\x92uÎU\x04ò¥6®\x8b|\x17\x80\x92=:^\x82\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:01] code 400, message Bad request syntax ('\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iï\x99\x95F±tR\x98ä-cZM')
+127.0.0.1 - - [27/Apr/2026 17:15:01] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iï\x99\x95F±tR\x98ä-cZM" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:01] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00')
+127.0.0.1 - - [27/Apr/2026 17:15:01] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iï\x99\x95Üß^_\x9cÁ<qªÍ\x17\x9aäûæ³Ò¸ñA_\x8aó\x84i\x9a/T\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:01] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00')
+127.0.0.1 - - [27/Apr/2026 17:15:01] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iï\x99\x95Û­VÎ\x87n÷/\x85³Æø\x96\x11¢q\x8b¢¬\x00\x89<çvðwÁÌ\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:01] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x03\x00Ý\x01\x00\x00Ù\x03\x03iï\x99\x95\x99ïÂ\x06ü^Ë]á+\\Ñ¢ñw.\xad6VÓi\x0f£\x9e')
+127.0.0.1 - - [27/Apr/2026 17:15:01] "\x16\x03\x03\x00Ý\x01\x00\x00Ù\x03\x03iï\x99\x95\x99ïÂ\x06ü^Ë]á+\\Ñ¢ñw.­6VÓi\x0f£\x9e\x1cñqª\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:01] code 400, message Bad request syntax ("\x16\x03\x02\x00½\x01\x00\x00¹\x03\x02iï\x99\x95\x82zN\x1a\x84½ë?\x83\x04\x87\x84\x93aZBä5©N\x11\x10'$\x84\x9fl\x06\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00")
+127.0.0.1 - - [27/Apr/2026 17:15:01] code 400, message Bad request syntax ('\x16\x03\x01\x00½\x01\x00\x00¹\x03\x01iï\x99\x95`A[7P\x1a\x0e4\x19[rÚ©r£6\x14Af!õ\x17zj\x80\x9b4w\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
+127.0.0.1 - - [27/Apr/2026 17:15:01] "\x16\x03\x02\x00½\x01\x00\x00¹\x03\x02iï\x99\x95\x82zN\x1a\x84½ë?\x83\x04\x87\x84\x93aZBä5©N\x11\x10'$\x84\x9fl\x06\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:01] "\x16\x03\x01\x00½\x01\x00\x00¹\x03\x01iï\x99\x95`A[7P\x1a\x0e4\x19[rÚ©r£6\x14Af!õ\x17zj\x80\x9b4w\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:05] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00')
+127.0.0.1 - - [27/Apr/2026 17:15:05] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iï\x99\x94\x9eU\x8a}\x1eÅ\x16¥q\x7f{=6ÇPýÐ\x07\x06¡Z\x0e\x87p \x96\x16ø\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:05] code 400, message Bad request syntax ('\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iï\x99\x99©°{k\x00')
+127.0.0.1 - - [27/Apr/2026 17:15:05] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iï\x99\x99©°{k\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:05] code 400, message Bad request syntax ('\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iï\x99\x99')
+127.0.0.1 - - [27/Apr/2026 17:15:05] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iï\x99\x99" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:10] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00')
+127.0.0.1 - - [27/Apr/2026 17:15:10] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iï\x99\x99ü\x9d\x98\x14*ýú\x89{ýIö×-Ðÿ_QÖ\x89\x07^8»#úêô\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:15] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00')
+127.0.0.1 - - [27/Apr/2026 17:15:15] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iï\x99\x9e4[ÔøMÞìÇÌs\x1e3ÿßJ4ôÄÇ>ÍGÜU_\x08\x94M\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:15] code 400, message Bad request version ('\x8f\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
+127.0.0.1 - - [27/Apr/2026 17:15:15] "\x16\x03\x00\x00¥\x01\x00\x00¡\x03\x00iï\x99£« ê óéG\x9eØõ\x8f\x19\x8fK\x92®¥\x11<û\x9e\x0eó`\x0e\x1b\x0d\x8f\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
+127.0.0.1 - - [27/Apr/2026 17:15:24] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:15:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:16:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:16:11] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:16:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:17:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:17:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:18:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:18:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:19:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:19:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:20:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:20:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:21:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:21:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:22:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:22:31] "HEAD /.aws/ HTTP/1.1" 404 -
+127.0.0.1 - - [27/Apr/2026 17:22:31] "HEAD /.ada/ HTTP/1.1" 404 -
+127.0.0.1 - - [27/Apr/2026 17:22:31] "HEAD /.ssh/ HTTP/1.1" 404 -
+127.0.0.1 - - [27/Apr/2026 17:22:31] "HEAD /.midway/ HTTP/1.1" 404 -
+127.0.0.1 - - [27/Apr/2026 17:22:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:23:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:23:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:24:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:24:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:25:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:25:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:26:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:26:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:27:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:27:27] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:27:58] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:28:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:28:58] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:29:27] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:29:57] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:30:27] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:31:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:32:10] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:32:10] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:32:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:33:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:34:27] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:34:58] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:35:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:35:47] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:35:50] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:35:50] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:36:18] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:36:21] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:36:21] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:36:21] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:36:51] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:37:22] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:37:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:37:37] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:37:37] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:38:06] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:38:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:39:06] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:39:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:40:06] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:40:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:41:27] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:41:28] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:41:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:41:58] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:42:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:43:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:43:05] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:43:05] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:43:35] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:44:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:44:35] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:45:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:45:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:46:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:46:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:47:06] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:47:35] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:48:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:48:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:49:06] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:49:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:50:06] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:50:35] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:51:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:51:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:52:06] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:52:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:53:06] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:53:35] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:54:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:54:35] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:55:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:55:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:56:06] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:56:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:56:50] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:57:20] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:57:50] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:58:20] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:58:50] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:59:21] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 17:59:50] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:00:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:19:45] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:19:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:20:19] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:20:48] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:21:19] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:21:48] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:22:19] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:22:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:23:24] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:23:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:24:19] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:24:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:25:19] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:25:45] "OPTIONS /sinistro/69efa9c841151164ccfa5966/perito/1/pratica HTTP/1.1" 200 -
+/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:229: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "data_inserimento":  datetime.utcnow()
+/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:244: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "data_aggiornamento": datetime.utcnow()
+127.0.0.1 - - [27/Apr/2026 18:25:46] "POST /sinistro/69efa9c841151164ccfa5966/perito/1/pratica HTTP/1.1" 201 -
+127.0.0.1 - - [27/Apr/2026 18:25:48] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:25:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:26:19] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:26:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:27:19] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:27:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:28:18] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:28:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:29:18] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:29:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:30:07] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:30:07] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:30:07] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:30:19] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:30:38] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:30:48] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:31:07] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:31:19] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:31:38] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:31:48] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:32:08] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:32:19] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:32:19] "OPTIONS /sinistro/69efab6841151164ccfa5967/perito/1/pratica HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:32:19] "POST /sinistro/69efab6841151164ccfa5967/perito/1/pratica HTTP/1.1" 201 -
+127.0.0.1 - - [27/Apr/2026 18:32:21] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:32:37] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:32:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:33:08] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:33:22] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:33:23] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:33:23] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:33:23] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:33:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:33:46] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:33:46] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:33:47] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:33:47] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:34:01] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:34:01] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:34:17] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:34:17] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:34:31] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:34:31] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:34:46] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:34:46] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:35:01] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:35:01] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:35:16] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:35:17] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:35:32] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:35:32] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:35:46] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:35:47] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:36:01] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:36:02] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:36:16] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:36:16] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:36:31] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:36:32] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:36:46] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:36:46] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:37:02] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:37:02] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:37:17] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:37:17] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:37:31] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:37:31] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:37:46] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:37:47] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:38:01] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:38:02] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:38:17] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:38:17] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:38:32] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:38:32] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:38:46] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:38:46] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:39:01] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:39:02] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:39:16] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:39:17] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:39:32] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:39:32] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:39:46] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:39:46] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:40:01] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:40:01] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:40:16] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:40:16] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:40:31] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:40:31] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:40:46] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:40:46] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:41:02] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:41:02] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:41:16] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:41:17] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:41:32] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:41:32] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:41:46] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:41:46] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:42:01] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:42:02] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:42:16] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:42:16] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:42:31] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:42:32] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:42:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:42:36] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:42:36] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:42:36] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:42:51] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:42:52] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:43:06] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:43:07] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:43:21] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:43:22] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:43:37] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:43:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:43:52] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:44:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:44:21] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:44:25] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:44:25] "GET /perito/3/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:44:25] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:44:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:44:40] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:44:51] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:44:55] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:45:06] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:45:08] "OPTIONS /sinistro/69efae4b41151164ccfa5968/perito/3/pratica HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:45:09] "POST /sinistro/69efae4b41151164ccfa5968/perito/3/pratica HTTP/1.1" 201 -
+127.0.0.1 - - [27/Apr/2026 18:45:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:45:11] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:45:21] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:45:25] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:45:35] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:45:36] "GET /perito/3/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:45:36] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:45:36] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:45:51] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:45:51] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:46:06] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:46:06] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:46:20] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:46:21] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:46:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:46:37] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:46:50] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:46:52] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:47:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:47:06] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:47:21] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:47:21] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:47:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:47:37] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:47:51] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:47:51] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:48:06] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:48:06] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:48:20] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:48:22] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:48:35] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:48:36] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:48:51] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:48:52] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:49:06] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:49:08] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:49:21] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:49:21] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:49:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:49:36] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:49:51] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:49:51] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:50:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:50:07] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:50:20] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:50:21] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:50:35] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:50:36] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:50:51] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:50:51] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:51:06] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:51:07] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:51:20] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:51:21] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:51:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:51:37] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:51:50] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:51:51] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:52:06] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:52:06] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:52:27] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:52:28] "GET /perito/3/pratiche HTTP/1.1" 200 -
  * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 552-498-904
+ * Debugger PIN: 242-116-882
  * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 552-498-904
+ * Debugger PIN: 242-116-882
  * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 552-498-904
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 552-498-904
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 552-498-904
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 552-498-904
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 552-498-904
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 552-498-904
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 552-498-904
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 552-498-904
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 552-498-904
-127.0.0.1 - - [27/Apr/2026 14:56:37] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00÷\x01\x00\x00ó\x03\x03\x80Ñx\x05´âDU')
-127.0.0.1 - - [27/Apr/2026 14:56:37] "\x16\x03\x01\x00÷\x01\x00\x00ó\x03\x03\x80Ñx\x05´âDU\x0b_¥t+Ý\\Â0\x02r·\x9eÊÈ¸%Úµå*s:\x90\x00\x00\x84\x003\x009\x005\x00/À,À0\x00£\x00\x9fÌ©Ì¨ÌªÀ¯À­À£À\x9fÀ+À/\x00¢\x00\x9eÀ®À¬À¢À\x9eÀ$À(\x00k\x00jÀsÀw\x00Ä\x00ÃÀ#À'\x00g\x00@ÀrÀv\x00¾\x00½À" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:37] "HEAD / HTTP/1.1" 404 -
-127.0.0.1 - - [27/Apr/2026 14:56:37] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:37] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iïy%\x1bIP\x8c¬\x7f\x86\x82\x1bw\x7f5µy\x96\x96*\x0c\x828;\x8cÝ!\x97éo"\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:37] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:37] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iïy%\x01d\x12\x06\x94Z#ÞÚø)§¹£E}@Qp*\x17TÛý6\x87Ý \x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:37] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x03\x00\x8c\x01\x00\x00\x88\x03\x03iïy%·\xad!úå\x08}hþf\x81û\x90¶O4)\x82TíªÖÒåò\x9eÿ\x9d\x00\x00\x1a\x13\x05\x13\x04\x13\x01\x13\x02\x13\x03À´Àµ\x00Ç\x00ÆÀ²À°À³À±\x01\x00\x00E\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:37] "\x16\x03\x03\x00\x8c\x01\x00\x00\x88\x03\x03iïy%·­!úå\x08}hþf\x81û\x90¶O4)\x82TíªÖÒåò\x9eÿ\x9d\x00\x00\x1a\x13\x05\x13\x04\x13\x01\x13\x02\x13\x03À´Àµ\x00Ç\x00ÆÀ²À°À³À±\x01\x00\x00E\x00\x0b\x00\x02\x01\x00\x00+\x00\x03\x02\x03\x04\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:37] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:37] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iïy%\x98\x9cÁ\x10ÒÜ\x15\x15\x0f¡XÝú#Ù\x80-iº\x01ø\x8dþ£-óR[\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:37] code 400, message Bad request syntax ('\x16\x03\x01\x00W\x01\x00\x00S\x03\x03iïy%³GÚô¡mk\x96\x16\x80û\x10Ù\x87\x8d\x9a(¦p5\x03Pa¨Ó\x84¿×\x00\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:37] "\x16\x03\x01\x00W\x01\x00\x00S\x03\x03iïy%³GÚô¡mk\x96\x16\x80û\x10Ù\x87\x8d\x9a(¦p5\x03Pa¨Ó\x84¿×\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:37] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:37] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iïy%dyÓ0æ|m&\x0céV´e0[g.HÞQàÜ=?2 #x\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:37] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:37] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iïy%\x15ª\x0d×!\x9bZù2\x8f\x96N\x09\x0bµÍX.âtçÍç((£\x1dK\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:37] code 400, message Bad request version ('\x00/\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:37] "\x16\x03\x00\x00i\x01\x00\x00e\x03\x03U\x1c§ärandom1random2random3random4\x00\x00\x0c\x00/\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:37] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:37] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iïy%\x18\\I\x1a ñÚ\x19FÍÊËþþÍüNFë%\x0eÚÛV÷ðè\x7f\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:37] "GET / HTTP/1.1" 404 -
-127.0.0.1 - - [27/Apr/2026 14:56:37] code 400, message Bad request version ('À#À¬À®À+À')
-127.0.0.1 - - [27/Apr/2026 14:56:37] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iïy%eW:bf³\x13ªë\x7fë\x01g98Ýfip)ÖÖñc\x10,\x06õ\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:37] code 400, message Bad request syntax ('\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iïy%Å!i:âIÂ')
-127.0.0.1 - - [27/Apr/2026 14:56:37] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iïy%Å!i:âIÂ" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:37] code 400, message Bad request version ('À#À¬À®À+À')
-127.0.0.1 - - [27/Apr/2026 14:56:37] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iïy%\x17Z\x96]¼8\x8faáú\x80\x16IØªå´ÊÞí\x17j\x9dî¨/\x8cM\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:37] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:37] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iïy%\x8eÞ\x16¨i×ßF\x14gsØdn\x97¨FLÈìÞ:#Ìð§D0\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:37] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:37] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iïy%\x13Ip-\x9eTâ\x85&­\x99¾vW\x90gZxßSâÉ\x07ÀÕp\x87ã\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:37] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:37] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iïy%ßf\x14@Ê&\x88xûLÅ½³4\x91\x0cå\x84\x14R\x19¬\x18S\x8a1\x1cþ\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:37] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:37] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iïy%6\x95lUf\x99ñ,ÿ5Åå\x04\x114\x80á]·\x18\x15$GãÕ<\x8d?\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:37] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:37] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iïy%'\x05_\x1899\x98¨\x7fð\x81H­\x0fõ6âÉ\x02bÙ\x04Êò  Üº\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:37] code 400, message Bad request syntax ('\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iïy%ð4\x1b\x96\x06\x90\x02+Óà\x06ù\x8dM¬cèË')
-127.0.0.1 - - [27/Apr/2026 14:56:37] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iïy%ð4\x1b\x96\x06\x90\x02+Óà\x06ù\x8dM¬cèË" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:38] code 400, message Bad request version ('ß*\x0eblgt^¦\x17/63\x0eT\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:38] "\x16\x03\x03\x00Ý\x01\x00\x00Ù\x03\x03iïy&v{ü\x02\x0døüæÐmêÜ\x85ß*\x0eblgt^¦\x17/63\x0eT\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:38] code 400, message Bad request version ('\x040\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:38] "\x16\x03\x01\x00½\x01\x00\x00¹\x03\x01iïy&\x83\x16É\x8b\x1fÚKlñí\x98î\x84Ð\x0c¯"\x8dÝ4ü®\x12s"\x0b\x040\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:38] code 400, message Bad request syntax ('\x16\x03\x02\x00½\x01\x00\x00¹\x03\x02iïy&\x11ÞC\x07\x97~ÕZ\x97A\x9f0\x9bZ{þðÁnÒÙ\x08Íÿ$$\x80ð\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:38] "\x16\x03\x02\x00½\x01\x00\x00¹\x03\x02iïy&\x11ÞC\x07\x97~ÕZ\x97A\x9f0\x9bZ{þðÁnÒÙ\x08Íÿ$$\x80ð\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:42] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:42] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iïy%[á°\x8f3ËhS\x8d¹\x80?õÞ\x82\x07Nö\x07\x84ÑU \x85Ö\x82\x94\x01\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:47] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:47] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iïy*\x18\x9f4ôXôÀX\x1aÐ\x04\x18À£\x0c|YGã»¿+zùþ[cá\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:47] code 400, message Bad request version ('!4')
-127.0.0.1 - - [27/Apr/2026 14:56:47] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iïy/\x87w\x9fê MÞ\x90ë\x0bë ì<:³.\x85lµ¹õ\x09\x86\x0c!4" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:52] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:52] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iïy/2`\x05\x91ÛU¤Î&\x87ø\x9d\x81ù\x97Ê¹Û$\x8fð\x14\x85kí\x0bË\x81\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:57] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:57] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iïy4Ú\x02\x99üð¿ÏZ>µÍ\x89É÷ãG\x8fÊWÜÌ*å\x9fI°£æ\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:56:57] code 400, message Bad request syntax ('\x16\x03\x00\x00¥\x01\x00\x00¡\x03\x00iïy9Ë\x96¯BhN\x94\x16$Q}N¹ü~0\x8cp\x02\x93]\x8b\x8fe\x18è\xadÿ\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
-127.0.0.1 - - [27/Apr/2026 14:56:57] "\x16\x03\x00\x00¥\x01\x00\x00¡\x03\x00iïy9Ë\x96¯BhN\x94\x16$Q}N¹ü~0\x8cp\x02\x93]\x8b\x8fe\x18è­ÿ\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 14:57:40] "POST /pratica100a5f8b5f339c3f656/perito/ HTTP/1.1" 404 -
-127.0.0.1 - - [27/Apr/2026 14:57:42] "POST /pratica100a5f8b5f339c3f656/perito/ HTTP/1.1" 404 -
-127.0.0.1 - - [27/Apr/2026 14:57:58] "DELETE /pratica100a5f8b5f339c3f656/perito/ HTTP/1.1" 404 -
-127.0.0.1 - - [27/Apr/2026 14:58:24] "DELETE /pratica100a5f8b5f339c3f656/perito/ HTTP/1.1" 404 -
-127.0.0.1 - - [27/Apr/2026 14:58:51] "DELETE /pratica/100a5f8b5f339c3f656/perito/ HTTP/1.1" 404 -
-127.0.0.1 - - [27/Apr/2026 15:00:14] "DELETE /pratica/69e68100a5f8b5f339c3f656/perito/1 HTTP/1.1" 200 -
+ * Debugger PIN: 242-116-882
+127.0.0.1 - - [27/Apr/2026 18:53:19] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:53:20] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:53:21] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:53:21] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:53:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:53:37] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:53:50] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:53:51] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:53:52] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:54:06] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:54:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:54:21] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:54:22] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:54:36] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:54:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:54:52] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:54:52] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:55:07] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:55:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:55:22] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:55:22] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:55:36] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:55:52] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:56:07] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:56:22] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:56:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:56:36] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:56:51] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:57:06] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:57:22] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:57:24] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:57:37] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:57:52] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:58:07] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:58:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:58:27] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:59:27] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 18:59:28] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 19:00:26] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 19:00:28] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 19:00:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 19:00:52] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 19:01:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 19:01:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 19:01:27] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 19:01:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 19:02:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 19:02:28] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 19:03:28] "GET /perito/3/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [27/Apr/2026 19:03:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
