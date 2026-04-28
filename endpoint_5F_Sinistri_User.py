@@ -132,6 +132,29 @@ def apri_sinistro():
         return jsonify({"error": str(e)}), 500
 
 
+# Aggiornamento sinistro
+
+@app.route('/sinistro/<sinistro_id>', methods=['PUT'])
+def aggiorna_sinistro(sinistro_id):
+    if not ObjectId.is_valid(sinistro_id):
+        return jsonify({"error": "ID non valido"}), 400
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "Dati mancanti"}), 400
+    try:
+        col_sinistri.update_one(
+            {"_id": ObjectId(sinistro_id)},
+            {"$set": {
+                "descrizione": data.get("descrizione"),
+                "stato": data.get("stato"),
+                "data_aggiornamento": datetime.now(UTC)
+            }}
+        )
+        return jsonify({"status": "success"}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
  # Importa la costante per l'ordine decrescente
 
 @app.route('/sinistri', methods=['GET'])
