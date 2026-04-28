@@ -4,162 +4,101 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:7000
- * Running on http://10.0.3.215:7000
+ * Running on http://10.0.12.207:7000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 933-667-687
-127.0.0.1 - - [28/Apr/2026 08:58:48] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 08:59:03] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 08:59:18] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 08:59:33] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 08:59:48] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:00:03] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:00:18] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:00:33] "GET /sinistri HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 933-667-687
-127.0.0.1 - - [28/Apr/2026 09:01:00] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:01:03] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:01:18] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:01:33] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:01:48] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:02:03] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:02:18] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:02:33] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:02:48] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:02:49] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:03:04] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:03:19] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:03:35] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:03:50] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:04:04] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:04:20] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:04:35] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:04:50] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:05:05] "GET /sinistri HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 933-667-687
-127.0.0.1 - - [28/Apr/2026 09:05:21] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:05:35] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:05:50] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:06:05] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:06:20] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:06:35] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:06:50] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:07:05] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:07:20] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:07:35] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:07:50] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:08:05] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:08:20] "GET /sinistri HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 933-667-687
-127.0.0.1 - - [28/Apr/2026 09:08:35] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:08:50] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:09:05] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:09:20] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:09:35] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:09:50] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:10:05] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:10:20] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:10:35] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:10:50] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:11:05] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:11:20] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:11:34] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:11:50] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:12:05] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:12:20] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:12:35] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:12:50] "GET /sinistri HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 933-667-687
-127.0.0.1 - - [28/Apr/2026 09:13:05] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:13:11] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:13:25] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:13:41] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:13:56] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:14:10] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:23:29] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:23:44] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:23:59] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:24:14] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:24:29] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:24:44] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:24:59] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:25:14] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:26:15] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:26:39] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:26:44] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:26:59] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:27:14] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:27:29] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:27:44] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:28:26] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:29:23] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:29:29] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:29:44] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:29:59] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:30:14] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:30:29] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:30:44] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:30:59] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:31:14] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:31:29] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:32:26] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:33:26] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:33:42] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:33:44] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:33:59] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:34:14] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:34:29] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:35:10] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:35:14] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:35:29] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:35:44] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:35:59] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:36:14] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:36:29] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:36:44] "GET /sinistri HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 933-667-687
-127.0.0.1 - - [28/Apr/2026 09:36:59] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:37:14] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:37:29] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:37:44] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:37:59] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:38:26] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:39:26] "GET /sinistri HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 933-667-687
-127.0.0.1 - - [28/Apr/2026 09:40:26] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:41:26] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:42:26] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:43:17] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:43:29] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:43:44] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:43:59] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:44:14] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:44:29] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:44:34] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:44:50] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:45:05] "GET /sinistri HTTP/1.1" 200 -
+ * Debugger PIN: 856-445-632
+127.0.0.1 - - [28/Apr/2026 11:27:25] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:27:40] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:27:50] "OPTIONS /sinistro HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:27:50] "POST /sinistro HTTP/1.1" 201 -
+127.0.0.1 - - [28/Apr/2026 11:27:50] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:27:50] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:27:55] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:28:15] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:28:30] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:28:46] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:29:01] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:29:17] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:29:30] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:29:46] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:30:01] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:30:16] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:30:31] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:31:01] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:31:16] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:31:31] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:31:46] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:32:00] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:32:16] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:32:31] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:32:46] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:33:01] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:33:16] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:33:31] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:34:25] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:35:25] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:35:30] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:35:45] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:36:00] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:36:16] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:36:31] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:36:46] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:37:01] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:37:16] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:37:31] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:37:46] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:38:01] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:38:18] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:38:31] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:38:46] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:39:01] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:39:16] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:39:31] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:40:25] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:41:25] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:42:25] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:43:25] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:44:02] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:44:12] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:44:34] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:44:49] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:44:49] "OPTIONS /sinistro HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:44:49] "POST /sinistro HTTP/1.1" 201 -
+127.0.0.1 - - [28/Apr/2026 11:44:49] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:44:50] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:45:05] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:45:20] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:45:35] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:45:50] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:46:05] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:46:20] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:46:35] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:46:50] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:47:05] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:47:20] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:47:36] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:47:51] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:48:06] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:48:21] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:48:36] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:48:51] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:49:05] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:49:20] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:49:36] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:49:50] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:49:54] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:50:09] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:50:25] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:50:40] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:50:54] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:51:10] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:51:25] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:51:40] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:51:55] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:52:25] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:53:25] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:54:20] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:54:25] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:54:40] "GET /sinistri HTTP/1.1" 200 -

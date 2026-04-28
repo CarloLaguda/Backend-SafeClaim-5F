@@ -4,39 +4,18 @@ Connessione a MongoDB Atlas (FakeClaim) riuscita!
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
- * Running on http://10.0.3.215:5000
+ * Running on http://10.0.12.207:5000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 933-667-687
-127.0.0.1 - - [28/Apr/2026 08:58:48] "GET /veicoli-utente/1 HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 933-667-687
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 933-667-687
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 933-667-687
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 933-667-687
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 933-667-687
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 933-667-687
+ * Debugger PIN: 856-445-632
+127.0.0.1 - - [28/Apr/2026 11:27:25] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:27:32] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:27:40] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:27:50] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:27:55] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:44:34] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:44:37] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:44:49] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:44:50] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:45:05] "GET /veicoli-utente/1 HTTP/1.1" 200 -

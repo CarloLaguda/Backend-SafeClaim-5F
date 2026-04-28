@@ -4,48 +4,18 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:6000
- * Running on http://10.0.3.215:6000
+ * Running on http://10.0.12.207:6000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 933-667-687
-127.0.0.1 - - [28/Apr/2026 08:58:47] "OPTIONS /login HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 08:58:47] "POST /login HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 08:59:02] "OPTIONS /login HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 08:59:02] "POST /login HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 933-667-687
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 933-667-687
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 933-667-687
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 933-667-687
-127.0.0.1 - - [28/Apr/2026 09:14:38] "OPTIONS /login HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:14:38] "POST /login HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:23:02] "OPTIONS /login HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:23:02] "POST /login HTTP/1.1" 401 -
-127.0.0.1 - - [28/Apr/2026 09:23:28] "OPTIONS /login HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 09:23:29] "POST /login HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 933-667-687
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 933-667-687
+ * Debugger PIN: 856-445-632
+127.0.0.1 - - [28/Apr/2026 11:26:51] "OPTIONS /login HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:26:51] "POST /login HTTP/1.1" 401 -
+127.0.0.1 - - [28/Apr/2026 11:27:24] "OPTIONS /login HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:27:25] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:28:15] "OPTIONS /login HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:28:15] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:44:33] "OPTIONS /login HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:44:33] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:45:19] "OPTIONS /login HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 11:45:20] "POST /login HTTP/1.1" 200 -
