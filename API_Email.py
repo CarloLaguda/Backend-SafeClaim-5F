@@ -1,82 +1,121 @@
-import pymongo  # Importa la libreria per connettersi e usare il database MongoDB Atlas
-import requests  # Importa la libreria per fare richieste HTTP (utile per API esterne)
-from flask import Flask, request, jsonify  # Importa Flask per il server, request per leggere i dati in entrata e jsonify per rispondere in formato JSON
-from flask_cors import CORS  # Importa CORS per permettere al server di accettare chiamate da siti diversi (es. da Postman o dal tuo sito)
-from datetime import datetime  # Importa la gestione di date e orari
-from bson.objectid import ObjectId  # Importa il convertitore per gli ID unici di MongoDB
-import smtplib  # Importa la libreria standard per inviare email tramite protocollo SMTP
-from email.mime.text import MIMEText  # Serve per creare il contenuto testuale della mail
-from email.mime.multipart import MIMEMultipart  # Serve per costruire un messaggio email con vari pezzi (mittente, oggetto, corpo)
+# IMPORTAZIONI 
+import pymongo  # Libreria per connettersi a MongoDB
+import requests  # Libreria per fare richieste HTTP (non usata in questo file)
+from flask import Flask, request, jsonify  # Framework web Flask per creare l'API REST
+from flask_cors import CORS  # Abilita CORS (Cross-Origin Resource Sharing) per richieste da altri domini
+from datetime import datetime  # Per gestire date e ore (non usato in questo file)
+from bson.objectid import ObjectId  # Per lavorare con gli ID di MongoDB (non usato direttamente)
+import smtplib  # Libreria per inviare email tramite SMTP
+from email.mime.text import MIMEText  # Per creare il corpo del messaggio email
+from email.mime.multipart import MIMEMultipart  # Per creare email multi-parte (testo + HTML)
 
-app = Flask(__name__)  # Crea l'oggetto principale della tua applicazione web
-CORS(app)  # Attiva il modulo CORS per evitare blocchi di sicurezza durante le chiamate API
+# INIZIALIZZAZIONE FLASK 
+app = Flask(__name__)  # Crea l'applicazione Flask
+CORS(app)  # Abilita le richieste CORS da altri domini
 
-# --- CONFIGURAZIONE SMTP (EMAIL) ---
-# Dizionario che contiene le "chiavi" per accedere al server email di Google
+#  CONFIGURAZIONE SMTP (EMAIL) 
 EMAIL_CONFIG = {
-    "sender": "mattioni.tommaso@iisgalvanimi.edu.it",  # L'indirizzo che spedisce le mail
-    "password": "faefkrzmkeoizviw", # La password specifica per le app generata da Google
-    "smtp_server": "smtp.gmail.com",  # L'indirizzo del server di posta in uscita di Gmail
-    "port": 465  # La porta standard per la connessione sicura (SSL)
+    "sender": "safeclaimservice@gmail.com",  # Email del mittente (account Gmail)
+    "display_name": "SafeClaim Support",  # Nome che apparirà come mittente nell'email
+    "password": "mhwpbnllgkzgruer",  # Password specifica Gmail 
+    "smtp_server": "smtp.gmail.com",  # Server SMTP di Gmail
+    "port": 465  # Porta per connessione SSL 
 }
 
-# --- CONFIGURAZIONE MONGODB ---
-# La stringa di connessione che contiene l'indirizzo del tuo cluster nel cloud
-CONNECTION_STRING = "mongodb+srv://dbFakeClaim:xxx123##@cluster0.zgw1jft.mongodb.net/?appName=Cluster0"
-DB_NAME = "FakeClaim"  # Il nome del database che creato su Atlas
+# CONFIGURAZIONE MONGODB 
+CONNECTION_STRING = "mongodb+srv://dbFakeClaim:xxx123##@cluster0.zgw1jft.mongodb.net/?appName=Cluster0"  # Stringa di connessione a MongoDB Atlas
+DB_NAME = "FakeClaim"  # Nome del database da utilizzare
 
+
+#  CONNESSIONE A MONGODB 
 try:
-    # Tenta di collegarsi a MongoDB con un tempo massimo di attesa di 5 secondi
+    # Crea il client MongoDB con timeout di 5 secondi
     client = pymongo.MongoClient(CONNECTION_STRING, serverSelectionTimeoutMS=5000)
-    db = client[DB_NAME]  # Seleziona il database specifico
-    sinistri_col = db['sinistri']  # Seleziona la tabella dove salvi gli incidenti
-    client.server_info()  # controllo per vedere se il database risponde davvero
-    print("Connessione a MongoDB Atlas riuscita!")  # Messaggio di conferma nel terminale
+    # Seleziona il database
+    db = client[DB_NAME]
+    # Seleziona la collezione 'sinistri'
+    sinistri_col = db['sinistri']
+    # Verifica che la connessione sia attiva facendo una query al server
+    client.server_info()
+    # Se tutto va bene, stampa un messaggio di successo
+    print("Connessione a MongoDB Atlas riuscita!")
 except Exception as e:
-    # Se il database è spento o l'indirizzo è sbagliato, stampa l'errore
+    # Se c'è un errore, stampa il messaggio di errore
     print(f"Errore connessione DB: {e}")
-    sinistri_col = None  # Imposta a None per evitare che il server crashi dopo
+    # Imposta sinistri_col a None per indicare che la connessione è fallita
+    sinistri_col = None
 
-# --- NUOVA ROTTA PER INVIARE EMAIL ---
-# Definisce l'URL /invia-email che accetta solo chiamate di tipo POST 
-@app.route('/invia-email', methods=['POST'])
+# ROTTA PER INVIARE EMAIL 
+@app.route('/invia-email', methods=['POST'])  # Definisce un endpoint POST all'indirizzo /invia-email
 def invia_email_endpoint():
-    """
-    Funzione che gestisce l'invio delle mail quando viene chiamato l'indirizzo /invia-email
-    """
-    data = request.json  # Legge il pacchetto di dati (JSON) che arriva da Postman o dal sito
-    destinatario = data.get('destinatario')  # Estrae l'email di chi deve ricevere
-    oggetto = data.get('oggetto', "Notifica SafeClaim")  # Estrae l'oggetto (usa un default se manca)
-    messaggio = data.get('messaggio', "Test invio da Flask")  # Estrae il testo della mail
+    # Estrae il corpo della richiesta JSON
+    data = request.json
+    # Estrae l'email del destinatario dal JSON
+    destinatario = data.get('destinatario')
+    # Estrae l'oggetto dell'email 
+    oggetto = data.get('oggetto', "Notifica SafeClaim")
+    # Estrae il messaggio dell'email 
+    messaggio = data.get('messaggio', "Test invio da Flask")
 
-    # Se l'utente non ha scritto l'email del destinatario, ferma tutto e dà errore 400
+    # Controlla se il destinatario è stato fornito
     if not destinatario:
+        # Se manca, restituisce un errore HTTP 400 (Bad Request)
         return jsonify({"error": "Manca il destinatario"}), 400
 
     try:
-        # --- COSTRUZIONE DEL MESSAGGIO ---
-        msg = MIMEMultipart()  # Crea il contenitore vuoto per la mail
-        msg['From'] = EMAIL_CONFIG["sender"]  # Scrive il mittente nell'intestazione
-        msg['To'] = destinatario  # Scrive il destinatario nell'intestazione
-        msg['Subject'] = oggetto  # Scrive l'oggetto della mail
-        msg.attach(MIMEText(messaggio, 'plain'))  # Incolla il testo del messaggio dentro la mail
+        # COSTRUZIONE DEL MESSAGGIO EMAIL 
+        # Crea un oggetto MIMEMultipart per costruire un'email multi-parte
+        msg = MIMEMultipart()
+        # Imposta il mittente con il nome display leggibile 
+        msg['From'] = f"{EMAIL_CONFIG['display_name']} <{EMAIL_CONFIG['sender']}>"
+        # Imposta il destinatario
+        msg['To'] = destinatario
+        # Imposta l'oggetto dell'email
+        msg['Subject'] = oggetto
 
-        # --- INVIO REALE ---
-        # Si connette al server di Google usando la porta sicura 465 (SSL)
+        # CREAZIONE DEL TEMPLATE HTML PER IL CORPO DELL'EMAIL
+        # Crea il corpo dell'email in formato HTML
+        corpo_html = f"""
+        <html>
+          <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+            <div style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee;">
+              <h2 style="color: #2e6c80;">Aggiornamento SafeClaim</h2>
+              <p>Gentile utente,</p>
+              <p>{messaggio}</p>
+              <br>
+              <hr style="border: 0; border-top: 1px solid #eee;" />
+              <p style="font-size: 0.8em; color: #888;">
+                Questa è una notifica automatica dal sistema SafeClaim. 
+                Per favore non rispondere direttamente a questa email.
+              </p>
+            </div>
+          </body>
+        </html>
+        """
+        
+        # Alleghiamo il corpo HTML al messaggio 
+        msg.attach(MIMEText(corpo_html, 'html'))
+
+        # INVIO DELL'EMAIL VIA SMTP 
+        # Apre una connessione SSL_SMTP al server Gmail
         with smtplib.SMTP_SSL(EMAIL_CONFIG["smtp_server"], EMAIL_CONFIG["port"]) as server:
-            server.login(EMAIL_CONFIG["sender"], EMAIL_CONFIG["password"])  # Fa il login con le tue credenziali
-            server.sendmail(EMAIL_CONFIG["sender"], destinatario, msg.as_string())  # Spedisce fisicamente la mail
+            # Effettua il login con email e password
+            server.login(EMAIL_CONFIG["sender"], EMAIL_CONFIG["password"])
+            # Invia l'email dal mittente al destinatario (msg.as_string() converte il messaggio in stringa)
+            server.sendmail(EMAIL_CONFIG["sender"], destinatario, msg.as_string())
 
-        # Se tutto è andato bene, risponde con successo
+        # Se l'email è stata inviata con successo, restituisce un messaggio JSON positivo (HTTP 200)
         return jsonify({"status": "success", "message": f"Email inviata a {destinatario}"}), 200
 
     except smtplib.SMTPAuthenticationError:
-        # Errore specifico se la password o l'email sono sbagliate
+        # Se le credenziali email sono sbagliate, restituisce un errore HTTP 500
         return jsonify({"status": "error", "message": "Credenziali email rifiutate"}), 500
     except Exception as e:
-        # Errore generico per qualsiasi altro problema tecnico
+        # Se c'è un altro errore generico, restituisce il messaggio di errore (HTTP 500)
         return jsonify({"status": "error", "message": str(e)}), 500
 
-# avvia il server Flask, che rimarrà in ascolto sulla porta 5000 per rispondere alle chiamate API
+# AVVIO DEL PROGRAMMA 
 if __name__ == '__main__':
-    app.run()  
+    # Avvia il server Flask 
+    # Per default ascolta sulla porta 5000
+    app.run()
