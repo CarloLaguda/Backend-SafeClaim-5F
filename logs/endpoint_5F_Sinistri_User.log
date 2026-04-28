@@ -4,385 +4,162 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:7000
- * Running on http://10.0.0.160:7000
+ * Running on http://10.0.3.215:7000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 242-116-882
-127.0.0.1 - - [27/Apr/2026 16:57:49] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 16:58:28] "GET /sinistri/2 HTTP/1.1" 404 -
-127.0.0.1 - - [27/Apr/2026 16:59:34] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 16:59:54] "GET /sinistri?automobilista_id=2 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:02:55] "GET /sinistri?automobilista_id=2 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:03:26] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:05:21] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:09:33] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:10:03] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:10:24] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:10:54] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:11:24] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:11:54] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:12:25] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:12:55] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:13:02] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:13:24] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:13:30] "OPTIONS /sinistro HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:13:30] "POST /sinistro HTTP/1.1" 201 -
-127.0.0.1 - - [27/Apr/2026 17:13:31] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:13:31] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:13:54] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:13:56] code 400, message Bad request version ("?{\x9b=nÝ·\x93\x00\x00\x84\x003\x009\x005\x00/À,À0\x00£\x00\x9fÌ©Ì¨ÌªÀ¯À\xadÀ£À\x9fÀ+À/\x00¢\x00\x9eÀ®À¬À¢À\x9eÀ$À(\x00k\x00jÀsÀw\x00Ä\x00ÃÀ#À'\x00g\x00@ÀrÀv\x00¾\x00½À")
-127.0.0.1 - - [27/Apr/2026 17:13:56] "\x16\x03\x01\x00÷\x01\x00\x00ó\x03\x03¦zcR$çUÉLðB\x05ü\x15Hi\x85oÀ^WÈ> ?{\x9b=nÝ·\x93\x00\x00\x84\x003\x009\x005\x00/À,À0\x00£\x00\x9fÌ©Ì¨ÌªÀ¯À­À£À\x9fÀ+À/\x00¢\x00\x9eÀ®À¬À¢À\x9eÀ$À(\x00k\x00jÀsÀw\x00Ä\x00ÃÀ#À'\x00g\x00@ÀrÀv\x00¾\x00½À" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:56] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 17:13:56] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iï\x99T«H\x17Iã¥y\x91¿\x96^ë1\x85K\x0cEbÈ\x7f\x1bX\x9f\\ÿº\x8aN\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:56] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 17:13:56] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iï\x99Tò\x9f¸ó6\x97\x91\x17`<Ñ\x87iZ\x15w\x85åÚ\x05\x8d\x1bõî¼·»J\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:56] code 400, message Bad request version ('\x00\x02\x01\x00\x00+\x00\x03\x02\x03\x04\x00')
-127.0.0.1 - - [27/Apr/2026 17:13:56] "\x16\x03\x03\x00\x8c\x01\x00\x00\x88\x03\x03iï\x99T\x03Õ\x89nò\x1a²\x81;°\x82r\x8a\x1e¦\x8b\x18\x17h\x09\x1f\x19¶\\\x07\x03\x07\x14\x00\x00\x1a\x13\x05\x13\x04\x13\x01\x13\x02\x13\x03À´Àµ\x00Ç\x00ÆÀ²À°À³À±\x01\x00\x00E\x00\x0b\x00\x02\x01\x00\x00+\x00\x03\x02\x03\x04\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:56] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 17:13:56] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iï\x99Th\x05\x06o¬\x1dIy¯£g7Ãß²Õ§\x9a-\x03Ëxê¶OBÖ·\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:56] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00W\x01\x00\x00S\x03\x03iï\x99TË\x104£-vµ\x829áX\x12\x9bËÌ\x13\x12\x92\x97³b\x96')
-127.0.0.1 - - [27/Apr/2026 17:13:56] "\x16\x03\x01\x00W\x01\x00\x00S\x03\x03iï\x99TË\x104£-vµ\x829áX\x12\x9bËÌ\x13\x12\x92\x97³b\x96\x0d\x80¹ãs\x93\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:56] "HEAD / HTTP/1.1" 404 -
-127.0.0.1 - - [27/Apr/2026 17:13:56] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 17:13:56] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iï\x99T\x16K\x9eìá°)-4ÞÃÃcW\\\x9fK\x96}gÌ­\x05à5»\x90L\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:56] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 17:13:56] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iï\x99Tm\x0bÍ'\x05Ç\x95«úö¤\x95¼a\x9c¾a\x8b,V\x17\x8c!\x0f+4M\x81\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:56] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 17:13:56] code 400, message Bad request version ('\x00/\x00')
-127.0.0.1 - - [27/Apr/2026 17:13:56] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iï\x99T\x03\x01û\x15S'\x8bµp.öuúpþÇl\x03\x86òS£ýÇ\x8f]U\x9b\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:56] "\x16\x03\x00\x00i\x01\x00\x00e\x03\x03U\x1c§ärandom1random2random3random4\x00\x00\x0c\x00/\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:56] "GET / HTTP/1.1" 404 -
-127.0.0.1 - - [27/Apr/2026 17:13:56] code 400, message Bad request version ('À#À¬À®À+À')
-127.0.0.1 - - [27/Apr/2026 17:13:56] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iï\x99TÛ¾ºÔ\x8büV\x0bï¦\x9cø°\x8a\x02SÐ.åÿR|\x81ÒOð\x98\x1d\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:56] code 400, message Bad request version ('À#À¬À®À+À')
-127.0.0.1 - - [27/Apr/2026 17:13:56] code 400, message Bad request version ('À#À¬À®À+À')
-127.0.0.1 - - [27/Apr/2026 17:13:56] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iï\x99TJ\x83£\x03Í;ðñ\x7fòÃ\x87¯u\x1cnÿ2Òyk£\x09ÆÛì\x7f¶\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:56] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iï\x99T\x9b_§\x8eéÇj\x84\x0e¥D($2.Úÿ©\x1ax¿Ç¸e\x13\x1a§\x87\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:56] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 17:13:56] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 17:13:56] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iï\x99T"â\x9c\x98¹\x12ò±÷\x14øDÈ47ãÓv\x1a)hnB_tèZ^\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:56] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iï\x99T3\x8c\x09ä­90\x1f\x1eÝ\x1a¬\x84zfä\x99?\x9a\x8d¹\x18K¤iª¼\x91\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:56] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 17:13:56] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iï\x99TË=ñhî\x1cE\x04è\x0fÞ-\x13j\x12;Î_f¤¦\x8b\x1b\x08\x1cnkL\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:57] code 400, message Bad request syntax ('\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iï\x99U\x9e\x94>³ñM\x82Å\x10\x93ÝöÃs\x8fâU¢\x16´¼\x008xê+')
-127.0.0.1 - - [27/Apr/2026 17:13:57] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iï\x99U\x9e\x94>³ñM\x82Å\x10\x93ÝöÃs\x8fâU¢\x16´¼\x008xê+" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:57] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 17:13:57] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iï\x99U\x87;\x1fpíÂê-áÿËç6\x9fÅÃ\x0e \x03*NK\x1aæz\x81É\x89\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:57] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [27/Apr/2026 17:13:57] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iï\x99Uí\x9bô\x818&,x\x87Á\x16\x1a`\x1c\x89\x13÷L¢6ï»Ä2\x8d±³Y\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:57] code 400, message Bad request version ('HOLè.>½ó\x19Ð0å¿f_Ü\x97\x19\x04ªIBé\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
-127.0.0.1 - - [27/Apr/2026 17:13:57] "\x16\x03\x02\x00½\x01\x00\x00¹\x03\x02iï\x99U\x0bTó~ HOLè.>½ó\x19Ð0å¿f_Ü\x97\x19\x04ªIBé\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:57] code 400, message Bad request version ('Õ\x18¢Y\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
-127.0.0.1 - - [27/Apr/2026 17:13:57] "\x16\x03\x01\x00½\x01\x00\x00¹\x03\x01iï\x99U\x12õ\x8cqÜë}\x1cH¥Ó\x7f\x84\x8fÕÎ\x90\x09\x06\x1cgð¦\x1eÕ\x18¢Y\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:13:57] code 400, message Bad request syntax ('\x16\x03\x03\x00Ý\x01\x00\x00Ù\x03\x03iï\x99UcáÙk8ÈäÃv\x86z\x19zD\x11mVÉí\x9eúè\x88\x0e]Ru1\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
-127.0.0.1 - - [27/Apr/2026 17:13:57] "\x16\x03\x03\x00Ý\x01\x00\x00Ù\x03\x03iï\x99UcáÙk8ÈäÃv\x86z\x19zD\x11mVÉí\x9eúè\x88\x0e]Ru1\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:14:01] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00')
-127.0.0.1 - - [27/Apr/2026 17:14:01] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iï\x99T\x12×\x12¸\x94Éf^;b\x9e½;\x9b³±\x1c\x0bORü<z\x0c_Ûê\x8f\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:14:06] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00')
-127.0.0.1 - - [27/Apr/2026 17:14:06] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iï\x99Y\x1aÆM÷\x9b¿7×dzÆÃý¦d\x10:\x8bÐ\x1eÝ6O\x0ej«êï\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:14:06] code 400, message Bad request version ('À#À¬À®À+À')
-127.0.0.1 - - [27/Apr/2026 17:14:06] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iï\x99^ºAêí\x82µFß\x11¸©\x07=\x82 4U?vØE,ÓÏØ\x97od\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
-127.0.0.1 - - [27/Apr/2026 17:14:11] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00')
-127.0.0.1 - - [27/Apr/2026 17:14:11] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iï\x99^\x03ôiæfÑX+[\x1bm\x17Rõ³\x9e¦&.\x84/¦M\x9eyÕ+ï\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:14:16] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00')
-127.0.0.1 - - [27/Apr/2026 17:14:16] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iï\x99c*ýßk2Q¸`\x82§î\x08M\x136ßâ\x18-*mû\x129jâÖ\x96\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:14:16] code 400, message Bad request syntax ('\x16\x03\x00\x00¥\x01\x00\x00¡\x03\x00iï\x99h®_¶i¢_çÆ\x16$a\x10¦\x19ØÆ\x8a\x87m¿Cæãsñ<4@\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
-127.0.0.1 - - [27/Apr/2026 17:14:16] "\x16\x03\x00\x00¥\x01\x00\x00¡\x03\x00iï\x99h®_¶i¢_çÆ\x16$a\x10¦\x19ØÆ\x8a\x87m¿Cæãsñ<4@\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
-127.0.0.1 - - [27/Apr/2026 17:14:24] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:14:54] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:15:24] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:15:55] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:16:05] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:16:11] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:16:14] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:16:37] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:16:37] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:17:07] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:17:38] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:18:08] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:18:37] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:19:08] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:19:37] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:20:07] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:20:37] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:21:08] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:21:37] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:22:08] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:22:31] "HEAD /.aws/ HTTP/1.1" 404 -
-127.0.0.1 - - [27/Apr/2026 17:22:31] "HEAD /.ada/ HTTP/1.1" 404 -
-127.0.0.1 - - [27/Apr/2026 17:22:31] "HEAD /.ssh/ HTTP/1.1" 404 -
-127.0.0.1 - - [27/Apr/2026 17:22:31] "HEAD /.midway/ HTTP/1.1" 404 -
-127.0.0.1 - - [27/Apr/2026 17:22:38] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:22:48] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:23:07] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:23:37] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:24:08] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:24:08] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:24:37] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:25:07] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:25:38] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:26:08] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:26:37] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:27:07] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:27:25] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:27:27] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:27:57] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:28:28] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:28:58] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:29:28] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:29:57] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:30:28] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:31:28] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:32:28] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:33:28] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:34:27] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:34:58] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:35:28] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:35:47] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:35:49] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:36:17] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:36:21] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:36:21] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:36:51] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:37:22] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:37:36] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:37:37] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:38:06] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:38:36] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:39:06] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:39:37] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:40:06] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:40:36] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:41:28] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:41:28] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:41:56] "OPTIONS /sinistro HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:41:56] "POST /sinistro HTTP/1.1" 201 -
-127.0.0.1 - - [27/Apr/2026 17:41:56] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:41:56] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:41:58] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:41:58] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:42:28] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:42:29] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:42:58] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:43:05] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:43:06] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:43:35] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:44:05] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:44:36] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:44:40] "OPTIONS /sinistro HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:44:40] "POST /sinistro HTTP/1.1" 201 -
-127.0.0.1 - - [27/Apr/2026 17:44:40] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:44:40] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:45:05] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:45:36] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:46:05] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:46:35] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:47:06] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:47:35] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:48:05] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:48:36] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:49:06] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:49:36] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:50:05] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:50:35] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:51:05] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:51:37] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:52:06] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:52:36] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:53:06] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:53:35] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:54:05] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:54:35] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:55:05] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:55:36] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:55:36] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:56:06] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:56:36] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:56:50] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:56:51] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:57:20] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:57:50] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:58:20] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:58:50] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:59:21] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 17:59:50] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:00:27] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:19:45] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:19:48] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:19:49] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:20:19] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:20:49] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:21:19] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:21:49] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:22:19] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:22:49] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:23:24] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:23:46] "GET /sinistri?automobilista_id=2 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:23:48] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:24:08] "OPTIONS /sinistro HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:24:08] "POST /sinistro HTTP/1.1" 201 -
-127.0.0.1 - - [27/Apr/2026 18:24:08] "GET /sinistri?automobilista_id=2 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:24:08] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:24:18] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:24:48] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:25:19] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:25:48] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:26:19] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:26:49] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:26:54] "GET /sinistri?automobilista_id=2 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:27:19] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:27:49] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:28:19] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:28:49] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:29:18] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:29:48] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:30:13] "GET /sinistro/69e68100a5f8b5f339c3f654 HTTP/1.1" 404 -
-127.0.0.1 - - [27/Apr/2026 18:30:19] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:30:30] "GET /sinistro/69e68100a5f8b5f339c3f654 HTTP/1.1" 404 -
-127.0.0.1 - - [27/Apr/2026 18:30:49] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:31:04] "OPTIONS /sinistro HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:31:04] "POST /sinistro HTTP/1.1" 201 -
-127.0.0.1 - - [27/Apr/2026 18:31:04] "GET /sinistri?automobilista_id=2 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:31:04] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:31:19] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:31:49] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:32:19] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:32:49] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:33:22] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:33:22] "GET /sinistri?automobilista_id=2 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:33:37] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:33:46] "GET /sinistri?automobilista_id=2 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:33:47] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:34:01] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:34:17] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:34:32] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:34:46] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:35:02] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:35:17] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:35:32] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:35:47] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:36:01] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:36:16] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:36:32] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:36:47] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:37:02] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:37:17] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:37:32] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:37:46] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:38:02] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:38:17] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:38:32] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:38:46] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:39:01] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:39:16] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:39:31] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:39:47] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:40:01] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:40:17] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:40:32] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:40:46] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:41:01] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:41:16] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:41:32] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:41:46] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:42:01] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:42:17] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:42:32] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:42:36] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:42:36] "GET /sinistri?automobilista_id=2 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:42:52] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:43:03] "GET /sinistri?automobilista_id=3 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:43:06] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:43:22] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:43:23] "OPTIONS /sinistro HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:43:23] "POST /sinistro HTTP/1.1" 201 -
-127.0.0.1 - - [27/Apr/2026 18:43:23] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:43:23] "GET /sinistri?automobilista_id=3 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:43:33] "GET /sinistri?automobilista_id=3 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:43:37] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:43:51] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:44:04] "GET /sinistri?automobilista_id=3 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:44:07] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:44:21] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:44:33] "GET /sinistri?automobilista_id=3 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:44:36] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:44:51] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:45:03] "GET /sinistri?automobilista_id=3 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:45:06] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:45:21] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:45:35] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:45:36] "GET /sinistri?automobilista_id=3 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:45:51] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:45:52] "GET /sinistri?automobilista_id=3 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:46:06] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:46:06] "GET /sinistri?automobilista_id=3 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:46:21] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:46:21] "GET /sinistri?automobilista_id=3 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:46:36] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:46:37] "GET /sinistri?automobilista_id=3 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:46:50] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:46:51] "GET /sinistri?automobilista_id=3 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:47:05] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:47:07] "GET /sinistri?automobilista_id=3 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:47:20] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:47:21] "GET /sinistri?automobilista_id=3 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:47:36] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:47:36] "GET /sinistri?automobilista_id=3 HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:47:51] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:48:05] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:48:20] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:48:35] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:48:51] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:49:06] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:49:21] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:49:36] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:49:50] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:50:06] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:50:20] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:50:36] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:50:51] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:51:06] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:51:20] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:51:35] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:51:50] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:52:06] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:52:28] "GET /sinistri HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+ * Debugger PIN: 933-667-687
+127.0.0.1 - - [28/Apr/2026 08:58:48] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 08:59:03] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 08:59:18] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 08:59:33] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 08:59:48] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:00:03] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:00:18] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:00:33] "GET /sinistri HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 242-116-882
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+ * Debugger PIN: 933-667-687
+127.0.0.1 - - [28/Apr/2026 09:01:00] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:01:03] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:01:18] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:01:33] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:01:48] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:02:03] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:02:18] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:02:33] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:02:48] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:02:49] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:03:04] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:03:19] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:03:35] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:03:50] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:04:04] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:04:20] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:04:35] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:04:50] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:05:05] "GET /sinistri HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 242-116-882
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+ * Debugger PIN: 933-667-687
+127.0.0.1 - - [28/Apr/2026 09:05:21] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:05:35] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:05:50] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:06:05] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:06:20] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:06:35] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:06:50] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:07:05] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:07:20] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:07:35] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:07:50] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:08:05] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:08:20] "GET /sinistri HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 242-116-882
-127.0.0.1 - - [27/Apr/2026 18:53:20] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:53:21] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:53:36] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:53:50] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:53:52] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:54:07] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:54:23] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:54:38] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:54:53] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:55:07] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:55:23] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:56:23] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:57:25] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:58:26] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 18:59:27] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 19:00:26] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 19:00:37] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 19:00:53] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 19:01:08] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 19:01:23] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 19:01:37] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 19:02:28] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [27/Apr/2026 19:03:28] "GET /sinistri HTTP/1.1" 200 -
+ * Debugger PIN: 933-667-687
+127.0.0.1 - - [28/Apr/2026 09:08:35] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:08:50] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:09:05] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:09:20] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:09:35] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:09:50] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:10:05] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:10:20] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:10:35] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:10:50] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:11:05] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:11:20] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:11:34] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:11:50] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:12:05] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:12:20] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:12:35] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:12:50] "GET /sinistri HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 933-667-687
+127.0.0.1 - - [28/Apr/2026 09:13:05] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:13:11] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:13:25] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:13:41] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:13:56] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:14:10] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:23:29] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:23:44] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:23:59] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:24:14] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:24:29] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:24:44] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:24:59] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:25:14] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:26:15] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:26:39] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:26:44] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:26:59] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:27:14] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:27:29] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:27:44] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:28:26] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:29:23] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:29:29] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:29:44] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:29:59] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:30:14] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:30:29] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:30:44] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:30:59] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:31:14] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:31:29] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:32:26] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:33:26] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:33:42] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:33:44] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:33:59] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:34:14] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:34:29] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:35:10] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:35:14] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:35:29] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:35:44] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:35:59] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:36:14] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:36:29] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:36:44] "GET /sinistri HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 933-667-687
+127.0.0.1 - - [28/Apr/2026 09:36:59] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:37:14] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:37:29] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:37:44] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:37:59] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:38:26] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:39:26] "GET /sinistri HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 933-667-687
+127.0.0.1 - - [28/Apr/2026 09:40:26] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:41:26] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:42:26] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:43:17] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:43:29] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:43:44] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:43:59] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:44:14] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:44:29] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:44:34] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:44:50] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [28/Apr/2026 09:45:05] "GET /sinistri HTTP/1.1" 200 -
