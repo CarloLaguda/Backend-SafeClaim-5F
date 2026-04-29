@@ -1,33 +1,5 @@
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Serving Flask app 'endpoint_5F_Sinistri_User'
- * Debug mode: on
-WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:7000
- * Running on http://10.0.3.133:7000
-Press CTRL+C to quit
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 412-662-257
-127.0.0.1 - - [29/Apr/2026 10:25:19] "POST /sinistro/ID_SINISTRO/immagini HTTP/1.1" 400 -
-127.0.0.1 - - [29/Apr/2026 10:27:22] "POST /sinistro/69f1db325cf1300a03882ddf/immagini HTTP/1.1" 202 -
-127.0.0.1 - - [29/Apr/2026 10:28:52] "GET /sinistro/69f1db325cf1300a03882ddf/analisi HTTP/1.1" 200 -
-127.0.0.1 - - [29/Apr/2026 10:29:37] "POST /sinistro/69f1db325cf1300a03882ddf/immagini HTTP/1.1" 202 -
-127.0.0.1 - - [29/Apr/2026 10:29:40] "GET /sinistro/69f1db325cf1300a03882ddf/analisi HTTP/1.1" 200 -
-127.0.0.1 - - [29/Apr/2026 10:29:49] "GET /sinistro/69f1db325cf1300a03882ddf/analisi HTTP/1.1" 200 -
-127.0.0.1 - - [29/Apr/2026 10:29:54] "GET /sinistro/69f1db325cf1300a03882ddf/analisi HTTP/1.1" 200 -
-127.0.0.1 - - [29/Apr/2026 10:29:57] "GET /sinistro/69f1db325cf1300a03882ddf/analisi HTTP/1.1" 200 -
-127.0.0.1 - - [29/Apr/2026 10:30:02] "GET /sinistro/69f1db325cf1300a03882ddf/analisi HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
-☁️  Caricamento immagine su Cloudinary per sinistro 69f1db325cf1300a03882ddf...
-✅ Immagine caricata: https://res.cloudinary.com/dm6estjhs/image/upload/v1777458442/safeclaim/sinistri/sinistro_69f1db325cf1300a03882ddf.jpg
-[AI] Avvio analisi per sinistro 69f1db325cf1300a03882ddf...
-[AI] Errore analisi sinistro 69f1db325cf1300a03882ddf: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}
-☁️  Caricamento immagine su Cloudinary per sinistro 69f1db325cf1300a03882ddf...
-✅ Immagine caricata: https://res.cloudinary.com/dm6estjhs/image/upload/v1777458442/safeclaim/sinistri/sinistro_69f1db325cf1300a03882ddf.jpg
-[AI] Avvio analisi per sinistro 69f1db325cf1300a03882ddf...
-✅ [AI] Analisi completata per sinistro 69f1db325cf1300a03882ddf
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 412-662-257
+Traceback (most recent call last):
+  File "/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py", line 16, in <module>
+    from google import genai                  # <-- cambiato
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+ImportError: cannot import name 'genai' from 'google' (unknown location)

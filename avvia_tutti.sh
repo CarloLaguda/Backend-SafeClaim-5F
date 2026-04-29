@@ -35,16 +35,10 @@ if command -v mariadb &>/dev/null; then
     sudo mariadb -e "GRANT ALL PRIVILEGES ON *.* TO 'pythonuser'@'localhost' WITH GRANT OPTION;" 2>/dev/null
     sudo mariadb -e "FLUSH PRIVILEGES;" 2>/dev/null
 
-    DB_EXISTS=$(sudo mariadb -u pythonuser -ppassword123 -e "SHOW DATABASES LIKE 'gestione_assicurazioni';" 2>/dev/null | grep -c "gestione_assicurazioni")
-    if [ "$DB_EXISTS" -eq 0 ]; then
-        echo -e "${YELLOW}    Prima installazione: creo il database...${NC}"
-        python3 db_locale.py && echo -e "${GREEN}[✓] Database creato con successo${NC}" \
-                             || echo -e "${RED}[✗] Errore creazione database – controlla db_locale.py${NC}"
-    else
-        echo -e "${GREEN}[✓] Database già esistente – salto la creazione${NC}"
-    fi
+    DB_CHECK_PENDING=true
 else
     echo -e "${RED}[✗] Impossibile installare MariaDB – gli endpoint MySQL non funzioneranno${NC}"
+    DB_CHECK_PENDING=false
 fi
 
 # --- INSTALLAZIONE DIPENDENZE PYTHON ---
@@ -86,6 +80,18 @@ else
             && echo -e "${GREEN}    [✓] $mod installato${NC}" \
             || echo -e "${RED}    [✗] $mod – installazione fallita${NC}"
     done
+fi
+
+# --- CREAZIONE DATABASE (dopo le dipendenze Python) ---
+if [ "$DB_CHECK_PENDING" = true ]; then
+    DB_EXISTS=$(sudo mariadb -u pythonuser -ppassword123 -e "SHOW DATABASES LIKE 'gestione_assicurazioni';" 2>/dev/null | grep -c "gestione_assicurazioni")
+    if [ "$DB_EXISTS" -eq 0 ]; then
+        echo -e "${YELLOW}    Prima installazione: creo il database...${NC}"
+        python3 db_locale.py && echo -e "${GREEN}[✓] Database creato con successo${NC}" \
+                             || echo -e "${RED}[✗] Errore creazione database – controlla db_locale.py${NC}"
+    else
+        echo -e "${GREEN}[✓] Database già esistente – salto la creazione${NC}"
+    fi
 fi
 
 # --- CONTROLLO FILE NECESSARI ---
