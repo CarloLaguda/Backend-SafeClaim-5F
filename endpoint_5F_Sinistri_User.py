@@ -140,6 +140,28 @@ def apri_sinistro():
     required = ['automobilista_id', 'targa', 'data_evento', 'descrizione']
     if not all(k in data for k in required):
         return jsonify({"error": "Campi obbligatori mancanti"}), 400
+
+
+    posizione = None
+    geo = data.get('geolocalizzazione')
+    if isinstance(geo, dict):
+        lat = geo.get('latitudine', geo.get('lat'))
+        lng = geo.get('longitudine', geo.get('lng'))
+    else:
+        lat = data.get('latitudine', data.get('lat'))
+        lng = data.get('longitudine', data.get('lng'))
+
+
+    if lat is not None and lng is not None:
+        try:
+            posizione = {
+                "latitudine": float(lat),
+                "longitudine": float(lng)
+            }
+        except (TypeError, ValueError):
+            return jsonify({"error": "Dati di geolocalizzazione non validi"}), 400
+
+
     try:
         nuovo_sinistro = {
             "automobilista_id": data['automobilista_id'],
@@ -151,11 +173,14 @@ def apri_sinistro():
             "immagini":         [],
             "analisi_ai":       None
         }
+        if posizione is not None:
+            nuovo_sinistro["geolocalizzazione"] = posizione
+
+
         result = col_sinistri.insert_one(nuovo_sinistro)
         return jsonify({"status": "success", "mongo_id": str(result.inserted_id)}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
 
 # Aggiornamento sinistro
 
