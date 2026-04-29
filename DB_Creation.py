@@ -8,10 +8,10 @@ from email.mime.multipart import MIMEMultipart  # Per email multipart (testo, al
 # CONFIGURAZIONE EMAIL (GMAIL SMTP)
 # ============================================================
 EMAIL_CONFIG = {  # Dizionario configurazione email Gmail
-    "sender": "mattioni.tommaso@iisgalvanimi.edu.it",  # Mittente email
+    "sender": "safeclaimservice@gmail.com",  # Mittente email
     # IMPORTANTE: La "Password per le app" va scritta SENZA SPAZI.
     # Google la mostra come "elcg kjhb vqjk lost", ma qui deve essere "elcgkjhbvqjklost"
-    "password": "elcgkjhbvqjklost",  # Password app Gmail (senza spazi)
+    "password": "mhwpbnllgkzgruer",  # Password app Gmail (senza spazi)
     "smtp_server": "smtp.gmail.com",  # Server SMTP Gmail
     "port": 465  # Porta SSL per connessione sicura
 }
@@ -89,7 +89,7 @@ try:  # Blocco try principale per test sistema
     
     # Eseguiamo il test finale dell'integrazione SMTP
     successo = invia_email(  # Chiama funzione invio email
-        destinatario="mihali.sebastian@iisgalvanimi.edu.it",  # Destinatario
+        destinatario= "graziano.gabriel@iisgalvanimi.edu.it",  # Destinatario
         oggetto="SafeClaim - Task 9.2 Completato",  # Oggetto email
         corpo="Integrazione server SMTP riuscita. Il sistema di notifiche è operativo."  # Corpo email
     )
