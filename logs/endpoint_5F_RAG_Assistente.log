@@ -1,4 +1,13 @@
 Traceback (most recent call last):
-  File "/workspaces/Backend-SafeClaim-5F/endpoint_5F_RAG_Assistente.py", line 19, in <module>
-    from google import genai
-ImportError: cannot import name 'genai' from 'google' (unknown location)
+  File "/workspaces/Backend-SafeClaim-5F/endpoint_5F_RAG_Assistente.py", line 32, in <module>
+    client = genai.Client(api_key=GEMINI_API_KEY)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/google/genai/client.py", line 432, in __init__
+    self._api_client = self._get_api_client(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/google/genai/client.py", line 480, in _get_api_client
+    return BaseApiClient(
+           ^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/google/genai/_api_client.py", line 732, in __init__
+    raise ValueError(
+ValueError: No API key was provided. Please pass a valid API key. Learn how to create an API key at https://ai.google.dev/gemini-api/docs/api-key.

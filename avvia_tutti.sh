@@ -55,6 +55,7 @@ PACKAGES=(
     "cloudinary"           # Storage immagini sinistri (Storage.py)
     "google-generativeai"  # Gemini Vision (analisi immagini) + RAG assistente
     "scikit-learn"         # TF-IDF per la RAG
+    "google-genai"         # Google GenAI SDK (aggiornato)
 )
 
 # Tenta installazione con --break-system-packages (per ambienti di sistema), poi senza
@@ -152,19 +153,37 @@ for file in "${!ENDPOINTS[@]}"; do
         continue
     fi
 
-    python3 "$file" > "$log" 2>&1 &
-    PID=$!
-    sleep 1.5  # Attesa per endpoint con import pesanti (google-generativeai, scikit-learn)
-
-    if kill -0 "$PID" 2>/dev/null; then
-        echo -e "${GREEN}[✓] $file  →  porta $port  (PID $PID)${NC}"
-        (( STARTED++ ))
+    # Timeout maggiore per endpoint RAG (import pesanti: google-genai, scikit-learn)
+    if [ "$file" = "endpoint_5F_RAG_Assistente.py" ]; then
+        WAIT_TIME=4
+        MAX_RETRIES=2
     else
-        echo -e "${RED}[✗] $file  →  avvio fallito (porta $port)${NC}"
-        echo -e "${YELLOW}    Ultime righe del log:${NC}"
-        tail -n 5 "$log" | sed 's/^/    /'
-        (( FAILED++ ))
+        WAIT_TIME=1.5
+        MAX_RETRIES=1
     fi
+
+    # Retry loop per endpoint RAG
+    for retry in $(seq 1 $MAX_RETRIES); do
+        python3 "$file" > "$log" 2>&1 &
+        PID=$!
+        sleep "$WAIT_TIME"
+
+        if kill -0 "$PID" 2>/dev/null; then
+            echo -e "${GREEN}[✓] $file  →  porta $port  (PID $PID)${NC}"
+            (( STARTED++ ))
+            break
+        else
+            if [ $retry -lt $MAX_RETRIES ]; then
+                echo -e "${YELLOW}[!] $file non risponde – tentativo $retry fallito, riprovo...${NC}"
+                sleep 1
+            else
+                echo -e "${RED}[✗] $file  →  avvio fallito dopo $MAX_RETRIES tentativi (porta $port)${NC}"
+                echo -e "${YELLOW}    Ultime righe del log:${NC}"
+                tail -n 5 "$log" | sed 's/^/    /'
+                (( FAILED++ ))
+            fi
+        fi
+    done
 done
 
 # --- PORTE PUBBLICHE SU CODESPACES ---

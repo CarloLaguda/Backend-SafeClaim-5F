@@ -1,5 +1,35 @@
-Traceback (most recent call last):
-  File "/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py", line 16, in <module>
-    from google import genai                  # <-- cambiato
-    ^^^^^^^^^^^^^^^^^^^^^^^^
-ImportError: cannot import name 'genai' from 'google' (unknown location)
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Serving Flask app 'endpoint_5F_Sinistri_User'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7000
+ * Running on http://10.0.1.234:7000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 980-936-111
+127.0.0.1 - - [29/Apr/2026 18:12:14] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [29/Apr/2026 18:12:29] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [29/Apr/2026 18:12:44] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [29/Apr/2026 18:12:59] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [29/Apr/2026 18:13:14] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [29/Apr/2026 18:13:28] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_RAG_Assistente.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 980-936-111
+127.0.0.1 - - [29/Apr/2026 18:13:46] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [29/Apr/2026 18:13:58] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [29/Apr/2026 18:14:09] "OPTIONS /sinistro HTTP/1.1" 200 -
+127.0.0.1 - - [29/Apr/2026 18:14:10] "POST /sinistro HTTP/1.1" 201 -
+127.0.0.1 - - [29/Apr/2026 18:14:10] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [29/Apr/2026 18:14:10] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [29/Apr/2026 18:14:14] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [29/Apr/2026 18:14:29] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_RAG_Assistente.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 980-936-111

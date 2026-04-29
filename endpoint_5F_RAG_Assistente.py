@@ -18,6 +18,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from google import genai
 import numpy as np
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -26,10 +27,23 @@ CORS(app)
 #  CONFIGURAZIONE GEMINI
 # ─────────────────────────────────────────────
 
-GEMINI_API_KEY = ""
+# Leggi la chiave API da variabile d'ambiente o file config
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "").strip()
 GEMINI_MODEL = "gemini-2.5-flash"
 
-client = genai.Client(api_key=GEMINI_API_KEY)
+# Client Gemini (lazy initialization)
+client = None
+
+def get_gemini_client():
+    global client
+    if client is None:
+        if not GEMINI_API_KEY:
+            raise ValueError(
+                "GEMINI_API_KEY non configurata. Imposta la variabile d'ambiente: "
+                "export GEMINI_API_KEY='tua_chiave_api'"
+            )
+        client = genai.Client(api_key=GEMINI_API_KEY)
+    return client
 
 
 # ─────────────────────────────────────────────
@@ -340,11 +354,19 @@ DOMANDA DELL'UTENTE:
 RISPOSTA:"""
 
     try:
+        client = get_gemini_client()
         risposta = client.models.generate_content(
             model=GEMINI_MODEL,
             contents=prompt_completo
         )
         return risposta.text.strip()
+    except ValueError as e:
+        print(f"Errore configurazione: {e}")
+        return (
+            "⚠️ Assistente RAG non configurato. "
+            "L'amministratore deve impostare la chiave API Gemini. "
+            "Contatta il supporto SafeClaim."
+        )
     except Exception as e:
         print(f"Errore Gemini: {e}")
         return (
