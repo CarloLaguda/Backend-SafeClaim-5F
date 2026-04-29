@@ -27,9 +27,8 @@ CORS(app)
 #  CONFIGURAZIONE GEMINI
 # ─────────────────────────────────────────────
 
-# Leggi la chiave API da variabile d'ambiente o file config
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "").strip()
-GEMINI_MODEL = "gemini-2.5-flash"
+GEMINI_API_KEY = "xxx123##"  # Sostituisci con la tua chiave API Gemini
+GEMINI_MODEL = "gemini-2.0-flash"
 
 # Client Gemini (lazy initialization)
 client = None
@@ -37,11 +36,6 @@ client = None
 def get_gemini_client():
     global client
     if client is None:
-        if not GEMINI_API_KEY:
-            raise ValueError(
-                "GEMINI_API_KEY non configurata. Imposta la variabile d'ambiente: "
-                "export GEMINI_API_KEY='tua_chiave_api'"
-            )
         client = genai.Client(api_key=GEMINI_API_KEY)
     return client
 
@@ -355,20 +349,22 @@ RISPOSTA:"""
 
     try:
         client = get_gemini_client()
+        print(f"[DEBUG] Client Gemini inizializzato")
+        print(f"[DEBUG] Modello: {GEMINI_MODEL}")
+        print(f"[DEBUG] Prompt inviato ({len(prompt_completo)} caratteri)")
+        
         risposta = client.models.generate_content(
             model=GEMINI_MODEL,
             contents=prompt_completo
         )
-        return risposta.text.strip()
-    except ValueError as e:
-        print(f"Errore configurazione: {e}")
-        return (
-            "⚠️ Assistente RAG non configurato. "
-            "L'amministratore deve impostare la chiave API Gemini. "
-            "Contatta il supporto SafeClaim."
-        )
+        
+        print(f"[DEBUG] Risposta ricevuta: {type(risposta)}")
+        text = risposta.text if hasattr(risposta, 'text') else str(risposta)
+        return text.strip()
     except Exception as e:
-        print(f"Errore Gemini: {e}")
+        import traceback
+        print(f"[ERRORE GEMINI] {type(e).__name__}: {e}")
+        print(f"[TRACEBACK] {traceback.format_exc()}")
         return (
             "Mi dispiace, si è verificato un errore nel generare la risposta. "
             "Per assistenza contatta direttamente il supporto SafeClaim."

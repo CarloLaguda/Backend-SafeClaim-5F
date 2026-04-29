@@ -55,7 +55,8 @@ PACKAGES=(
     "cloudinary"           # Storage immagini sinistri (Storage.py)
     "google-generativeai"  # Gemini Vision (analisi immagini) + RAG assistente
     "scikit-learn"         # TF-IDF per la RAG
-    "google-genai"         # Google GenAI SDK (aggiornato)
+    "google-genai" 
+    "numpy"        # Google GenAI SDK (aggiornato)
 )
 
 # Tenta installazione con --break-system-packages (per ambienti di sistema), poi senza
