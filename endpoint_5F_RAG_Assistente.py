@@ -26,7 +26,7 @@ CORS(app)
 #  CONFIGURAZIONE GEMINI
 # ─────────────────────────────────────────────
 
-GEMINI_API_KEY = "AIzaSyA5Sm_qK8jY5ijiZ-an3zlZwJmeMaSGX78"
+GEMINI_API_KEY = ""
 GEMINI_MODEL = "gemini-2.5-flash"
 
 client = genai.Client(api_key=GEMINI_API_KEY)
