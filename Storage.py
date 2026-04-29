@@ -1,6 +1,6 @@
 """
 Storage.py — Gestione upload/download immagini su Cloudinary
-Usato da endpoint_5F_log_reg.py per salvare le immagini dei sinistri.
+Usato da endpoint_5F_Sinistri_User.py per salvare le immagini dei sinistri.
 
 Installazione:
     pip install cloudinary
@@ -9,16 +9,14 @@ Installazione:
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-import base64
 import tempfile
 import os
 
 # --- CONFIGURAZIONE CLOUDINARY ---
-# Sostituisci con le tue credenziali dal dashboard Cloudinary
 cloudinary.config(
-    cloud_name="dm6estjhs",   # <-- es. "safeclaim"
-    api_key="281163362143651",          # <-- es. "123456789012345"
-    api_secret="sOMrD7f2PNomO1JyTEobaGzyWkg",    # <-- es. "abc123XYZ..."
+    cloud_name="dm6estjhs",
+    api_key="281163362143651",
+    api_secret="sOMrD7f2PNomO1JyTEobaGzyWkg",
     secure=True
 )
 
@@ -26,13 +24,13 @@ cloudinary.config(
 CARTELLA_SINISTRI = "safeclaim/sinistri"
 
 
-def carica_immagine(immagine_b64: str, sinistro_id: str) -> dict:
+def carica_immagine(immagine_bytes: bytes, sinistro_id: str) -> dict:
     """
-    Carica un'immagine base64 su Cloudinary.
+    Carica un'immagine binaria (bytes) su Cloudinary.
 
     Args:
-        immagine_b64: immagine codificata in base64
-        sinistro_id:  ID del sinistro MongoDB (usato come nome file)
+        immagine_bytes: immagine come bytes (da file.read())
+        sinistro_id:    ID del sinistro MongoDB (usato come nome file)
 
     Returns:
         dict con:
@@ -40,10 +38,8 @@ def carica_immagine(immagine_b64: str, sinistro_id: str) -> dict:
             - public_id:  ID Cloudinary (serve per eliminarla)
             - secure_url: URL HTTPS
     """
-    # Decodifica base64 → file temporaneo
-    image_data = base64.b64decode(immagine_b64)
     tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".jpg")
-    tmp.write(image_data)
+    tmp.write(immagine_bytes)
     tmp.close()
 
     try:

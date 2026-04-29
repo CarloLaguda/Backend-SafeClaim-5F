@@ -2,7 +2,7 @@
 endpoint_5F_Sinistri_User.py — Branch main
 Gestione sinistri, soccorso e veicoli.
 Le immagini vengono salvate su Cloudinary tramite Storage.py,
-poi analizzate in modo asincrono da Joy-Caption (HuggingFace).
+poi analizzate in modo asincrono da Gemini Vision (Google) al posto di Joy-Caption.
 """
 
 from flask import Flask, request, jsonify
@@ -13,7 +13,8 @@ from bson import ObjectId
 from datetime import datetime, UTC
 import urllib.parse
 import threading
-from gradio_client import Client, handle_file
+from google import genai                  # <-- cambiato
+from google.genai import types            # <-- aggiunto
 from pymongo import DESCENDING
 
 # Modulo storage Cloudinary
@@ -50,9 +51,12 @@ try:
 except Exception as e:
     print(f"❌ Errore connessione MongoDB: {e}")
 
-# --- CONFIGURAZIONE JOY-CAPTION ---
+# --- CONFIGURAZIONE GEMINI VISION ---
 
-HF_TOKEN = "IL_TUO_TOKEN_QUI"  # <-- Metti il tuo token HuggingFace
+GEMINI_API_KEY = "AIzaSyDdX7yLTj9qqpevIwaTGX6hzppSOmGPOAk"  # <-- Metti la tua API key (gratis su https://aistudio.google.com)
+GEMINI_MODEL   = "gemini-2.5-flash"                           # <-- cambiato
+
+client = genai.Client(api_key=GEMINI_API_KEY)                 # <-- cambiato
 
 PROMPT_PERITO = (
     "Agisci come un perito assicurativo esperto. Analizza l'immagine e descrivi l'incidente "
@@ -64,47 +68,68 @@ PROMPT_PERITO = (
 def analizza_immagine_ai(sinistro_id: str, image_url: str):
     """
     Eseguita in background da un thread separato.
-    Passa l'URL Cloudinary a Joy-Caption e salva il risultato su MongoDB.
+    Scarica l'immagine dall'URL Cloudinary e la manda a Gemini Vision,
+    poi salva il risultato su MongoDB.
+    Ritenta automaticamente fino a 3 volte in caso di errore 503.
     """
-    try:
-        print(f"[AI] Avvio analisi per sinistro {sinistro_id}...")
-        client = Client("fancyfeast/joy-caption-beta-one", token=HF_TOKEN)
-        risultato_ai = client.predict(
-            input_image=handle_file(image_url),
-            prompt=PROMPT_PERITO,
-            temperature=0.5,
-            top_p=0.9,
-            max_new_tokens=512,
-            log_prompt=True,
-            api_name="/chat_joycaption"
-        )
-        print(f"✅ [AI] Analisi completata per sinistro {sinistro_id}")
-        col_sinistri.update_one(
-            {"_id": ObjectId(sinistro_id)},
-            {"$set": {
-                "analisi_ai": {
-                    "testo": risultato_ai,
-                    "modello": "joy-caption-beta-one",
-                    "data_analisi": datetime.now(UTC),
-                    "stato": "completata"
-                }
-            }}
-        )
-    except Exception as e:
-        print(f"[AI] Errore analisi sinistro {sinistro_id}: {e}")
+    import time
+
+    MAX_TENTATIVI = 3
+    ATTESA_BASE   = 15  # secondi
+
+    for tentativo in range(1, MAX_TENTATIVI + 1):
         try:
+            print(f"[AI] Tentativo {tentativo}/{MAX_TENTATIVI} per sinistro {sinistro_id}...")
+            import requests as http_requests
+            risposta_http = http_requests.get(image_url, timeout=15)
+            risposta_http.raise_for_status()
+            risposta = client.models.generate_content(
+                model=GEMINI_MODEL,
+                contents=[
+                    PROMPT_PERITO,
+                    types.Part.from_bytes(
+                        data=risposta_http.content,
+                        mime_type="image/jpeg"
+                    )
+                ]
+            )
+            risultato_ai = risposta.text.strip()
+            print(f"✅ [AI] Analisi completata per sinistro {sinistro_id}")
             col_sinistri.update_one(
                 {"_id": ObjectId(sinistro_id)},
                 {"$set": {
                     "analisi_ai": {
-                        "stato": "errore",
-                        "errore": str(e),
-                        "data_analisi": datetime.now(UTC)
+                        "testo": risultato_ai,
+                        "modello": GEMINI_MODEL,
+                        "data_analisi": datetime.now(UTC),
+                        "stato": "completata"
                     }
                 }}
             )
-        except Exception:
-            pass
+            return  # successo, esci
+
+        except Exception as e:
+            print(f"[AI] Errore tentativo {tentativo}/{MAX_TENTATIVI} per sinistro {sinistro_id}: {e}")
+            if tentativo < MAX_TENTATIVI:
+                attesa = ATTESA_BASE * tentativo  # 15s, 30s, 45s
+                print(f"[AI] Attendo {attesa}s prima di ritentare...")
+                time.sleep(attesa)
+            else:
+                # Tutti i tentativi esauriti
+                print(f"[AI] Analisi fallita dopo {MAX_TENTATIVI} tentativi per sinistro {sinistro_id}")
+                try:
+                    col_sinistri.update_one(
+                        {"_id": ObjectId(sinistro_id)},
+                        {"$set": {
+                            "analisi_ai": {
+                                "stato": "errore",
+                                "errore": str(e),
+                                "data_analisi": datetime.now(UTC)
+                            }
+                        }}
+                    )
+                except Exception:
+                    pass
 
 
 # --- ROTTE SINISTRI ---
@@ -181,7 +206,7 @@ def get_tutti_sinistri():
 @app.route('/sinistro/<sinistro_id>/immagini', methods=['POST'])
 def aggiungi_immagine(sinistro_id):
     """
-    1. Riceve immagine base64
+    1. Riceve immagine come file binario (multipart/form-data)
     2. La carica su Cloudinary
     3. Salva URL su MongoDB
     4. Avvia analisi AI in background
@@ -190,9 +215,10 @@ def aggiungi_immagine(sinistro_id):
     if not ObjectId.is_valid(sinistro_id):
         return jsonify({"error": "ID sinistro non valido"}), 400
 
-    data = request.json
-    if not data or 'immagine_base64' not in data:
+    if 'immagine' not in request.files:                        # <-- cambiato
         return jsonify({"error": "Dati immagine mancanti"}), 400
+
+    file = request.files['immagine']                           # <-- cambiato
 
     try:
         # Verifica che il sinistro esista
@@ -202,7 +228,7 @@ def aggiungi_immagine(sinistro_id):
 
         # 1. Carica su Cloudinary
         print(f"☁️  Caricamento immagine su Cloudinary per sinistro {sinistro_id}...")
-        info_cloudinary = carica_immagine(data['immagine_base64'], sinistro_id)
+        info_cloudinary = carica_immagine(file.read(), sinistro_id)  # <-- cambiato
         print(f"✅ Immagine caricata: {info_cloudinary['secure_url']}")
 
         # 2. Salva URL su MongoDB + segna analisi in elaborazione

@@ -58,8 +58,9 @@ PACKAGES=(
     "pymongo[srv]"
     "dnspython"
     "requests"
-    "cloudinary"          # Usato da Storage.py per upload immagini sinistri
-    "gradio_client"       # Usato da endpoint_5F_Sinistri_User.py per analisi AI (Joy-Caption)
+    "cloudinary"           # Storage immagini sinistri (Storage.py)
+    "google-generativeai"  # Gemini Vision (analisi immagini) + RAG assistente
+    "scikit-learn"         # TF-IDF per la RAG
 )
 
 # Tenta installazione con --break-system-packages (per ambienti di sistema), poi senza
@@ -68,7 +69,7 @@ pip install "${PACKAGES[@]}" --quiet --break-system-packages 2>/dev/null \
 
 # Verifica che i moduli critici siano importabili
 MISSING_MODULES=()
-for mod in flask pymongo cloudinary gradio_client; do
+for mod in flask pymongo cloudinary google.generativeai sklearn; do
     if ! python3 -c "import $mod" 2>/dev/null; then
         MISSING_MODULES+=("$mod")
     fi
@@ -104,10 +105,17 @@ else
     echo -e "${GREEN}[✓] db_locale.py presente${NC}"
 fi
 
+# Verifica presenza endpoint RAG
+if [ ! -f "endpoint_5F_RAG_Assistente.py" ]; then
+    echo -e "${RED}[✗] endpoint_5F_RAG_Assistente.py non trovato${NC}"
+else
+    echo -e "${GREEN}[✓] endpoint_5F_RAG_Assistente.py presente${NC}"
+fi
+
 # --- CHIUDI PROCESSI PRECEDENTI ---
 echo -e "\n${CYAN}[4/4] Avvio endpoint Flask...${NC}"
 echo -e "${YELLOW}    Chiudo eventuali processi precedenti sulle porte...${NC}"
-for port in 5000 6000 7000 8000 9000 10000 11000; do
+for port in 5000 6000 7000 8000 9000 10000 11000 12000; do
     fuser -k "${port}/tcp" 2>/dev/null
 done
 sleep 1
@@ -121,6 +129,7 @@ declare -A ENDPOINTS=(
     ["endpoint_5F_Polizze.py"]=9000
     ["endpoint_5F_Veicoli.py"]=10000
     ["endpoint_5F_Mail.py"]=11000
+    ["endpoint_5F_RAG_Assistente.py"]=12000
 )
 
 # --- AVVIO ENDPOINT ---
@@ -139,7 +148,7 @@ for file in "${!ENDPOINTS[@]}"; do
 
     python3 "$file" > "$log" 2>&1 &
     PID=$!
-    sleep 1.5  # Attesa leggermente più lunga per endpoint con import pesanti (cloudinary, gradio)
+    sleep 1.5  # Attesa per endpoint con import pesanti (google-generativeai, scikit-learn)
 
     if kill -0 "$PID" 2>/dev/null; then
         echo -e "${GREEN}[✓] $file  →  porta $port  (PID $PID)${NC}"
@@ -155,7 +164,7 @@ done
 # --- PORTE PUBBLICHE SU CODESPACES ---
 if command -v gh &>/dev/null && [ -n "$CODESPACE_NAME" ]; then
     echo -e "\n${YELLOW}[*] Imposto le porte come pubbliche su Codespaces...${NC}"
-    for port in 5000 6000 7000 8000 9000 10000 11000; do
+    for port in 5000 6000 7000 8000 9000 10000 11000 12000; do
         gh codespace ports visibility "${port}:public" --codespace "$CODESPACE_NAME" 2>/dev/null \
             && echo -e "${GREEN}    porta $port → pubblica${NC}" \
             || echo -e "${YELLOW}    porta $port → imposta manualmente dal pannello Ports${NC}"
@@ -175,18 +184,19 @@ if [ "$STARTED" -gt 0 ]; then
     echo -e "\n${CYAN}Endpoint attivi:${NC}"
     echo -e "  5000  → Assicurazione (sinistri MongoDB + veicoli)"
     echo -e "  6000  → Login / Registrazione"
-    echo -e "  7000  → Sinistri Utente (upload immagini + AI)"
+    echo -e "  7000  → Sinistri Utente (upload immagini + Gemini Vision)"
     echo -e "  8000  → Periti (perizie, rimborsi, officine)"
     echo -e "  9000  → Polizze (CRUD)"
     echo -e "  10000 → Veicoli"
     echo -e "  11000 → Mail (SMTP Gmail)"
+    echo -e "  12000 → RAG Assistente Automobilista (SafeBot)"
 fi
 
 echo -e "\n${YELLOW}[Premi CTRL+C per fermare tutto]\n${NC}"
 
 # --- GESTIONE USCITA ---
 trap 'echo -e "\n${RED}Arresto in corso...${NC}"; \
-      fuser -k 5000/tcp 6000/tcp 7000/tcp 8000/tcp 9000/tcp 10000/tcp 11000/tcp 2>/dev/null; \
+      fuser -k 5000/tcp 6000/tcp 7000/tcp 8000/tcp 9000/tcp 10000/tcp 11000/tcp 12000/tcp 2>/dev/null; \
       echo -e "${GREEN}Tutti gli endpoint fermati.${NC}"; \
       exit 0' INT TERM
 
