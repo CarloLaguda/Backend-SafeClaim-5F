@@ -27,8 +27,8 @@ CORS(app)
 #  CONFIGURAZIONE GEMINI
 # ─────────────────────────────────────────────
 
-GEMINI_API_KEY = "xxx123##"  # Sostituisci con la tua chiave API Gemini
-GEMINI_MODEL = "gemini-2.0-flash"
+GEMINI_API_KEY = ""  # Sostituisci con la tua chiave API Gemini
+GEMINI_MODEL = "gemini-2.5-flash"
 
 # Client Gemini (lazy initialization)
 client = None

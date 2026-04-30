@@ -53,7 +53,7 @@ except Exception as e:
 
 # --- CONFIGURAZIONE GEMINI VISION ---
 
-GEMINI_API_KEY = "xxx123##"  # <-- Metti la tua API key (gratis su https://aistudio.google.com)
+GEMINI_API_KEY = ""  # <-- Metti la tua API key (gratis su https://aistudio.google.com)
 GEMINI_MODEL   = "gemini-2.5-flash"                           # <-- cambiato
 
 client = genai.Client(api_key=GEMINI_API_KEY)                 # <-- cambiato
