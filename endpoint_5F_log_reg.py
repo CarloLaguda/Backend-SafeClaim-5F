@@ -45,25 +45,47 @@ def valida_password(password):
     if not re.search(r"\d", password): return False, "La password deve contenere almeno un numero."
     return True, None
 
+def valida_cf(cf):
+    cf = cf.strip().upper()
+    if len(cf) != 16:
+        return False, "Il codice fiscale deve essere di esattamente 16 caratteri."
+    if not re.match(r'^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$', cf):
+        return False, "Il codice fiscale non è nel formato corretto."
+    return True, None
+
+def valida_email(email):
+    email = email.strip()
+    if '@' not in email:
+        return False, "L'email deve contenere il simbolo @."
+    if not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', email):
+        return False, "Formato email non valido."
+    return True, None
+
 def valida_dati_utente(data):
     pattern_nomi = r"^[a-zA-Zàáâäãåèéêëìíîïòóôöùúûüç \s']+$"
     if not re.match(pattern_nomi, data.get('nome', '')): return False, "Il nome non è valido."
     if not re.match(pattern_nomi, data.get('cognome', '')): return False, "Il cognome non è valido."
-    if not re.match(r'^[A-Z0-9]{16}$', data.get('cf', '').upper()): return False, "Il CF deve essere di 16 caratteri alfanumerici."
-    if not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', data.get('email', '')): return False, "Formato email non valido."
+
+    cf_valido, cf_err = valida_cf(data.get('cf', ''))
+    if not cf_valido: return False, cf_err
+
+    email_valida, email_err = valida_email(data.get('email', ''))
+    if not email_valida: return False, email_err
+
     valida_psw, err_psw = valida_password(data.get('psw', ''))
     if not valida_psw: return False, err_psw
+
     return True, None
 
 def valida_dati_aggiornamento(data):
-    """Validazione leggera per UPDATE: non richiede psw, serve solo per campi modificabili."""
     pattern_nomi = r"^[a-zA-Zàáâäãåèéêëìíîïòóôöùúûüç \s']+$"
     if 'nome' in data and not re.match(pattern_nomi, data.get('nome', '')):
         return False, "Il nome non è valido."
     if 'cognome' in data and not re.match(pattern_nomi, data.get('cognome', '')):
         return False, "Il cognome non è valido."
-    if 'email' in data and not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', data.get('email', '')):
-        return False, "Formato email non valido."
+    if 'email' in data:
+        email_valida, email_err = valida_email(data.get('email', ''))
+        if not email_valida: return False, email_err
     return True, None
 
 # --- REGISTRAZIONE & LOGIN ---
@@ -101,7 +123,6 @@ def login():
         cursor = conn.cursor(dictionary=True)
         tabelle = ["Assicuratore", "Automobilista", "Perito"]
         for tabella in tabelle:
-            # 🆕 Ora la SELECT include anche cf per poterlo mostrare in sidebar
             cursor.execute(
                 f"SELECT id, nome, cognome, cf, email FROM {tabella} WHERE email = %s AND psw = %s",
                 (email_in, psw_in)
@@ -114,7 +135,7 @@ def login():
     finally:
         if conn: conn.close()
 
-# --- 🆕 AGGIORNAMENTO PROFILO ---
+# --- AGGIORNAMENTO PROFILO ---
 
 @app.route('/utente/<int:user_id>', methods=['PUT'])
 def aggiorna_utente(user_id):
@@ -128,7 +149,6 @@ def aggiorna_utente(user_id):
 
     tabella = TABELLE_PER_RUOLO[ruolo]
 
-    # Solo campi aggiornabili ammessi
     campi_ammessi = {'nome', 'cognome', 'email'}
     payload = {k: v for k, v in data.items() if k in campi_ammessi and v is not None}
 
@@ -139,7 +159,6 @@ def aggiorna_utente(user_id):
     if not is_valid:
         return jsonify({"error": err}), 400
 
-    # Normalizzazione valori
     if 'nome' in payload: payload['nome'] = payload['nome'].strip().title()
     if 'cognome' in payload: payload['cognome'] = payload['cognome'].strip().title()
     if 'email' in payload: payload['email'] = payload['email'].strip().lower()
@@ -149,7 +168,6 @@ def aggiorna_utente(user_id):
         conn = get_mysql_connection()
         cursor = conn.cursor(dictionary=True)
 
-        # Costruzione dinamica della SET clause
         set_clause = ", ".join([f"{col} = %s" for col in payload.keys()])
         values = list(payload.values()) + [user_id]
 
@@ -160,7 +178,6 @@ def aggiorna_utente(user_id):
 
         conn.commit()
 
-        # Ritorna l'utente aggiornato
         cursor.execute(
             f"SELECT id, nome, cognome, cf, email FROM {tabella} WHERE id = %s",
             (user_id,)

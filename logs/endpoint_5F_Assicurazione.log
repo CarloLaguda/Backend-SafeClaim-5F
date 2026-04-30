@@ -4,92 +4,93 @@ Connessione a MongoDB Atlas (FakeClaim) riuscita!
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
- * Running on http://10.0.3.130:5000
+ * Running on http://10.0.1.67:5000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 900-163-985
-127.0.0.1 - - [30/Apr/2026 12:13:41] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:13:44] "GET /veicoli HTTP/1.1" 404 -
-127.0.0.1 - - [30/Apr/2026 12:13:46] "GET /veicoli HTTP/1.1" 404 -
-127.0.0.1 - - [30/Apr/2026 12:14:01] "GET /veicoli HTTP/1.1" 404 -
-127.0.0.1 - - [30/Apr/2026 12:14:16] "GET /veicoli HTTP/1.1" 404 -
-127.0.0.1 - - [30/Apr/2026 12:14:31] "GET /veicoli HTTP/1.1" 404 -
-127.0.0.1 - - [30/Apr/2026 12:14:46] "GET /veicoli HTTP/1.1" 404 -
-127.0.0.1 - - [30/Apr/2026 12:15:01] "GET /veicoli HTTP/1.1" 404 -
-127.0.0.1 - - [30/Apr/2026 12:15:16] "GET /veicoli HTTP/1.1" 404 -
-127.0.0.1 - - [30/Apr/2026 12:16:04] "GET /veicoli HTTP/1.1" 404 -
-127.0.0.1 - - [30/Apr/2026 12:16:45] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:16:48] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:16:50] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:17:05] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:17:21] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:17:26] "OPTIONS /veicolo/user/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:17:26] "POST /veicolo/user/1 HTTP/1.1" 201 -
-127.0.0.1 - - [30/Apr/2026 12:17:26] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:17:35] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:17:51] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:18:06] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:18:21] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:18:36] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:18:51] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:19:06] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:19:21] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:20:04] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:20:44] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:20:48] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:21:03] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:21:18] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:21:33] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:21:48] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:22:03] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:22:52] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:23:04] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:24:04] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:25:04] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:26:04] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:26:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:26:33] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:26:48] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:27:03] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:27:18] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:28:04] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:28:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:29:03] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:29:18] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:29:33] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:29:48] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:30:04] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:31:04] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:31:58] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:32:03] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:32:12] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:32:27] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:32:42] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:32:57] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:33:00] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:33:15] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:33:25] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:33:36] "OPTIONS /veicolo/user/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:33:36] "POST /veicolo/user/1 HTTP/1.1" 201 -
-127.0.0.1 - - [30/Apr/2026 12:33:36] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:33:40] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:33:56] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:34:11] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:34:26] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:34:41] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:34:56] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:35:52] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:35:56] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:36:11] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:36:26] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:36:41] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:36:56] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:37:42] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:37:45] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 12:38:00] "GET /veicoli-utente/1 HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Veicoli.py', reloading
+ * Debugger PIN: 496-986-289
+127.0.0.1 - - [30/Apr/2026 18:59:58] "GET /veicoli-utente/11 HTTP/1.1" 200 -
+127.0.0.1 - - [30/Apr/2026 19:00:13] "GET /veicoli-utente/11 HTTP/1.1" 200 -
+127.0.0.1 - - [30/Apr/2026 19:00:28] "GET /veicoli-utente/11 HTTP/1.1" 200 -
+127.0.0.1 - - [30/Apr/2026 19:00:43] "GET /veicoli-utente/11 HTTP/1.1" 200 -
+127.0.0.1 - - [30/Apr/2026 19:00:58] "GET /veicoli-utente/11 HTTP/1.1" 200 -
+127.0.0.1 - - [30/Apr/2026 19:01:13] "GET /veicoli-utente/11 HTTP/1.1" 200 -
+127.0.0.1 - - [30/Apr/2026 19:02:17] "GET /veicoli-utente/11 HTTP/1.1" 200 -
+127.0.0.1 - - [30/Apr/2026 19:02:45] "GET /veicoli-utente/11 HTTP/1.1" 200 -
+127.0.0.1 - - [30/Apr/2026 19:02:58] "GET /veicoli-utente/11 HTTP/1.1" 200 -
+127.0.0.1 - - [30/Apr/2026 19:03:03] "GET /veicoli-utente/11 HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
 Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 900-163-985
+ * Debugger PIN: 496-986-289
+127.0.0.1 - - [30/Apr/2026 19:10:45] "GET /veicoli-utente/11 HTTP/1.1" 200 -
+127.0.0.1 - - [30/Apr/2026 19:51:09] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00÷\x01\x00\x00ó\x03\x03')
+127.0.0.1 - - [30/Apr/2026 19:51:09] "\x16\x03\x01\x00÷\x01\x00\x00ó\x03\x03 M_+\x02Ìbt5&ÃH¨!\x84@Ùç°èfTo\x9cÛ.¿\x16\x9a8\x1bô\x00\x00\x84\x003\x009\x005\x00/À,À0\x00£\x00\x9fÌ©Ì¨ÌªÀ¯À­À£À\x9fÀ+À/\x00¢\x00\x9eÀ®À¬À¢À\x9eÀ$À(\x00k\x00jÀsÀw\x00Ä\x00ÃÀ#À'\x00g\x00@ÀrÀv\x00¾\x00½À" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:09] "HEAD / HTTP/1.1" 404 -
+127.0.0.1 - - [30/Apr/2026 19:51:09] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03ió²\xad\x18â')
+127.0.0.1 - - [30/Apr/2026 19:51:09] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03ió²­\x18â\x85ã^×ëè¨6¹P\x0eN\x81\x02¸£\x8aÕ\x004è" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:09] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [30/Apr/2026 19:51:09] "\x16\x03\x03\x00\x8c\x01\x00\x00\x88\x03\x03ió²­*\x90ûú(`&Ê5\x85è¼\x87ÄÑ_\x88\x8bÁ¯\x1d®|}àÞð\x9a\x00\x00\x1a\x13\x05\x13\x04\x13\x01\x13\x02\x13\x03À´Àµ\x00Ç\x00ÆÀ²À°À³À±\x01\x00\x00E\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:09] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00')
+127.0.0.1 - - [30/Apr/2026 19:51:09] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01ió²­òRô`ûº\x14ím½\x89\x94eviÃ\x03ßô»\x9d\x198\x98i¥éS\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:09] code 400, message Bad request version ('ü\x0e¶:ý\x00\x00')
+127.0.0.1 - - [30/Apr/2026 19:51:09] "\x16\x03\x01\x00W\x01\x00\x00S\x03\x03ió²­_!áÖk\x85ðÇ\x88M~Ù}×ù\x12µük\x9bï×\x85ü\x0e¶:ý\x00\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:09] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00')
+127.0.0.1 - - [30/Apr/2026 19:51:09] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02ió²­ÞÀ²\x13\x13Z7\x86.¬|Ú\x8cnY\x18D\x1eè\x03ÀLÓkÊTN\x87\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:09] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00')
+127.0.0.1 - - [30/Apr/2026 19:51:09] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x006\x00')
+127.0.0.1 - - [30/Apr/2026 19:51:09] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02ió²­\x8f\x04oÎª<\x99É\x8b\x0eÇN|*çOÜ\x9f\x1a\x80rÊ¬Aã\x19é<\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:09] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00')
+127.0.0.1 - - [30/Apr/2026 19:51:09] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03ió²­°Ês \x06&×5¦ J\x89Sà<HÁ¨(Odè\x0fç&\x92ØÒ\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x006\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:09] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01ió²­b@þ\x17*ÍÜ»; ±½©ë\x05r8àN\x0bÀpC ýÒ\x97É\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:09] code 400, message Bad request version ('\x00/\x00')
+127.0.0.1 - - [30/Apr/2026 19:51:09] "\x16\x03\x00\x00i\x01\x00\x00e\x03\x03U\x1c§ärandom1random2random3random4\x00\x00\x0c\x00/\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:09] "GET / HTTP/1.1" 404 -
+127.0.0.1 - - [30/Apr/2026 19:51:09] code 400, message Bad request version ('À#À¬À®À+À')
+127.0.0.1 - - [30/Apr/2026 19:51:09] code 400, message Bad request version ('À#À¬À®À+À')
+127.0.0.1 - - [30/Apr/2026 19:51:09] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02ió²­>M\x1a\x8dÊÔ\x11Àà\x10±Ñ\x94;W\x18î\x08Õ\x85\x07ªµ\x87pû6Y\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:09] code 400, message Bad request version ('À#À¬À®À+À')
+127.0.0.1 - - [30/Apr/2026 19:51:09] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03ió²­\x1eC7¢ÂPñ\x12­Ùê3!¯;\x81£7\x021k\x04·Ú\x18p\x18b\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:09] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01ió²­8\\+4\x1cT[è\x85\x96põÈ\x19\x07Gô\x0dx\x95\x8a \\o\x17¤\x8b\x7f\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:09] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00')
+127.0.0.1 - - [30/Apr/2026 19:51:09] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x006\x00')
+127.0.0.1 - - [30/Apr/2026 19:51:09] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03ió²­\x11\x06iûpÎeb±è\x0d­\x1e"®/\x8a]\x85Âæþ>ø\x98\x1ds_\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x006\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:09] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01ió²­\x92`\x10¹Ü\x16\x1bÆ\x06Ì\x00Á\x7f\x09\x1bdËß¾kHDS©Wòi \x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:09] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00')
+127.0.0.1 - - [30/Apr/2026 19:51:09] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02ió²­@¢\x10a#\x02ºwCc\x1fWXj\x87øïr\x91ç·aPd\x0f¦ÍÈ\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:09] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00')
+127.0.0.1 - - [30/Apr/2026 19:51:09] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01ió²­\x18¯2â~Xa1\x06µ\x97\x1a9þî'÷Ã\x16Ï^\x0c4ÒZu¥µ\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:10] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x006\x00')
+127.0.0.1 - - [30/Apr/2026 19:51:10] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03ió²­\x06o\x094Ö\x19í*]\x01"\x96³)9»o\x0f5à=¤{çîhË\x1e\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x006\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:10] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00')
+127.0.0.1 - - [30/Apr/2026 19:51:10] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02ió²­\x92Zú«l\x08\x00\x91¨·[\x0cëtÔ?Åæy¶N×\x89=s°\x00<\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:10] code 400, message Bad request version ('\x05cÉ-G.D\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
+127.0.0.1 - - [30/Apr/2026 19:51:10] "\x16\x03\x01\x00½\x01\x00\x00¹\x03\x01ió²®Lê\x93\x8c\x92\x923à\x1cv&ÑvëBõx \x9c_\x85\x05cÉ-G.D\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:10] code 400, message Bad request version ('Ü\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
+127.0.0.1 - - [30/Apr/2026 19:51:10] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x02\x00½\x01\x00\x00¹\x03\x02ió²®bW;ÿ\x0e\x06!M')
+127.0.0.1 - - [30/Apr/2026 19:51:10] "\x16\x03\x02\x00½\x01\x00\x00¹\x03\x02ió²®bW;ÿ\x0e\x06!M\x1eæ\x11\x8b¹(\x10n¬Ì¤Ô\x11\x08ýâÌ¯àÓ\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:10] "\x16\x03\x03\x00Ý\x01\x00\x00Ù\x03\x03ió²®¾ß\x93ë\x82k'sj^Ue\x16\x1fG\x8e\x86µ_\\Þ\\Y\x90ôõ Ü\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:14] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00')
+127.0.0.1 - - [30/Apr/2026 19:51:14] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00ió²­T\x18­`¹\x93\x15c\x88M¹ÞY$4¿;(`ïL}\x89\x1c\x8a¨\x90\x96\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:19] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00')
+127.0.0.1 - - [30/Apr/2026 19:51:19] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00ió²²%\x10yÊ`l&\x98Î¤ÕÉ¾\x12u6Èñ$Þ[}\x15ô\x1aËý\x16\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:19] code 400, message Bad request version ('À#À¬À®À+À')
+127.0.0.1 - - [30/Apr/2026 19:51:19] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00ió²·Y¿£þ\x0f¨³M1Ã\x9bð\x11\x89dú>û\x83ZTd\x9cå\x8f\x0fQg\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:24] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00')
+127.0.0.1 - - [30/Apr/2026 19:51:24] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00ió²·¬S\x84Qk\x15\x0cÊ'`\x03\x10ÓáÁhÒ¾ÞÞI\x19¶ü`\x89\x1cq\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:29] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00')
+127.0.0.1 - - [30/Apr/2026 19:51:29] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00ió²¼M?\x9c{Ë:®4Cd»\x84\x15±³#\x88\x8f©°jª2þY\x8eRP\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:51:29] code 400, message Bad request syntax ("\x16\x03\x00\x00¥\x01\x00\x00¡\x03\x00ió²Á\x84Õ%\x08\x88gkð,`\x82@\x0eøB\xad7©\x93\x99³ö\x02'îY\x16Ù\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00")
+127.0.0.1 - - [30/Apr/2026 19:51:29] "\x16\x03\x00\x00¥\x01\x00\x00¡\x03\x00ió²Á\x84Õ%\x08\x88gkð,`\x82@\x0eøB­7©\x93\x99³ö\x02'îY\x16Ù\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
+127.0.0.1 - - [30/Apr/2026 19:57:12] "HEAD /.aws/ HTTP/1.1" 404 -
+127.0.0.1 - - [30/Apr/2026 19:57:13] "HEAD /.ada/ HTTP/1.1" 404 -
+127.0.0.1 - - [30/Apr/2026 19:57:13] "HEAD /.ssh/ HTTP/1.1" 404 -
+127.0.0.1 - - [30/Apr/2026 19:57:13] "HEAD /.midway/ HTTP/1.1" 404 -
+127.0.0.1 - - [30/Apr/2026 20:02:05] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [30/Apr/2026 20:02:45] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_RAG_Assistente.py', reloading
+Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 496-986-289
