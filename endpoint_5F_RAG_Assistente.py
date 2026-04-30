@@ -350,7 +350,7 @@ DOMANDA DELL'UTENTE:
 RISPOSTA:"""
 
     MAX_TENTATIVI = 3
-    ATTESA_BASE   = 15  # secondi
+    ATTESA_BASE   = 5  # secondi
 
     for tentativo in range(1, MAX_TENTATIVI + 1):
         try:
