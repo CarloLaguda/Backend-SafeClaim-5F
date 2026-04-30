@@ -329,6 +329,8 @@ Tieni le risposte concise ma complete (massimo 150 parole).
 """
 
 def genera_risposta_gemini(domanda: str, chunk_rilevanti: list[dict]) -> str:
+    import time
+
     if not chunk_rilevanti:
         contesto = "Non ho trovato informazioni specifiche su questo argomento nella Knowledge Base."
     else:
@@ -347,28 +349,30 @@ DOMANDA DELL'UTENTE:
 
 RISPOSTA:"""
 
-    try:
-        client = get_gemini_client()
-        print(f"[DEBUG] Client Gemini inizializzato")
-        print(f"[DEBUG] Modello: {GEMINI_MODEL}")
-        print(f"[DEBUG] Prompt inviato ({len(prompt_completo)} caratteri)")
-        
-        risposta = client.models.generate_content(
-            model=GEMINI_MODEL,
-            contents=prompt_completo
-        )
-        
-        print(f"[DEBUG] Risposta ricevuta: {type(risposta)}")
-        text = risposta.text if hasattr(risposta, 'text') else str(risposta)
-        return text.strip()
-    except Exception as e:
-        import traceback
-        print(f"[ERRORE GEMINI] {type(e).__name__}: {e}")
-        print(f"[TRACEBACK] {traceback.format_exc()}")
-        return (
-            "Mi dispiace, si è verificato un errore nel generare la risposta. "
-            "Per assistenza contatta direttamente il supporto SafeClaim."
-        )
+    MAX_TENTATIVI = 3
+    ATTESA_BASE   = 15  # secondi
+
+    for tentativo in range(1, MAX_TENTATIVI + 1):
+        try:
+            client = get_gemini_client()
+            risposta = client.models.generate_content(
+                model=GEMINI_MODEL,
+                contents=prompt_completo
+            )
+            return risposta.text.strip()
+
+        except Exception as e:
+            print(f"[ERRORE GEMINI] Tentativo {tentativo}/{MAX_TENTATIVI}: {e}")
+            if tentativo < MAX_TENTATIVI:
+                attesa = ATTESA_BASE * tentativo  # 15s, 30s
+                print(f"[AI] Attendo {attesa}s prima di ritentare...")
+                time.sleep(attesa)
+            else:
+                print(f"[AI] Tutti i tentativi esauriti.")
+                return (
+                    "Mi dispiace, si è verificato un errore nel generare la risposta. "
+                    "Per assistenza contatta direttamente il supporto SafeClaim."
+                )
 
 
 # ─────────────────────────────────────────────
