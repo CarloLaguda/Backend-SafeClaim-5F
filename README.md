@@ -28,6 +28,7 @@ Backend-SafeClaim-5F/
 | `endpoint_5F_Polizze.py` | 9000 | Creazione, lettura, modifica, eliminazione polizze |
 | `endpoint_5F_Veicoli.py` | 10000 | Lettura veicoli (tutti o per ID) |
 | `endpoint_5F_Mail.py` | 11000 | Invio email tramite Gmail SMTP |
+| `endpoint_5F_RAG_Assistente.py` | 12000 | Chatbot con RAG |
 
 ## Avvio rapido
 
