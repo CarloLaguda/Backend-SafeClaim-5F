@@ -57,6 +57,33 @@ def get_veicoli(id=None):
     finally:
         if conn: conn.close()
 
+@app.route('/veicolo/user/<int:user_id>', methods=['POST'])
+def crea_veicolo_utente(user_id):
+    data = request.get_json()
+    if not data or not data.get('targa'):
+        return jsonify({"error": "Campo obbligatorio mancante: targa"}), 400
+    conn = None
+    try:
+        conn = get_mysql_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("SELECT id FROM Automobilista WHERE id = %s", (user_id,))
+        if not cursor.fetchone():
+            return jsonify({"error": f"Utente {user_id} non trovato"}), 404
+        cursor.execute(
+            "INSERT INTO Veicolo (targa, n_telaio, marca, modello, anno_immatricolazione, automobilista_id) VALUES (%s, %s, %s, %s, %s, %s)",
+            (data.get('targa'), data.get('n_telaio'), data.get('marca'), data.get('modello'), data.get('anno_immatricolazione'), user_id)
+        )
+        conn.commit()
+        return jsonify({"status": "success", "veicolo_id": cursor.lastrowid}), 201
+    except mysql.connector.IntegrityError:
+        if conn: conn.rollback()
+        return jsonify({"error": "Targa o numero telaio già esistente"}), 409
+    except Exception as e:
+        if conn: conn.rollback()
+        return jsonify({"error": str(e)}), 500
+    finally:
+        if conn: conn.close()
+
 if __name__ == '__main__':
     # Mantenuta porta 6000 come da tua ultima riga
     app.run(host='0.0.0.0', port=10000, debug=True)

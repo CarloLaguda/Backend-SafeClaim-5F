@@ -7,8 +7,16 @@ SafeBot RAG Assistente avviato su porta 12000
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:12000
- * Running on http://10.0.12.94:12000
+ * Running on http://10.0.3.130:12000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 136-822-009
+ * Debugger PIN: 900-163-985
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Veicoli.py', reloading
+Costruzione indice TF-IDF sulla Knowledge Base...
+Indice TF-IDF pronto: 22 chunk, 1160 termini
+
+SafeBot RAG Assistente avviato su porta 12000
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 900-163-985
