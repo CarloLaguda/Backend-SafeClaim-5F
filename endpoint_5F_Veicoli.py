@@ -101,6 +101,30 @@ def crea_veicolo_utente(user_id):
     finally:
         if conn: conn.close()
 
+@app.route('/veicoli-utente/<int:user_id>/<string:targa>', methods=['DELETE'])
+def elimina_veicolo_utente(user_id, targa):
+    """Elimina un veicolo specifico di un utente basandosi sulla targa"""
+    conn = None
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
+        
+        # Verifichiamo se il veicolo appartiene effettivamente all'utente
+        cursor.execute("SELECT id FROM Veicolo WHERE targa = %s AND automobilista_id = %s", (targa, user_id))
+        if not cursor.fetchone():
+            return jsonify({"error": "Veicolo non trovato o non appartenente a questo utente"}), 404
+            
+        # Eliminazione fisica
+        cursor.execute("DELETE FROM Veicolo WHERE targa = %s AND automobilista_id = %s", (targa, user_id))
+        conn.commit()
+        
+        return jsonify({"status": "success", "message": f"Veicolo {targa} rimosso con successo"}), 200
+    except Exception as e:
+        if conn: conn.rollback()
+        return jsonify({"error": str(e)}), 500
+    finally:
+        if conn: conn.close()
+
 if __name__ == '__main__':
     # Mantenuta porta 6000 come da tua ultima riga
     app.run(host='0.0.0.0', port=10000, debug=True)

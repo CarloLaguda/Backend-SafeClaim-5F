@@ -88,7 +88,7 @@ except Exception as e:
 #  CONFIGURAZIONE GEMINI VISION
 # ─────────────────────────────────────────────
 
-GEMINI_API_KEY = "AIzaSyBDpz38aGV8dhgYPAIjFLjMnGD9X2yGkF8"
+GEMINI_API_KEY = ""
 GEMINI_MODEL   = "gemini-2.5-flash"
 
 gemini_client      = None
