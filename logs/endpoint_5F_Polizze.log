@@ -4,98 +4,135 @@ Connessione a MongoDB Atlas (FakeClaim) riuscita!
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:9000
- * Running on http://10.0.1.67:9000
+ * Running on http://10.0.2.167:9000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 496-986-289
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
+ * Debugger PIN: 597-386-005
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
 Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 496-986-289
-127.0.0.1 - - [30/Apr/2026 19:29:03] "GET /polizze HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 19:30:55] "GET /polizze HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 19:31:10] "GET /polizze HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 19:31:22] "GET /polizze HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 19:42:01] "GET /polizze HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 19:43:30] "OPTIONS /polizze HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 19:43:30] "POST /polizze HTTP/1.1" 400 -
-127.0.0.1 - - [30/Apr/2026 19:43:49] "GET /polizze HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 19:46:49] "GET /polizze HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 19:48:30] "GET /polizze HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 19:49:32] "OPTIONS /polizze HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 19:49:32] "POST /polizze HTTP/1.1" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:10] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00÷\x01\x00\x00ó\x03\x03\x05\x8aQ°æý')
-127.0.0.1 - - [30/Apr/2026 19:52:10] "\x16\x03\x01\x00÷\x01\x00\x00ó\x03\x03\x05\x8aQ°æý\x1e=5ýÃ=o\x0f±½\x9cù\x9bh¨\x10XJ:ñØx¶ên¶\x00\x00\x84\x003\x009\x005\x00/À,À0\x00£\x00\x9fÌ©Ì¨ÌªÀ¯À­À£À\x9fÀ+À/\x00¢\x00\x9eÀ®À¬À¢À\x9eÀ$À(\x00k\x00jÀsÀw\x00Ä\x00ÃÀ#À'\x00g\x00@ÀrÀv\x00¾\x00½À" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:10] "HEAD / HTTP/1.1" 404 -
-127.0.0.1 - - [30/Apr/2026 19:52:10] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00')
-127.0.0.1 - - [30/Apr/2026 19:52:10] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02ió²ê_\x99\x1aVÄb@\x827-ª\x99lC@d\x07AC÷\x07ù·\x15ö\x0eÔ§\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:10] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00')
-127.0.0.1 - - [30/Apr/2026 19:52:10] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01ió²ê ùv\x08\x07ñÍyø«ñß®DÍ\x09¾î\x90×\x15t*i\x10ºI¸\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:10] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x03\x00\x8c\x01\x00\x00\x88\x03\x03ió²ê4\x88\x05')
-127.0.0.1 - - [30/Apr/2026 19:52:10] code 400, message Bad request syntax ('\x16\x03\x01\x00W\x01\x00\x00S\x03\x03ió²êÈ!`à\x8eØâÓ\x84¦\x07úÚ|\x06T\x9bÎÆ·*£ò\x17È3·\x98\x00\x00')
-127.0.0.1 - - [30/Apr/2026 19:52:10] "\x16\x03\x01\x00W\x01\x00\x00S\x03\x03ió²êÈ!`à\x8eØâÓ\x84¦\x07úÚ|\x06T\x9bÎÆ·*£ò\x17È3·\x98\x00\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:10] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x006\x00')
-127.0.0.1 - - [30/Apr/2026 19:52:10] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03ió²ê\x83^\x9bçdF\x0e\x0f ×\x84J¡åg?×Òd;cÉÎ\x16ÊI \x9c\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x006\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:10] "\x16\x03\x03\x00\x8c\x01\x00\x00\x88\x03\x03ió²ê4\x88\x05\x1c \x9eë9OÑ\x9b\x9b)ÁVËP4|Yé[¾ö¿nÄâ\x00\x00\x1a\x13\x05\x13\x04\x13\x01\x13\x02\x13\x03À´Àµ\x00Ç\x00ÆÀ²À°À³À±\x01\x00\x00E\x00+\x00\x03\x02\x03\x04\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:10] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00')
-127.0.0.1 - - [30/Apr/2026 19:52:10] code 400, message Bad request version ('\x00/\x00')
-127.0.0.1 - - [30/Apr/2026 19:52:10] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00')
-127.0.0.1 - - [30/Apr/2026 19:52:10] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01ió²ê\x19ëëwVîý£\x1dQ\x844Å\x91ÈÝâë¥Ò¢\x19a# ÷ýW\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:10] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02ió²ê\x00ßé\x05\x8dÚ0`\x03»×äµS~´öYÆwøµ²Ä\x02D\x8ck\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:10] "\x16\x03\x00\x00i\x01\x00\x00e\x03\x03U\x1c§ärandom1random2random3random4\x00\x00\x0c\x00/\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:10] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x006\x00')
-127.0.0.1 - - [30/Apr/2026 19:52:10] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03ió²êæ%ã\x05l¸ÿÎ×\x12\x89e[\x91]+j%©â\x93iÓ±À²\x8a9\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x006\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:10] "GET / HTTP/1.1" 404 -
-127.0.0.1 - - [30/Apr/2026 19:52:10] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02ió²êÁYå_§\x91ü¾\x9d\x00\x15Ö')
-127.0.0.1 - - [30/Apr/2026 19:52:10] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02ió²êÁYå_§\x91ü¾\x9d\x00\x15Ö\x1e\x1d:\x05" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:10] code 400, message Bad request version ('À#À¬À®À+À')
-127.0.0.1 - - [30/Apr/2026 19:52:10] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03ió²êÇ@äCûd\x18\x09òS®_Ê\x83èI+®\x0fúñÝ{)|·ÒÚ\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:10] code 400, message Bad request version ('À#À¬À®À+À')
-127.0.0.1 - - [30/Apr/2026 19:52:10] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01ió²êÊÌ -w°mF¡¨¡ÙJÝ\x91V×Î:W£ó>-¸\x17Na\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:10] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00')
-127.0.0.1 - - [30/Apr/2026 19:52:10] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02ió²êkèÐU\x0cÜµ\x93U\x8dööóv¯^e\x86qy<ÕB³o\x13å\x95\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:10] code 400, message Bad request syntax ('\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01ió²êsýÆg\x13;r#ÂgÔn®¶ÖL\x82\x03Ñ÷Íía')
-127.0.0.1 - - [30/Apr/2026 19:52:10] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01ió²êsýÆg\x13;r#ÂgÔn®¶ÖL\x82\x03Ñ÷Íía" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:10] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x006\x00')
-127.0.0.1 - - [30/Apr/2026 19:52:10] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03ió²ê^\x9f\x93\x92\x07\x9dv¨S¸ÿ\x8d|Á34\x98\x0e\x05ãÙ Qúô3Iw\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x006\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:11] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00')
-127.0.0.1 - - [30/Apr/2026 19:52:11] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00')
-127.0.0.1 - - [30/Apr/2026 19:52:11] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02ió²ëíq@ë<ð!Ø\x17ïmaìc·\x91«ê\x09ñ¹ì\x9dßø|ô*\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:11] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x006\x00')
-127.0.0.1 - - [30/Apr/2026 19:52:11] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03ió²ëê\x8dikD£\x06SÎO5à¸\x1a\x0f-\x8d\x97ýPÊ¢\x09\x9aQ\x89Á'\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x006\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:11] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01ió²ë\x19ÂëÒ=Cÿ\x93ÑP\x0bX»A\x13Ë\x83\x86Wª/\x82f´b68J\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:11] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x02\x00½\x01\x00\x00¹\x03\x02ió²ëGàÍ,4Äÿ6ßâos1ä\x98')
-127.0.0.1 - - [30/Apr/2026 19:52:11] "\x16\x03\x02\x00½\x01\x00\x00¹\x03\x02ió²ëGàÍ,4Äÿ6ßâos1ä\x98\x1d\x0f\x1bìr?Ý¢\x06\x8a\x10\x86$\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:11] code 400, message Bad request syntax ('\x16\x03\x01\x00½\x01\x00\x00¹\x03\x01ió²ëXÐ\x05à\x1a/¶R5èÍ|UÇâ¡\x92Af\x91<\x817\x04\x14\x17ö±\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
-127.0.0.1 - - [30/Apr/2026 19:52:11] "\x16\x03\x01\x00½\x01\x00\x00¹\x03\x01ió²ëXÐ\x05à\x1a/¶R5èÍ|UÇâ¡\x92Af\x91<\x817\x04\x14\x17ö±\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:11] code 400, message Bad request syntax ("\x16\x03\x03\x00Ý\x01\x00\x00Ù\x03\x03ió²ë\x95\x9bp¼é\x8b\x17ü³ÀT3I\x95|Îi,'û\x7fÎ}\x9aúÄö×\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00")
-127.0.0.1 - - [30/Apr/2026 19:52:11] "\x16\x03\x03\x00Ý\x01\x00\x00Ù\x03\x03ió²ë\x95\x9bp¼é\x8b\x17ü³ÀT3I\x95|Îi,'û\x7fÎ}\x9aúÄö×\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:15] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00')
-127.0.0.1 - - [30/Apr/2026 19:52:15] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00ió²êZwë ÷¿{é»\x19ÝU\x06¾\x9ec\x06 TØ\x1bâÉ\x17tIìa\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:20] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00')
-127.0.0.1 - - [30/Apr/2026 19:52:20] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00ió²ï5R\x05}\x19JàGN°*Ä\x9f\x18Op«\x1f\x84ÉUHµæd/\x04¡\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:20] code 400, message Bad request version ('À#À¬À®À+À')
-127.0.0.1 - - [30/Apr/2026 19:52:20] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00ió²ôÂÍ\x84HP\x15þ§-¶jY \x18XÖVºouû³e\x85\x93w{\x80\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:25] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00')
-127.0.0.1 - - [30/Apr/2026 19:52:25] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00ió²ô|<\x84ç4Iýä&\x14d»c·\x07$\x91dü(c \x9c¨\x01lÆ,\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:30] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00')
-127.0.0.1 - - [30/Apr/2026 19:52:30] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00ió²ù¡8²\x0d.~ïM8³òevìu;¤Tg\x1a[\x1b#ÀMz\x82¡\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:52:30] code 400, message Bad request version ('\x00{%Í\x92\x11îXMm@Î\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
-127.0.0.1 - - [30/Apr/2026 19:52:30] "\x16\x03\x00\x00¥\x01\x00\x00¡\x03\x00ió²þ@Æ±\x1e\x8dÞj\x89~\x1aè|î¨é\x1f\x00{%Í\x92\x11îXMm@Î\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
-127.0.0.1 - - [30/Apr/2026 19:53:36] "GET /polizze HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 19:54:22] "OPTIONS /polizze HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 19:54:22] "POST /polizze HTTP/1.1" 201 -
-127.0.0.1 - - [30/Apr/2026 19:54:23] "GET /polizze HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 19:57:13] "HEAD /.aws/ HTTP/1.1" 404 -
-127.0.0.1 - - [30/Apr/2026 19:57:13] "HEAD /.ada/ HTTP/1.1" 404 -
-127.0.0.1 - - [30/Apr/2026 19:57:13] "HEAD /.ssh/ HTTP/1.1" 404 -
-127.0.0.1 - - [30/Apr/2026 19:57:13] "HEAD /.midway/ HTTP/1.1" 404 -
-127.0.0.1 - - [30/Apr/2026 20:02:04] "GET /polizze HTTP/1.1" 200 -
-127.0.0.1 - - [30/Apr/2026 20:02:45] "GET /polizze HTTP/1.1" 200 -
+ * Debugger PIN: 597-386-005
+127.0.0.1 - - [01/May/2026 10:34:54] "GET /polizze HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 10:35:54] "OPTIONS /polizze HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 10:35:54] "POST /polizze HTTP/1.1" 201 -
+127.0.0.1 - - [01/May/2026 10:35:54] "GET /polizze HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 11:10:07] "GET /polizze HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 11:10:19] "OPTIONS /polizze/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 11:10:19] "DELETE /polizze/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 11:10:19] "GET /polizze HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 11:11:27] "OPTIONS /polizze/11 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 11:11:27] "PUT /polizze/11 HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/mysql/connector/connection_cext.py", line 772, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Incorrect date value: 'Wed, 05 May 2027 00:00:00 GMT' for column `gestione_assicurazioni`.`Polizza`.`data_scadenza` at row 1
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/Backend-SafeClaim-5F/endpoint_5F_Polizze.py", line 81, in modifica_polizza
+    cursor.execute(query, (data['n_polizza'], data['data_scadenza'], id))
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/mysql/connector/cursor_cext.py", line 353, in execute
+    self._connection.cmd_query(
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/mysql/connector/opentelemetry/context_propagation.py", line 97, in wrapper
+    return method(cnx, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/mysql/connector/connection_cext.py", line 781, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.DataError: 1292 (22007): Incorrect date value: 'Wed, 05 May 2027 00:00:00 GMT' for column `gestione_assicurazioni`.`Polizza`.`data_scadenza` at row 1
+127.0.0.1 - - [01/May/2026 11:14:08] "GET /polizze HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 11:19:53] "GET /polizze HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 11:20:18] "GET /polizze HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 11:21:05] "OPTIONS /polizze/11 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 11:21:49] "OPTIONS /polizze/2 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 11:21:49] "DELETE /polizze/2 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 11:21:50] "GET /polizze HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 11:21:55] "PUT /polizze/11 HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/mysql/connector/connection_cext.py", line 772, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Lock wait timeout exceeded; try restarting transaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/Backend-SafeClaim-5F/endpoint_5F_Polizze.py", line 81, in modifica_polizza
+    cursor.execute(query, (data['n_polizza'], data['data_scadenza'], id))
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/mysql/connector/cursor_cext.py", line 353, in execute
+    self._connection.cmd_query(
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/mysql/connector/opentelemetry/context_propagation.py", line 97, in wrapper
+    return method(cnx, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/mysql/connector/connection_cext.py", line 781, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.DatabaseError: 1205 (HY000): Lock wait timeout exceeded; try restarting transaction
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Polizze.py', reloading
+Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 597-386-005
+127.0.0.1 - - [01/May/2026 11:26:33] "OPTIONS /polizze/11 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 11:26:33] "PUT /polizze/11 HTTP/1.1" 500 -
+127.0.0.1 - - [01/May/2026 11:30:39] "GET /polizze HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 11:31:27] "GET /polizze HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 11:31:48] "OPTIONS /polizze/11 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 11:31:48] "PUT /polizze/11 HTTP/1.1" 500 -
+127.0.0.1 - - [01/May/2026 11:32:48] "OPTIONS /polizze/11 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 11:32:48] "PUT /polizze/11 HTTP/1.1" 200 -
  * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_RAG_Assistente.py', reloading
 Connessione a MongoDB Atlas (FakeClaim) riuscita!
+Errore DB: 1292 (22007): Incorrect date value: 'Tue, 05 May 2026 00:00:00 GMT' for column `gestione_assicurazioni`.`Polizza`.`data_inizio` at row 1
+Errore DB: 1292 (22007): Incorrect date value: '' for column `gestione_assicurazioni`.`Polizza`.`data_inizio` at row 1
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 496-986-289
+ * Debugger PIN: 597-386-005

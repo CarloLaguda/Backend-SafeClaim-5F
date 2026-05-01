@@ -75,14 +75,45 @@ def leggi_polizze():
 @app.route('/polizze/<int:id>', methods=['PUT'])
 def modifica_polizza(id):
     data = request.get_json()
+    if not data:
+        return jsonify({"error": "Nessun dato fornito"}), 400
+    
     conn = get_mysql_connection()
     cursor = conn.cursor()
-    query = "UPDATE Polizza SET n_polizza=%s, data_scadenza=%s WHERE id=%s"
-    cursor.execute(query, (data['n_polizza'], data['data_scadenza'], id))
-    conn.commit()
-    cursor.close()
-    conn.close()
-    return jsonify({"message": "Polizza aggiornata"}), 200
+    
+    # Query più completa per riflettere i campi che invii da Angular
+    query = """
+        UPDATE Polizza 
+        SET n_polizza=%s, 
+            compagnia_assicurativa=%s, 
+            data_inizio=%s, 
+            data_scadenza=%s, 
+            massimale=%s, 
+            tipo_copertura=%s 
+        WHERE id=%s
+    """
+    
+    # Usiamo .get(chiave, default) per evitare KeyError
+    values = (
+        data.get('n_polizza'),
+        data.get('compagnia_assicurativa'),
+        data.get('data_inizio'),
+        data.get('data_scadenza'),
+        data.get('massimale'),
+        data.get('tipo_copertura'),
+        id
+    )
+    
+    try:
+        cursor.execute(query, values)
+        conn.commit()
+        return jsonify({"message": "Polizza aggiornata con successo"}), 200
+    except Exception as e:
+        print(f"Errore DB: {e}")
+        return jsonify({"error": str(e)}), 500
+    finally:
+        cursor.close()
+        conn.close()
 
 @app.route('/polizze/<int:id>', methods=['DELETE'])
 def elimina_polizza(id):
