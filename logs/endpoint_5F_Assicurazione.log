@@ -4,180 +4,215 @@ Connessione a MongoDB Atlas (FakeClaim) riuscita!
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
- * Running on http://10.0.2.167:5000
+ * Running on http://10.0.14.167:5000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 597-386-005
-127.0.0.1 - - [01/May/2026 10:18:14] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:18:14] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:18:30] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:18:30] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:18:45] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:18:45] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:19:00] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:19:00] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:19:07] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:19:13] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:19:16] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:19:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:19:26] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:19:33] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:19:35] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:19:50] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:20:06] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:20:09] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:20:12] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:20:18] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:20:21] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:20:27] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:20:36] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:20:45] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:20:51] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:21:06] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:30:03] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:30:05] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:30:20] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:30:36] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:30:51] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:31:06] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:31:20] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:31:35] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:32:16] "GET /veicoli-utente/1 HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+ * Debugger PIN: 305-545-371
+127.0.0.1 - - [01/May/2026 15:50:54] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:53:19] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:59:44] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:04:31] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:10:35] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:22:10] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:44:35] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:44:39] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:45:12] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:48:08] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00÷\x01\x00\x00ó\x03\x03\x9dÛK¡P\x9ajv¿AÉ\x9eG')
+127.0.0.1 - - [01/May/2026 16:48:08] "\x16\x03\x01\x00÷\x01\x00\x00ó\x03\x03\x9dÛK¡P\x9ajv¿AÉ\x9eG\x0bÎ\x94îbâ\x93\x00ÿ\x7f\x89òèo?Uí\x86\x95\x00\x00\x84\x003\x009\x005\x00/À,À0\x00£\x00\x9fÌ©Ì¨ÌªÀ¯À­À£À\x9fÀ+À/\x00¢\x00\x9eÀ®À¬À¢À\x9eÀ$À(\x00k\x00jÀsÀw\x00Ä\x00ÃÀ#À'\x00g\x00@ÀrÀv\x00¾\x00½À" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] "HEAD / HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad request syntax ('\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iôÙI\x80_´ØAò`\x94')
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iôÙI\x80_´ØAò`\x94" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00W\x01\x00\x00S\x03\x03iôÙIB°ÔxïFu\x9dÐì')
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x01\x00W\x01\x00\x00S\x03\x03iôÙIB°ÔxïFu\x9dÐì \x03¾Éï!\x94Z\x8aC¤Ó&\x86Á\x08dr\x00\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iôÙIÏâ½/Ê¹?\x10\x07qr²5ÇÀZò:áÙè¶ß\x1a³V\x09Ê\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iôÙI\x99ã\\\x8dÌÎ$Ëæ\x1dcÇ\x90Ë$å\x9e9ûÎjë\x91úÿ\x93\x1aÎ\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x03\x00\x8c\x01\x00\x00\x88\x03\x03iôÙI}\x91\x0c0\x02\x0d8¾Õ,¹|\x8d±gØhQÃÇý\x1b\x12½ K8\x8f\x00\x00\x1a\x13\x05\x13\x04\x13\x01\x13\x02\x13\x03À´Àµ\x00Ç\x00ÆÀ²À°À³À±\x01\x00\x00E\x00+\x00\x03\x02\x03\x04\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad request version ('\x00/\x00')
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iôÙI\x02À\x80ý\x88n\x91¸`\x9c\x94\x9c ·þ\x03MÎS\x1cæÜu{°L×\x00\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iôÙI\x12ð:1\x96ÒÁ\x0bÊ\x8c©KºÛ¥\x8eÓ¢\x8fz\x85Ëy{Ì¥P¥\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x00\x00i\x01\x00\x00e\x03\x03U\x1c§ärandom1random2random3random4\x00\x00\x0c\x00/\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iôÙI?ïü\x05Ó\x1e@$|\x8d\x9eNkZÖÇÔ\x7f\x1ehB;O\x18Aµ/ô\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] "GET / HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad request version ('À#À¬À®À+À')
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iôÙI¯Øs´Ö!ZôÊ+v\x09m\x16s0\x0eJáa76\x94¼\x98\x80þ\x95\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad request version ('À#À¬À®À+À')
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iôÙI{3ù\x0cW§Þ\x01\x7f31ç\x91ÂóãJj\x02L\x01ÍªAi;Á\x9f\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad request version ('À#À¬À®À+À')
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iôÙI\x9a¨Ñé\x88±C8Úd:\x0c`\x9c×\x99jdºn\x9d\x95ùp6TÌ3\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iôÙI`mºéêá?^\x8d\x98¡ý½åÆ\x9fs\x1e\x95\x9f\x8bµ°\x1f\x8eÉCÍ\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iôÙIYÚg£fÉô\x11½xzÞ¸®%üx3ßUL\x92*/)¼\x1e|\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iôÙIü;\x1e|ô\x0dO1{»\x07øVµbÈyåÍÙ6\x12yN\x1c>\x03r\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad request version ('G\x97´Ê®~')
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iôÙIðB7æÕ \x01\x1f\x8bÃ2ûÔ\x1dG\x97´Ê®~" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iôÙIgçÁ1×Ý\x92Ä¢\x95]\x19á°¦Z\x99Ð\x8e{½ÍM@>`])\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iôÙIá\x98\x7f\x10\x85óó\x8a&\x1c»±7H³\x06o\x18\x82ì\x04sa&»2\x91\x99\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x03\x00Ý\x01\x00\x00Ù\x03\x03iôÙI\x04')
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00½\x01\x00\x00¹\x03\x01iôÙIM\x16ÃÁý\x80ñ\x84!Ûë\x012äÉp³)\x10')
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x01\x00½\x01\x00\x00¹\x03\x01iôÙIM\x16ÃÁý\x80ñ\x84!Ûë\x012äÉp³)\x10\x0c\x85Ô¾KÄ@ªt\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x03\x00Ý\x01\x00\x00Ù\x03\x03iôÙI\x04\x1cª\x92Fx°©Ï)è[í\x03µb\x03Öêz3\x8f\x7fuî\x11µ}\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:48:09] code 400, message Bad request version ('þ¸ð\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
+127.0.0.1 - - [01/May/2026 16:48:09] "\x16\x03\x02\x00½\x01\x00\x00¹\x03\x02iôÙI\x88\x0ei\x92\x1c¯e¦!\x92*\x09|oÍâbÎCñ\x98F\x83\x9b\x85þ¸ð\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:48:14] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00')
+127.0.0.1 - - [01/May/2026 16:48:14] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iôÙI\x15ðeOn\x1cõ½Û«ºÕ)ë\x83Ùµ%×\x16ùSÜ.\x08¤[¤\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:48:19] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00')
+127.0.0.1 - - [01/May/2026 16:48:19] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iôÙNâ\x9bzw½\x8b¼NÌåÙ\x1dµ»¼\x99\x0eÁL\x91§PÉ\x9f]Ëù´\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:48:19] code 400, message Bad request version ('À#À¬À®À+À')
+127.0.0.1 - - [01/May/2026 16:48:19] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iôÙSæß\x8fTÄñF\x1aá<®3\x96\x9fm\x08\x9d¤\x15"\x1a\x93·@t\x08Ä\x00\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
+127.0.0.1 - - [01/May/2026 16:48:24] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00')
+127.0.0.1 - - [01/May/2026 16:48:24] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iôÙS0\x1aoNçopÁ\x00&gBæOþ°\x80óæ5 \x82\x06\x8fÞwô¨\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:48:29] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00')
+127.0.0.1 - - [01/May/2026 16:48:29] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iôÙXr\x02D\x10tXöõ\x04\x9d\x05¾\x0dE÷ß\x99ñ\x89@F´Õ\x00\x94ÔBD\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:48:29] code 400, message Bad request syntax ("\x16\x03\x00\x00¥\x01\x00\x00¡\x03\x00iôÙ]\x8fÔ\x9a\x83\x8e¾¥'vÔ\x16\x9fÇ«¡8cåÖÁjR«+Ìî~\x19\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00")
+127.0.0.1 - - [01/May/2026 16:48:29] "\x16\x03\x00\x00¥\x01\x00\x00¡\x03\x00iôÙ]\x8fÔ\x9a\x83\x8e¾¥'vÔ\x16\x9fÇ«¡8cåÖÁjR«+Ìî~\x19\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:53:12] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:54:06] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:54:13] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:54:48] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:57:33] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:58:02] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:02:05] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:03:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:05:30] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:06:18] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:06:36] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:07:47] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:08:36] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:09:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:15:25] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:39:32] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:41:28] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:42:09] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:42:24] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:42:39] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:42:54] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:43:09] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:43:24] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:43:39] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:43:54] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:44:09] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:44:24] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:44:39] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:44:54] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:45:09] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:45:24] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:45:39] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:45:54] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:46:09] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:46:24] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:46:39] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:46:54] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:47:09] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:47:24] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:47:39] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:47:54] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:48:09] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:48:24] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:48:39] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:48:55] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:49:09] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:49:25] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:49:40] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:49:55] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:50:15] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:51:15] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:52:15] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:52:50] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:52:54] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:53:09] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:54:38] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:54:39] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:54:53] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:55:08] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:55:23] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:55:38] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:55:53] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:55:56] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:55:56] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:56:11] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:56:26] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:56:41] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:56:56] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:57:11] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:57:26] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:57:31] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:57:31] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:57:46] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:58:01] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:58:01] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:58:16] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:58:31] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:58:46] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:59:01] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:59:16] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:59:28] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:59:28] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:59:43] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 17:59:59] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:00:14] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:00:29] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:00:44] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:00:59] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:01:15] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:02:15] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:03:15] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:04:15] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:05:15] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:06:02] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:06:13] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:06:28] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:06:43] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:06:59] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:07:14] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:07:29] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:07:44] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:08:15] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:09:15] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:10:15] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:10:35] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 18:10:50] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 18:10:55] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 18:11:10] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:11:16] "OPTIONS /veicolo/user/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 18:11:16] "POST /veicolo/user/1 HTTP/1.1" 201 -
+127.0.0.1 - - [01/May/2026 18:11:16] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:11:19] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 18:11:34] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 18:11:50] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 18:12:04] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 18:12:19] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 18:12:34] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 18:12:49] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 18:13:04] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 18:13:19] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 18:13:34] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 18:13:49] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 18:14:04] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Veicoli.py', reloading
 Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 597-386-005
-127.0.0.1 - - [01/May/2026 10:33:15] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:33:20] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:33:35] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:33:35] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:33:50] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:34:05] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:34:19] "OPTIONS /veicolo/user/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:34:20] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:34:20] "POST /veicolo/user/1 HTTP/1.1" 201 -
-127.0.0.1 - - [01/May/2026 10:34:20] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:34:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:40:39] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:40:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:41:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:41:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:41:39] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:41:54] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:42:09] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:42:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:43:16] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:44:16] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:45:16] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:46:16] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:47:16] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:47:46] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:47:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:48:09] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:48:25] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:48:39] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:48:55] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:49:09] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:49:25] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:49:39] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:49:54] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:50:09] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:50:24] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:50:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:50:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:51:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:51:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:51:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:51:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:52:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:52:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:52:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:52:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:53:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:53:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:53:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:53:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:54:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:54:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:54:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:54:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:55:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:55:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:55:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:55:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:56:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:56:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:56:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:56:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:57:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:57:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:57:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:57:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:58:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:58:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:58:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:58:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:59:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:59:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:59:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:59:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:00:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:00:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:00:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:00:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:01:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:01:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:01:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:01:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:02:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:02:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:02:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:02:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:03:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:03:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:03:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:03:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:04:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:04:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:04:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:04:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:05:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:05:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:05:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:05:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:06:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:06:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:06:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:06:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:07:09] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:07:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:07:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:07:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:08:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:08:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:08:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:08:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:09:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:09:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:09:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:09:42] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:10:06] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:14:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:19:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:20:17] "GET /veicoli-utente/1 HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Polizze.py', reloading
+ * Debugger PIN: 305-545-371
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Veicoli.py', reloading
 Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 597-386-005
-127.0.0.1 - - [01/May/2026 11:30:39] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:31:27] "GET /veicoli-utente/1 HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_RAG_Assistente.py', reloading
-Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 597-386-005
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Debugger PIN: 305-545-371
+127.0.0.1 - - [01/May/2026 18:14:20] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 18:14:35] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 18:14:36] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 18:14:51] "GET /veicoli HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 18:14:56] "OPTIONS /veicolo/user/1 HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 18:14:56] "POST /veicolo/user/1 HTTP/1.1" 201 -
+127.0.0.1 - - [01/May/2026 18:14:57] "GET /veicoli HTTP/1.1" 404 -

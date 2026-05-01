@@ -4,166 +4,512 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:8000
- * Running on http://10.0.2.167:8000
+ * Running on http://10.0.14.167:8000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 597-386-005
-127.0.0.1 - - [01/May/2026 10:20:45] "OPTIONS /sinistro/69f47e7b453a1fc6fa0b97fd/pratica HTTP/1.1" 200 -
-/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:171: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
-  "data_inserimento": datetime.utcnow()
-/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:182: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
-  "data_aggiornamento": datetime.utcnow()
-127.0.0.1 - - [01/May/2026 10:20:45] "POST /sinistro/69f47e7b453a1fc6fa0b97fd/pratica HTTP/1.1" 201 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+ * Debugger PIN: 305-545-371
+127.0.0.1 - - [01/May/2026 15:50:54] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:50:54] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:51:09] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:51:24] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:51:39] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:51:54] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:52:09] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:52:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:52:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:52:54] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:53:09] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:53:19] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:53:19] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:53:34] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:53:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:54:04] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:54:19] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:54:34] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:54:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:55:04] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:55:19] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:55:34] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:55:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:56:04] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:56:19] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:56:34] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:56:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:57:04] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:57:19] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:57:34] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:57:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:58:04] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:58:19] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:58:34] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:58:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:59:04] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:59:19] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:59:34] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:59:43] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:59:44] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 15:59:58] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:00:13] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:00:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:00:44] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:00:58] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:01:13] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:01:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:01:43] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:01:59] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:02:13] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:02:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:02:44] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:02:59] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:03:13] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:03:29] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:03:44] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:03:57] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:03:58] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:04:00] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:04:13] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:04:29] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:04:31] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:04:31] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:04:46] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:05:01] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:05:16] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:05:31] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:05:46] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:06:01] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:06:16] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:06:31] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:06:46] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:07:01] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:07:16] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:07:31] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:07:46] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:08:01] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:08:16] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:08:31] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:08:46] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:09:01] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:09:16] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:09:31] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:09:46] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:10:01] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:10:16] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:10:31] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:10:35] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:10:35] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:10:50] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:11:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:11:20] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:11:35] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:11:50] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:12:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:12:20] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:12:35] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:12:50] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:13:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:13:20] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:13:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:22:04] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:22:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:22:10] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:22:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:22:26] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:22:41] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:22:56] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:23:11] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:23:26] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:23:41] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:24:15] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:25:15] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:26:15] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:26:52] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:26:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:27:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:27:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:27:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:27:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:28:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:28:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:28:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:28:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:29:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:29:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:29:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:29:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:30:11] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:30:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:30:41] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:30:57] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:31:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:31:27] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:31:41] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:31:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:32:11] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:32:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:32:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:32:57] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:33:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:33:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:33:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:33:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:34:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:34:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:34:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:34:56] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:35:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:35:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:35:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:35:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:36:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:36:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:36:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:36:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:37:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:37:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:37:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:37:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:38:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:38:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:38:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:38:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:39:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:39:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:39:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:39:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:40:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:40:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:40:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:40:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:41:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:41:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:41:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:41:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:42:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:42:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:42:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:42:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:43:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:43:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:43:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:43:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:44:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:44:26] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:44:35] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:44:35] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:44:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:45:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:45:20] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:45:34] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:45:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:46:04] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:46:20] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:46:34] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:46:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:47:00] code 400, message Bad request version ("Íí\x01\x90\x93¡\x00\x00\x84\x003\x009\x005\x00/À,À0\x00£\x00\x9fÌ©Ì¨ÌªÀ¯À\xadÀ£À\x9fÀ+À/\x00¢\x00\x9eÀ®À¬À¢À\x9eÀ$À(\x00k\x00jÀsÀw\x00Ä\x00ÃÀ#À'\x00g\x00@ÀrÀv\x00¾\x00½À")
+127.0.0.1 - - [01/May/2026 16:47:00] "\x16\x03\x01\x00÷\x01\x00\x00ó\x03\x03¬Æ;.ë\x12<\x07NÛ\x01 ³\x1fjjó­Q(4Å\x9bÈê\x0dÍí\x01\x90\x93¡\x00\x00\x84\x003\x009\x005\x00/À,À0\x00£\x00\x9fÌ©Ì¨ÌªÀ¯À­À£À\x9fÀ+À/\x00¢\x00\x9eÀ®À¬À¢À\x9eÀ$À(\x00k\x00jÀsÀw\x00Ä\x00ÃÀ#À'\x00g\x00@ÀrÀv\x00¾\x00½À" 400 -
+127.0.0.1 - - [01/May/2026 16:47:00] "HEAD / HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 16:47:00] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iôÙ\x04\x97')
+127.0.0.1 - - [01/May/2026 16:47:00] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iôÙ\x04\x97\x1f»Nè²÷¯F®N-\x8bSTm{gjï" 400 -
+127.0.0.1 - - [01/May/2026 16:47:00] code 400, message Bad request syntax ('\x16\x03\x03\x00\x8c\x01\x00\x00\x88\x03\x03iôÙ\x04¡\x00oBî=Ã\x90B\x98\x9ezc\x08V\x01¨ø\x014\x8cÌàQÉ\x18\x9aÉ\x00\x00\x1a\x13\x05\x13\x04\x13\x01\x13\x02\x13\x03À´Àµ\x00Ç\x00ÆÀ²À°À³À±\x01\x00\x00E\x00')
+127.0.0.1 - - [01/May/2026 16:47:00] "\x16\x03\x03\x00\x8c\x01\x00\x00\x88\x03\x03iôÙ\x04¡\x00oBî=Ã\x90B\x98\x9ezc\x08V\x01¨ø\x014\x8cÌàQÉ\x18\x9aÉ\x00\x00\x1a\x13\x05\x13\x04\x13\x01\x13\x02\x13\x03À´Àµ\x00Ç\x00ÆÀ²À°À³À±\x01\x00\x00E\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:47:00] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x006\x00')
+127.0.0.1 - - [01/May/2026 16:47:00] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iôÙ\x04Ò\x1b+¿ÝÿÓEïÏd¦|*^À(¼O\x88\x15Äú\x12ò\x06Èn\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x006\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:47:00] code 400, message Bad request version ('\x8aJ\x83£\x1a\x1a8\x00\x00')
+127.0.0.1 - - [01/May/2026 16:47:00] "\x16\x03\x01\x00W\x01\x00\x00S\x03\x03iôÙ\x04"mj\x00\x16\x1f§\x10\x09_¬gB[\x10\x1fã(\x19É\x1d\x8aJ\x83£\x1a\x1a8\x00\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:47:00] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00')
+127.0.0.1 - - [01/May/2026 16:47:00] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iôÙ\x04°»sl¯3~\x01*3aàb\x01|ð¾Ç»rÊhÇü°/\x99¥\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:47:01] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iôÙ\x05\x94ª9\x99\x82\x8a:¾2')
+127.0.0.1 - - [01/May/2026 16:47:01] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iôÙ\x05\x94ª9\x99\x82\x8a:¾2\x1d\x03\x94ÜqñIÈ\x94Ù[Yh~V" 400 -
+127.0.0.1 - - [01/May/2026 16:47:01] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x006\x00')
+127.0.0.1 - - [01/May/2026 16:47:01] code 400, message Bad request version ('\x00/\x00')
+127.0.0.1 - - [01/May/2026 16:47:01] "\x16\x03\x00\x00i\x01\x00\x00e\x03\x03U\x1c§ärandom1random2random3random4\x00\x00\x0c\x00/\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:47:01] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iôÙ\x05\x8bD\x8aÙ×d\x05{9\x9e\x02@\x1d\x06w4\x14\x826fEÓ\x87±ª-\x0c\x08\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x006\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:47:01] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00')
+127.0.0.1 - - [01/May/2026 16:47:01] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iôÙ\x05Xå\x1aéi\x90\x07\x14,æ¡\x80\x83YáMLtc+bVV¿]3è\x9c\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:47:01] "GET / HTTP/1.1" 404 -
+127.0.0.1 - - [01/May/2026 16:47:01] code 400, message Bad request version ('À#À¬À®À+À')
+127.0.0.1 - - [01/May/2026 16:47:01] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iôÙ\x05ïõ\\\x10­J\x0elµïyÔþÎ½\x08ã1¡ð·\x95\x08\x04Ò\x18\x96û\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
+127.0.0.1 - - [01/May/2026 16:47:01] code 400, message Bad request version ('À#À¬À®À+À')
+127.0.0.1 - - [01/May/2026 16:47:01] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iôÙ\x05Ñ\x12Æñ\x87\x03ØG\x927¬ãi\x9a^\x10R\x94§RÕb>@D(sA\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
+127.0.0.1 - - [01/May/2026 16:47:01] code 400, message Bad request syntax ('\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iôÙ\x05\x14Ï¬±r\x80»DE\x05^M')
+127.0.0.1 - - [01/May/2026 16:47:01] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iôÙ\x05\x14Ï¬±r\x80»DE\x05^M" 400 -
+127.0.0.1 - - [01/May/2026 16:47:01] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00')
+127.0.0.1 - - [01/May/2026 16:47:01] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00')
+127.0.0.1 - - [01/May/2026 16:47:01] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x006\x00')
+127.0.0.1 - - [01/May/2026 16:47:01] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iôÙ\x05¯`ô5\x9d\x09¦µ\x89\x14¯\x88;ô³\x81Û\x1a\x1a`×O\x8a¤©k\x9c\x0e\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:47:01] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iôÙ\x05Q»¸ÝÎ\x89\x88{è\x01¾Ê.³D³|Ã\x19\x8dÁÀ¥«\x85\x07«¢\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:47:01] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iôÙ\x05¤¿Êk\x0bÌ(=\x9fÁZîË\x96\x87³\x106n\x9bI\x93&ã\x04ÊÄ\x16\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x006\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:47:01] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00')
+127.0.0.1 - - [01/May/2026 16:47:01] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00')
+127.0.0.1 - - [01/May/2026 16:47:01] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x006\x00')
+127.0.0.1 - - [01/May/2026 16:47:01] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iôÙ\x05íü\x9f.$\x11Ýÿ\x8a\\b[6UØ\x06Fd¿\x05\x90Ó&\x14\x81òú\x8b\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x006\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:47:01] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iôÙ\x05¹Øt\x04åT\x83\x883x·+Ì÷ÞÞ\x19àpÔO\x17\x02Ñæ\x1b\x97U\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:47:01] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iôÙ\x05\x16\x01Ò\x82\x9bKNu¸×iF*G7\x91=Ñ­àß ²\x0f\x0câ·Á\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:47:01] code 400, message Bad request version ('Ðú<¿µi³i¢¶8\x95e\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
+127.0.0.1 - - [01/May/2026 16:47:01] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00½\x01\x00\x00¹\x03\x01iôÙ\x05¢Ú0ê;Ó"v')
+127.0.0.1 - - [01/May/2026 16:47:01] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x03\x00Ý\x01\x00\x00Ù\x03\x03iôÙ\x05ë\x14¤r5R4ñ×i\x87Z')
+127.0.0.1 - - [01/May/2026 16:47:01] "\x16\x03\x03\x00Ý\x01\x00\x00Ù\x03\x03iôÙ\x05ë\x14¤r5R4ñ×i\x87Z '\x05¤,»`¯§oäÚV?\x10c\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:47:01] "\x16\x03\x02\x00½\x01\x00\x00¹\x03\x02iôÙ\x05¾½\x1f1Ú(ÊBö»)U"  Ðú<¿µi³i¢¶8\x95e\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:47:01] "\x16\x03\x01\x00½\x01\x00\x00¹\x03\x01iôÙ\x05¢Ú0ê;Ó"v\x85ÛôÃ×m\x89%é2¤\x84þ\x93E\x19¦.î3\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:47:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:47:06] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00')
+127.0.0.1 - - [01/May/2026 16:47:06] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iôÙ\x04\x17*>£¦¶\x1eûm\x02Ì2\x19\x00Øã6\x82X\x00'\x8e5CÊ\x1eB;\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00" 400 -
+127.0.0.1 - - [01/May/2026 16:47:06] code 400, message Bad request syntax ('\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iôÙ')
+127.0.0.1 - - [01/May/2026 16:47:06] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iôÙ" 400 -
+127.0.0.1 - - [01/May/2026 16:47:06] code 400, message Bad request syntax ('\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iôÙ')
+127.0.0.1 - - [01/May/2026 16:47:06] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iôÙ" 400 -
+127.0.0.1 - - [01/May/2026 16:47:06] code 400, message Bad request syntax ('\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iôÙ')
+127.0.0.1 - - [01/May/2026 16:47:06] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iôÙ" 400 -
+127.0.0.1 - - [01/May/2026 16:47:06] code 400, message Bad request syntax ('\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iôÙ')
+127.0.0.1 - - [01/May/2026 16:47:06] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iôÙ" 400 -
+127.0.0.1 - - [01/May/2026 16:47:06] code 400, message Bad request syntax ('\x16\x03\x00\x00¥\x01\x00\x00¡\x03\x00iôÙ')
+127.0.0.1 - - [01/May/2026 16:47:06] "\x16\x03\x00\x00¥\x01\x00\x00¡\x03\x00iôÙ" 400 -
+127.0.0.1 - - [01/May/2026 16:47:19] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:47:35] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:47:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:48:04] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:48:20] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:48:35] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:48:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:49:04] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:49:20] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:49:35] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:49:50] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:50:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:50:20] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:50:35] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:50:50] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:51:04] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:51:19] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:51:34] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:51:50] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:52:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:52:20] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:52:34] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:52:50] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:53:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:53:12] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:53:12] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:53:26] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:53:41] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:53:57] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:54:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:54:06] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:54:13] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:54:13] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:54:21] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:54:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:54:43] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:54:47] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:54:48] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:55:02] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:55:17] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:55:32] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:55:47] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:56:02] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:56:17] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:56:32] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:56:47] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:57:02] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:57:17] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:57:33] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:57:33] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:57:48] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:58:03] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:58:18] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:58:33] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:58:48] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:59:03] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:59:18] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:59:33] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 16:59:48] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:00:03] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:00:18] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:00:33] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:00:48] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:01:03] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:01:18] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:01:33] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:01:48] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:02:03] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:02:18] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:02:33] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:02:49] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:03:03] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:03:18] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:03:33] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:03:48] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:04:03] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:04:18] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:04:33] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:04:48] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:05:03] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:05:18] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:05:30] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:05:30] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:05:44] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:05:59] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:06:15] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:06:29] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:06:44] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:06:59] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:07:14] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:07:29] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:07:44] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:07:47] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:07:47] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:08:02] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:08:17] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:08:32] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:08:35] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:08:35] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:08:50] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:09:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:09:21] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:09:22] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:09:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:09:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:09:53] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:10:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:10:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:10:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:10:53] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:11:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:11:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:11:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:11:53] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:12:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:12:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:12:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:12:53] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:13:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:13:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:13:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:13:53] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:14:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:14:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:14:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:14:53] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:15:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:15:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:15:25] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:15:26] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:15:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:15:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:16:11] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:16:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:16:41] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:16:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:17:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:17:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:17:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:17:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:18:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:18:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:18:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:18:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:19:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:19:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:19:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:19:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:20:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:20:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:20:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:20:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:21:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:21:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:21:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:21:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:22:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:22:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:22:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:22:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:23:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:23:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:23:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:23:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:24:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:24:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:24:41] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:24:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:25:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:25:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:25:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:25:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:26:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:26:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:26:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:26:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:27:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:27:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:27:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:27:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:28:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:28:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:28:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:28:56] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:29:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:29:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:29:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:29:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:30:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:30:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:30:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:30:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:31:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:31:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:31:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:31:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:32:11] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:32:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:32:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:32:56] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:33:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:33:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:33:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:33:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:34:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:34:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:34:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:34:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:35:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:35:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:35:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:35:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:36:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:36:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:36:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:36:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:37:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:37:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:37:41] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:37:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:38:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:38:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:38:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:38:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:39:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:39:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:39:31] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:39:31] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:39:46] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:40:01] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:40:16] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:40:31] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:40:46] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:41:01] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:41:16] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:41:27] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:41:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2026 17:41:43] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Veicoli.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 597-386-005
-127.0.0.1 - - [01/May/2026 10:34:54] "GET /periti HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:34:54] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:35:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:35:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:35:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:35:53] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:36:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:36:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:36:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:36:53] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:37:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:37:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:37:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:37:53] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:38:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:38:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:38:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:38:53] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:39:09] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:39:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:39:39] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:39:53] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:40:16] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 10:40:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:10:07] "GET /periti HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:10:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:10:21] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:10:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:10:51] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:11:06] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:11:21] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:11:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:11:51] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:12:06] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:12:21] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:12:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:12:51] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:13:06] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:13:21] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:13:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:13:51] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:14:07] "GET /periti HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:14:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:14:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:14:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:14:53] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:15:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:15:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:15:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:15:52] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:16:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:16:22] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:16:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:16:52] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:17:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:17:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:17:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:17:53] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:18:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:18:22] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:18:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:18:52] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:19:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:19:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:19:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:19:52] "GET /periti HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:19:53] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:20:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:20:17] "GET /periti HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:20:18] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:20:32] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:20:47] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:21:02] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:21:17] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:21:32] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:21:47] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:22:02] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:22:17] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:22:32] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:22:47] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:23:02] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:23:17] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:23:32] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:23:47] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:24:02] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:24:17] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:24:32] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:24:47] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:25:02] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:25:17] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:25:32] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:25:48] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:26:02] "GET /pratiche_assicurazione HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Polizze.py', reloading
+ * Debugger PIN: 305-545-371
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Veicoli.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 597-386-005
-127.0.0.1 - - [01/May/2026 11:26:17] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:26:32] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:26:48] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:27:02] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:27:17] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:27:32] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:27:47] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:28:02] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:28:17] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:28:33] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:28:47] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:29:02] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:29:17] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:29:32] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:29:47] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:30:02] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:30:17] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:30:33] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:30:39] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:30:39] "GET /periti HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:30:54] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:31:09] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:31:24] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:31:27] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:31:27] "GET /periti HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:31:42] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:31:57] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:32:12] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:32:27] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:32:42] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:32:57] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:33:12] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:33:27] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:33:42] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:33:57] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:34:12] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:34:27] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:34:42] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:34:57] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:35:12] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [01/May/2026 11:35:27] "GET /pratiche_assicurazione HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_RAG_Assistente.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 597-386-005
-127.0.0.1 - - [01/May/2026 11:35:45] "GET /pratiche_assicurazione HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Debugger PIN: 305-545-371

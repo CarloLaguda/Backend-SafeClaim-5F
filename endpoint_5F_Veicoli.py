@@ -36,10 +36,12 @@ except Exception as e:
     print(f"❌ Errore connessione MongoDB: {e}")
 
 # VEIOCLI 
+# ... (i tuoi import rimangono uguali)
+
 @app.route('/veicoli', methods=['GET'])
 @app.route('/veicoli/<int:id>', methods=['GET'])
 def get_veicoli(id=None):
-    """GET Unificata: recupera tutti i veicoli o uno specifico per ID"""
+    # Questa rotta ora gestisce TUTTI o UNO specifico per ID VEICOLO
     conn = None
     try:
         conn = get_db_connection()
@@ -57,6 +59,21 @@ def get_veicoli(id=None):
     finally:
         if conn: conn.close()
 
+# --- NUOVA ROTTA AGGIUNTA PER RISOLVERE IL TUO PROBLEMA ---
+@app.route('/veicoli-utente/<int:user_id>', methods=['GET'])
+def get_veicoli_utente(user_id):
+    """Recupera tutti i veicoli appartenenti a un utente specifico"""
+    conn = None
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM Veicolo WHERE automobilista_id = %s", (user_id,))
+        return jsonify(cursor.fetchall()), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    finally:
+        if conn: conn.close()
+
 @app.route('/veicolo/user/<int:user_id>', methods=['POST'])
 def crea_veicolo_utente(user_id):
     data = request.get_json()
@@ -64,7 +81,7 @@ def crea_veicolo_utente(user_id):
         return jsonify({"error": "Campo obbligatorio mancante: targa"}), 400
     conn = None
     try:
-        conn = get_mysql_connection()
+        conn = get_db_connection() # CORRETTO: avevi get_mysql_connection() che non esiste
         cursor = conn.cursor(dictionary=True)
         cursor.execute("SELECT id FROM Automobilista WHERE id = %s", (user_id,))
         if not cursor.fetchone():
