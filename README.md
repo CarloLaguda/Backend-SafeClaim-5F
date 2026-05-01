@@ -5,14 +5,14 @@ Backend-SafeClaim-5F/
 ├── avvia_tutti.sh                  # Script per avviare tutti gli endpoint insieme
 ├── db_locale.py                    # Script per creare il DB MySQL e popolare i dati iniziali
 │
-├── endpoint_5F_log_reg.py          # Porta 6000 – Registrazione e Login
 ├── endpoint_5F_Assicurazione.py    # Porta 5000 – Sinistri (MongoDB) e Veicoli utente
+├── endpoint_5F_log_reg.py          # Porta 6000 – Registrazione e Login
 ├── endpoint_5F_Sinistri_User.py    # Porta 7000 – Apertura sinistri, soccorso, veicoli
 ├── endpoint_5F_Periti.py           # Porta 8000 – Perizie, rimborsi, interventi officina
 ├── endpoint_5F_Polizze.py          # Porta 9000 – CRUD Polizze
 ├── endpoint_5F_Veicoli.py          # Porta 10000 – Lettura veicoli
 ├── endpoint_5F_Mail.py             # Porta 11000 – Invio email via SMTP
-│
+├── endpoint_5F_RAG_Assistente.py   # Porta 11000 – Chatbot con RAG
 ├── logs/                           # Cartella creata automaticamente con i log di ogni endpoint
 └── .devcontainer/
     └── devcontainer.json           # Configurazione Codespaces (porte pubbliche automatiche)
