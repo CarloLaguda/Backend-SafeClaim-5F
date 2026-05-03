@@ -4,17 +4,23 @@ Connessione a MongoDB Atlas riuscita!
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:11000
- * Running on http://10.0.14.167:11000
+ * Running on http://10.0.10.149:11000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 305-545-371
-127.0.0.1 - - [01/May/2026 19:10:15] "HEAD /.aws/ HTTP/1.1" 404 -
-127.0.0.1 - - [01/May/2026 19:10:15] "HEAD /.ada/ HTTP/1.1" 404 -
-127.0.0.1 - - [01/May/2026 19:10:15] "HEAD /.ssh/ HTTP/1.1" 404 -
-127.0.0.1 - - [01/May/2026 19:10:15] "HEAD /.midway/ HTTP/1.1" 404 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Veicoli.py', reloading
+ * Debugger PIN: 101-873-742
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
 Connessione a MongoDB Atlas riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 305-545-371
+ * Debugger PIN: 101-873-742
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_RAG_Assistente.py', reloading
+Connessione a MongoDB Atlas riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 101-873-742
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_RAG_Assistente.py', reloading
+Connessione a MongoDB Atlas riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 101-873-742

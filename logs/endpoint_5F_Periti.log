@@ -4,17 +4,64 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:8000
- * Running on http://10.0.14.167:8000
+ * Running on http://10.0.10.149:8000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 305-545-371
-127.0.0.1 - - [01/May/2026 19:10:16] "HEAD /.aws/ HTTP/1.1" 404 -
-127.0.0.1 - - [01/May/2026 19:10:16] "HEAD /.ada/ HTTP/1.1" 404 -
-127.0.0.1 - - [01/May/2026 19:10:16] "HEAD /.ssh/ HTTP/1.1" 404 -
-127.0.0.1 - - [01/May/2026 19:10:16] "HEAD /.midway/ HTTP/1.1" 404 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Veicoli.py', reloading
+ * Debugger PIN: 101-873-742
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 305-545-371
+ * Debugger PIN: 101-873-742
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_RAG_Assistente.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 101-873-742
+127.0.0.1 - - [03/May/2026 20:03:53] "OPTIONS /sinistro/69f7aa28f406b5c474661933/pratica HTTP/1.1" 200 -
+/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:171: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "data_inserimento": datetime.utcnow()
+/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:182: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "data_aggiornamento": datetime.utcnow()
+127.0.0.1 - - [03/May/2026 20:03:53] "POST /sinistro/69f7aa28f406b5c474661933/pratica HTTP/1.1" 201 -
+127.0.0.1 - - [03/May/2026 20:06:57] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:06:57] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:07:12] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:07:26] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:07:30] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:07:36] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:07:41] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:07:52] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:07:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:07:57] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:08:01] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:08:11] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:08:24] "OPTIONS /pratica/69f687c7b1297c80909e565f/assegna HTTP/1.1" 200 -
+/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:236: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "data_aggiornamento": datetime.utcnow()
+/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:251: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "data_aggiornamento": datetime.utcnow()
+127.0.0.1 - - [03/May/2026 20:08:24] "PUT /pratica/69f687c7b1297c80909e565f/assegna HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:08:24] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:08:26] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:08:57] "GET /perito/1/perizie HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:08:58] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:09:12] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:09:17] "OPTIONS /sinistro/69f687c6980df0e1c8f0f53e/perito/1/pratica HTTP/1.1" 200 -
+/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:286: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "data_aggiornamento": datetime.utcnow()
+127.0.0.1 - - [03/May/2026 20:09:17] "PUT /sinistro/69f687c6980df0e1c8f0f53e/perito/1/pratica HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:09:28] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:09:35] "GET /perito/1/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [03/May/2026 20:09:50] "GET /perito/1/pratiche HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_RAG_Assistente.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 101-873-742
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 101-873-742
