@@ -1,0 +1,20 @@
+# Segreti
+.env
+*.env
+provolone.py
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Log
+logs/
+*.log
+
+
+# IDE
+.vscode/
+.idea/

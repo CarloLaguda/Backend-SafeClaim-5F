@@ -5,17 +5,21 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from datetime import datetime
 from flask_cors import CORS
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
 CORS(app)
 
 # ── Configurazione MySQL ────────────────────────────────────────────────────
-db_config = {
-    "host":     "db.giobra.com",
-    "port":     3306,
-    "user":     "user",
-    "password": "xxx123##",
-    "database": "Prototipo_SafeClaim",
+load_dotenv()
+
+MYSQL_CONFIG = {
+    "host":     os.getenv("DB_HOST"),
+    "port":     int(os.getenv("DB_PORT", 3306)),
+    "user":     os.getenv("DB_USER"),
+    "password": os.getenv("DB_PASSWORD"),
+    "database": os.getenv("DB_NAME"),
 }
 
 MONGO_URI = "mongodb+srv://dbFakeClaim:xxx123%23%23@cluster0.zgw1jft.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
@@ -29,14 +33,20 @@ except Exception as e:
     print(f"❌ Errore critico connessione MongoDB: {e}")
 
 def get_mysql_connection():
-    return mysql.connector.connect(**db_config)
+    return mysql.connector.connect(**MYSQL_CONFIG)
 
-# Mappa ruolo → tabella anagrafica di dettaglio
 TABELLA_PER_RUOLO = {
     "automobilista": "Automobilista",
     "perito":        "Perito",
     "assicuratore":  "Assicuratore",
 }
+
+# ── Helper ───────────────────────────────────────────────────────────────────
+def serializza_utente(user):
+    """Converte i tipi non serializzabili in JSON (es. set MySQL → str)."""
+    if user and isinstance(user.get('ruolo'), set):
+        user['ruolo'] = ','.join(user['ruolo'])
+    return user
 
 # ── Validazioni ─────────────────────────────────────────────────────────────
 def valida_password(password):
@@ -94,15 +104,14 @@ def valida_dati_aggiornamento(data):
     return True, None
 
 # ── Registrazione ────────────────────────────────────────────────────────────
-# Nel nuovo schema la registrazione crea prima un Utente, poi la riga anagrafica.
-# Il campo password si chiama `password_hash` in Utente.
+# Aperta solo agli automobilisti. Periti, assicuratori e altri ruoli
+# vengono creati dall'admin tramite endpoint dedicati.
 @app.route('/registrazione', methods=['POST'])
 def registrazione():
     data = request.get_json()
     if not data:
         return jsonify({"error": "Nessun dato ricevuto"}), 400
 
-    # Blocca qualsiasi ruolo diverso da automobilista
     ruolo = data.get('ruolo', 'automobilista').lower()
     if ruolo != 'automobilista':
         return jsonify({"error": "La registrazione pubblica è riservata agli automobilisti. Contatta l'amministratore."}), 403
@@ -116,7 +125,6 @@ def registrazione():
         conn = get_mysql_connection()
         cursor = conn.cursor()
 
-        # 1. Inserisce in Utente
         cursor.execute(
             "INSERT INTO Utente (nome, cognome, email, telefono, password_hash, ruolo) VALUES (%s,%s,%s,%s,%s,%s)",
             (
@@ -130,7 +138,6 @@ def registrazione():
         )
         utente_id = cursor.lastrowid
 
-        # 2. Inserisce in Automobilista
         cursor.execute(
             "INSERT INTO Automobilista (nome, cognome, cf, id_utente) VALUES (%s,%s,%s,%s)",
             (
@@ -157,7 +164,6 @@ def registrazione():
             conn.close()
 
 # ── Login ────────────────────────────────────────────────────────────────────
-# Login unificato tramite tabella Utente; il ruolo è nel campo `ruolo`.
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
@@ -177,21 +183,19 @@ def login():
         user = cursor.fetchone()
         if not user:
             return jsonify({"error": "Credenziali non valide"}), 401
-        return jsonify({"status": "success", "user": user}), 200
+        return jsonify({"status": "success", "user": serializza_utente(user)}), 200
     finally:
         if conn:
             conn.close()
 
 # ── Aggiornamento profilo ────────────────────────────────────────────────────
-# Aggiorna i dati in Utente; i campi anagrafici (cf) vanno aggiornati
-# sulla rispettiva tabella di dettaglio tramite id_utente.
 @app.route('/utente/<int:user_id>', methods=['PUT'])
 def aggiorna_utente(user_id):
     data = request.get_json()
     if not data:
         return jsonify({"error": "Nessun dato ricevuto"}), 400
 
-    campi_utente  = {'nome', 'cognome', 'email', 'telefono'}
+    campi_utente   = {'nome', 'cognome', 'email', 'telefono'}
     payload_utente = {k: v for k, v in data.items() if k in campi_utente and v is not None}
 
     if not payload_utente:
@@ -224,7 +228,7 @@ def aggiorna_utente(user_id):
             (user_id,)
         )
         user_updated = cursor.fetchone()
-        return jsonify({"status": "success", "user": user_updated}), 200
+        return jsonify({"status": "success", "user": serializza_utente(user_updated)}), 200
 
     except mysql.connector.IntegrityError:
         return jsonify({"error": "Email già in uso da un altro utente"}), 409

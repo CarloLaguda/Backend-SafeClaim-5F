@@ -12,7 +12,7 @@ mkdir -p "$LOG_DIR"
 echo -e "${YELLOW}==============================\n SafeClaim – Avvio endpoint\n==============================${NC}"
 
 echo -e "\n${CYAN}[1/3] Installo le dipendenze Python...${NC}"
-PACKAGES=("flask" "flask-cors" "mysql-connector-python" "pymongo[srv]" "dnspython" "requests" "cloudinary" "google-generativeai" "scikit-learn" "google-genai" "numpy")
+PACKAGES=("flask" "flask-cors" "mysql-connector-python" "pymongo[srv]" "dnspython" "requests" "cloudinary" "google-generativeai" "scikit-learn" "google-genai" "numpy" "python-dotenv")
 pip install "${PACKAGES[@]}" --quiet --break-system-packages 2>/dev/null || pip install "${PACKAGES[@]}" --quiet 2>/dev/null
 
 MISSING_MODULES=()

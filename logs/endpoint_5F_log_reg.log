@@ -4,9 +4,184 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:6000
- * Running on http://10.0.1.226:6000
+ * Running on http://10.0.0.99:6000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 141-559-554
-127.0.0.1 - - [05/May/2026 09:45:25] "POST /registrazione HTTP/1.1" 201 -
+ * Debugger PIN: 120-784-478
+127.0.0.1 - - [05/May/2026 19:31:59] "POST /registrazione HTTP/1.1" 400 -
+127.0.0.1 - - [05/May/2026 19:32:33] "POST /registrazione HTTP/1.1" 201 -
+127.0.0.1 - - [05/May/2026 19:33:44] "POST /login HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py", line 182, in login
+    return jsonify({"status": "success", "user": user}), 200
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/json/__init__.py", line 170, in jsonify
+    return current_app.json.response(*args, **kwargs)  # type: ignore[return-value]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/json/provider.py", line 214, in response
+    f"{self.dumps(obj, **dump_args)}\n", mimetype=self.mimetype
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/json/provider.py", line 179, in dumps
+    return json.dumps(obj, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/json/encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/home/codespace/.python/current/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/codespace/.python/current/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/codespace/.python/current/lib/python3.12/json/encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/json/provider.py", line 121, in _default
+    raise TypeError(f"Object of type {type(o).__name__} is not JSON serializable")
+TypeError: Object of type set is not JSON serializable
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
+✅ Connessione a MongoDB Atlas riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 120-784-478
+127.0.0.1 - - [05/May/2026 19:38:34] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [05/May/2026 19:41:24] "POST /registrazione HTTP/1.1" 201 -
+127.0.0.1 - - [05/May/2026 19:42:46] "PUT /utente/26 HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/provolone.py', reloading
+✅ Connessione a MongoDB Atlas riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 120-784-478
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/provolone.py', reloading
+✅ Connessione a MongoDB Atlas riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 120-784-478
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Veicoli.py', reloading
+✅ Connessione a MongoDB Atlas riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 120-784-478
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Polizze.py', reloading
+✅ Connessione a MongoDB Atlas riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 120-784-478
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
+✅ Connessione a MongoDB Atlas riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 120-784-478
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
+✅ Connessione a MongoDB Atlas riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 120-784-478
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
+✅ Connessione a MongoDB Atlas riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 120-784-478
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Assicurazione.py', reloading
+✅ Connessione a MongoDB Atlas riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 120-784-478
+127.0.0.1 - - [05/May/2026 19:59:13] "OPTIONS /login HTTP/1.1" 200 -
+127.0.0.1 - - [05/May/2026 19:59:14] "POST /login HTTP/1.1" 400 -
+127.0.0.1 - - [05/May/2026 19:59:33] "OPTIONS /login HTTP/1.1" 200 -
+127.0.0.1 - - [05/May/2026 19:59:34] "POST /login HTTP/1.1" 400 -
+127.0.0.1 - - [05/May/2026 20:03:49] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00÷\x01\x00\x00ó\x03\x03S2þÀ\x96\x07Tw;Pí×Ç;aÕqJ{Ã')
+127.0.0.1 - - [05/May/2026 20:03:49] "\x16\x03\x01\x00÷\x01\x00\x00ó\x03\x03S2þÀ\x96\x07Tw;Pí×Ç;aÕqJ{Ã \x84ÜQRµ\x87u~¬3p\x00\x00\x84\x003\x009\x005\x00/À,À0\x00£\x00\x9fÌ©Ì¨ÌªÀ¯À­À£À\x9fÀ+À/\x00¢\x00\x9eÀ®À¬À¢À\x9eÀ$À(\x00k\x00jÀsÀw\x00Ä\x00ÃÀ#À'\x00g\x00@ÀrÀv\x00¾\x00½À" 400 -
+127.0.0.1 - - [05/May/2026 20:03:49] "HEAD / HTTP/1.1" 404 -
+127.0.0.1 - - [05/May/2026 20:03:49] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [05/May/2026 20:03:49] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iúM%ù»Ïñ3Ï-67\x00µ\x95ÍÍ"JøÍ\x01¤8Ìta\x93Ù?\x8e\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:03:49] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [05/May/2026 20:03:49] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iúM%\x10¶}¯\x94ã¨·´\x90@õº[Wt¾£\x09*2l\x9b;¢áô\x06\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:03:49] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [05/May/2026 20:03:49] code 400, message Bad request syntax ("\x16\x03\x01\x00W\x01\x00\x00S\x03\x03iúM%®Ï#ç©±?8SßµÔØåø'Ø\x13\x90`Ë:É\x05c¹w¤\x00\x00")
+127.0.0.1 - - [05/May/2026 20:03:49] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [05/May/2026 20:03:49] "\x16\x03\x03\x00\x8c\x01\x00\x00\x88\x03\x03iúM%\\¬\x17\x8eyÐ\x9aë\x86Ê³îÀ\x9b!À\x86\x10/\x1e]èc\x0c\\`'p\x00\x00\x1a\x13\x05\x13\x04\x13\x01\x13\x02\x13\x03À´Àµ\x00Ç\x00ÆÀ²À°À³À±\x01\x00\x00E\x00+\x00\x03\x02\x03\x04\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:03:49] "\x16\x03\x01\x00W\x01\x00\x00S\x03\x03iúM%®Ï#ç©±?8SßµÔØåø'Ø\x13\x90`Ë:É\x05c¹w¤\x00\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:03:49] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iúM%\x9fnx\x97¸z\x85'Q¼\x8e\x0e\x02Wi|\x9b¶\x1ej\x86C¥Î¤1Öl\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:03:49] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [05/May/2026 20:03:49] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iúM%O1-¡~#Ôq~\x0e\x8eh\x7f\x8dÍ~\x1bÀø\x86\x8c1ánø(\x83\x83\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:03:49] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [05/May/2026 20:03:49] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [05/May/2026 20:03:49] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iúM%\x8623ØZó®3Ë\x02þJv\x80/K\x09ßc(Ò\x13\x1cN³\x88Ád\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:03:49] code 400, message Bad request version ('\x00/\x00')
+127.0.0.1 - - [05/May/2026 20:03:49] "\x16\x03\x00\x00i\x01\x00\x00e\x03\x03U\x1c§ärandom1random2random3random4\x00\x00\x0c\x00/\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:03:49] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iúM%¸\x0f*Ñ¾\x9bÓ\x19ç%Õ\x89S½~0\x96ßÔN¡\x9eöM3óâ\x00\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:03:49] "GET / HTTP/1.1" 404 -
+127.0.0.1 - - [05/May/2026 20:03:49] code 400, message Bad request version ('À#À¬À®À+À')
+127.0.0.1 - - [05/May/2026 20:03:49] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iúM%­a\x8dÅ\x9c\x91w\x89!\x95÷\x86*Ýa¨\x0d\x89ö\x9f)R-"Ã\x8f\x89$\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
+127.0.0.1 - - [05/May/2026 20:03:49] code 400, message Bad request version ('À#À¬À®À+À')
+127.0.0.1 - - [05/May/2026 20:03:49] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iúM%2®y96Ù\\é×§\x14¸\x10«2`q[\x9bO7ó³ÊH\x0dþ\x07\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
+127.0.0.1 - - [05/May/2026 20:03:49] code 400, message Bad request version ('À#À¬À®À+À')
+127.0.0.1 - - [05/May/2026 20:03:49] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iúM%¹½Ó\x91\x8eX\x8f(.ú\x92W\x0b¶\x8c|²ã\x9f\x90z&íê\x19É ò\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
+127.0.0.1 - - [05/May/2026 20:03:50] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [05/May/2026 20:03:50] code 400, message Bad request syntax ('\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iúM&ô\x00RB©"ÇìÙ')
+127.0.0.1 - - [05/May/2026 20:03:50] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iúM&ô\x00RB©"ÇìÙ" 400 -
+127.0.0.1 - - [05/May/2026 20:03:50] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iúM&\x80óh\x8f\x1f;Õ\x0c(@Ð·K¿TwÉ¤ª³¾7\x89BP\x0cR.\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:03:50] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [05/May/2026 20:03:50] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iúM&9ÈèØâ>\x00ÕéQÛ¯\x0bgûDI^\x02\x83Ö/\x1bÍHN]\x1c\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:03:50] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [05/May/2026 20:03:50] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [05/May/2026 20:03:50] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iúM&WÄ6\x17®þsí\x8a~\x91²KMJsï²\x18ê\x83ç¾±,h\x17 \x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:03:50] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iúM&\x06\x90Yqö(¼­ó\x01vQÀ#!QÍhX\x7fìÆpH4\x0f¯í\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:03:50] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+127.0.0.1 - - [05/May/2026 20:03:50] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iúM&fí£×\x01l'M\x17H8iõ\x9dðùÀþ)jC¦Mª\x09ÌON\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:03:50] code 400, message Bad request version ('k\x8f|²\x8eÏ\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
+127.0.0.1 - - [05/May/2026 20:03:50] "\x16\x03\x01\x00½\x01\x00\x00¹\x03\x01iúM&§©\x8c\x87÷ (OÝ!\x80\x9fo8ì\x96\x18,\x13>V k\x8f|²\x8eÏ\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:03:50] code 400, message Bad request syntax ('\x16\x03\x03\x00Ý\x01\x00\x00Ù\x03\x03iúM&ÀÁe`g#ËM@\x7fM\x008,¸JæÑQH7[:\x00v(®F\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
+127.0.0.1 - - [05/May/2026 20:03:50] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x02\x00½\x01\x00\x00¹\x03\x02iúM&åw\x99-Âl\x02øQoy\x9bÏ·\x96\x7f\x8f?ç÷ë\x07')
+127.0.0.1 - - [05/May/2026 20:03:50] "\x16\x03\x03\x00Ý\x01\x00\x00Ù\x03\x03iúM&ÀÁe`g#ËM@\x7fM\x008,¸JæÑQH7[:\x00v(®F\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:03:50] "\x16\x03\x02\x00½\x01\x00\x00¹\x03\x02iúM&åw\x99-Âl\x02øQoy\x9bÏ·\x96\x7f\x8f?ç÷ë\x07 Ù*¨þ\x05\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:03:54] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00')
+127.0.0.1 - - [05/May/2026 20:03:54] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iúM%¡ç\x98[Ì6í.Þ|ÅJ®\x03Ó\\\x9c\x9d>mÌ*ÊEò&®Ï\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:03:59] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00')
+127.0.0.1 - - [05/May/2026 20:03:59] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iúM*âhéäÎ\x859èm\x80c¦G\x87_4Mð?Ì\x0b#wq\x9bGö\x9d\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:03:59] code 400, message Bad request version ('À#À¬À®À+À')
+127.0.0.1 - - [05/May/2026 20:03:59] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iúM/D\x7flõNþr\x9f\x85wd\x11\x89\x07Î\x10®tG~vKÃ\x7fÆ\x8eêÊ\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
+127.0.0.1 - - [05/May/2026 20:04:04] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00')
+127.0.0.1 - - [05/May/2026 20:04:04] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iúM/P<¦O\x18Ô\x92æi\x19\x80wÿ\x84\x90DJ¯gy\x8eL8\x86\x89ð\x94\x94\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:04:06] "OPTIONS /login HTTP/1.1" 200 -
+127.0.0.1 - - [05/May/2026 20:04:08] "POST /login HTTP/1.1" 401 -
+127.0.0.1 - - [05/May/2026 20:04:10] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00')
+127.0.0.1 - - [05/May/2026 20:04:10] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iúM4\x1e/ÀéØi\x1e/t\x91\x8f\x95{CÏî\x03Éª(\x92ËÝü÷1\x1bí\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:04:10] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x00\x00¥\x01\x00\x00¡\x03\x00iúM:¶)\\>\x17¶YýeÒ\x84')
+127.0.0.1 - - [05/May/2026 20:04:10] "\x16\x03\x00\x00¥\x01\x00\x00¡\x03\x00iúM:¶)\\>\x17¶YýeÒ\x84\x0dAcg3\x7f¿Ü%ãÚÇÈù\x91)\x93\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
+127.0.0.1 - - [05/May/2026 20:09:42] "OPTIONS /login HTTP/1.1" 200 -
+127.0.0.1 - - [05/May/2026 20:09:43] "POST /login HTTP/1.1" 401 -
+127.0.0.1 - - [05/May/2026 20:11:45] "OPTIONS /login HTTP/1.1" 200 -
+127.0.0.1 - - [05/May/2026 20:11:46] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [05/May/2026 20:29:34] "OPTIONS /login HTTP/1.1" 200 -
+127.0.0.1 - - [05/May/2026 20:29:35] "POST /login HTTP/1.1" 200 -

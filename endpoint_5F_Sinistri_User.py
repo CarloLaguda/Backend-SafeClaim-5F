@@ -17,6 +17,8 @@ from datetime import datetime, UTC
 import urllib.parse
 import threading
 import mysql.connector
+import os
+from dotenv import load_dotenv
 
 # Importazione opzionale di Gemini
 try:
@@ -42,12 +44,14 @@ CORS(app)
 #  CONFIGURAZIONE MYSQL
 # ─────────────────────────────────────────────
 
+load_dotenv()
+
 MYSQL_CONFIG = {
-    "host":     "db.giobra.com",
-    "user":     "user",
-    "password": "xxx123##",
-    "database": "Prototipo_SafeClaim",
-    "port":     3306,
+    "host":     os.getenv("DB_HOST"),
+    "port":     int(os.getenv("DB_PORT", 3306)),
+    "user":     os.getenv("DB_USER"),
+    "password": os.getenv("DB_PASSWORD"),
+    "database": os.getenv("DB_NAME"),
 }
 
 def get_mysql():

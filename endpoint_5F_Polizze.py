@@ -5,17 +5,21 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from datetime import datetime
 from flask_cors import CORS
+import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 CORS(app)
 
 # ── Configurazione MySQL ────────────────────────────────────────────────────
+load_dotenv()
+
 MYSQL_CONFIG = {
-    "host":     "db.giobra.com",
-    "port":     3306,
-    "user":     "user",
-    "password": "xxx123##",
-    "database": "Prototipo_SafeClaim",
+    "host":     os.getenv("DB_HOST"),
+    "port":     int(os.getenv("DB_PORT", 3306)),
+    "user":     os.getenv("DB_USER"),
+    "password": os.getenv("DB_PASSWORD"),
+    "database": os.getenv("DB_NAME"),
 }
 
 MONGO_URI = "mongodb+srv://dbFakeClaim:xxx123%23%23@cluster0.zgw1jft.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"

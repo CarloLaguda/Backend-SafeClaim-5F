@@ -7,6 +7,8 @@ from bson.objectid import ObjectId  # Importa il convertitore per gli ID unici d
 import smtplib  # Importa la libreria standard per inviare email tramite protocollo SMTP
 from email.mime.text import MIMEText  # Serve per creare il contenuto testuale della mail
 from email.mime.multipart import MIMEMultipart  # Serve per costruire un messaggio email con vari pezzi (mittente, oggetto, corpo)
+import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)  # Crea l'oggetto principale della tua applicazione web
 CORS(app)  # Attiva il modulo CORS per evitare blocchi di sicurezza durante le chiamate API

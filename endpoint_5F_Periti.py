@@ -5,18 +5,22 @@ import mysql.connector
 from bson import ObjectId
 from datetime import datetime
 import urllib.parse
+import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 CORS(app)
 
 # --- CONFIGURAZIONE DATABASE ---
 
+load_dotenv()
+
 MYSQL_CONFIG = {
-    "host":     "db.giobra.com",
-    "user":     "user",
-    "password": "xxx123##",
-    "database": "Prototipo_SafeClaim",
-    "port":     3306,
+    "host":     os.getenv("DB_HOST"),
+    "port":     int(os.getenv("DB_PORT", 3306)),
+    "user":     os.getenv("DB_USER"),
+    "password": os.getenv("DB_PASSWORD"),
+    "database": os.getenv("DB_NAME"),
 }
 
 def get_mysql():
