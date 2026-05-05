@@ -9,13 +9,13 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# --- CONFIGURAZIONI DATABASE ---
-
+# ── Configurazione MySQL ────────────────────────────────────────────────────
 db_config = {
-    "host": "localhost",
-    "user": "pythonuser",
-    "password": "password123",
-    "database": "gestione_assicurazioni"
+    "host":     "db.giobra.com",
+    "port":     3306,
+    "user":     "user",
+    "password": "xxx123##",
+    "database": "Prototipo_SafeClaim",
 }
 
 MONGO_URI = "mongodb+srv://dbFakeClaim:xxx123%23%23@cluster0.zgw1jft.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
@@ -31,18 +31,21 @@ except Exception as e:
 def get_mysql_connection():
     return mysql.connector.connect(**db_config)
 
-# --- TABELLE AMMESSE PER RUOLO ---
-TABELLE_PER_RUOLO = {
+# Mappa ruolo → tabella anagrafica di dettaglio
+TABELLA_PER_RUOLO = {
     "automobilista": "Automobilista",
-    "perito": "Perito",
-    "assicuratore": "Assicuratore",
+    "perito":        "Perito",
+    "assicuratore":  "Assicuratore",
 }
 
-# --- UTILITY VALIDAZIONE ---
+# ── Validazioni ─────────────────────────────────────────────────────────────
 def valida_password(password):
-    if len(password) < 8: return False, "La password deve essere lunga almeno 8 caratteri."
-    if not re.search(r"[a-zA-Z]", password): return False, "La password deve contenere almeno una lettera."
-    if not re.search(r"\d", password): return False, "La password deve contenere almeno un numero."
+    if len(password) < 8:
+        return False, "La password deve essere lunga almeno 8 caratteri."
+    if not re.search(r"[a-zA-Z]", password):
+        return False, "La password deve contenere almeno una lettera."
+    if not re.search(r"\d", password):
+        return False, "La password deve contenere almeno un numero."
     return True, None
 
 def valida_cf(cf):
@@ -63,18 +66,19 @@ def valida_email(email):
 
 def valida_dati_utente(data):
     pattern_nomi = r"^[a-zA-Zàáâäãåèéêëìíîïòóôöùúûüç \s']+$"
-    if not re.match(pattern_nomi, data.get('nome', '')): return False, "Il nome non è valido."
-    if not re.match(pattern_nomi, data.get('cognome', '')): return False, "Il cognome non è valido."
-
+    if not re.match(pattern_nomi, data.get('nome', '')):
+        return False, "Il nome non è valido."
+    if not re.match(pattern_nomi, data.get('cognome', '')):
+        return False, "Il cognome non è valido."
     cf_valido, cf_err = valida_cf(data.get('cf', ''))
-    if not cf_valido: return False, cf_err
-
+    if not cf_valido:
+        return False, cf_err
     email_valida, email_err = valida_email(data.get('email', ''))
-    if not email_valida: return False, email_err
-
-    valida_psw, err_psw = valida_password(data.get('psw', ''))
-    if not valida_psw: return False, err_psw
-
+    if not email_valida:
+        return False, email_err
+    valida_psw, err_psw = valida_password(data.get('password_hash', ''))
+    if not valida_psw:
+        return False, err_psw
     return True, None
 
 def valida_dati_aggiornamento(data):
@@ -85,93 +89,130 @@ def valida_dati_aggiornamento(data):
         return False, "Il cognome non è valido."
     if 'email' in data:
         email_valida, email_err = valida_email(data.get('email', ''))
-        if not email_valida: return False, email_err
+        if not email_valida:
+            return False, email_err
     return True, None
 
-# --- REGISTRAZIONE & LOGIN ---
-
+# ── Registrazione ────────────────────────────────────────────────────────────
+# Nel nuovo schema la registrazione crea prima un Utente, poi la riga anagrafica.
+# Il campo password si chiama `password_hash` in Utente.
 @app.route('/registrazione', methods=['POST'])
 def registrazione():
     data = request.get_json()
-    if not data: return jsonify({"error": "Nessun dato ricevuto"}), 400
+    if not data:
+        return jsonify({"error": "Nessun dato ricevuto"}), 400
+
+    # Blocca qualsiasi ruolo diverso da automobilista
+    ruolo = data.get('ruolo', 'automobilista').lower()
+    if ruolo != 'automobilista':
+        return jsonify({"error": "La registrazione pubblica è riservata agli automobilisti. Contatta l'amministratore."}), 403
+
     is_valid, error_message = valida_dati_utente(data)
-    if not is_valid: return jsonify({"error": error_message}), 400
+    if not is_valid:
+        return jsonify({"error": error_message}), 400
+
     conn = None
     try:
         conn = get_mysql_connection()
         cursor = conn.cursor()
-        query = "INSERT INTO Automobilista (nome, cognome, cf, email, psw) VALUES (%s, %s, %s, %s, %s)"
-        values = (data['nome'].strip().title(), data['cognome'].strip().title(),
-                  data['cf'].strip().upper(), data['email'].strip().lower(), data['psw'])
-        cursor.execute(query, values)
-        conn.commit()
-        return jsonify({"status": "success", "id": cursor.lastrowid}), 201
-    except mysql.connector.IntegrityError:
-        return jsonify({"error": "Email o CF già registrati"}), 409
-    finally:
-        if conn: conn.close()
 
+        # 1. Inserisce in Utente
+        cursor.execute(
+            "INSERT INTO Utente (nome, cognome, email, telefono, password_hash, ruolo) VALUES (%s,%s,%s,%s,%s,%s)",
+            (
+                data['nome'].strip().title(),
+                data['cognome'].strip().title(),
+                data['email'].strip().lower(),
+                data.get('telefono'),
+                data['password_hash'],
+                'automobilista',
+            )
+        )
+        utente_id = cursor.lastrowid
+
+        # 2. Inserisce in Automobilista
+        cursor.execute(
+            "INSERT INTO Automobilista (nome, cognome, cf, id_utente) VALUES (%s,%s,%s,%s)",
+            (
+                data['nome'].strip().title(),
+                data['cognome'].strip().title(),
+                data['cf'].strip().upper(),
+                utente_id,
+            )
+        )
+
+        conn.commit()
+        return jsonify({"status": "success", "id_utente": utente_id}), 201
+
+    except mysql.connector.IntegrityError:
+        if conn:
+            conn.rollback()
+        return jsonify({"error": "Email o CF già registrati"}), 409
+    except Exception as e:
+        if conn:
+            conn.rollback()
+        return jsonify({"error": str(e)}), 500
+    finally:
+        if conn:
+            conn.close()
+
+# ── Login ────────────────────────────────────────────────────────────────────
+# Login unificato tramite tabella Utente; il ruolo è nel campo `ruolo`.
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
-    email_in, psw_in = data.get('email'), data.get('psw')
+    email_in = data.get('email')
+    psw_in   = data.get('password_hash')
     if not email_in or not psw_in:
         return jsonify({"error": "Credenziali mancanti"}), 400
+
     conn = None
     try:
         conn = get_mysql_connection()
         cursor = conn.cursor(dictionary=True)
-        tabelle = ["Assicuratore", "Automobilista", "Perito"]
-        for tabella in tabelle:
-            cursor.execute(
-                f"SELECT id, nome, cognome, cf, email FROM {tabella} WHERE email = %s AND psw = %s",
-                (email_in, psw_in)
-            )
-            user_found = cursor.fetchone()
-            if user_found:
-                user_found['ruolo'] = tabella.lower()
-                return jsonify({"status": "success", "user": user_found}), 200
-        return jsonify({"error": "Credenziali non valide"}), 401
+        cursor.execute(
+            "SELECT id, nome, cognome, email, telefono, ruolo FROM Utente WHERE email = %s AND password_hash = %s",
+            (email_in.strip().lower(), psw_in)
+        )
+        user = cursor.fetchone()
+        if not user:
+            return jsonify({"error": "Credenziali non valide"}), 401
+        return jsonify({"status": "success", "user": user}), 200
     finally:
-        if conn: conn.close()
+        if conn:
+            conn.close()
 
-# --- AGGIORNAMENTO PROFILO ---
-
+# ── Aggiornamento profilo ────────────────────────────────────────────────────
+# Aggiorna i dati in Utente; i campi anagrafici (cf) vanno aggiornati
+# sulla rispettiva tabella di dettaglio tramite id_utente.
 @app.route('/utente/<int:user_id>', methods=['PUT'])
 def aggiorna_utente(user_id):
     data = request.get_json()
     if not data:
         return jsonify({"error": "Nessun dato ricevuto"}), 400
 
-    ruolo = (data.get('ruolo') or '').lower()
-    if ruolo not in TABELLE_PER_RUOLO:
-        return jsonify({"error": "Ruolo non valido"}), 400
+    campi_utente  = {'nome', 'cognome', 'email', 'telefono'}
+    payload_utente = {k: v for k, v in data.items() if k in campi_utente and v is not None}
 
-    tabella = TABELLE_PER_RUOLO[ruolo]
-
-    campi_ammessi = {'nome', 'cognome', 'email'}
-    payload = {k: v for k, v in data.items() if k in campi_ammessi and v is not None}
-
-    if not payload:
+    if not payload_utente:
         return jsonify({"error": "Nessun campo valido da aggiornare"}), 400
 
-    is_valid, err = valida_dati_aggiornamento(payload)
+    is_valid, err = valida_dati_aggiornamento(payload_utente)
     if not is_valid:
         return jsonify({"error": err}), 400
 
-    if 'nome' in payload: payload['nome'] = payload['nome'].strip().title()
-    if 'cognome' in payload: payload['cognome'] = payload['cognome'].strip().title()
-    if 'email' in payload: payload['email'] = payload['email'].strip().lower()
+    if 'nome'    in payload_utente: payload_utente['nome']    = payload_utente['nome'].strip().title()
+    if 'cognome' in payload_utente: payload_utente['cognome'] = payload_utente['cognome'].strip().title()
+    if 'email'   in payload_utente: payload_utente['email']   = payload_utente['email'].strip().lower()
 
     conn = None
     try:
         conn = get_mysql_connection()
         cursor = conn.cursor(dictionary=True)
 
-        set_clause = ", ".join([f"{col} = %s" for col in payload.keys()])
-        values = list(payload.values()) + [user_id]
-
-        cursor.execute(f"UPDATE {tabella} SET {set_clause} WHERE id = %s", values)
+        set_clause = ", ".join([f"{col} = %s" for col in payload_utente.keys()])
+        values = list(payload_utente.values()) + [user_id]
+        cursor.execute(f"UPDATE Utente SET {set_clause} WHERE id = %s", values)
 
         if cursor.rowcount == 0:
             return jsonify({"error": "Utente non trovato"}), 404
@@ -179,13 +220,10 @@ def aggiorna_utente(user_id):
         conn.commit()
 
         cursor.execute(
-            f"SELECT id, nome, cognome, cf, email FROM {tabella} WHERE id = %s",
+            "SELECT id, nome, cognome, email, telefono, ruolo FROM Utente WHERE id = %s",
             (user_id,)
         )
         user_updated = cursor.fetchone()
-        if user_updated:
-            user_updated['ruolo'] = ruolo
-
         return jsonify({"status": "success", "user": user_updated}), 200
 
     except mysql.connector.IntegrityError:
@@ -193,7 +231,8 @@ def aggiorna_utente(user_id):
     except mysql.connector.Error as e:
         return jsonify({"error": f"Errore database: {str(e)}"}), 500
     finally:
-        if conn: conn.close()
+        if conn:
+            conn.close()
 
 
 if __name__ == '__main__':

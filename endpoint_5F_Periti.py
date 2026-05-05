@@ -12,10 +12,11 @@ CORS(app)
 # --- CONFIGURAZIONE DATABASE ---
 
 MYSQL_CONFIG = {
-    "host": "localhost",
-    "user": "pythonuser",
-    "password": "password123",
-    "database": "gestione_assicurazioni"
+    "host":     "db.giobra.com",
+    "user":     "user",
+    "password": "xxx123##",
+    "database": "Prototipo_SafeClaim",
+    "port":     3306,
 }
 
 def get_mysql():

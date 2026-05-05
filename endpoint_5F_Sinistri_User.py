@@ -43,10 +43,11 @@ CORS(app)
 # ─────────────────────────────────────────────
 
 MYSQL_CONFIG = {
-    "host":     "localhost",
-    "user":     "pythonuser",
-    "password": "password123",
-    "database": "gestione_assicurazioni"
+    "host":     "db.giobra.com",
+    "user":     "user",
+    "password": "xxx123##",
+    "database": "Prototipo_SafeClaim",
+    "port":     3306,
 }
 
 def get_mysql():
@@ -88,7 +89,7 @@ except Exception as e:
 #  CONFIGURAZIONE GEMINI VISION
 # ─────────────────────────────────────────────
 
-GEMINI_API_KEY = ""
+GEMINI_API_KEY = "AIzaSyDgn-Kt_7sWM2JhosfyBmU3Md9F_uMqgVc"
 GEMINI_MODEL   = "gemini-2.5-flash"
 
 gemini_client      = None
@@ -459,10 +460,10 @@ def get_analisi_ai(sinistro_id):
 
 @app.route("/soccorso", methods=["POST"])
 def crea_richiesta_soccorso():
-    err = _richiedi_mongo()
-    if err:
-        return err
-
+    """
+    Crea una Richiesta_Soccorso in MySQL (nuovo schema) e salva la
+    posizione/dettagli extra in MongoDB per geolocalizzazione.
+    """
     data  = request.json
     targa = data.get("targa")
     if not targa:
@@ -472,28 +473,50 @@ def crea_richiesta_soccorso():
     try:
         conn   = get_mysql()
         cursor = conn.cursor(dictionary=True)
-        cursor.execute("SELECT id FROM Veicolo WHERE targa = %s", (targa,))
+
+        # Recupera il veicolo e l'automobilista proprietario
+        cursor.execute(
+            """SELECT v.id AS veicolo_id, v.automobilista_id
+               FROM Veicolo v WHERE v.targa = %s""",
+            (targa,)
+        )
         veicolo = cursor.fetchone()
         if not veicolo:
             return jsonify({"error": "Veicolo non trovato"}), 404
 
-        nuovo_soccorso = {
-            "veicolo_id":     veicolo["id"],
-            "targa":          targa,
-            "posizione":      {"lat": data.get("lat"), "lon": data.get("lon")},
-            "stato":          "Richiesto",
-            "data_richiesta": datetime.now(UTC)
-        }
-        res = soccorso_col.insert_one(nuovo_soccorso)
+        automobilista_id = veicolo["automobilista_id"]
+        if not automobilista_id:
+            return jsonify({"error": "Veicolo non associato a nessun automobilista"}), 400
 
-        sql = (
-            "INSERT INTO Documenti_Anagrafica "
-            "(entita_tipo, entita_id, mongo_doc_id, tipo_documento) "
-            "VALUES ('soccorso', %s, %s, 'intervento')"
+        # Inserisce in Richiesta_Soccorso (MySQL)
+        cursor.execute(
+            """INSERT INTO Richiesta_Soccorso
+               (id_automobilista, data_richiesta, stato)
+               VALUES (%s, %s, %s)""",
+            (automobilista_id, datetime.now(UTC), "in_attesa")
         )
-        cursor.execute(sql, (veicolo["id"], str(res.inserted_id)))
+        richiesta_id = cursor.lastrowid
+
+        # Salva posizione e dettagli in MongoDB (opzionale ma mantenuto)
+        mongo_id = None
+        if _MONGO_DISPONIBILE:
+            res = soccorso_col.insert_one({
+                "richiesta_id":  richiesta_id,
+                "veicolo_id":    veicolo["veicolo_id"],
+                "targa":         targa,
+                "posizione":     {"lat": data.get("lat"), "lon": data.get("lon")},
+                "stato":         "in_attesa",
+                "data_richiesta": datetime.now(UTC)
+            })
+            mongo_id = str(res.inserted_id)
+
         conn.commit()
-        return jsonify({"intervento_id": str(res.inserted_id), "stato": "In attesa"}), 201
+        return jsonify({
+            "richiesta_id": richiesta_id,
+            "mongo_id":     mongo_id,
+            "stato":        "in_attesa"
+        }), 201
+
     except Exception as e:
         if conn:
             conn.rollback()
@@ -512,16 +535,15 @@ def get_veicoli_utente(user_id):
     try:
         conn   = get_mysql()
         cursor = conn.cursor(dictionary=True)
+        # user_id = Utente.id  →  join su Automobilista.id_utente
         query  = """
             SELECT v.id, v.targa, v.marca, v.modello, v.anno_immatricolazione,
-                   a.nome AS nome_proprietario, a.cognome AS cognome_proprietario,
-                   az.ragione_sociale AS azienda_proprietaria
+                   a.nome AS nome_proprietario, a.cognome AS cognome_proprietario
             FROM Veicolo v
-            LEFT JOIN Automobilista a  ON v.automobilista_id = a.id
-            LEFT JOIN Azienda       az ON v.azienda_id       = az.id
-            WHERE v.automobilista_id = %s OR v.azienda_id = %s
+            JOIN Automobilista a ON v.automobilista_id = a.id
+            WHERE a.id_utente = %s
         """
-        cursor.execute(query, (user_id, user_id))
+        cursor.execute(query, (user_id,))
         return jsonify(cursor.fetchall()), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -541,9 +563,11 @@ def crea_veicolo_utente(user_id):
         conn   = get_mysql()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT id FROM Automobilista WHERE id = %s", (user_id,))
-        if not cursor.fetchone():
-            return jsonify({"error": f"Utente con id {user_id} non trovato"}), 404
+        cursor.execute("SELECT id FROM Automobilista WHERE id_utente = %s", (user_id,))
+        auto = cursor.fetchone()
+        if not auto:
+            return jsonify({"error": f"Automobilista con id_utente={user_id} non trovato"}), 404
+        automobilista_id = auto["id"]
 
         query = """
             INSERT INTO Veicolo (targa, n_telaio, marca, modello, anno_immatricolazione, automobilista_id)
@@ -555,14 +579,14 @@ def crea_veicolo_utente(user_id):
             data.get("marca"),
             data.get("modello"),
             data.get("anno_immatricolazione"),
-            user_id
+            automobilista_id
         ))
         conn.commit()
         return jsonify({
             "status":           "success",
             "message":          "Veicolo creato con successo",
             "veicolo_id":       cursor.lastrowid,
-            "automobilista_id": user_id
+            "automobilista_id": automobilista_id
         }), 201
 
     except mysql.connector.IntegrityError:

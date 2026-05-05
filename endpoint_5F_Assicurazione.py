@@ -12,10 +12,11 @@ CORS(app)
 
 # Configurazione MySQL
 MYSQL_CONFIG = {
-    "host": "localhost",
-    "user": "pythonuser",
-    "password": "password123",
-    "database": "gestione_assicurazioni" # Database aggiornato
+    "host":     "db.giobra.com",
+    "user":     "user",
+    "password": "xxx123##",
+    "database": "Prototipo_SafeClaim",
+    "port":     3306,
 }
 
 # --- NUOVA CONFIGURAZIONE MONGODB ATLAS ---
@@ -105,7 +106,12 @@ def get_veicoli_utente(user_id):
         conn = get_mysql_connection()
         cursor = conn.cursor(dictionary=True)
         # Questa query va a cercare nel tuo MySQL i veicoli di quell'utente
-        query = "SELECT * FROM Veicolo WHERE automobilista_id = %s"
+        # user_id = Utente.id → join su Automobilista.id_utente
+        query = """
+            SELECT v.* FROM Veicolo v
+            JOIN Automobilista a ON v.automobilista_id = a.id
+            WHERE a.id_utente = %s
+        """
         cursor.execute(query, (user_id,))
         veicoli = cursor.fetchall()
         return jsonify(veicoli), 200
@@ -124,7 +130,7 @@ def crea_veicolo_utente(user_id):
     try:
         conn = get_mysql_connection()
         cursor = conn.cursor(dictionary=True)
-        cursor.execute("SELECT id FROM Automobilista WHERE id = %s", (user_id,))
+        cursor.execute("SELECT id FROM Automobilista WHERE id_utente = %s", (user_id,))
         if not cursor.fetchone():
             return jsonify({"error": f"Utente {user_id} non trovato"}), 404
         cursor.execute(
