@@ -16,16 +16,14 @@ import os
 load_dotenv()
 
 MYSQL_CONFIG = {
-    "host":     os.getenv("DB_HOST"),
-    "port":     int(os.getenv("DB_PORT", 3306)),
-    "user":     os.getenv("DB_USER"),
-    "password": os.getenv("DB_PASSWORD"),
-    "database": os.getenv("DB_NAME"),
+    "host":     os.getenv("MYSQL_HOST"),
+    "port":     int(os.getenv("MYSQL_PORT", 3306)),
+    "user":     os.getenv("MYSQL_USER"),
+    "password": os.getenv("MYSQL_PASSWORD"),
+    "database": os.getenv("MYSQL_DATABASE"),
 }
 
-# --- NUOVA CONFIGURAZIONE MONGODB ATLAS ---
-# Stringa aggiornata con il nuovo cluster Atlas
-MONGO_URI = "mongodb+srv://dbFakeClaim:xxx123%23%23@cluster0.zgw1jft.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+MONGO_URI = os.getenv("MONGO_URI")
 
 try:
     mongo_client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)

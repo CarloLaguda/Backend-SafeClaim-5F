@@ -16,15 +16,14 @@ CORS(app)
 load_dotenv()
 
 MYSQL_CONFIG = {
-    "host":     os.getenv("DB_HOST"),
-    "port":     int(os.getenv("DB_PORT", 3306)),
-    "user":     os.getenv("DB_USER"),
-    "password": os.getenv("DB_PASSWORD"),
-    "database": os.getenv("DB_NAME"),
+    "host":     os.getenv("MYSQL_HOST"),
+    "port":     int(os.getenv("MYSQL_PORT", 3306)),
+    "user":     os.getenv("MYSQL_USER"),
+    "password": os.getenv("MYSQL_PASSWORD"),
+    "database": os.getenv("MYSQL_DATABASE"),
 }
 
-def get_mysql():
-    return mysql.connector.connect(**MYSQL_CONFIG)
+MONGO_URI = os.getenv("MONGO_URI")
 
 # MongoDB Atlas (FakeClaim)
 _pw = urllib.parse.quote_plus("xxx123##")

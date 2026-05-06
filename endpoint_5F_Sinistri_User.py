@@ -14,11 +14,12 @@ from flask_cors import CORS
 from pymongo import MongoClient, DESCENDING
 from bson import ObjectId
 from datetime import datetime, UTC
-import urllib.parse
 import threading
 import mysql.connector
 import os
 from dotenv import load_dotenv
+
+load_dotenv()
 
 # Importazione opzionale di Gemini
 try:
@@ -44,14 +45,12 @@ CORS(app)
 #  CONFIGURAZIONE MYSQL
 # ─────────────────────────────────────────────
 
-load_dotenv()
-
 MYSQL_CONFIG = {
-    "host":     os.getenv("DB_HOST"),
-    "port":     int(os.getenv("DB_PORT", 3306)),
-    "user":     os.getenv("DB_USER"),
-    "password": os.getenv("DB_PASSWORD"),
-    "database": os.getenv("DB_NAME"),
+    "host":     os.getenv("MYSQL_HOST"),
+    "port":     int(os.getenv("MYSQL_PORT", 3306)),
+    "user":     os.getenv("MYSQL_USER"),
+    "password": os.getenv("MYSQL_PASSWORD"),
+    "database": os.getenv("MYSQL_DATABASE"),
 }
 
 def get_mysql():
@@ -72,11 +71,7 @@ soccorso_col = None
 _MONGO_DISPONIBILE = False
 
 try:
-    _pw = urllib.parse.quote_plus("xxx123##")
-    MONGO_URI = (
-        f"mongodb+srv://dbFakeClaim:{_pw}@cluster0.zgw1jft.mongodb.net/"
-        f"?retryWrites=true&w=majority&appName=Cluster0"
-    )
+    MONGO_URI = os.getenv("MONGO_URI")
     mongo_client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
     mongo_db     = mongo_client["FakeClaim"]
     col_pratiche = mongo_db["Pratica"]
@@ -93,7 +88,7 @@ except Exception as e:
 #  CONFIGURAZIONE GEMINI VISION
 # ─────────────────────────────────────────────
 
-GEMINI_API_KEY = "AIzaSyDgn-Kt_7sWM2JhosfyBmU3Md9F_uMqgVc"
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 GEMINI_MODEL   = "gemini-2.5-flash"
 
 gemini_client      = None
@@ -117,11 +112,10 @@ PROMPT_PERITO = (
 )
 
 # ─────────────────────────────────────────────
-#  HELPER — verifica disponibilità sottosistemi
+#  HELPER
 # ─────────────────────────────────────────────
 
 def _richiedi_mongo():
-    """Restituisce una risposta 503 se MongoDB non è disponibile."""
     if not _MONGO_DISPONIBILE:
         return jsonify({"error": "Database MongoDB non disponibile. Riprova più tardi."}), 503
     return None
@@ -131,14 +125,8 @@ def _richiedi_mongo():
 # ─────────────────────────────────────────────
 
 def analizza_immagine_ai(sinistro_id: str, image_url: str):
-    """
-    Eseguita in background da un thread separato.
-    Se Gemini non è disponibile, aggiorna MongoDB con stato 'non_disponibile'
-    e termina senza eccezioni.
-    """
     import time
 
-    # Gemini non configurato → aggiorna stato e termina
     if not gemini_disponibile:
         print(f"[AI] Gemini non disponibile — sinistro {sinistro_id} non analizzato.")
         try:
@@ -155,7 +143,7 @@ def analizza_immagine_ai(sinistro_id: str, image_url: str):
         return
 
     MAX_TENTATIVI = 3
-    ATTESA_BASE   = 15  # secondi
+    ATTESA_BASE   = 15
 
     for tentativo in range(1, MAX_TENTATIVI + 1):
         try:
@@ -186,16 +174,15 @@ def analizza_immagine_ai(sinistro_id: str, image_url: str):
                     "stato":        "completata"
                 }}}
             )
-            return  # successo
+            return
 
         except Exception as e:
-            print(f"[AI] Errore tentativo {tentativo}/{MAX_TENTATIVI} per sinistro {sinistro_id}: {e}")
+            print(f"[AI] Errore tentativo {tentativo}/{MAX_TENTATIVI}: {e}")
             if tentativo < MAX_TENTATIVI:
                 attesa = ATTESA_BASE * tentativo
                 print(f"[AI] Attendo {attesa}s prima di ritentare...")
                 time.sleep(attesa)
             else:
-                print(f"[AI] Analisi fallita dopo {MAX_TENTATIVI} tentativi per sinistro {sinistro_id}")
                 try:
                     col_sinistri.update_one(
                         {"_id": ObjectId(sinistro_id)},
@@ -238,7 +225,6 @@ def apri_sinistro():
         except (TypeError, ValueError):
             return jsonify({"error": "Dati di geolocalizzazione non validi"}), 400
 
-    # Converti data_evento da stringa "YYYY-MM-DD" a datetime per ordinamento corretto
     try:
         data_evento_dt = datetime.fromisoformat(data["data_evento"]).replace(tzinfo=UTC)
     except (ValueError, TypeError):
@@ -326,7 +312,6 @@ def get_sinistro_by_id(sinistro_id):
             return jsonify({"error": "Sinistro non trovato"}), 404
 
         s["_id"] = str(s["_id"])
-
         for campo in ("data_evento", "data_inserimento"):
             if isinstance(s.get(campo), datetime):
                 s[campo] = s[campo].isoformat()
@@ -367,7 +352,7 @@ def elimina_sinistro(sinistro_id):
         return jsonify({"error": str(e)}), 500
 
 # ─────────────────────────────────────────────
-#  ROTTE — UPLOAD IMMAGINE + ANALISI AI
+#  ROTTE — UPLOAD IMMAGINI + ANALISI AI
 # ─────────────────────────────────────────────
 
 @app.route("/sinistro/<sinistro_id>/immagini", methods=["POST"])
@@ -382,53 +367,53 @@ def aggiungi_immagine(sinistro_id):
     if not _STORAGE_DISPONIBILE:
         return jsonify({"error": "Storage Cloudinary non disponibile."}), 503
 
-    if "immagine" not in request.files:
+    if "immagini" not in request.files and "immagine" not in request.files:
         return jsonify({"error": "Dati immagine mancanti"}), 400
 
-    file = request.files["immagine"]
+    files = request.files.getlist("immagini") or [request.files.get("immagine")]
 
     try:
         sinistro = col_sinistri.find_one({"_id": ObjectId(sinistro_id)})
         if not sinistro:
             return jsonify({"error": "Sinistro non trovato"}), 404
 
-        print(f"☁️  Caricamento immagine su Cloudinary per sinistro {sinistro_id}...")
-        info_cloudinary = carica_immagine(file.read(), sinistro_id)
-        print(f"✅ Immagine caricata: {info_cloudinary['secure_url']}")
+        immagini_caricate = []
+        for file in files:
+            print(f"☁️  Caricamento immagine su Cloudinary per sinistro {sinistro_id}...")
+            info_cloudinary = carica_immagine(file.read(), sinistro_id)
+            print(f"✅ Immagine caricata: {info_cloudinary['secure_url']}")
+            immagini_caricate.append({
+                "url":       info_cloudinary["secure_url"],
+                "public_id": info_cloudinary["public_id"]
+            })
+            if gemini_disponibile:
+                thread = threading.Thread(
+                    target=analizza_immagine_ai,
+                    args=(sinistro_id, info_cloudinary["secure_url"]),
+                    daemon=True
+                )
+                thread.start()
 
-        # Stato analisi AI dipende dalla disponibilità di Gemini
         stato_analisi = "in_elaborazione" if gemini_disponibile else "non_disponibile"
 
         col_sinistri.update_one(
             {"_id": ObjectId(sinistro_id)},
             {
-                "$push": {"immagini": {
-                    "url":       info_cloudinary["secure_url"],
-                    "public_id": info_cloudinary["public_id"]
-                }},
-                "$set": {"analisi_ai": {
+                "$push": {"immagini": {"$each": immagini_caricate}},
+                "$set":  {"analisi_ai": {
                     "stato":      stato_analisi,
                     "data_avvio": datetime.now(UTC)
                 }}
             }
         )
 
-        # Avvia analisi AI in background solo se Gemini è disponibile
-        if gemini_disponibile:
-            thread = threading.Thread(
-                target=analizza_immagine_ai,
-                args=(sinistro_id, info_cloudinary["secure_url"]),
-                daemon=True
-            )
-            thread.start()
-
         return jsonify({
             "status":           "accepted",
             "id_sinistro":      sinistro_id,
-            "immagine_url":     info_cloudinary["secure_url"],
-            "messaggio":        "Immagine salvata."
+            "immagini":         [i["url"] for i in immagini_caricate],
+            "messaggio":        f"{len(immagini_caricate)} immagini salvate."
                                 + (" Analisi AI avviata in background." if gemini_disponibile
-                                   else " Analisi AI non disponibile (API key non configurata)."),
+                                   else " Analisi AI non disponibile."),
             "analisi_ai_stato": stato_analisi
         }), 202
 
@@ -464,10 +449,6 @@ def get_analisi_ai(sinistro_id):
 
 @app.route("/soccorso", methods=["POST"])
 def crea_richiesta_soccorso():
-    """
-    Crea una Richiesta_Soccorso in MySQL (nuovo schema) e salva la
-    posizione/dettagli extra in MongoDB per geolocalizzazione.
-    """
     data  = request.json
     targa = data.get("targa")
     if not targa:
@@ -478,10 +459,8 @@ def crea_richiesta_soccorso():
         conn   = get_mysql()
         cursor = conn.cursor(dictionary=True)
 
-        # Recupera il veicolo e l'automobilista proprietario
         cursor.execute(
-            """SELECT v.id AS veicolo_id, v.automobilista_id
-               FROM Veicolo v WHERE v.targa = %s""",
+            "SELECT v.id AS veicolo_id, v.automobilista_id FROM Veicolo v WHERE v.targa = %s",
             (targa,)
         )
         veicolo = cursor.fetchone()
@@ -492,24 +471,20 @@ def crea_richiesta_soccorso():
         if not automobilista_id:
             return jsonify({"error": "Veicolo non associato a nessun automobilista"}), 400
 
-        # Inserisce in Richiesta_Soccorso (MySQL)
         cursor.execute(
-            """INSERT INTO Richiesta_Soccorso
-               (id_automobilista, data_richiesta, stato)
-               VALUES (%s, %s, %s)""",
+            "INSERT INTO Richiesta_Soccorso (id_automobilista, data_richiesta, stato) VALUES (%s, %s, %s)",
             (automobilista_id, datetime.now(UTC), "in_attesa")
         )
         richiesta_id = cursor.lastrowid
 
-        # Salva posizione e dettagli in MongoDB (opzionale ma mantenuto)
         mongo_id = None
         if _MONGO_DISPONIBILE:
             res = soccorso_col.insert_one({
-                "richiesta_id":  richiesta_id,
-                "veicolo_id":    veicolo["veicolo_id"],
-                "targa":         targa,
-                "posizione":     {"lat": data.get("lat"), "lon": data.get("lon")},
-                "stato":         "in_attesa",
+                "richiesta_id":   richiesta_id,
+                "veicolo_id":     veicolo["veicolo_id"],
+                "targa":          targa,
+                "posizione":      {"lat": data.get("lat"), "lon": data.get("lon")},
+                "stato":          "in_attesa",
                 "data_richiesta": datetime.now(UTC)
             })
             mongo_id = str(res.inserted_id)
@@ -539,7 +514,6 @@ def get_veicoli_utente(user_id):
     try:
         conn   = get_mysql()
         cursor = conn.cursor(dictionary=True)
-        # user_id = Utente.id  →  join su Automobilista.id_utente
         query  = """
             SELECT v.id, v.targa, v.marca, v.modello, v.anno_immatricolazione,
                    a.nome AS nome_proprietario, a.cognome AS cognome_proprietario
@@ -573,18 +547,11 @@ def crea_veicolo_utente(user_id):
             return jsonify({"error": f"Automobilista con id_utente={user_id} non trovato"}), 404
         automobilista_id = auto["id"]
 
-        query = """
-            INSERT INTO Veicolo (targa, n_telaio, marca, modello, anno_immatricolazione, automobilista_id)
-            VALUES (%s, %s, %s, %s, %s, %s)
-        """
-        cursor.execute(query, (
-            data.get("targa"),
-            data.get("n_telaio"),
-            data.get("marca"),
-            data.get("modello"),
-            data.get("anno_immatricolazione"),
-            automobilista_id
-        ))
+        cursor.execute(
+            "INSERT INTO Veicolo (targa, n_telaio, marca, modello, anno_immatricolazione, automobilista_id) VALUES (%s,%s,%s,%s,%s,%s)",
+            (data.get("targa"), data.get("n_telaio"), data.get("marca"),
+             data.get("modello"), data.get("anno_immatricolazione"), automobilista_id)
+        )
         conn.commit()
         return jsonify({
             "status":           "success",
@@ -612,6 +579,6 @@ def crea_veicolo_utente(user_id):
 if __name__ == "__main__":
     print("\n📋 Stato sottosistemi all'avvio:")
     print(f"   MongoDB  : {'✅ disponibile' if _MONGO_DISPONIBILE  else '❌ non disponibile'}")
-    print(f"   Gemini   : {'✅ disponibile' if gemini_disponibile  else '⚠️  non disponibile (analisi AI disabilitata)'}")
+    print(f"   Gemini   : {'✅ disponibile' if gemini_disponibile  else '⚠️  non disponibile'}")
     print(f"   Storage  : {'✅ disponibile' if _STORAGE_DISPONIBILE else '❌ non disponibile'}\n")
     app.run(debug=True, host="0.0.0.0", port=7000)

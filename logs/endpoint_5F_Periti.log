@@ -4,121 +4,208 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:8000
- * Running on http://10.0.0.99:8000
+ * Running on http://10.0.2.117:8000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 120-784-478
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 120-784-478
- * Detected change in '/workspaces/Backend-SafeClaim-5F/provolone.py', reloading
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 120-784-478
- * Detected change in '/workspaces/Backend-SafeClaim-5F/provolone.py', reloading
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 120-784-478
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
  * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Veicoli.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 120-784-478
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 120-784-478
+ * Debugger PIN: 124-566-933
  * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Polizze.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 120-784-478
+ * Debugger PIN: 124-566-933
  * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 120-784-478
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 120-784-478
+ * Debugger PIN: 124-566-933
+127.0.0.1 - - [06/May/2026 10:31:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:31:07] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:31:22] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:31:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:31:52] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:32:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:32:22] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:32:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:32:43] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:32:52] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:32:56] "OPTIONS /pratica/69fa50d2cd985ba163212ff4/assegna HTTP/1.1" 200 -
+/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:241: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "data_aggiornamento": datetime.utcnow()
+/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:256: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "data_aggiornamento": datetime.utcnow()
+127.0.0.1 - - [06/May/2026 10:32:57] "PUT /pratica/69fa50d2cd985ba163212ff4/assegna HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:32:57] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:33:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:33:22] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:33:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:33:52] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:34:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:34:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:34:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:34:53] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:35:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:36:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:37:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:38:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:39:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:40:26] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:40:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
  * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Assicurazione.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 120-784-478
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad request version ("[k\x8fCs/»\x88>m\x03z\x04vX\x94\x92Ö©Üq\x12\x00\x00\x84\x003\x009\x005\x00/À,À0\x00£\x00\x9fÌ©Ì¨ÌªÀ¯À\xadÀ£À\x9fÀ+À/\x00¢\x00\x9eÀ®À¬À¢À\x9eÀ$À(\x00k\x00jÀsÀw\x00Ä\x00ÃÀ#À'\x00g\x00@ÀrÀv\x00¾\x00½À")
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x01\x00÷\x01\x00\x00ó\x03\x03\x1c\x8f)à\x90r\x8cýt\x1c[k\x8fCs/»\x88>m\x03z\x04vX\x94\x92Ö©Üq\x12\x00\x00\x84\x003\x009\x005\x00/À,À0\x00£\x00\x9fÌ©Ì¨ÌªÀ¯À­À£À\x9fÀ+À/\x00¢\x00\x9eÀ®À¬À¢À\x9eÀ$À(\x00k\x00jÀsÀw\x00Ä\x00ÃÀ#À'\x00g\x00@ÀrÀv\x00¾\x00½À" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] "HEAD / HTTP/1.1" 404 -
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iúLé+rì×<Ü;/µ\x1f¨4À¢"_<¥\x8dªAx£>k\x11\x88:\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00W\x01\x00\x00S\x03\x03iúLé;§\x08~`Kj¨Ñõ\x9c')
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x03\x00\x8c\x01\x00\x00\x88\x03\x03iúLé|\x96·ÏqÛ¦ßj>,\x095S¨í²\x80$«ÿ\x91W\x01&Jx\x91\x00\x00\x1a\x13\x05\x13\x04\x13\x01\x13\x02\x13\x03À´Àµ\x00Ç\x00ÆÀ²À°À³À±\x01\x00\x00E\x00+\x00\x03\x02\x03\x04\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x01\x00W\x01\x00\x00S\x03\x03iúLé;§\x08~`Kj¨Ñõ\x9c ðtË=é\x93N§[¥\x8aR\x02Å'8\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iúLé\x99\x9a\x97´Kk\x16åë\x18\x9aIzôaP\x9by`\x80#ÝÁ\x0cª+6M\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iúLé¬½T\x90ýZYn\x89\x875@_Q\x87µ+9d g\x14ØÍgâ¤K\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iúLéVP"/\x0fÇÜhè¦7¨\x96}\x86sg7Ís\x8f¹ó?B8íÅ\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iúLé×2uL~y\x92H½e[Dþ©qËÂ\x02ÿ1×Øg\x05÷\x04ºË\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iúLé\x18e¨æSñ¡\x89û6±åºÐPWùÔ¼\x1b\x98\x14,î¡p\x0b·\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad request version ('\x00/\x00')
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x00\x00i\x01\x00\x00e\x03\x03U\x1c§ärandom1random2random3random4\x00\x00\x0c\x00/\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] "GET / HTTP/1.1" 404 -
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad request version ('À#À¬À®À+À')
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iúLéUÀ¾\x0d\x1a\x82AÀX\x0ca\x0d\\â\x80Ý\x01c\x0f3á\x1bÃÌ\x0c¾'ÿ\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad request version ('À#À¬À®À+À')
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad request version ('À#À¬À®À+À')
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iúLé°d÷ÓÇAKÒÿ\x13ð½Ç\x1f\x7f=ØÅ$ÁL\x1aRÞR4\x12­\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iúLéU\x04\x9b\x8dJ¶bÛ*\x1e¾Æ{ô>1AÎ\x00\x1fa\x8dæ\x97\x88NÑ«\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iúLé.|×\x87S§\x19ô\x8e\x9d´5Ü¸5ÏMôA&Æk$Ù>ç\x18±\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iúLé3Odn\x84àT·Ûr\\®\x1dxf\x1a$¹8`\x0dà'8\x11\x1d×\x80\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iúLéÎ\x00÷E«áDxã\x06Ám\x83ÊYb!h\\³t \x14µ\x19ûÜA\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iúLéB>\x90\x8a[Å|óÀþ\x04¡°ºn\x84®Ç')
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iúLé´Ùç±'6\x95G4Ø?\x9f Á@\x9e\x00¡a:è\x11\x1dä¢\x1aA\x0e\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iúLéB>\x90\x8a[Å|óÀþ\x04¡°ºn\x84®Ç\x1dÉñn\x07" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iúLé|¦£\x91&\x939\x97Z\x9f!ñ1\x10\x1f9 \\ØTúC\x7f\x88\x147§\x9f\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x02\x00½\x01\x00\x00¹\x03\x02iúLé\x9a\x9ezï¹V\x03ÃÓEÚ$o')
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x02\x00½\x01\x00\x00¹\x03\x02iúLé\x9a\x9ezï¹V\x03ÃÓEÚ$o Éd\x16\\vÈB!-þh¿1Å\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad request version ('A,q\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x01\x00½\x01\x00\x00¹\x03\x01iúLééÍý9+10¨\x079\\{\x96²X!T\x84Ì\x19\x1d4â\x83\x1cA,q\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:02:49] code 400, message Bad request version ('\x9bÜ®Ã\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
-127.0.0.1 - - [05/May/2026 20:02:49] "\x16\x03\x03\x00Ý\x01\x00\x00Ù\x03\x03iúLéF\x1a]J¡´ûMd\x82c\x06½2\x82â\x84ªß .·\x1b\x1c\x9bÜ®Ã\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:02:54] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00')
-127.0.0.1 - - [05/May/2026 20:02:54] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iúLéã¤ðÊ9s\\\x05>60\x81?üÎ\x91\x8bÊ#\x17Cn\x80\x809Úf\x14\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:02:59] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00')
-127.0.0.1 - - [05/May/2026 20:02:59] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iúLîÇ\x94\x16\x059Ü=Þ8\x8b<\x93ÃIV!\x0eK\x96\x14²\x0bç»\x174ÔÞ\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:02:59] code 400, message Bad request version ('À#À¬À®À+À')
-127.0.0.1 - - [05/May/2026 20:02:59] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iúLóÈn\x0c&\x06Ýë\x08j\x0c\x07\x7flZ¸Ø\x7f\x14´A G\x1bèU[\x04\x00\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
-127.0.0.1 - - [05/May/2026 20:03:04] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00')
-127.0.0.1 - - [05/May/2026 20:03:04] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iúLóp\x1e¾\x9dÙ\x98_Ù¡4ÄÆxòzXv+Ê\x14ÎÎÑ\x00\x1eã*®\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:03:09] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00')
-127.0.0.1 - - [05/May/2026 20:03:09] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iúLølÿú\x91\x8c¦\x8c&ðÛ^\x1eÓÐ?Ti½Ëþï\x8a\x9c¿Ê\x9d\x91®\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:03:09] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x00\x00¥\x01\x00\x00¡\x03\x00iúLýX')
-127.0.0.1 - - [05/May/2026 20:03:09] "\x16\x03\x00\x00¥\x01\x00\x00¡\x03\x00iúLýX\x1e\x06\x07\x92\x8fÐ\x0e¿ÿ2\x90ÞGé#Ëyh¬\x9eÌtIÅGàj\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:19:30] "OPTIONS /sinistro/69fa50d1b388046dba023ce1/pratica HTTP/1.1" 200 -
-/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:176: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
-  "data_inserimento": datetime.utcnow()
-/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:187: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
-  "data_aggiornamento": datetime.utcnow()
-127.0.0.1 - - [05/May/2026 20:19:30] "POST /sinistro/69fa50d1b388046dba023ce1/pratica HTTP/1.1" 201 -
-127.0.0.1 - - [05/May/2026 20:29:35] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:29:36] "GET /periti HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:29:50] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:30:05] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+127.0.0.1 - - [06/May/2026 10:40:54] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:41:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+127.0.0.1 - - [06/May/2026 10:41:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Polizze.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+127.0.0.1 - - [06/May/2026 10:42:13] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:42:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:42:39] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:42:53] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:43:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:43:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:44:27] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:45:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+127.0.0.1 - - [06/May/2026 10:46:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:47:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_RAG_Assistente.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+127.0.0.1 - - [06/May/2026 10:48:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:49:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:50:21] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:50:22] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:50:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:50:53] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:51:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:51:24] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:52:30] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:53:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:54:02] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:54:27] "GET /periti HTTP/1.1" 500 -
+127.0.0.1 - - [06/May/2026 10:54:27] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:54:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:54:42] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:54:42] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:54:44] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:54:50] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:54:58] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:55:13] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:55:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:55:42] "GET /periti HTTP/1.1" 500 -
+127.0.0.1 - - [06/May/2026 10:55:42] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:55:57] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:56:13] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:56:27] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:56:42] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:56:58] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:57:13] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:57:27] "GET /pratiche_assicurazione HTTP/1.1" 200 -

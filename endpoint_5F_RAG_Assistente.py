@@ -1,15 +1,6 @@
 """
 endpoint_5F_RAG_Assistente.py — Porta 12000
 Assistente virtuale per l'automobilista SafeClaim.
-
-Architettura RAG (Retrieval-Augmented Generation):
-  1. L'utente manda una domanda
-  2. TF-IDF trova i chunk più rilevanti dalla Knowledge Base
-  3. I chunk vengono passati a Gemini come contesto
-  4. Gemini genera una risposta naturale e contestualizzata
-
-Dipendenze:
-    pip install flask flask-cors scikit-learn google-genai
 """
 
 from flask import Flask, request, jsonify
@@ -19,6 +10,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 from google import genai
 import numpy as np
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
@@ -27,10 +21,9 @@ CORS(app)
 #  CONFIGURAZIONE GEMINI
 # ─────────────────────────────────────────────
 
-GEMINI_API_KEY = "AIzaSyDgn-Kt_7sWM2JhosfyBmU3Md9F_uMqgVc"  # Sostituisci con la tua chiave API Gemini
-GEMINI_MODEL = "gemini-2.5-flash"
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_MODEL   = "gemini-2.5-flash"
 
-# Client Gemini (lazy initialization)
 client = None
 
 def get_gemini_client():
@@ -39,14 +32,11 @@ def get_gemini_client():
         client = genai.Client(api_key=GEMINI_API_KEY)
     return client
 
-
 # ─────────────────────────────────────────────
 #  KNOWLEDGE BASE — SafeClaim
 # ─────────────────────────────────────────────
 
 KNOWLEDGE_BASE = [
-
-    # ── REGISTRAZIONE E LOGIN ──────────────────────────────────────────────────
     {
         "titolo": "Come mi registro su SafeClaim",
         "contenuto": (
@@ -74,8 +64,6 @@ KNOWLEDGE_BASE = [
             "Il team di supporto ti aiuterà a reimpostare le credenziali."
         )
     },
-
-    # ── SINISTRI ───────────────────────────────────────────────────────────────
     {
         "titolo": "Come apro un sinistro",
         "contenuto": (
@@ -93,8 +81,7 @@ KNOWLEDGE_BASE = [
             "al dettaglio del sinistro. L'immagine viene analizzata automaticamente "
             "da un sistema di intelligenza artificiale (Gemini Vision) che identifica: "
             "il punto d'impatto principale, i componenti danneggiati (paraurti, gruppi ottici, cristalli), "
-            "e l'entità del danno (graffi, ammaccature, deformazioni strutturali). "
-            "L'analisi avviene in pochi secondi e il risultato viene salvato sul sinistro."
+            "e l'entità del danno (graffi, ammaccature, deformazioni strutturali)."
         )
     },
     {
@@ -131,19 +118,17 @@ KNOWLEDGE_BASE = [
         "contenuto": (
             "I tempi di gestione dipendono dalla complessità del danno. "
             "Dopo l'apertura del sinistro, un perito viene assegnato dall'assicuratore. "
-            "Il perito effettua la perizia e propone una stima del danno (rimborso). "
+            "Il perito effettua la perizia e propone una stima del danno. "
             "In media il processo richiede da qualche giorno a qualche settimana."
         )
     },
-
-    # ── VEICOLI ────────────────────────────────────────────────────────────────
     {
         "titolo": "Come aggiungo un veicolo al mio profilo",
         "contenuto": (
             "Puoi aggiungere un veicolo al tuo profilo dalla sezione 'I miei veicoli'. "
             "Devi inserire almeno la targa del veicolo. Opzionalmente puoi aggiungere: "
             "numero di telaio, marca, modello e anno di immatricolazione. "
-            "La targa deve essere univoca nel sistema: non puoi registrare una targa già esistente."
+            "La targa deve essere univoca nel sistema."
         )
     },
     {
@@ -154,35 +139,21 @@ KNOWLEDGE_BASE = [
             "Puoi aprire un sinistro direttamente da un veicolo nella lista."
         )
     },
-
-    # ── SOCCORSO STRADALE ─────────────────────────────────────────────────────
     {
         "titolo": "Come richiedo il soccorso stradale",
         "contenuto": (
             "SafeClaim offre un servizio di soccorso stradale. Per richiedere il soccorso "
             "accedi alla sezione apposita e inserisci la targa del veicolo in panne. "
-            "Puoi anche condividere la tua posizione GPS (latitudine e longitudine) "
-            "per facilitare l'intervento. La richiesta viene registrata con stato 'Richiesto' "
-            "e l'intervento viene coordinato dalla compagnia assicurativa."
+            "Puoi anche condividere la tua posizione GPS per facilitare l'intervento. "
+            "La richiesta viene registrata con stato 'in_attesa'."
         )
     },
-    {
-        "titolo": "Stato della richiesta di soccorso",
-        "contenuto": (
-            "Dopo aver richiesto il soccorso, la richiesta assume lo stato 'Richiesto'. "
-            "Riceverai aggiornamenti sullo stato dell'intervento. "
-            "Per qualsiasi urgenza puoi contattare direttamente il numero di emergenza "
-            "della tua compagnia assicurativa."
-        )
-    },
-
-    # ── POLIZZE ────────────────────────────────────────────────────────────────
     {
         "titolo": "Come consulto la mia polizza",
         "contenuto": (
             "Dalla sezione 'Polizze' puoi visualizzare tutte le polizze associate ai tuoi veicoli. "
             "Per ogni polizza sono visibili: numero polizza, compagnia assicurativa, "
-            "date di inizio e scadenza, massimale e tipo di copertura (es. RCA, Kasko). "
+            "date di inizio e scadenza, massimale e tipo di copertura (es. RCA, Kasko)."
         )
     },
     {
@@ -191,51 +162,42 @@ KNOWLEDGE_BASE = [
             "La polizza RCA (Responsabilità Civile Auto) è obbligatoria per legge in Italia "
             "e copre i danni causati a terzi in caso di incidente stradale. "
             "Non copre i danni al proprio veicolo. Per i danni al proprio mezzo "
-            "sono necessarie coperture aggiuntive come la Kasko o la Collisione."
+            "sono necessarie coperture aggiuntive come la Kasko."
         )
     },
-
-    # ── PERIZIA E RIMBORSO ────────────────────────────────────────────────────
     {
         "titolo": "Cos'è una perizia",
         "contenuto": (
             "La perizia è la valutazione tecnica dei danni al veicolo effettuata da un perito "
             "assicurativo incaricato dalla compagnia. Il perito analizza le fotografie e la "
-            "descrizione del sinistro, stima il costo dei danni e produce un documento ufficiale "
-            "chiamato 'pratica'. In SafeClaim l'analisi AI di Gemini supporta il perito "
-            "fornendo una prima valutazione automatica delle immagini caricate."
+            "descrizione del sinistro, stima il costo dei danni e produce un documento ufficiale. "
+            "In SafeClaim l'analisi AI di Gemini supporta il perito con una prima valutazione automatica."
         )
     },
     {
         "titolo": "Come funziona il rimborso",
         "contenuto": (
-            "Dopo la perizia, il perito propone una stima del danno (rimborso). "
+            "Dopo la perizia, il perito propone una stima del danno. "
             "La pratica passa allo stato 'rimborso_proposto'. "
             "L'assicuratore verifica la pratica e approva l'erogazione del rimborso. "
-            "I tempi di erogazione dipendono dalla compagnia assicurativa e dalla "
-            "complessità del caso."
+            "I tempi dipendono dalla compagnia assicurativa e dalla complessità del caso."
         )
     },
     {
         "titolo": "Il mio veicolo verrà riparato",
         "contenuto": (
             "Sì, in molti casi il veicolo viene inviato presso un'officina convenzionata. "
-            "Il perito, dopo aver valutato il danno, può disporre la riparazione del veicolo "
-            "presso un'officina partner. In SafeClaim puoi seguire lo stato della riparazione "
-            "direttamente dalla pagina del sinistro: quando il veicolo è in officina "
-            "lo stato diventa 'in_riparazione'."
+            "Il perito, dopo aver valutato il danno, può disporre la riparazione. "
+            "In SafeClaim puoi seguire lo stato della riparazione dalla pagina del sinistro: "
+            "quando il veicolo è in officina lo stato diventa 'in_riparazione'."
         )
     },
-
-    # ── ASSISTENZA E CONTATTI ─────────────────────────────────────────────────
     {
         "titolo": "Come contatto l'assistenza SafeClaim",
         "contenuto": (
             "Per assistenza puoi contattare SafeClaim tramite la sezione 'Contatti' del sito. "
             "Il team di supporto è disponibile per problemi tecnici, domande sulle polizze, "
-            "aggiornamenti sui sinistri e qualsiasi altra necessità. "
-            "SafeClaim dispone anche di un sistema di notifiche email per gli aggiornamenti "
-            "più importanti sul tuo sinistro."
+            "aggiornamenti sui sinistri e qualsiasi altra necessità."
         )
     },
     {
@@ -243,22 +205,16 @@ KNOWLEDGE_BASE = [
         "contenuto": (
             "SafeClaim utilizza connessioni sicure HTTPS per tutte le comunicazioni. "
             "I dati degli utenti sono memorizzati su database protetti. "
-            "Le immagini dei sinistri vengono archiviate in modo sicuro. "
-            "Le password non vengono mai memorizzate in chiaro nel database."
+            "Le immagini dei sinistri vengono archiviate in modo sicuro su Cloudinary."
         )
     },
-
-    # ── INTELLIGENZA ARTIFICIALE ──────────────────────────────────────────────
     {
         "titolo": "Come funziona l'analisi AI delle immagini",
         "contenuto": (
             "Quando carichi una foto del danno, SafeClaim utilizza Gemini Vision (Google AI) "
             "per analizzare automaticamente l'immagine. L'analisi identifica: "
-            "il punto d'impatto principale sul veicolo, "
-            "i componenti specificamente danneggiati (es. paraurti anteriore, faro sinistro, cofano), "
-            "e la gravità del danno (graffio superficiale, ammaccatura, deformazione strutturale). "
-            "Questo referto tecnico automatico viene messo a disposizione del perito assegnato "
-            "per velocizzare la valutazione del sinistro."
+            "il punto d'impatto principale, i componenti danneggiati, "
+            "e la gravità del danno. Il referto viene messo a disposizione del perito."
         )
     },
     {
@@ -266,8 +222,8 @@ KNOWLEDGE_BASE = [
         "contenuto": (
             "No, l'analisi AI di SafeClaim è uno strumento di supporto e non sostituisce "
             "la valutazione del perito umano. L'AI fornisce una prima analisi tecnica "
-            "delle immagini per velocizzare il processo, ma la perizia ufficiale e la "
-            "stima del danno vengono sempre effettuate da un perito assicurativo certificato."
+            "per velocizzare il processo, ma la perizia ufficiale viene sempre effettuata "
+            "da un perito assicurativo certificato."
         )
     },
 ]
@@ -288,20 +244,17 @@ vectorizer = TfidfVectorizer(
 )
 
 tfidf_matrix = vectorizer.fit_transform(corpus)
-
 print(f"Indice TF-IDF pronto: {len(KNOWLEDGE_BASE)} chunk, {tfidf_matrix.shape[1]} termini")
 
-
 # ─────────────────────────────────────────────
-#  FUNZIONE RETRIEVAL
+#  RETRIEVAL
 # ─────────────────────────────────────────────
 
 def recupera_chunk_rilevanti(domanda: str, top_k: int = 3) -> list[dict]:
     query_vec  = vectorizer.transform([domanda])
     similarita = cosine_similarity(query_vec, tfidf_matrix).flatten()
     indici_top = np.argsort(similarita)[::-1][:top_k]
-
-    risultati = []
+    risultati  = []
     for idx in indici_top:
         if similarita[idx] > 0.01:
             risultati.append({
@@ -311,9 +264,8 @@ def recupera_chunk_rilevanti(domanda: str, top_k: int = 3) -> list[dict]:
             })
     return risultati
 
-
 # ─────────────────────────────────────────────
-#  FUNZIONE GENERAZIONE RISPOSTA CON GEMINI
+#  GENERAZIONE RISPOSTA GEMINI
 # ─────────────────────────────────────────────
 
 SYSTEM_PROMPT = """Sei SafeBot, l'assistente virtuale di SafeClaim, una piattaforma italiana 
@@ -334,14 +286,14 @@ def genera_risposta_gemini(domanda: str, chunk_rilevanti: list[dict]) -> str:
     if not chunk_rilevanti:
         contesto = "Non ho trovato informazioni specifiche su questo argomento nella Knowledge Base."
     else:
-        parti_contesto = []
+        parti = []
         for i, chunk in enumerate(chunk_rilevanti, 1):
-            parti_contesto.append(f"[Informazione {i} - {chunk['titolo']}]\n{chunk['contenuto']}")
-        contesto = "\n\n".join(parti_contesto)
+            parti.append(f"[Informazione {i} - {chunk['titolo']}]\n{chunk['contenuto']}")
+        contesto = "\n\n".join(parti)
 
     prompt_completo = f"""{SYSTEM_PROMPT}
 
-CONTESTO (informazioni recuperate dalla Knowledge Base):
+CONTESTO:
 {contesto}
 
 DOMANDA DELL'UTENTE:
@@ -350,33 +302,28 @@ DOMANDA DELL'UTENTE:
 RISPOSTA:"""
 
     MAX_TENTATIVI = 3
-    ATTESA_BASE   = 5  # secondi
+    ATTESA_BASE   = 5
 
     for tentativo in range(1, MAX_TENTATIVI + 1):
         try:
-            client = get_gemini_client()
+            client   = get_gemini_client()
             risposta = client.models.generate_content(
                 model=GEMINI_MODEL,
                 contents=prompt_completo
             )
             return risposta.text.strip()
-
         except Exception as e:
             print(f"[ERRORE GEMINI] Tentativo {tentativo}/{MAX_TENTATIVI}: {e}")
             if tentativo < MAX_TENTATIVI:
-                attesa = ATTESA_BASE * tentativo  # 15s, 30s
-                print(f"[AI] Attendo {attesa}s prima di ritentare...")
-                time.sleep(attesa)
+                time.sleep(ATTESA_BASE * tentativo)
             else:
-                print(f"[AI] Tutti i tentativi esauriti.")
                 return (
                     "Mi dispiace, si è verificato un errore nel generare la risposta. "
                     "Per assistenza contatta direttamente il supporto SafeClaim."
                 )
 
-
 # ─────────────────────────────────────────────
-#  ENDPOINT PRINCIPALE
+#  ENDPOINT
 # ─────────────────────────────────────────────
 
 @app.route('/assistente/chat', methods=['POST'])
@@ -392,10 +339,8 @@ def chat_assistente():
         return jsonify({"error": "Domanda troppo lunga (max 500 caratteri)"}), 400
 
     print(f"\nDomanda ricevuta: '{domanda}'")
-
     chunk_rilevanti = recupera_chunk_rilevanti(domanda, top_k=3)
     print(f"Chunk recuperati: {[c['titolo'] for c in chunk_rilevanti]}")
-
     risposta = genera_risposta_gemini(domanda, chunk_rilevanti)
     print(f"Risposta generata ({len(risposta)} caratteri)")
 
@@ -409,17 +354,19 @@ def chat_assistente():
 @app.route('/assistente/health', methods=['GET'])
 def health_check():
     return jsonify({
-        "status":      "online",
-        "modello":     GEMINI_MODEL,
-        "kb_chunks":   len(KNOWLEDGE_BASE),
+        "status":        "online",
+        "modello":       GEMINI_MODEL,
+        "kb_chunks":     len(KNOWLEDGE_BASE),
         "tfidf_termini": tfidf_matrix.shape[1]
     }), 200
 
 
 @app.route('/assistente/argomenti', methods=['GET'])
 def lista_argomenti():
-    argomenti = [chunk["titolo"] for chunk in KNOWLEDGE_BASE]
-    return jsonify({"argomenti": argomenti, "totale": len(argomenti)}), 200
+    return jsonify({
+        "argomenti": [chunk["titolo"] for chunk in KNOWLEDGE_BASE],
+        "totale":    len(KNOWLEDGE_BASE)
+    }), 200
 
 
 if __name__ == '__main__':

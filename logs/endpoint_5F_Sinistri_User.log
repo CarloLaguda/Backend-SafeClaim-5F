@@ -11,12 +11,12 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:7000
- * Running on http://10.0.0.99:7000
+ * Running on http://10.0.2.117:7000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 120-784-478
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
 ✅ Gemini Vision inizializzato correttamente.
 
@@ -27,8 +27,8 @@ Press CTRL+C to quit
 
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 120-784-478
- * Detected change in '/workspaces/Backend-SafeClaim-5F/provolone.py', reloading
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
 ✅ Gemini Vision inizializzato correttamente.
 
@@ -39,8 +39,8 @@ Press CTRL+C to quit
 
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 120-784-478
- * Detected change in '/workspaces/Backend-SafeClaim-5F/provolone.py', reloading
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
 ✅ Gemini Vision inizializzato correttamente.
 
@@ -51,7 +51,103 @@ Press CTRL+C to quit
 
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 120-784-478
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+✅ Gemini Vision inizializzato correttamente.
+
+📋 Stato sottosistemi all'avvio:
+   MongoDB  : ✅ disponibile
+   Gemini   : ✅ disponibile
+   Storage  : ✅ disponibile
+
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+✅ Gemini Vision inizializzato correttamente.
+
+📋 Stato sottosistemi all'avvio:
+   MongoDB  : ✅ disponibile
+   Gemini   : ✅ disponibile
+   Storage  : ✅ disponibile
+
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+✅ Gemini Vision inizializzato correttamente.
+
+📋 Stato sottosistemi all'avvio:
+   MongoDB  : ✅ disponibile
+   Gemini   : ✅ disponibile
+   Storage  : ✅ disponibile
+
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+✅ Gemini Vision inizializzato correttamente.
+
+📋 Stato sottosistemi all'avvio:
+   MongoDB  : ✅ disponibile
+   Gemini   : ✅ disponibile
+   Storage  : ✅ disponibile
+
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+✅ Gemini Vision inizializzato correttamente.
+
+📋 Stato sottosistemi all'avvio:
+   MongoDB  : ✅ disponibile
+   Gemini   : ✅ disponibile
+   Storage  : ✅ disponibile
+
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+✅ Gemini Vision inizializzato correttamente.
+
+📋 Stato sottosistemi all'avvio:
+   MongoDB  : ✅ disponibile
+   Gemini   : ✅ disponibile
+   Storage  : ✅ disponibile
+
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+✅ Gemini Vision inizializzato correttamente.
+
+📋 Stato sottosistemi all'avvio:
+   MongoDB  : ✅ disponibile
+   Gemini   : ✅ disponibile
+   Storage  : ✅ disponibile
+
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+✅ Gemini Vision inizializzato correttamente.
+
+📋 Stato sottosistemi all'avvio:
+   MongoDB  : ✅ disponibile
+   Gemini   : ✅ disponibile
+   Storage  : ✅ disponibile
+
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
  * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Veicoli.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
 ✅ Gemini Vision inizializzato correttamente.
@@ -63,7 +159,7 @@ Press CTRL+C to quit
 
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 120-784-478
+ * Debugger PIN: 124-566-933
  * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Polizze.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
 ✅ Gemini Vision inizializzato correttamente.
@@ -75,31 +171,30 @@ Press CTRL+C to quit
 
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 120-784-478
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
-✅ Gemini Vision inizializzato correttamente.
-
-📋 Stato sottosistemi all'avvio:
-   MongoDB  : ✅ disponibile
-   Gemini   : ✅ disponibile
-   Storage  : ✅ disponibile
-
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 120-784-478
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
-✅ Gemini Vision inizializzato correttamente.
-
-📋 Stato sottosistemi all'avvio:
-   MongoDB  : ✅ disponibile
-   Gemini   : ✅ disponibile
-   Storage  : ✅ disponibile
-
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 120-784-478
+ * Debugger PIN: 124-566-933
+127.0.0.1 - - [06/May/2026 10:31:07] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:31:22] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:31:37] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:31:52] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:32:07] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:32:22] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:32:37] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:32:52] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:33:10] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:33:22] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:33:38] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:33:52] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:34:08] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:34:23] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:34:37] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:34:53] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:35:29] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:36:28] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:37:28] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:38:28] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:39:28] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:40:25] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:40:38] "GET /sinistri HTTP/1.1" 200 -
  * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Assicurazione.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
 ✅ Gemini Vision inizializzato correttamente.
@@ -111,105 +206,113 @@ Press CTRL+C to quit
 
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 120-784-478
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request version ("\x98\x00\x00\x84\x003\x009\x005\x00/À,À0\x00£\x00\x9fÌ©Ì¨ÌªÀ¯À\xadÀ£À\x9fÀ+À/\x00¢\x00\x9eÀ®À¬À¢À\x9eÀ$À(\x00k\x00jÀsÀw\x00Ä\x00ÃÀ#À'\x00g\x00@ÀrÀv\x00¾\x00½À")
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x01\x00÷\x01\x00\x00ó\x03\x03ïâ ï6\x1eèå7Â£fÇ\x05é\x1d¤\x1cü«W\x98[p\x9eÿö\x81& \x1d\x98\x00\x00\x84\x003\x009\x005\x00/À,À0\x00£\x00\x9fÌ©Ì¨ÌªÀ¯À­À£À\x9fÀ+À/\x00¢\x00\x9eÀ®À¬À¢À\x9eÀ$À(\x00k\x00jÀsÀw\x00Ä\x00ÃÀ#À'\x00g\x00@ÀrÀv\x00¾\x00½À" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] "HEAD / HTTP/1.1" 404 -
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request version ('\x00\x02\x01\x00\x00+\x00\x03\x02\x03\x04\x00')
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request version ('c^\x00\x00')
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iúM]¤Fk#ûØßY.e\x17\x9d\x9c\x0eä\x00a¡\x0dK\x16î\x9a\x91g\x1e\x05\x18\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iúM]yÉÊ?\x15Ï¢Æ|\x0bØ²¸\x08Gö\x1a\x1dZróHË\x00[¯&Å\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iúM]ñM\x9a\x0eõ\x9dÖ7RÐ\x94òûÖ¨\x80Ü_D\x9cæÂAÍmÇ¢¢\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x01\x00W\x01\x00\x00S\x03\x03iúM]3ê:ë\x0c\x17\x04MF\x12\x8cûÒg/\x19jX\x06åVoç\x18ô c^\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x03\x00\x8c\x01\x00\x00\x88\x03\x03iúM]Lu¼yÃ\x10½\x18\x0f`"\x83x\x19²\x0bn\x1fv§_\x9b´\x820\x08\x84ð\x00\x00\x1a\x13\x05\x13\x04\x13\x01\x13\x02\x13\x03À´Àµ\x00Ç\x00ÆÀ²À°À³À±\x01\x00\x00E\x00\x0b\x00\x02\x01\x00\x00+\x00\x03\x02\x03\x04\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iúM]2\x99Ò;rµæ\x0ea\x08þzE{\x85};5¦&?K=!\x90ÜVú\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iúM]<¦l'Ï[°nA\x04¼ÒÃ\x14\x1aI\x1a¦\x96©ys\x0c\x1df\x9c\x90\x95\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iúM]9\x8e&AÞ¸p«ö\x16Åé=\x9cå¤cjKÓ\x08í1d.»\x8ch\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request version ('\x00/\x00')
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x00\x00i\x01\x00\x00e\x03\x03U\x1c§ärandom1random2random3random4\x00\x00\x0c\x00/\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] "GET / HTTP/1.1" 404 -
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request version ('À#À¬À®À+À')
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iúM]ï¦òÂqü\x1e,\x98Ù8âtSd¸´\x00Ýzì\x0f$\x17Ñ\x8cìÃ\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request version ('À#À¬À®À+À')
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request version ('¨ñ')
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iúM]\x09\x03Tmþ¯ì1g\x97åæq{þxGÕ#]ã\x1c¨ñ" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iúM]\x11ÃÔøMÍá\x9d7ó\x91W\x0c\x01ùüw©r\x8e\x0b×¬Ë\x17\x11\x12ê\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request syntax ('\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iúM](CÎ»kèÖN[')
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iúM](CÎ»kèÖN[" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iúM]!\x85\x81Ï!}×V$\x83\x81d3»Þ§û\x80Rô\x0eR¾x[R)\x1d\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iúM]i´\x09\x95\x8d}t\x9dHè\x9f¯\x19\x8fÙH \x82\x0dóêøîm\x01±\x7fé\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x01\x00Ã\x01\x00\x00¿\x03\x01iúM]\x19)l.\x95÷\x0eçbÁnÄ\x9bX\x1dËã\x06·Î!I\x01\x14rù4ë\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02iúM]ì¦\x90\x9d\x06}\x18Ó\x96 ÕÕ\x13#\x1a¶\x05ÿ%\x18²\x88[ôvÇ\x17Ö\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request version ('\x00\x02\x01\x00\x00')
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x03\x00ã\x01\x00\x00ß\x03\x03iúM]Åü\x14\x13@íaM3Åµe¦\x0b9ß¡6·LF\x93Ê\\Áè¶\x09\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x006\x00\x0b\x00\x02\x01\x00\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x02\x00½\x01\x00\x00¹\x03\x02iúM]¦)\x02\x10J$ñ\x8bã¯MlûRcfàqÑç')
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request syntax ('\x16\x03\x03\x00Ý\x01\x00\x00Ù\x03\x03iúM]\x014²Ê\x03T¯ôS{ÒI\x9b¢\x181A°ÅÃÉ\x1bÂ\x14\x10þ«s\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
-127.0.0.1 - - [05/May/2026 20:04:45] code 400, message Bad request version ('u½©Ò\x8dà«Î×D\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x02\x00½\x01\x00\x00¹\x03\x02iúM]¦)\x02\x10J$ñ\x8bã¯MlûRcfàqÑç\x1f\x9fÂä" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x03\x00Ý\x01\x00\x00Ù\x03\x03iúM]\x014²Ê\x03T¯ôS{ÒI\x9b¢\x181A°ÅÃÉ\x1bÂ\x14\x10þ«s\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:04:45] "\x16\x03\x01\x00½\x01\x00\x00¹\x03\x01iúM]îå}¨\x99þ\x8b\x0câk+[Ü®ÌJ\x19 u½©Ò\x8dà«Î×D\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:04:50] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00')
-127.0.0.1 - - [05/May/2026 20:04:50] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iúM]XIÜ/®\x96¹<å\x05ùÒ¾\x0d=µÜá\x80¦\x95­,òÃ±2\x87\x00\x00\x80\x00\x1d\x00\x1cþÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì­\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:04:55] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00')
-127.0.0.1 - - [05/May/2026 20:04:55] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iúMb\x1d\x99çHþ\x81\x81\x89Ñð1é\x01Çø­Ì¶½sä²êWJAÿR\x00\x00\x80À\x9fÀ£\x00\x9fÀDÀRÀEÀS\x00E\x00¾À|\x00\x88\x00ÄÀ}ÌªÌ\x15\x00\x15\x00\x9a\x00\x0b\x00\x0d\x000\x00>\x00¤\x006\x00h\x00¥À>ÀXÀ?ÀY\x00B\x00»À\x82\x00\x85\x00ÁÀ\x83\x00\x0c\x00\x97\x00\x0e\x00\x10\x001\x00?\x00 \x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:04:55] code 400, message Bad request version ('À#À¬À®À+À')
-127.0.0.1 - - [05/May/2026 20:04:55] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iúMgÜ\x1b½²Óì\x1e`\x98\x14hei[Ý\x98WÇ\x99\x89Ì\x84µ.,É\x10´\x00\x00\x80\x00m\x00§ÀFÀZÀGÀ[\x00F\x00¿À\x84\x00\x89\x00ÅÀ\x85\x00\x1a\x00\x18\x00\x9bÀ²À°À³À±À\x08À\x09À#À¬À®À+À" 400 -
-127.0.0.1 - - [05/May/2026 20:05:00] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00')
-127.0.0.1 - - [05/May/2026 20:05:00] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iúMgN/.+\x85ÓÝM\x9c\x0eÜ}dn\x18èµø×ÎO/¤\x85G5³W\x00\x00\x80À\x14À(À0ÀLÀ`ÀMÀaÀvÀ\x8aÀwÀ\x8bÌ¨Ì\x13À\x10À\x11À\x03\x00JÀ\x04\x00KÀ%À-À\x05\x00LÀ&À.ÀJÀ^ÀKÀ_ÀtÀ\x88ÀuÀ\x89\x00IÀ\x01\x00GÀ\x02\x00H\x00N\x00MÀ\x0dÀ\x0eÀ)À1À\x0fÀ*À2ÀNÀbÀOÀcÀxÀ\x8cÀyÀ\x8dÀ\x0bÀ\x0c\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:05:05] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00')
-127.0.0.1 - - [05/May/2026 20:05:05] "\x16\x03\x00\x00«\x01\x00\x00§\x03\x00iúMlØ\x91Ú\x9e_?ÊYÃYð¾cöPGÿSÖ¤Fj]£ôÞ£±\x00\x00\x80\x00YÀ\x15À\x16\x00X\x00O\x00R\x00Q\x00P\x00S\x00V\x00U\x00T\x00\x81\x00\x83\x00\x80\x00\x82\x00)\x00&\x00*\x00'\x00+\x00(\x00#\x00\x1f\x00"\x00\x1e\x00%\x00!\x00$\x00 \x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:05:05] code 400, message Bad request version ('\x0e\x0f\x89°1nôHTéZº\x07_\x18dÒ\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
-127.0.0.1 - - [05/May/2026 20:05:05] "\x16\x03\x00\x00¥\x01\x00\x00¡\x03\x00iúMq\x0d+\x15t\x00\x8fBz\x1cÄ\x1f\x0e\x0f\x89°1nôHTéZº\x07_\x18dÒ\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00­ÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00" 400 -
-127.0.0.1 - - [05/May/2026 20:11:47] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:12:02] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:19:07] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:19:22] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:19:29] "OPTIONS /sinistro HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:19:29] "POST /sinistro HTTP/1.1" 201 -
-127.0.0.1 - - [05/May/2026 20:19:30] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:19:30] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:19:37] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:19:52] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:20:07] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:20:22] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:20:22] "POST /sinistro/69fa50d1b388046dba023ce1/immagini HTTP/1.1" 400 -
-127.0.0.1 - - [05/May/2026 20:20:28] "POST /sinistro/69fa50d1b388046dba023ce1/immagini HTTP/1.1" 400 -
-127.0.0.1 - - [05/May/2026 20:20:37] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:20:48] "POST /sinistro/69fa50d1b388046dba023ce1/immagini HTTP/1.1" 400 -
-127.0.0.1 - - [05/May/2026 20:20:52] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:21:07] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:21:22] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:21:37] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:21:52] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:22:07] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:22:22] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:22:37] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:22:52] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:23:53] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:24:48] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:24:56] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:25:07] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:25:22] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:25:37] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:25:52] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:26:07] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:26:22] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:26:37] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:26:52] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:27:12] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:27:14] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:27:28] "POST /sinistro/69fa50d1b388046dba023ce1/immagini HTTP/1.1" 202 -
-127.0.0.1 - - [05/May/2026 20:27:29] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:29:36] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:29:51] "GET /sinistri HTTP/1.1" 200 -
-127.0.0.1 - - [05/May/2026 20:30:05] "GET /sinistri HTTP/1.1" 200 -
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+✅ Gemini Vision inizializzato correttamente.
+
+📋 Stato sottosistemi all'avvio:
+   MongoDB  : ✅ disponibile
+   Gemini   : ✅ disponibile
+   Storage  : ✅ disponibile
+
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+127.0.0.1 - - [06/May/2026 10:40:58] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:41:09] "GET /sinistri HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+✅ Gemini Vision inizializzato correttamente.
+
+📋 Stato sottosistemi all'avvio:
+   MongoDB  : ✅ disponibile
+   Gemini   : ✅ disponibile
+   Storage  : ✅ disponibile
+
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+127.0.0.1 - - [06/May/2026 10:41:23] "GET /sinistri HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+✅ Gemini Vision inizializzato correttamente.
+
+📋 Stato sottosistemi all'avvio:
+   MongoDB  : ✅ disponibile
+   Gemini   : ✅ disponibile
+   Storage  : ✅ disponibile
+
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+✅ Gemini Vision inizializzato correttamente.
+
+📋 Stato sottosistemi all'avvio:
+   MongoDB  : ✅ disponibile
+   Gemini   : ✅ disponibile
+   Storage  : ✅ disponibile
+
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+127.0.0.1 - - [06/May/2026 10:42:13] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:42:23] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:42:38] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:42:53] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:43:08] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:43:29] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:44:28] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:45:28] "GET /sinistri HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+✅ Gemini Vision inizializzato correttamente.
+
+📋 Stato sottosistemi all'avvio:
+   MongoDB  : ✅ disponibile
+   Gemini   : ✅ disponibile
+   Storage  : ✅ disponibile
+
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+127.0.0.1 - - [06/May/2026 10:46:28] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:47:30] "GET /sinistri HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_RAG_Assistente.py', reloading
+✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
+⚠️  Gemini Vision non disponibile: No API key was provided. Please pass a valid API key. Learn how to create an API key at https://ai.google.dev/gemini-api/docs/api-key. — l'analisi AI sarà disabilitata.
+
+📋 Stato sottosistemi all'avvio:
+   MongoDB  : ✅ disponibile
+   Gemini   : ⚠️  non disponibile
+   Storage  : ✅ disponibile
+
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 124-566-933
+127.0.0.1 - - [06/May/2026 10:48:28] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:49:29] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:50:21] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:50:22] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:50:38] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:50:53] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:51:08] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:51:23] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:52:30] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:53:28] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:54:02] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:54:27] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:54:42] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:54:58] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:55:13] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:55:28] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:55:42] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:55:58] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:56:13] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:56:27] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:56:42] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:56:58] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:57:12] "GET /sinistri HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 10:57:28] "GET /sinistri HTTP/1.1" 200 -
