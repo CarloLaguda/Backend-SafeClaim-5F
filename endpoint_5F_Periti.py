@@ -40,6 +40,8 @@ try:
 except Exception as e:
     print(f"❌ Errore connessione MongoDB: {e}")
 
+def get_mysql():
+    return mysql.connector.connect(**MYSQL_CONFIG)
 
 # ── GET pratica ────────────────────────────────────────────────────────────────
 

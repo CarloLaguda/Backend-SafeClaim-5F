@@ -164,26 +164,69 @@ def registrazione():
             conn.close()
 
 # ── Login ────────────────────────────────────────────────────────────────────
+# ── Login ────────────────────────────────────────────────────────────────────
+# ── Login ────────────────────────────────────────────────────────────────────
+# ── Login ────────────────────────────────────────────────────────────────────
+# ── Login ────────────────────────────────────────────────────────────────────
+# ── Login ────────────────────────────────────────────────────────────────────
+# ── Login ────────────────────────────────────────────────────────────────────
+# ── Login ────────────────────────────────────────────────────────────────────
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
-    email_in = data.get('email')
-    psw_in   = data.get('password_hash')
-    if not email_in or not psw_in:
-        return jsonify({"error": "Credenziali mancanti"}), 400
+    email = data.get('email')
+    password = data.get('password_hash')
+
+    print(f"[LOGIN DEBUG] Tentativo - Email: {email}")
+
+    if not email or not password:
+        return jsonify({"error": "Email e password sono obbligatori"}), 400
 
     conn = None
     try:
         conn = get_mysql_connection()
         cursor = conn.cursor(dictionary=True)
-        cursor.execute(
-            "SELECT id, nome, cognome, email, telefono, ruolo FROM Utente WHERE email = %s AND password_hash = %s",
-            (email_in.strip().lower(), psw_in)
-        )
+
+        cursor.execute("""
+            SELECT 
+                u.id,
+                u.nome,
+                u.cognome,
+                u.email,
+                u.telefono,
+                u.ruolo,
+                ass.nome AS nome_compagnia
+            FROM Utente u
+            LEFT JOIN Assicuratore a ON u.id = a.id_utente
+            LEFT JOIN Assicurazione ass ON a.assicurazione_id = ass.id
+            WHERE u.email = %s 
+              AND u.password_hash = %s
+        """, (email.strip().lower(), password))
+
         user = cursor.fetchone()
-        if not user:
+
+        if user:
+            # CONVERSIONE FORZATA dei set in stringhe
+            if isinstance(user.get('ruolo'), set):
+                user['ruolo'] = ','.join(user['ruolo'])
+            
+            user['nome_compagnia'] = user.get('nome_compagnia') or ''
+
+            print(f"[LOGIN SUCCESS] {user['email']} | Ruolo: {user['ruolo']}")
+            
+            return jsonify({
+                "status": "success", 
+                "user": user
+            }), 200
+        else:
+            print("[LOGIN FAILED] Credenziali non valide")
             return jsonify({"error": "Credenziali non valide"}), 401
-        return jsonify({"status": "success", "user": serializza_utente(user)}), 200
+
+    except Exception as e:
+        print(f"[LOGIN ERROR] {type(e).__name__}: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({"error": "Errore interno del server"}), 500
     finally:
         if conn:
             conn.close()

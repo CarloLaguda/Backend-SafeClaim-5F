@@ -4,208 +4,22 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:8000
- * Running on http://10.0.2.117:8000
+ * Running on http://10.0.2.176:8000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Veicoli.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Polizze.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
+ * Debugger PIN: 738-865-811
  * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 124-566-933
-127.0.0.1 - - [06/May/2026 10:31:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:31:07] "GET /periti HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:31:22] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:31:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:31:52] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:32:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:32:22] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:32:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:32:43] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:32:52] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:32:56] "OPTIONS /pratica/69fa50d2cd985ba163212ff4/assegna HTTP/1.1" 200 -
-/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:241: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
-  "data_aggiornamento": datetime.utcnow()
-/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:256: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
-  "data_aggiornamento": datetime.utcnow()
-127.0.0.1 - - [06/May/2026 10:32:57] "PUT /pratica/69fa50d2cd985ba163212ff4/assegna HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:32:57] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:33:07] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:33:22] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:33:37] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:33:52] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:34:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:34:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:34:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:34:53] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:35:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:36:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:37:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:38:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:39:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:40:26] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:40:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Assicurazione.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
+ * Debugger PIN: 738-865-811
  * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 124-566-933
-127.0.0.1 - - [06/May/2026 10:40:54] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:41:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
-127.0.0.1 - - [06/May/2026 10:41:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Polizze.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
-127.0.0.1 - - [06/May/2026 10:42:13] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:42:23] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:42:39] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:42:53] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:43:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:43:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:44:27] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:45:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
-127.0.0.1 - - [06/May/2026 10:46:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:47:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_RAG_Assistente.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
-127.0.0.1 - - [06/May/2026 10:48:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:49:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:50:21] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:50:22] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:50:38] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:50:53] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:51:08] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:51:24] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:52:30] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:53:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:54:02] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:54:27] "GET /periti HTTP/1.1" 500 -
-127.0.0.1 - - [06/May/2026 10:54:27] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:54:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:54:42] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:54:42] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:54:44] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:54:50] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:54:58] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:55:13] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:55:28] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:55:42] "GET /periti HTTP/1.1" 500 -
-127.0.0.1 - - [06/May/2026 10:55:42] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:55:57] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:56:13] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:56:27] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:56:42] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:56:58] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:57:13] "GET /pratiche_assicurazione HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:57:27] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+ * Debugger PIN: 738-865-811
+127.0.0.1 - - [06/May/2026 14:12:59] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 14:12:59] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 14:13:00] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 14:13:14] "GET /pratiche_assicurazione HTTP/1.1" 200 -

@@ -39,42 +39,55 @@ TIPI_COPERTURA = {'RCA', 'Kasko', 'Furto_Incendio', 'Full'}
 # Valori ammessi per tipo_documento di Polizza_Documenti
 TIPI_DOCUMENTO_POLIZZA = {'polizza_pdf', 'quietanza', 'appendice', 'attestato_rischio'}
 
-# ── CRUD Polizze ─────────────────────────────────────────────────────────────
-
 @app.route('/polizze', methods=['POST'])
 def crea_polizza():
     data = request.get_json()
     if not data:
         return jsonify({"error": "Nessun dato ricevuto"}), 400
 
+    # PRE-FILL COMPAGNIA ASSICURATIVA
+    assicuratore_id = request.headers.get('X-User-ID')  # o dal token JWT
+    if assicuratore_id:
+        try:
+            conn = get_mysql_connection()
+            cursor = conn.cursor(dictionary=True)
+            cursor.execute("SELECT nome_compagnia FROM Assicuratore WHERE id = %s", (assicuratore_id,))
+            comp = cursor.fetchone()
+            if comp and comp['nome_compagnia']:
+                data['compagnia_assicurativa'] = comp['nome_compagnia']
+            cursor.close()
+            conn.close()
+        except:
+            pass
+
     tipo_copertura = data.get('tipo_copertura', 'RCA')
     if tipo_copertura not in TIPI_COPERTURA:
-        return jsonify({"error": f"tipo_copertura non valido. Valori ammessi: {TIPI_COPERTURA}"}), 400
+        return jsonify({"error": f"tipo_copertura non valido"}), 400
 
     conn = get_mysql_connection()
     cursor = conn.cursor()
     query = """
-        INSERT INTO Polizza (n_polizza, compagnia_assicurativa, data_inizio,
-        data_scadenza, massimale, tipo_copertura, veicolo_id, assicuratore_id)
+        INSERT INTO Polizza (n_polizza, compagnia_assicurativa, data_inizio, data_scadenza,
+                             massimale, tipo_copertura, veicolo_id, assicuratore_id)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
     """
     values = (
         data['n_polizza'], data.get('compagnia_assicurativa'),
         data['data_inizio'], data['data_scadenza'],
         data.get('massimale'), tipo_copertura,
-        data['veicolo_id'], data.get('assicuratore_id'),
+        data['veicolo_id'], data.get('assicuratore_id')
     )
     try:
         cursor.execute(query, values)
         conn.commit()
-        return jsonify({"message": "Polizza inserita!", "id": cursor.lastrowid}), 201
-    except mysql.connector.IntegrityError as e:
-        return jsonify({"error": f"Vincolo violato: {str(e)}"}), 409
+        return jsonify({"message": "Polizza creata", "id": cursor.lastrowid}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 400
     finally:
         cursor.close()
         conn.close()
+
+# Mantieni tutti gli altri endpoint GET/PUT/DELETE che avevi...
 
 @app.route('/polizze', methods=['GET'])
 def leggi_polizze():

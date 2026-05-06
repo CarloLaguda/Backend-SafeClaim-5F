@@ -449,51 +449,74 @@ def get_analisi_ai(sinistro_id):
 
 @app.route("/soccorso", methods=["POST"])
 def crea_richiesta_soccorso():
-    data  = request.json
+    data = request.get_json()
+    
     targa = data.get("targa")
+    id_sinistro = data.get("id_sinistro")          # opzionale
+    lat = data.get("lat")
+    lon = data.get("lon")
+    note = data.get("note", "")
+
     if not targa:
         return jsonify({"error": "Targa obbligatoria"}), 400
 
     conn = None
     try:
-        conn   = get_mysql()
+        conn = get_mysql()                    # usa la tua funzione esistente
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute(
-            "SELECT v.id AS veicolo_id, v.automobilista_id FROM Veicolo v WHERE v.targa = %s",
-            (targa,)
-        )
+        # Recupera veicolo e automobilista
+        cursor.execute("""
+            SELECT v.id AS veicolo_id, a.id AS automobilista_id 
+            FROM Veicolo v 
+            JOIN Automobilista a ON v.automobilista_id = a.id 
+            WHERE v.targa = %s
+        """, (targa,))
+        
         veicolo = cursor.fetchone()
         if not veicolo:
             return jsonify({"error": "Veicolo non trovato"}), 404
 
-        automobilista_id = veicolo["automobilista_id"]
-        if not automobilista_id:
-            return jsonify({"error": "Veicolo non associato a nessun automobilista"}), 400
+        # Inserimento su MySQL (struttura reale della tua tabella)
+        cursor.execute("""
+            INSERT INTO Richiesta_Soccorso 
+            (id_sinistro, id_automobilista, id_veicolo_soccorso, 
+             data_richiesta, stato, note)
+            VALUES (%s, %s, %s, %s, %s, %s)
+        """, (
+            id_sinistro, 
+            veicolo["automobilista_id"], 
+            veicolo["veicolo_id"],
+            datetime.now(timezone.utc),
+            "in_attesa",
+            note
+        ))
 
-        cursor.execute(
-            "INSERT INTO Richiesta_Soccorso (id_automobilista, data_richiesta, stato) VALUES (%s, %s, %s)",
-            (automobilista_id, datetime.now(UTC), "in_attesa")
-        )
         richiesta_id = cursor.lastrowid
+        conn.commit()
 
+        # Salvataggio opzionale su MongoDB (posizione + extra)
         mongo_id = None
-        if _MONGO_DISPONIBILE:
+        if _MONGO_DISPONIBILE and soccorso_col:
             res = soccorso_col.insert_one({
-                "richiesta_id":   richiesta_id,
-                "veicolo_id":     veicolo["veicolo_id"],
-                "targa":          targa,
-                "posizione":      {"lat": data.get("lat"), "lon": data.get("lon")},
-                "stato":          "in_attesa",
-                "data_richiesta": datetime.now(UTC)
+                "richiesta_mysql_id": richiesta_id,
+                "id_sinistro": id_sinistro,
+                "id_automobilista": veicolo["automobilista_id"],
+                "id_veicolo": veicolo["veicolo_id"],
+                "targa": targa,
+                "posizione": {"lat": lat, "lon": lon} if lat and lon else None,
+                "note": note,
+                "stato": "in_attesa",
+                "data_richiesta": datetime.now(timezone.utc)
             })
             mongo_id = str(res.inserted_id)
 
-        conn.commit()
         return jsonify({
+            "success": True,
             "richiesta_id": richiesta_id,
-            "mongo_id":     mongo_id,
-            "stato":        "in_attesa"
+            "mongo_id": mongo_id,
+            "stato": "in_attesa",
+            "message": "Richiesta di soccorso inviata con successo"
         }), 201
 
     except Exception as e:
@@ -575,6 +598,8 @@ def crea_veicolo_utente(user_id):
 # ─────────────────────────────────────────────
 #  AVVIO
 # ─────────────────────────────────────────────
+
+
 
 if __name__ == "__main__":
     print("\n📋 Stato sottosistemi all'avvio:")

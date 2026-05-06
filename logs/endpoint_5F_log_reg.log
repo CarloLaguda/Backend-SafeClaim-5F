@@ -4,147 +4,56 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:6000
- * Running on http://10.0.2.117:6000
+ * Running on http://10.0.2.176:6000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Veicoli.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Polizze.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
+ * Debugger PIN: 738-865-811
  * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
 ✅ Connessione a MongoDB Atlas riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 124-566-933
-127.0.0.1 - - [06/May/2026 10:31:04] "OPTIONS /login HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:31:06] "POST /login HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Assicurazione.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
+ * Debugger PIN: 738-865-811
+127.0.0.1 - - [06/May/2026 14:09:13] "OPTIONS /login HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py", line 215, in login
+    return jsonify({
+           ^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/json/__init__.py", line 170, in jsonify
+    return current_app.json.response(*args, **kwargs)  # type: ignore[return-value]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/json/provider.py", line 214, in response
+    f"{self.dumps(obj, **dump_args)}\n", mimetype=self.mimetype
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/json/provider.py", line 179, in dumps
+    return json.dumps(obj, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/json/encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/home/codespace/.python/current/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/codespace/.python/current/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/codespace/.python/current/lib/python3.12/json/encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "/home/codespace/.python/current/lib/python3.12/site-packages/flask/json/provider.py", line 121, in _default
+    raise TypeError(f"Object of type {type(o).__name__} is not JSON serializable")
+TypeError: Object of type set is not JSON serializable
+127.0.0.1 - - [06/May/2026 14:09:13] "POST /login HTTP/1.1" 500 -
  * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
 ✅ Connessione a MongoDB Atlas riuscita!
+[LOGIN DEBUG] Tentativo login - Email: laura.verdi@generali.it
+[LOGIN SUCCESS] laura.verdi@generali.it | Ruolo: {'assicuratore'} | Compagnia: Generali Italia S.p.A.
+[LOGIN ERROR] TypeError: Object of type set is not JSON serializable
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Polizze.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_RAG_Assistente.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
-127.0.0.1 - - [06/May/2026 10:54:26] "OPTIONS /login HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 10:54:27] "POST /login HTTP/1.1" 200 -
+ * Debugger PIN: 738-865-811
+127.0.0.1 - - [06/May/2026 14:12:58] "OPTIONS /login HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2026 14:12:58] "POST /login HTTP/1.1" 200 -

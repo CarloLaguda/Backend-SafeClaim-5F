@@ -1,5 +1,5 @@
 Costruzione indice TF-IDF sulla Knowledge Base...
-Indice TF-IDF pronto: 22 chunk, 1160 termini
+Indice TF-IDF pronto: 21 chunk, 1019 termini
 
 SafeBot RAG Assistente avviato su porta 12000
  * Serving Flask app 'endpoint_5F_RAG_Assistente'
@@ -7,160 +7,24 @@ SafeBot RAG Assistente avviato su porta 12000
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:12000
- * Running on http://10.0.2.117:12000
+ * Running on http://10.0.2.176:12000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-Costruzione indice TF-IDF sulla Knowledge Base...
-Indice TF-IDF pronto: 22 chunk, 1160 termini
-
-SafeBot RAG Assistente avviato su porta 12000
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-Costruzione indice TF-IDF sulla Knowledge Base...
-Indice TF-IDF pronto: 22 chunk, 1160 termini
-
-SafeBot RAG Assistente avviato su porta 12000
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-Costruzione indice TF-IDF sulla Knowledge Base...
-Indice TF-IDF pronto: 22 chunk, 1160 termini
-
-SafeBot RAG Assistente avviato su porta 12000
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-Costruzione indice TF-IDF sulla Knowledge Base...
-Indice TF-IDF pronto: 22 chunk, 1160 termini
-
-SafeBot RAG Assistente avviato su porta 12000
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-Costruzione indice TF-IDF sulla Knowledge Base...
-Indice TF-IDF pronto: 22 chunk, 1160 termini
-
-SafeBot RAG Assistente avviato su porta 12000
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-Costruzione indice TF-IDF sulla Knowledge Base...
-Indice TF-IDF pronto: 22 chunk, 1160 termini
-
-SafeBot RAG Assistente avviato su porta 12000
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-Costruzione indice TF-IDF sulla Knowledge Base...
-Indice TF-IDF pronto: 22 chunk, 1160 termini
-
-SafeBot RAG Assistente avviato su porta 12000
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-Costruzione indice TF-IDF sulla Knowledge Base...
-Indice TF-IDF pronto: 22 chunk, 1160 termini
-
-SafeBot RAG Assistente avviato su porta 12000
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-Costruzione indice TF-IDF sulla Knowledge Base...
-Indice TF-IDF pronto: 22 chunk, 1160 termini
-
-SafeBot RAG Assistente avviato su porta 12000
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/aa.py', reloading
-Costruzione indice TF-IDF sulla Knowledge Base...
-Indice TF-IDF pronto: 22 chunk, 1160 termini
-
-SafeBot RAG Assistente avviato su porta 12000
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Veicoli.py', reloading
-Costruzione indice TF-IDF sulla Knowledge Base...
-Indice TF-IDF pronto: 22 chunk, 1160 termini
-
-SafeBot RAG Assistente avviato su porta 12000
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Polizze.py', reloading
-Costruzione indice TF-IDF sulla Knowledge Base...
-Indice TF-IDF pronto: 22 chunk, 1160 termini
-
-SafeBot RAG Assistente avviato su porta 12000
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Assicurazione.py', reloading
-Costruzione indice TF-IDF sulla Knowledge Base...
-Indice TF-IDF pronto: 22 chunk, 1160 termini
-
-SafeBot RAG Assistente avviato su porta 12000
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
+ * Debugger PIN: 738-865-811
  * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
 Costruzione indice TF-IDF sulla Knowledge Base...
-Indice TF-IDF pronto: 22 chunk, 1160 termini
+Indice TF-IDF pronto: 21 chunk, 1019 termini
 
 SafeBot RAG Assistente avviato su porta 12000
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 124-566-933
+ * Debugger PIN: 738-865-811
  * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_log_reg.py', reloading
 Costruzione indice TF-IDF sulla Knowledge Base...
-Indice TF-IDF pronto: 22 chunk, 1160 termini
+Indice TF-IDF pronto: 21 chunk, 1019 termini
 
 SafeBot RAG Assistente avviato su porta 12000
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-Costruzione indice TF-IDF sulla Knowledge Base...
-Indice TF-IDF pronto: 22 chunk, 1160 termini
-
-SafeBot RAG Assistente avviato su porta 12000
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-Costruzione indice TF-IDF sulla Knowledge Base...
-Indice TF-IDF pronto: 22 chunk, 1160 termini
-
-SafeBot RAG Assistente avviato su porta 12000
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-Costruzione indice TF-IDF sulla Knowledge Base...
-Indice TF-IDF pronto: 22 chunk, 1160 termini
-
-SafeBot RAG Assistente avviato su porta 12000
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_RAG_Assistente.py', reloading
-Costruzione indice TF-IDF sulla Knowledge Base...
-Indice TF-IDF pronto: 22 chunk, 1160 termini
-
-SafeBot RAG Assistente avviato su porta 12000
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 124-566-933
+ * Debugger PIN: 738-865-811

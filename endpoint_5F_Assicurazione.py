@@ -40,6 +40,28 @@ except Exception as e:
 def get_mysql_connection():
     return mysql.connector.connect(**MYSQL_CONFIG)
 
+# endpoint_5F_Assicurazione.py - modifiche principali
+@app.route('/pratiche_assicurazione', methods=['GET'])
+def get_pratiche_assicurazione():
+    try:
+        # ... (logica già presente in Periti, resa coerente)
+        pratiche = list(col_pratiche.find())
+        for p in pratiche:
+            p['_id'] = str(p['_id'])
+            # Embed sinistro + immagini + perizia
+            if sin_id := p.get('sinistro_id'):
+                sinistro = col_sinistri.find_one({"_id": ObjectId(sin_id)})
+                if sinistro:
+                    sinistro['_id'] = str(sinistro['_id'])
+                    p['sinistro'] = {
+                        **{k: v for k, v in sinistro.items() if k in ['targa', 'marca', 'modello', 'descrizione', 'luogo', 'data_evento', 'stato']},
+                        'immagini': sinistro.get('immagini', []),
+                        'analisi_ai': sinistro.get('analisi_ai', {})
+                    }
+        return jsonify({"totale": len(pratiche), "pratiche": pratiche}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 # --- ENDPOINT SINISTRI (GET) ---
 @app.route('/sinistri', defaults={'id_sinistro': None}, methods=['GET'])
 @app.route('/sinistri/<id_sinistro>', methods=['GET'])
