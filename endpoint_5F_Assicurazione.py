@@ -175,4 +175,4 @@ def crea_veicolo_utente(user_id):
         
 if __name__ == '__main__':
     # Mantenuta porta 6000 come da tua ultima riga
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=False)

@@ -48,16 +48,17 @@ def get_mysql():
 @app.route("/sinistro/<sinistro_id>/perito/<perito_id>/pratica", methods=["GET"])
 def get_pratica(sinistro_id, perito_id):
     try:
-        query   = {"sinistro_id": sinistro_id, "perito_id": perito_id}
-        pratica = col_perizie.find_one(query)
+        query = {"sinistro_id": sinistro_id, "perito_id": perito_id}
+        print(f"DEBUG query: {query}")  # ← aggiungi questo
+        pratica = col_pratiche.find_one(query)
+        print(f"DEBUG risultato: {pratica}")  # ← e questo
         if not pratica:
             return jsonify({"error": "Pratica non trovata"}), 404
-        pratica["_id"]         = str(pratica["_id"])
+        pratica["_id"] = str(pratica["_id"])
         pratica["sinistro_id"] = str(pratica["sinistro_id"])
         return jsonify(pratica), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 400
-
 
 # ── GET tutte le pratiche per l'Assicurazione ─────────────────────────────────
 
