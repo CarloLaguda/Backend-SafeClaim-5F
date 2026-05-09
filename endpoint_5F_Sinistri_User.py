@@ -527,6 +527,31 @@ def crea_richiesta_soccorso():
         if conn:
             conn.close()
 
+@app.route("/soccorso/utente/<int:automobilista_id>", methods=["GET"])
+def get_soccorsi_utente(automobilista_id):
+    conn = None
+    try:
+        conn = get_mysql()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("""
+            SELECT rs.id, rs.id_automobilista, rs.data_richiesta, rs.stato
+            FROM Richiesta_Soccorso rs
+            WHERE rs.id_automobilista = (
+                SELECT id FROM Automobilista WHERE id_utente = %s
+            )
+            ORDER BY rs.data_richiesta DESC
+        """, (automobilista_id,))
+        richieste = cursor.fetchall()
+        for r in richieste:
+            if isinstance(r.get("data_richiesta"), datetime):
+                r["data_richiesta"] = r["data_richiesta"].isoformat()
+        return jsonify(richieste), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    finally:
+        if conn:
+            conn.close()
+            
 # ─────────────────────────────────────────────
 #  ROTTE — VEICOLI
 # ─────────────────────────────────────────────

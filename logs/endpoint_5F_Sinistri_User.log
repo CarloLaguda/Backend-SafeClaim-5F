@@ -11,42 +11,11 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:7000
- * Running on http://10.0.5.174:7000
+ * Running on http://10.0.13.113:7000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 388-335-156
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Assicurazione.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
-✅ Gemini Vision inizializzato correttamente.
-
-📋 Stato sottosistemi all'avvio:
-   MongoDB  : ✅ disponibile
-   Gemini   : ✅ disponibile
-   Storage  : ✅ disponibile
-
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 388-335-156
-127.0.0.1 - - [06/May/2026 19:55:18] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 19:55:34] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 19:55:49] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 19:56:03] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 20:21:08] "GET /sinistri/69fa50d1b388046dba023ce1 HTTP/1.1" 404 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
-✅ Gemini Vision inizializzato correttamente.
-
-📋 Stato sottosistemi all'avvio:
-   MongoDB  : ✅ disponibile
-   Gemini   : ✅ disponibile
-   Storage  : ✅ disponibile
-
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 388-335-156
-127.0.0.1 - - [06/May/2026 20:26:29] "GET /sinistro/69fa50d1b388046dba023ce1 HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 20:27:43] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 20:27:58] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 20:28:13] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 20:28:28] "GET /sinistri?automobilista_id=25 HTTP/1.1" 200 -
+ * Debugger PIN: 144-172-432
+127.0.0.1 - - [09/May/2026 15:12:31] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [09/May/2026 15:12:35] "GET /soccorso/utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [09/May/2026 15:12:46] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -

@@ -4,31 +4,11 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:10000
- * Running on http://10.0.5.174:10000
+ * Running on http://10.0.13.113:10000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 388-335-156
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Assicurazione.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 388-335-156
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Assicurazione.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 388-335-156
-127.0.0.1 - - [06/May/2026 19:55:19] "GET /veicoli-utente/25 HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 19:55:33] "GET /veicoli-utente/25 HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 19:55:50] "GET /veicoli-utente/25 HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 19:56:04] "GET /veicoli-utente/25 HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 388-335-156
-127.0.0.1 - - [06/May/2026 20:27:44] "GET /veicoli-utente/25 HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 20:27:59] "GET /veicoli-utente/25 HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 20:28:13] "GET /veicoli-utente/25 HTTP/1.1" 200 -
-127.0.0.1 - - [06/May/2026 20:28:28] "GET /veicoli-utente/25 HTTP/1.1" 200 -
+ * Debugger PIN: 144-172-432
+127.0.0.1 - - [09/May/2026 15:12:31] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [09/May/2026 15:12:35] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [09/May/2026 15:12:46] "GET /veicoli-utente/1 HTTP/1.1" 200 -
