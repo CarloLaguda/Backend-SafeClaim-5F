@@ -59,7 +59,8 @@ _pw = urllib.parse.quote_plus("xxx123##")
 MONGO_URI = f"mongodb+srv://dbFakeClaim:{_pw}@cluster0.zgw1jft.mongodb.net/?appName=Cluster0"
 
 
-# SEZIONE 4: CONFIGURAZIONE MARIADB / MYSQL (Database SQL Relazionale Locale)
+# SEZIONE 4: CONFIGURAZIONE MARIADB / MYSQL (Database SQL Relazionale Locale), 
+# che conterrà dati automobilisti e assicuratori, usato per recuperare email e nomi da inserire nelle notifiche email
 
 MYSQL_CONFIG = {
     # Indirizzo host MySQL: 127.0.0.1 è localhost 
@@ -221,7 +222,7 @@ def invia_mail_fisica(destinatario, oggetto, corpo_html):
             server.login(EMAIL_CONFIG["sender"], EMAIL_CONFIG["password"])
             
             # Invia l'email: da mittente, a destinatario, con messaggio formattato
-            # msg.as_string() converte l'oggetto messaggio in stringa SMTP valida
+            # msg.as_string() converte l'oggetto messaggio in stringa pronta per l'invio SMTP
             server.sendmail(EMAIL_CONFIG["sender"], destinatario, msg.as_string())
         
         # Se raggiungiamo qui, invio è riuscito
@@ -269,7 +270,7 @@ def gestisci_notifiche_sinistro(sinistro_id, data):
         # %s è placeholder per parametro, (data['automobilista_id'],) è tupla con ID da sostituire,
         cursor.execute("SELECT nome, email FROM Automobilista WHERE id = %s", (data['automobilista_id'],))
         
-        # Prende il primo risultato della query come dizionario, fecthone() ritorna None se non trova righe, altrimenti un dizionario con chiavi 'nome' e 'email'
+        # Prende il primo risultato della query come dizionario, fecthone() ritorna None se non trova righe, altrimenti un dizionario con chiavi 'nome' e 'email' e lo mette in user
         user = cursor.fetchone()
         
         # Controlla se l'utente esiste nel database e ha un indirizzo email
@@ -283,6 +284,7 @@ def gestisci_notifiche_sinistro(sinistro_id, data):
             )
             
             # Invia l'email formattata all'indirizzo email dell'automobilista
+            # new_claim_subject è l'oggetto dell'email, html_u è il corpo HTML formattato con i dati del sinistro
             invia_mail_fisica(user['email'], SafeClaimTemplates.NEW_CLAIM_SUBJECT, html_u)
             
             # Log di successo con indirizzo email per debugging
@@ -366,7 +368,7 @@ def crea_sinistro():
     data = request.json
     
     try:
-        # Crea un dizionario con i campi del nuovo documento sinistro
+        # Crea un dizionario con i campi del nuovo documento sinistro che serve a MongoDB per inserire un nuovo record nella collezione 'sinistri'
         nuovo_doc = {
             # ID dell'automobilista: permette di linkare il sinistro al cliente, data sta per ID numerico da MySQL, non MongoDB
             "automobilista_id": data['automobilista_id'],
@@ -395,12 +397,13 @@ def crea_sinistro():
         # Converte l'ObjectId MongoDB in stringa leggibile per HTTP response
         # in res ci sono informazioni sull'inserimento, res.inserted_id è l'ID del documento appena creato, che è un ObjectId, lo convertiamo in stringa per usarlo come ID della pratica
         # inserted_id serve a tracciare la pratica nel database e a inviare notifiche con riferimento a questo ID
-        # s_id è l'ID univoco del sinistro appena creato, usato per tracking e notifiche
+        # s_id è l'ID univoco del sinistro appena creato, usato per tracking e notifiche, 
+        # mettiamo tutto in s_id perche e' piu' chiaro che rappresenta l'ID del sinistro, non confondere con altri ID (es. automobilista_id)
         s_id = str(res.inserted_id)
 
         # Crea un nuovo thread per inviare le email senza bloccare la risposta HTTP
         # Questo permette al client di ricevere risposta subito, emails inviate in background
-        # args=(s_id, data) passa gli argomenti alla funzione gestisci_notifiche_sinistro
+        # args=(s_id, data)e' un metodo che passa gli argomenti alla funzione gestisci_notifiche_sinistro, 
         # .start() avvia il thread (il codice continua senza aspettare)
         threading.Thread(target=gestisci_notifiche_sinistro, args=(s_id, data)).start() 
 
