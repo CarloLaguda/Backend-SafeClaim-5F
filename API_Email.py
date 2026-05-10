@@ -50,7 +50,7 @@ EMAIL_CONFIG = {
 
 # SEZIONE 3: CONFIGURAZIONE MONGODB ATLAS 
 
-# Decodifica la password speciale in formato URI-safe (caratteri speciali diventano %xx)
+# Decodifica la password speciale in formato URI-safe (caratteri speciali diventano %xx) 
 _pw = urllib.parse.quote_plus("xxx123##")
 
 # URI completa connessione a MongoDB Atlas 
@@ -149,7 +149,7 @@ try:
     # Seleziona il database specifico "FakeClaim" dal cluster MongoDB
     db = mongo_client["FakeClaim"]
     
-    # Seleziona la collezione (tabella NoSQL) dove verranno salvati i documenti sinistri
+    # Seleziona la collezione (tabella NoSQL) dove verranno salvati i documenti sinistri 
     sinistri_col = db['sinistri']
     
     # Forza un controllo immediato di connessione - genera errore se connessione fallisce
@@ -261,14 +261,15 @@ def gestisci_notifiche_sinistro(sinistro_id, data):
         conn = get_mysql_conn()
         
         # Crea cursore che ritorna risultati come dizionari 
-        # Questo facilita lettura dati rispetto agli indici numerici
+        # Questo facilita lettura dati rispetto agli indici numerici, 
         cursor = conn.cursor(dictionary=True)
 
         #  EMAIL UTENTE AUTOMOBILISTA 
-        # Query SQL per recuperare nome ed email dell'automobilista che ha segnalato il sinistro
+        # Query SQL per recuperare nome ed email dell'automobilista che ha segnalato il sinistro, 
+        # %s è placeholder per parametro, (data['automobilista_id'],) è tupla con ID da sostituire,
         cursor.execute("SELECT nome, email FROM Automobilista WHERE id = %s", (data['automobilista_id'],))
         
-        # Prende il primo (e unico) risultato della query come dizionario
+        # Prende il primo risultato della query come dizionario, fecthone() ritorna None se non trova righe, altrimenti un dizionario con chiavi 'nome' e 'email'
         user = cursor.fetchone()
         
         # Controlla se l'utente esiste nel database e ha un indirizzo email
@@ -367,7 +368,7 @@ def crea_sinistro():
     try:
         # Crea un dizionario con i campi del nuovo documento sinistro
         nuovo_doc = {
-            # ID dell'automobilista: permette di linkare il sinistro al cliente
+            # ID dell'automobilista: permette di linkare il sinistro al cliente, data sta per ID numerico da MySQL, non MongoDB
             "automobilista_id": data['automobilista_id'],
             
             # Targa del veicolo coinvolto nell'incidente
@@ -388,17 +389,20 @@ def crea_sinistro():
         
         # Inserisce il documento nella collezione MongoDB 'sinistri'
         # insert_one() ritorna un oggetto con inserted_id (l'ID MongoDB generato)
+        # res sta per "risultato" dell'inserimento, contiene informazioni sull'operazione di inserimento
         res = sinistri_col.insert_one(nuovo_doc)
         
         # Converte l'ObjectId MongoDB in stringa leggibile per HTTP response
-        # ObjectId è binario, string permette di trasferirlo via JSON
+        # in res ci sono informazioni sull'inserimento, res.inserted_id è l'ID del documento appena creato, che è un ObjectId, lo convertiamo in stringa per usarlo come ID della pratica
+        # inserted_id serve a tracciare la pratica nel database e a inviare notifiche con riferimento a questo ID
+        # s_id è l'ID univoco del sinistro appena creato, usato per tracking e notifiche
         s_id = str(res.inserted_id)
 
         # Crea un nuovo thread per inviare le email senza bloccare la risposta HTTP
         # Questo permette al client di ricevere risposta subito, emails inviate in background
         # args=(s_id, data) passa gli argomenti alla funzione gestisci_notifiche_sinistro
         # .start() avvia il thread (il codice continua senza aspettare)
-        threading.Thread(target=gestisci_notifiche_sinistro, args=(s_id, data)).start()
+        threading.Thread(target=gestisci_notifiche_sinistro, args=(s_id, data)).start() 
 
         # Ritorna risposta di successo HTTP 201 (Created) con dati della pratica
         return jsonify({
