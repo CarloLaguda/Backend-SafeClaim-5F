@@ -13,7 +13,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymongo import MongoClient, DESCENDING
 from bson import ObjectId
-from datetime import datetime, UTC
+from datetime import datetime, UTC, timezone
 import threading
 import mysql.connector
 import os
@@ -452,20 +452,21 @@ def crea_richiesta_soccorso():
     data = request.get_json()
     
     targa = data.get("targa")
-    id_sinistro = data.get("id_sinistro")          # opzionale
+    id_sinistro = data.get("id_sinistro")
+    id_officina = data.get("id_officina")
     lat = data.get("lat")
     lon = data.get("lon")
-    note = data.get("note", "")
+    orario_arrivo = data.get("orario_arrivo")
+    durata_soccorso = data.get("durata_soccorso")
 
     if not targa:
         return jsonify({"error": "Targa obbligatoria"}), 400
 
     conn = None
     try:
-        conn = get_mysql()                    # usa la tua funzione esistente
+        conn = get_mysql()
         cursor = conn.cursor(dictionary=True)
 
-        # Recupera veicolo e automobilista
         cursor.execute("""
             SELECT v.id AS veicolo_id, a.id AS automobilista_id 
             FROM Veicolo v 
@@ -474,38 +475,40 @@ def crea_richiesta_soccorso():
         """, (targa,))
         
         veicolo = cursor.fetchone()
-        if not veicolo:
+        if veicolo is None:  # ← CORRETTO
             return jsonify({"error": "Veicolo non trovato"}), 404
 
-        # Inserimento su MySQL (struttura reale della tua tabella)
         cursor.execute("""
             INSERT INTO Richiesta_Soccorso 
-            (id_sinistro, id_automobilista, id_veicolo_soccorso, 
-             data_richiesta, stato, note)
-            VALUES (%s, %s, %s, %s, %s, %s)
+            (id_sinistro, id_automobilista, id_officina, id_veicolo_soccorso, 
+             data_richiesta, orario_arrivo, durata_soccorso, stato)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
         """, (
             id_sinistro, 
-            veicolo["automobilista_id"], 
+            veicolo["automobilista_id"],
+            id_officina,
             veicolo["veicolo_id"],
             datetime.now(timezone.utc),
-            "in_attesa",
-            note
+            orario_arrivo,
+            durata_soccorso,
+            "in_attesa"
         ))
 
         richiesta_id = cursor.lastrowid
         conn.commit()
 
-        # Salvataggio opzionale su MongoDB (posizione + extra)
         mongo_id = None
-        if _MONGO_DISPONIBILE and soccorso_col:
+        if _MONGO_DISPONIBILE and soccorso_col is not None:  # ← CORRETTO
             res = soccorso_col.insert_one({
                 "richiesta_mysql_id": richiesta_id,
                 "id_sinistro": id_sinistro,
                 "id_automobilista": veicolo["automobilista_id"],
+                "id_officina": id_officina,
                 "id_veicolo": veicolo["veicolo_id"],
                 "targa": targa,
-                "posizione": {"lat": lat, "lon": lon} if lat and lon else None,
-                "note": note,
+                "posizione": {"lat": lat, "lon": lon} if lat is not None and lon is not None else None,  # ← CORRETTO
+                "orario_arrivo": orario_arrivo,
+                "durata_soccorso": durata_soccorso,
                 "stato": "in_attesa",
                 "data_richiesta": datetime.now(timezone.utc)
             })
@@ -515,6 +518,12 @@ def crea_richiesta_soccorso():
             "success": True,
             "richiesta_id": richiesta_id,
             "mongo_id": mongo_id,
+            "id_sinistro": id_sinistro,
+            "id_automobilista": veicolo["automobilista_id"],
+            "id_officina": id_officina,
+            "id_veicolo": veicolo["veicolo_id"],
+            "orario_arrivo": orario_arrivo,
+            "durata_soccorso": durata_soccorso,
             "stato": "in_attesa",
             "message": "Richiesta di soccorso inviata con successo"
         }), 201

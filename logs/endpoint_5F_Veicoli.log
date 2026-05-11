@@ -4,11 +4,159 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:10000
- * Running on http://10.0.13.113:10000
+ * Running on http://10.0.16.96:10000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 144-172-432
-127.0.0.1 - - [09/May/2026 15:12:31] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [09/May/2026 15:12:35] "GET /veicoli-utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [09/May/2026 15:12:46] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+ * Debugger PIN: 549-299-303
+127.0.0.1 - - [11/May/2026 08:16:48] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:17:03] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:17:18] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:17:21] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:17:24] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:17:36] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:17:51] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:18:06] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+✅ Connessione a MongoDB Atlas riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 549-299-303
+127.0.0.1 - - [11/May/2026 08:18:13] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:18:13] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:18:27] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:18:41] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:18:57] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:19:09] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:19:12] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:19:27] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:19:41] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:19:43] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:19:48] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:19:50] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:20:03] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:20:16] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:20:26] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:20:26] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:20:41] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:20:56] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:21:11] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:21:21] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:21:37] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:21:37] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:21:52] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:22:07] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:22:22] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:22:37] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:22:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:23:07] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:23:21] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:23:22] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:23:37] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:23:52] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:24:07] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:24:22] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:24:37] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:24:52] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:25:07] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+✅ Connessione a MongoDB Atlas riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 549-299-303
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+✅ Connessione a MongoDB Atlas riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 549-299-303
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+✅ Connessione a MongoDB Atlas riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 549-299-303
+127.0.0.1 - - [11/May/2026 08:26:07] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:26:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:26:09] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:26:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:26:30] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:26:31] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:26:46] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:27:01] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:27:16] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:27:31] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:27:46] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+✅ Connessione a MongoDB Atlas riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 549-299-303
+127.0.0.1 - - [11/May/2026 08:28:02] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+✅ Connessione a MongoDB Atlas riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 549-299-303
+127.0.0.1 - - [11/May/2026 08:28:15] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:28:26] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:28:32] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:28:41] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:28:56] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:29:11] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:29:27] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:29:42] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:29:57] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:30:12] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+✅ Connessione a MongoDB Atlas riuscita!
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 549-299-303
+127.0.0.1 - - [11/May/2026 08:30:33] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:30:35] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:30:37] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:30:49] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:30:50] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:31:05] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:31:20] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:31:35] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:31:50] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:32:03] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:32:18] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:32:33] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:32:40] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:32:41] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:32:56] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:33:11] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:33:18] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:33:22] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:33:35] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:33:37] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:33:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:33:45] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:33:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:34:08] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:34:23] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:34:38] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:34:50] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:34:51] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:34:58] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:35:05] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:35:21] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:35:36] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:35:43] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:35:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:35:58] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:35:59] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:36:13] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:36:25] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:36:32] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:36:47] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:36:49] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:36:53] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:36:59] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:37:04] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:37:05] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:37:18] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:37:19] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:37:34] "GET /veicoli-utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 08:37:48] "GET /veicoli-utente/1 HTTP/1.1" 200 -
