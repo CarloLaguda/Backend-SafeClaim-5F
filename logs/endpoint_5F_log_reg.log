@@ -4,20 +4,25 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:6000
- * Running on http://10.0.15.190:6000
+ * Running on http://10.0.0.145:6000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 468-344-705
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+ * Debugger PIN: 688-443-446
+127.0.0.1 - - [11/May/2026 19:54:26] "OPTIONS /login HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 19:54:27] "POST /login HTTP/1.1" 401 -
+127.0.0.1 - - [11/May/2026 19:54:34] "OPTIONS /login HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 19:54:34] "POST /login HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Polizze.py', reloading
 ✅ Connessione a MongoDB Atlas riuscita!
+[LOGIN DEBUG] Tentativo - Email: laura.verdi@generali.it
+[LOGIN FAILED] Credenziali non valide
+[LOGIN DEBUG] Tentativo - Email: laura.verdi@generali.it
+[LOGIN SUCCESS] laura.verdi@generali.it | Ruolo: assicuratore
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 468-344-705
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-✅ Connessione a MongoDB Atlas riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 468-344-705
-127.0.0.1 - - [11/May/2026 11:20:03] "OPTIONS /login HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:20:03] "POST /login HTTP/1.1" 200 -
+ * Debugger PIN: 688-443-446
+127.0.0.1 - - [11/May/2026 20:11:22] "OPTIONS /login HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:11:22] "POST /login HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:11:43] "OPTIONS /login HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:11:44] "POST /login HTTP/1.1" 200 -

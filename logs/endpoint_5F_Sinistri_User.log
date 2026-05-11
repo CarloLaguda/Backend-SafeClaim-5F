@@ -11,32 +11,13 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:7000
- * Running on http://10.0.15.190:7000
+ * Running on http://10.0.0.145:7000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 468-344-705
-127.0.0.1 - - [11/May/2026 11:12:07] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:12:08] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:12:23] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:12:34] "GET /soccorso/utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:12:38] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:12:53] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:13:05] "GET /soccorso/utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:13:08] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:13:23] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:13:23] "OPTIONS /soccorso HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:13:23] "POST /soccorso HTTP/1.1" 400 -
-127.0.0.1 - - [11/May/2026 11:13:38] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:13:53] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:14:08] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:14:24] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:14:40] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:14:53] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:15:08] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:15:23] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:15:38] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
+ * Debugger PIN: 688-443-446
+127.0.0.1 - - [11/May/2026 19:54:39] "GET /sinistro/69f30a23b7c86e660549f74f HTTP/1.1" 200 -
+ * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Polizze.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
 ✅ Gemini Vision inizializzato correttamente.
 
@@ -47,48 +28,23 @@ Press CTRL+C to quit
 
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 468-344-705
-127.0.0.1 - - [11/May/2026 11:16:40] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
-✅ Gemini Vision inizializzato correttamente.
-
-📋 Stato sottosistemi all'avvio:
-   MongoDB  : ✅ disponibile
-   Gemini   : ✅ disponibile
-   Storage  : ✅ disponibile
-
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 468-344-705
-127.0.0.1 - - [11/May/2026 11:16:53] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:16:55] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:16:59] "GET /soccorso/utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:17:08] "OPTIONS /soccorso HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:17:08] "POST /soccorso HTTP/1.1" 201 -
-127.0.0.1 - - [11/May/2026 11:17:08] "GET /soccorso/utente/1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:17:10] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:17:25] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:17:39] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:17:54] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:18:08] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:18:22] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:18:37] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:18:40] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:18:55] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:19:10] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:19:25] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:20:04] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:20:19] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:20:34] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:20:49] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:21:04] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:21:19] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:21:30] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:21:45] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:21:52] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:22:07] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:22:22] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:22:37] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:22:52] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
-127.0.0.1 - - [11/May/2026 11:23:08] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+ * Debugger PIN: 688-443-446
+127.0.0.1 - - [11/May/2026 20:03:45] "GET /sinistro/69f30a23b7c86e660549f74f HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:06:25] "GET /sinistro/69f30a23b7c86e660549f74f HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:11:44] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:12:00] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:12:14] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:12:28] "GET /soccorso/utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:12:29] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:12:29] "GET /soccorso/utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:12:33] "GET /soccorso/utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:12:39] "GET /soccorso/utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:12:44] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:12:51] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:13:07] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:13:21] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:14:38] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:14:41] "GET /soccorso/utente/1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:14:54] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:15:09] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -
+127.0.0.1 - - [11/May/2026 20:15:25] "GET /sinistri?automobilista_id=1 HTTP/1.1" 200 -

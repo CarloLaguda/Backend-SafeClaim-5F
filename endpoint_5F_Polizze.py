@@ -8,6 +8,8 @@ from flask_cors import CORS
 import os
 from dotenv import load_dotenv
 
+load_dotenv()
+
 app = Flask(__name__)
 CORS(app)
 
@@ -34,10 +36,9 @@ except Exception as e:
 def get_mysql_connection():
     return mysql.connector.connect(**MYSQL_CONFIG)
 
-# Valori ammessi per tipo_copertura (aggiornati con Furto_Incendio e Full)
 TIPI_COPERTURA = {'RCA', 'Kasko', 'Furto_Incendio', 'Full'}
-# Valori ammessi per tipo_documento di Polizza_Documenti
 TIPI_DOCUMENTO_POLIZZA = {'polizza_pdf', 'quietanza', 'appendice', 'attestato_rischio'}
+
 
 @app.route('/polizze', methods=['POST'])
 def crea_polizza():
@@ -45,49 +46,55 @@ def crea_polizza():
     if not data:
         return jsonify({"error": "Nessun dato ricevuto"}), 400
 
-    # PRE-FILL COMPAGNIA ASSICURATIVA
-    assicuratore_id = request.headers.get('X-User-ID')  # o dal token JWT
-    if assicuratore_id:
-        try:
-            conn = get_mysql_connection()
-            cursor = conn.cursor(dictionary=True)
-            cursor.execute("SELECT nome_compagnia FROM Assicuratore WHERE id = %s", (assicuratore_id,))
-            comp = cursor.fetchone()
-            if comp and comp['nome_compagnia']:
-                data['compagnia_assicurativa'] = comp['nome_compagnia']
-            cursor.close()
-            conn.close()
-        except:
-            pass
-
     tipo_copertura = data.get('tipo_copertura', 'RCA')
     if tipo_copertura not in TIPI_COPERTURA:
-        return jsonify({"error": f"tipo_copertura non valido"}), 400
+        return jsonify({"error": "tipo_copertura non valido"}), 400
 
-    conn = get_mysql_connection()
-    cursor = conn.cursor()
-    query = """
-        INSERT INTO Polizza (n_polizza, compagnia_assicurativa, data_inizio, data_scadenza,
-                             massimale, tipo_copertura, veicolo_id, assicuratore_id)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-    """
-    values = (
-        data['n_polizza'], data.get('compagnia_assicurativa'),
-        data['data_inizio'], data['data_scadenza'],
-        data.get('massimale'), tipo_copertura,
-        data['veicolo_id'], data.get('assicuratore_id')
-    )
+    # Riceve utente_id e lo usa per trovare l'assicuratore_id reale
+    utente_id = data.get('utente_id')
+    assicuratore_id = None
+
+    conn = None
     try:
+        conn = get_mysql_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        if utente_id:
+            cursor.execute(
+                "SELECT id FROM Assicuratore WHERE id_utente = %s", (utente_id,)
+            )
+            assicuratore = cursor.fetchone()
+            if not assicuratore:
+                return jsonify({"error": f"Assicuratore con id_utente={utente_id} non trovato"}), 404
+            assicuratore_id = assicuratore['id']
+
+        query = """
+            INSERT INTO Polizza (n_polizza, compagnia_assicurativa, data_inizio, data_scadenza,
+                                 massimale, tipo_copertura, veicolo_id, assicuratore_id)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+        """
+        values = (
+            data['n_polizza'],
+            data.get('compagnia_assicurativa'),
+            data['data_inizio'],
+            data['data_scadenza'],
+            data.get('massimale'),
+            tipo_copertura,
+            data['veicolo_id'],
+            assicuratore_id
+        )
         cursor.execute(query, values)
         conn.commit()
         return jsonify({"message": "Polizza creata", "id": cursor.lastrowid}), 201
+
     except Exception as e:
+        if conn:
+            conn.rollback()
         return jsonify({"error": str(e)}), 400
     finally:
-        cursor.close()
-        conn.close()
+        if conn:
+            conn.close()
 
-# Mantieni tutti gli altri endpoint GET/PUT/DELETE che avevi...
 
 @app.route('/polizze', methods=['GET'])
 def leggi_polizze():
@@ -95,7 +102,6 @@ def leggi_polizze():
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM Polizza")
     risultati = cursor.fetchall()
-    # Conversione date per la serializzazione JSON
     for r in risultati:
         for campo in ('data_inizio', 'data_scadenza'):
             if r.get(campo) and hasattr(r[campo], 'isoformat'):
@@ -103,6 +109,7 @@ def leggi_polizze():
     cursor.close()
     conn.close()
     return jsonify(risultati), 200
+
 
 @app.route('/polizze/<int:id>', methods=['GET'])
 def leggi_polizza(id):
@@ -118,6 +125,7 @@ def leggi_polizza(id):
         if polizza.get(campo) and hasattr(polizza[campo], 'isoformat'):
             polizza[campo] = polizza[campo].isoformat()
     return jsonify(polizza), 200
+
 
 @app.route('/polizze/<int:id>', methods=['PUT'])
 def modifica_polizza(id):
@@ -148,11 +156,11 @@ def modifica_polizza(id):
             return jsonify({"error": "Polizza non trovata"}), 404
         return jsonify({"message": "Polizza aggiornata con successo"}), 200
     except Exception as e:
-        print(f"Errore DB: {e}")
         return jsonify({"error": str(e)}), 500
     finally:
         cursor.close()
         conn.close()
+
 
 @app.route('/polizze/<int:id>', methods=['DELETE'])
 def elimina_polizza(id):
@@ -167,8 +175,6 @@ def elimina_polizza(id):
         return jsonify({"error": "Polizza non trovata"}), 404
     return jsonify({"message": "Polizza eliminata"}), 200
 
-# ── Documenti polizza (Polizza_Documenti) ────────────────────────────────────
-# Nota: tipo_documento ora accetta anche 'appendice' e 'attestato_rischio'
 
 @app.route('/polizze/<int:polizza_id>/documenti', methods=['POST'])
 def aggiungi_documento_polizza(polizza_id):
@@ -196,6 +202,7 @@ def aggiungi_documento_polizza(polizza_id):
     finally:
         cursor.close()
         conn.close()
+
 
 @app.route('/polizze/<int:polizza_id>/documenti', methods=['GET'])
 def leggi_documenti_polizza(polizza_id):
