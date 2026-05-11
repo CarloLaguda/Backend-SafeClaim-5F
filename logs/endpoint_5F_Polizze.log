@@ -1,46 +1,21 @@
-❌ Errore connessione MongoDB: localhost:27017: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 5.0s, Topology Description: <TopologyDescription id: 6a019046e71ff51723490fdb, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+❌ Errore connessione MongoDB: localhost:27017: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 5.0s, Topology Description: <TopologyDescription id: 6a01b97a3642f1ce3b53a608, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [Errno 111] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
  * Serving Flask app 'endpoint_5F_Polizze'
  * Debug mode: on
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:9000
- * Running on http://10.0.16.96:9000
+ * Running on http://10.0.15.190:9000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 549-299-303
+ * Debugger PIN: 468-344-705
  * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 549-299-303
+ * Debugger PIN: 468-344-705
  * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
 ✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 549-299-303
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 549-299-303
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 549-299-303
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 549-299-303
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 549-299-303
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Sinistri_User.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 549-299-303
+ * Debugger PIN: 468-344-705

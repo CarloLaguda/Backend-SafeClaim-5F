@@ -456,11 +456,16 @@ def crea_richiesta_soccorso():
     id_officina = data.get("id_officina")
     lat = data.get("lat")
     lon = data.get("lon")
+    via = data.get("via")  # indirizzo manuale alternativo alla geolocalizzazione
     orario_arrivo = data.get("orario_arrivo")
     durata_soccorso = data.get("durata_soccorso")
 
     if not targa:
         return jsonify({"error": "Targa obbligatoria"}), 400
+
+    # Validazione rimossa: posizione ora opzionale
+    # if (lat is None or lon is None) and not via:
+    #     return jsonify({"error": "Posizione obbligatoria: fornire coordinate GPS (lat/lon) o indirizzo manuale (via)"}), 400
 
     conn = None
     try:
@@ -475,7 +480,7 @@ def crea_richiesta_soccorso():
         """, (targa,))
         
         veicolo = cursor.fetchone()
-        if veicolo is None:  # ← CORRETTO
+        if veicolo is None:
             return jsonify({"error": "Veicolo non trovato"}), 404
 
         cursor.execute("""
@@ -497,8 +502,15 @@ def crea_richiesta_soccorso():
         richiesta_id = cursor.lastrowid
         conn.commit()
 
+        # Preparazione posizione per MongoDB
+        posizione = None
+        if lat is not None and lon is not None:
+            posizione = {"tipo": "gps", "lat": lat, "lon": lon}
+        elif via:
+            posizione = {"tipo": "indirizzo", "via": via}
+
         mongo_id = None
-        if _MONGO_DISPONIBILE and soccorso_col is not None:  # ← CORRETTO
+        if _MONGO_DISPONIBILE and soccorso_col is not None:
             res = soccorso_col.insert_one({
                 "richiesta_mysql_id": richiesta_id,
                 "id_sinistro": id_sinistro,
@@ -506,7 +518,7 @@ def crea_richiesta_soccorso():
                 "id_officina": id_officina,
                 "id_veicolo": veicolo["veicolo_id"],
                 "targa": targa,
-                "posizione": {"lat": lat, "lon": lon} if lat is not None and lon is not None else None,  # ← CORRETTO
+                "posizione": posizione,
                 "orario_arrivo": orario_arrivo,
                 "durata_soccorso": durata_soccorso,
                 "stato": "in_attesa",
@@ -522,6 +534,7 @@ def crea_richiesta_soccorso():
             "id_automobilista": veicolo["automobilista_id"],
             "id_officina": id_officina,
             "id_veicolo": veicolo["veicolo_id"],
+            "posizione": posizione,
             "orario_arrivo": orario_arrivo,
             "durata_soccorso": durata_soccorso,
             "stato": "in_attesa",
