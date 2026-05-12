@@ -1,0 +1,127 @@
+version: "3.9"
+
+networks:
+  safeclaim-net:
+    driver: bridge
+
+x-common-env: &common-env
+  MYSQL_HOST:        ${MYSQL_HOST}
+  MYSQL_PORT:        ${MYSQL_PORT}
+  MYSQL_USER:        ${MYSQL_USER}
+  MYSQL_PASSWORD:    ${MYSQL_PASSWORD}
+  MYSQL_DATABASE:    ${MYSQL_DATABASE}
+  MONGO_URI:         ${MONGO_URI}
+
+services:
+
+  assicurazione:
+    build:
+      context: ./assicurazione
+    container_name: safeclaim-assicurazione
+    ports:
+      - "5000:5000"
+    env_file: .env
+    environment:
+      <<: *common-env
+    networks:
+      - safeclaim-net
+    restart: unless-stopped
+
+  log-reg:
+    build:
+      context: ./log_reg
+    container_name: safeclaim-log-reg
+    ports:
+      - "6000:6000"
+    env_file: .env
+    environment:
+      <<: *common-env
+    networks:
+      - safeclaim-net
+    restart: unless-stopped
+
+  sinistri:
+    build:
+      context: ./sinistri
+    container_name: safeclaim-sinistri
+    ports:
+      - "7000:7000"
+    env_file: .env
+    environment:
+      <<: *common-env
+      GEMINI_API_KEY:          ${GEMINI_API_KEY}
+      GEMINI_MODEL:            ${GEMINI_MODEL}
+      CLOUDINARY_CLOUD_NAME:   ${CLOUDINARY_CLOUD_NAME}
+      CLOUDINARY_API_KEY:      ${CLOUDINARY_API_KEY}
+      CLOUDINARY_API_SECRET:   ${CLOUDINARY_API_SECRET}
+    networks:
+      - safeclaim-net
+    restart: unless-stopped
+
+  periti:
+    build:
+      context: ./periti
+    container_name: safeclaim-periti
+    ports:
+      - "8000:8000"
+    env_file: .env
+    environment:
+      <<: *common-env
+    networks:
+      - safeclaim-net
+    restart: unless-stopped
+
+  polizze:
+    build:
+      context: ./polizze
+    container_name: safeclaim-polizze
+    ports:
+      - "9000:9000"
+    env_file: .env
+    environment:
+      <<: *common-env
+    networks:
+      - safeclaim-net
+    restart: unless-stopped
+
+  veicoli:
+    build:
+      context: ./veicoli
+    container_name: safeclaim-veicoli
+    ports:
+      - "10000:10000"
+    env_file: .env
+    environment:
+      <<: *common-env
+    networks:
+      - safeclaim-net
+    restart: unless-stopped
+
+  mail:
+    build:
+      context: ./mail
+    container_name: safeclaim-mail
+    ports:
+      - "11000:11000"
+    env_file: .env
+    environment:
+      <<: *common-env
+      EMAIL_SENDER:   ${EMAIL_SENDER}
+      EMAIL_PASSWORD: ${EMAIL_PASSWORD}
+    networks:
+      - safeclaim-net
+    restart: unless-stopped
+
+  rag:
+    build:
+      context: ./rag
+    container_name: safeclaim-rag
+    ports:
+      - "12000:12000"
+    env_file: .env
+    environment:
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      GEMINI_MODEL:   ${GEMINI_MODEL}
+    networks:
+      - safeclaim-net
+    restart: unless-stopped
