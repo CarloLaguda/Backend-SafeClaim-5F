@@ -145,6 +145,169 @@ def get_veicoli_utente(user_id):
         if conn: conn.close()
 
 
+TIPI_COPERTURA = {'RCA', 'Kasko', 'Furto_Incendio', 'Full'}
+
+@app.route('/registrazione-completa', methods=['POST'])
+def registrazione_completa():
+    """
+    Registrazione completa fatta dall'assicuratore in 3 step (frontend):
+      Step 1 – dati utente (nome, cognome, email, telefono, password_hash, cf)
+      Step 2 – dati veicolo (targa, n_telaio, marca, modello, anno_immatricolazione)
+      Step 3 – dati polizza (n_polizza, compagnia_assicurativa, data_inizio,
+                             data_scadenza, massimale, tipo_copertura,
+                             assicuratore_utente_id)
+
+    Tutto viene salvato in un'unica transazione atomica.
+
+    Body JSON atteso:
+    {
+        "utente":  { "nome", "cognome", "email", "telefono", "password_hash", "cf" },
+        "veicolo": { "targa", "n_telaio", "marca", "modello", "anno_immatricolazione" },
+        "polizza": { "n_polizza", "compagnia_assicurativa", "data_inizio",
+                     "data_scadenza", "massimale", "tipo_copertura",
+                     "assicuratore_utente_id" }
+    }
+    """
+    import re
+
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "Nessun dato ricevuto"}), 400
+
+    dati_utente  = data.get('utente',  {})
+    dati_veicolo = data.get('veicolo', {})
+    dati_polizza = data.get('polizza', {})
+
+    # ── Validazioni campi obbligatori ───────────────────────────────────────
+    for campo in ['nome', 'cognome', 'email', 'password_hash', 'cf']:
+        if not dati_utente.get(campo):
+            return jsonify({"error": f"Campo utente mancante: {campo}"}), 400
+    for campo in ['targa']:
+        if not dati_veicolo.get(campo):
+            return jsonify({"error": f"Campo veicolo mancante: {campo}"}), 400
+    for campo in ['n_polizza', 'data_inizio', 'data_scadenza']:
+        if not dati_polizza.get(campo):
+            return jsonify({"error": f"Campo polizza mancante: {campo}"}), 400
+
+    tipo_copertura = dati_polizza.get('tipo_copertura', 'RCA')
+    if tipo_copertura not in TIPI_COPERTURA:
+        return jsonify({"error": f"tipo_copertura non valido. Ammessi: {TIPI_COPERTURA}"}), 400
+
+    conn = None
+    try:
+        conn = get_mysql_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        # ── 1. Crea Utente ──────────────────────────────────────────────────
+        cursor.execute(
+            """INSERT INTO Utente (nome, cognome, email, telefono, password_hash, ruolo)
+               VALUES (%s, %s, %s, %s, %s, 'automobilista')""",
+            (
+                dati_utente['nome'].strip().title(),
+                dati_utente['cognome'].strip().title(),
+                dati_utente['email'].strip().lower(),
+                dati_utente.get('telefono'),
+                dati_utente['password_hash'],
+            )
+        )
+        utente_id = cursor.lastrowid
+
+        # ── 2. Crea Automobilista (con n_polizza già assegnato) ─────────────
+        n_polizza = dati_polizza.get('n_polizza')
+        cursor.execute(
+            """INSERT INTO Automobilista (nome, cognome, cf, id_utente, n_polizza)
+               VALUES (%s, %s, %s, %s, %s)""",
+            (
+                dati_utente['nome'].strip().title(),
+                dati_utente['cognome'].strip().title(),
+                dati_utente['cf'].strip().upper(),
+                utente_id,
+                n_polizza,
+            )
+        )
+        automobilista_id = cursor.lastrowid
+
+        # ── 3. Crea Veicolo legato all'Automobilista ────────────────────────
+        cursor.execute(
+            """INSERT INTO Veicolo (targa, n_telaio, marca, modello,
+                                    anno_immatricolazione, automobilista_id)
+               VALUES (%s, %s, %s, %s, %s, %s)""",
+            (
+                dati_veicolo.get('targa'),
+                dati_veicolo.get('n_telaio'),
+                dati_veicolo.get('marca'),
+                dati_veicolo.get('modello'),
+                dati_veicolo.get('anno_immatricolazione'),
+                automobilista_id,
+            )
+        )
+        veicolo_id = cursor.lastrowid
+
+        # ── 4. Risolve assicuratore_id dall'id_utente dell'assicuratore ─────
+        assicuratore_id = None
+        ass_utente_id = dati_polizza.get('assicuratore_utente_id')
+        if ass_utente_id:
+            cursor.execute(
+                "SELECT id FROM Assicuratore WHERE id_utente = %s", (ass_utente_id,)
+            )
+            row = cursor.fetchone()
+            if not row:
+                conn.rollback()
+                return jsonify({"error": f"Assicuratore con id_utente={ass_utente_id} non trovato"}), 404
+            assicuratore_id = row['id']
+
+        # ── 5. Crea Polizza ─────────────────────────────────────────────────
+        cursor.execute(
+            """INSERT INTO Polizza (n_polizza, compagnia_assicurativa, data_inizio,
+                                    data_scadenza, massimale, tipo_copertura,
+                                    veicolo_id, assicuratore_id)
+               VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""",
+            (
+                n_polizza,
+                dati_polizza.get('compagnia_assicurativa'),
+                dati_polizza['data_inizio'],
+                dati_polizza['data_scadenza'],
+                dati_polizza.get('massimale'),
+                tipo_copertura,
+                veicolo_id,
+                assicuratore_id,
+            )
+        )
+        polizza_id = cursor.lastrowid
+
+        conn.commit()
+
+        return jsonify({
+            "status":           "success",
+            "message":          "Registrazione completa effettuata",
+            "utente_id":        utente_id,
+            "automobilista_id": automobilista_id,
+            "veicolo_id":       veicolo_id,
+            "polizza_id":       polizza_id,
+            "n_polizza":        n_polizza,
+        }), 201
+
+    except mysql.connector.IntegrityError as e:
+        if conn:
+            conn.rollback()
+        msg = str(e)
+        if 'email' in msg.lower() or 'cf' in msg.lower():
+            return jsonify({"error": "Email o Codice Fiscale già registrati"}), 409
+        if 'targa' in msg.lower() or 'n_telaio' in msg.lower():
+            return jsonify({"error": "Targa o numero telaio già esistente"}), 409
+        if 'n_polizza' in msg.lower():
+            return jsonify({"error": "Numero polizza già esistente"}), 409
+        return jsonify({"error": f"Violazione integrità DB: {msg}"}), 409
+    except Exception as e:
+        if conn:
+            conn.rollback()
+        return jsonify({"error": str(e)}), 500
+    finally:
+        if conn:
+            conn.close()
+
+
+
 @app.route('/veicolo/user/<int:user_id>', methods=['POST'])
 def crea_veicolo_utente(user_id):
     data = request.get_json()

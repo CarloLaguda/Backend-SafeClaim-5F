@@ -282,5 +282,93 @@ def aggiorna_utente(user_id):
             conn.close()
 
 
+@app.route('/automobilista/<int:user_id>/profilo', methods=['GET'])
+def profilo_automobilista(user_id):
+    """
+    Restituisce i dati completi dell'automobilista (incluso n_polizza)
+    più i dati del veicolo e della polizza associata.
+    Usato dalla schermata 'I miei dati' del frontend automobilista.
+    """
+    conn = None
+    try:
+        conn = get_mysql_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("""
+            SELECT
+                a.id                         AS automobilista_id,
+                a.nome,
+                a.cognome,
+                a.cf,
+                a.id_utente,
+                a.n_polizza,
+                u.email,
+                u.telefono,
+                p.id                         AS polizza_id,
+                p.n_polizza                  AS polizza_numero,
+                p.compagnia_assicurativa,
+                p.data_inizio                AS polizza_data_inizio,
+                p.data_scadenza              AS polizza_data_scadenza,
+                p.massimale,
+                p.tipo_copertura,
+                v.targa,
+                v.marca,
+                v.modello,
+                v.anno_immatricolazione
+            FROM Automobilista a
+            JOIN Utente u         ON u.id = a.id_utente
+            LEFT JOIN Veicolo v   ON v.automobilista_id = a.id
+            LEFT JOIN Polizza p   ON p.veicolo_id = v.id
+            WHERE a.id_utente = %s
+            ORDER BY p.data_inizio DESC
+            LIMIT 1
+        """, (user_id,))
+
+        row = cursor.fetchone()
+        if not row:
+            return jsonify({"error": "Automobilista non trovato"}), 404
+
+        # Serializza date
+        for campo in ('polizza_data_inizio', 'polizza_data_scadenza'):
+            if row.get(campo) and hasattr(row[campo], 'isoformat'):
+                row[campo] = row[campo].isoformat()
+
+        risposta = {
+            "automobilista": {
+                "id":        row["automobilista_id"],
+                "nome":      row["nome"],
+                "cognome":   row["cognome"],
+                "cf":        row["cf"],
+                "id_utente": row["id_utente"],
+                "email":     row["email"],
+                "telefono":  row["telefono"],
+                "n_polizza": row["n_polizza"],   # campo diretto su tabella Automobilista
+            },
+            "veicolo": {
+                "targa":                 row.get("targa"),
+                "marca":                 row.get("marca"),
+                "modello":               row.get("modello"),
+                "anno_immatricolazione": row.get("anno_immatricolazione"),
+            } if row.get("targa") else None,
+            "polizza": {
+                "id":                    row.get("polizza_id"),
+                "n_polizza":             row.get("polizza_numero"),
+                "compagnia_assicurativa": row.get("compagnia_assicurativa"),
+                "data_inizio":           row.get("polizza_data_inizio"),
+                "data_scadenza":         row.get("polizza_data_scadenza"),
+                "massimale":             row.get("massimale"),
+                "tipo_copertura":        row.get("tipo_copertura"),
+            } if row.get("polizza_id") else None,
+        }
+
+        return jsonify(risposta), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    finally:
+        if conn:
+            conn.close()
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=6000, debug=True)
