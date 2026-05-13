@@ -8,8 +8,15 @@ import urllib.parse
 import os
 from dotenv import load_dotenv
 
-app = Flask(_name_)
-CORS(app)
+app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*", "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"], "allow_headers": ["Content-Type", "Authorization"]}})
+
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    return response
 
 # --- CONFIGURAZIONE DATABASE ---
 
@@ -43,12 +50,32 @@ except Exception as e:
 def get_mysql():
     return mysql.connector.connect(**MYSQL_CONFIG)
 
+
+# ── HELPER: converte id_utente → id Perito reale ─────────────────────────────
+
+def resolve_perito_id(id_utente):
+    """Dato un id_utente dal frontend, restituisce il vero id Perito da MySQL."""
+    try:
+        conn = get_mysql()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("SELECT id FROM Perito WHERE id_utente = %s", (id_utente,))
+        record = cursor.fetchone()
+        cursor.close()
+        conn.close()
+        if record:
+            return str(record['id'])
+    except Exception as e:
+        print(f"[resolve_perito_id] Errore lookup perito per id_utente={id_utente}: {e}")
+    return id_utente
+
+
 # ── GET pratica ────────────────────────────────────────────────────────────────
 
 @app.route("/sinistro/<sinistro_id>/perito/<perito_id>/pratica", methods=["GET"])
 def get_pratica(sinistro_id, perito_id):
     try:
-        query = {"sinistro_id": sinistro_id, "perito_id": perito_id}
+        real_perito_id = resolve_perito_id(perito_id)
+        query = {"sinistro_id": sinistro_id, "perito_id": real_perito_id}
         pratica = col_pratiche.find_one(query)
         if not pratica:
             return jsonify({"error": "Pratica non trovata"}), 404
@@ -57,6 +84,7 @@ def get_pratica(sinistro_id, perito_id):
         return jsonify(pratica), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 400
+
 
 # ── GET tutte le pratiche per l'Assicurazione ─────────────────────────────────
 
@@ -85,7 +113,8 @@ def get_pratiche_assicurazione():
 @app.route('/perito/<perito_id>/pratiche', methods=['GET'])
 def get_pratiche_perito(perito_id):
     try:
-        pratiche = list(col_pratiche.find({"perito_id": perito_id}))
+        real_perito_id = resolve_perito_id(perito_id)
+        pratiche = list(col_pratiche.find({"perito_id": real_perito_id}))
         result = []
         for p in pratiche:
             p['_id'] = str(p['_id'])
@@ -108,20 +137,20 @@ def get_pratiche_perito(perito_id):
                             sinistro['data_inserimento'] = sinistro['data_inserimento'].isoformat()
                         analisi = sinistro.get('analisi_ai')
                         p['sinistro'] = {
-                            '_id':                    sinistro['_id'],
-                            'targa':                  sinistro.get('targa'),
-                            'marca':                  sinistro.get('marca'),
-                            'modello':                sinistro.get('modello'),
-                            'data_evento':            sinistro.get('data_evento'),
-                            'descrizione':            sinistro.get('descrizione'),
-                            'luogo':                  sinistro.get('luogo'),
-                            'tipo_sinistro':          sinistro.get('tipo_sinistro'),
-                            'stima_danno':            sinistro.get('stima_danno'),
-                            'stato':                  sinistro.get('stato'),
+                            '_id':                   sinistro['_id'],
+                            'targa':                 sinistro.get('targa'),
+                            'marca':                 sinistro.get('marca'),
+                            'modello':               sinistro.get('modello'),
+                            'data_evento':           sinistro.get('data_evento'),
+                            'descrizione':           sinistro.get('descrizione'),
+                            'luogo':                 sinistro.get('luogo'),
+                            'tipo_sinistro':         sinistro.get('tipo_sinistro'),
+                            'stima_danno':           sinistro.get('stima_danno'),
+                            'stato':                 sinistro.get('stato'),
                             'compagnia_assicurativa': sinistro.get('compagnia_assicurativa'),
-                            'priorita':               sinistro.get('priorita'),
-                            'num_immagini':           len(sinistro.get('immagini', [])),
-                            'analisi_ai_stato':       analisi.get('stato') if analisi else 'non_avviata',
+                            'priorita':              sinistro.get('priorita'),
+                            'num_immagini':          len(sinistro.get('immagini', [])),
+                            'analisi_ai_stato':      analisi.get('stato') if analisi else 'non_avviata',
                         }
                 except Exception as inner_err:
                     print(f"[pratiche] Errore caricamento sinistro {sin_id}: {inner_err}")
@@ -254,10 +283,6 @@ def assegna_perito_pratica(pratica_id):
 
 
 # ── PUT accetta / rifiuta pratica (dal perito) ────────────────────────────────
-#
-# Questo è l'endpoint che il frontend chiama quando il perito accetta o rifiuta.
-# Separato dall'endpoint /sinistro/.../pratica per usare direttamente l'_id
-# della pratica, evitando mismatch tra sinistro_id stringa e ObjectId.
 
 @app.route('/pratica/<pratica_id>/perito/<perito_id>', methods=['PUT'])
 def aggiorna_pratica_perito(pratica_id, perito_id):
@@ -268,6 +293,8 @@ def aggiorna_pratica_perito(pratica_id, perito_id):
     """
     if not ObjectId.is_valid(pratica_id):
         return jsonify({"error": "ID pratica non valido"}), 400
+
+    real_perito_id = resolve_perito_id(perito_id)
 
     data = request.get_json() or {}
     nuovo_stato   = data.get("stato", "in_perizia")
@@ -281,12 +308,11 @@ def aggiorna_pratica_perito(pratica_id, perito_id):
         update_fields["perito_id"] = None
 
     result = col_pratiche.update_one(
-        {"_id": ObjectId(pratica_id), "perito_id": perito_id},
+        {"_id": ObjectId(pratica_id), "perito_id": real_perito_id},
         {"$set": update_fields}
     )
 
     if result.matched_count == 0:
-        # Tentiamo senza il filtro perito_id per pratica senza perito embedded
         result = col_pratiche.update_one(
             {"_id": ObjectId(pratica_id)},
             {"$set": update_fields}
@@ -294,7 +320,6 @@ def aggiorna_pratica_perito(pratica_id, perito_id):
         if result.matched_count == 0:
             return jsonify({"error": "Pratica non trovata"}), 404
 
-    # Aggiorna anche il sinistro collegato
     pratica = col_pratiche.find_one({"_id": ObjectId(pratica_id)})
     if pratica and pratica.get("sinistro_id"):
         sin_id = pratica["sinistro_id"]
@@ -326,13 +351,15 @@ def aggiorna_pratica_perito(pratica_id, perito_id):
 def elimina_pratica(pratica_id, perito_id):
     if not ObjectId.is_valid(pratica_id):
         return jsonify({"error": "ID pratica non valido"}), 400
+
+    real_perito_id = resolve_perito_id(perito_id)
+
     try:
         result = col_pratiche.delete_one({
             "_id": ObjectId(pratica_id),
-            "perito_id": perito_id
+            "perito_id": real_perito_id
         })
         if result.deleted_count == 0:
-            # fallback senza filtro perito
             result = col_pratiche.delete_one({"_id": ObjectId(pratica_id)})
         if result.deleted_count == 0:
             return jsonify({"error": "Pratica non trovata"}), 404
@@ -348,7 +375,10 @@ def update_pratica(sinistro_id, perito_id):
     data = request.get_json()
     if not data:
         return jsonify({"error": "Dati mancanti"}), 400
-    query = {"sinistro_id": sinistro_id, "perito_id": perito_id}
+
+    real_perito_id = resolve_perito_id(perito_id)
+
+    query = {"sinistro_id": sinistro_id, "perito_id": real_perito_id}
     update_data = {
         "$set": {
             "titolo":             data.get("titolo"),
@@ -362,7 +392,7 @@ def update_pratica(sinistro_id, perito_id):
             "stato":              data.get("stato", "Bozza"),
             "note_perito":        data.get("note_perito"),
             "sinistro_id":        sinistro_id,
-            "perito_id":          perito_id,
+            "perito_id":          real_perito_id,
             "data_aggiornamento": datetime.utcnow()
         }
     }
@@ -448,18 +478,21 @@ def assegna_intervento(id_sinistro, id_perito, id_perizia):
 
 # ── GET perizie perito ────────────────────────────────────────────────────────
 
-@app.route('/perito/<perito_id>/perizie', methods=['GET'])
-def get_perizie_perito(perito_id):
+@app.route('/perito/<id_utente>/perizie', methods=['GET'])
+def get_perizie_perito(id_utente):
     try:
-        docs = list(col_perizie.find({"perito_id": perito_id}))
+        real_perito_id = resolve_perito_id(id_utente)
+
+        docs = list(col_perizie.find({"perito_id": real_perito_id}))
+
         for d in docs:
             d['_id'] = str(d['_id'])
             if 'sinistro_id' in d and isinstance(d['sinistro_id'], ObjectId):
                 d['sinistro_id'] = str(d['sinistro_id'])
-            if 'data_inserimento' in d and isinstance(d['data_inserimento'], datetime):
-                d['data_inserimento'] = d['data_inserimento'].isoformat()
-            if 'data_aggiornamento' in d and isinstance(d['data_aggiornamento'], datetime):
-                d['data_aggiornamento'] = d['data_aggiornamento'].isoformat()
+            for key in ['data_inserimento', 'data_aggiornamento']:
+                if key in d and isinstance(d[key], datetime):
+                    d[key] = d[key].isoformat()
+
         return jsonify(docs), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -497,5 +530,5 @@ def get_periti():
 
 # ── Avvio ─────────────────────────────────────────────────────────────────────
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)

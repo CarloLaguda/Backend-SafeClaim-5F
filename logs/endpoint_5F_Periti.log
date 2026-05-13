@@ -4,18 +4,101 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:8000
- * Running on http://10.0.14.228:8000
+ * Running on http://10.0.13.245:8000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 328-675-780
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Assicurazione.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 328-675-780
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Assicurazione.py', reloading
-✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 328-675-780
+ * Debugger PIN: 136-187-583
+127.0.0.1 - - [13/May/2026 21:21:11] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:21:18] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:21:25] "OPTIONS /pratica/6a04e89fd413ce60c471bdf5/perito/4 HTTP/1.1" 200 -
+/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:305: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "data_aggiornamento": datetime.utcnow()
+/workspaces/Backend-SafeClaim-5F/endpoint_5F_Periti.py:329: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "data_aggiornamento": datetime.utcnow()
+127.0.0.1 - - [13/May/2026 21:21:26] "PUT /pratica/6a04e89fd413ce60c471bdf5/perito/4 HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:21:28] "OPTIONS /pratica/6a04d6085420b89a40145afb/perito/4 HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:21:29] "PUT /pratica/6a04d6085420b89a40145afb/perito/4 HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:21:31] "OPTIONS /pratica/69f9d233f9fad99b7abc49d9/perito/4 HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:21:32] "PUT /pratica/69f9d233f9fad99b7abc49d9/perito/4 HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:21:33] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:21:34] "OPTIONS /pratica/69fa50d2cd985ba163212ff4/perito/4 HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:21:35] "PUT /pratica/69fa50d2cd985ba163212ff4/perito/4 HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:21:37] "OPTIONS /pratica/6a01973d4ec2585a53c82da9/perito/4 HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:21:37] "PUT /pratica/6a01973d4ec2585a53c82da9/perito/4 HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:21:48] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:22:03] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:22:18] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:22:33] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:22:48] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:23:03] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:23:18] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:23:33] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:23:48] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:24:03] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:24:18] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:24:33] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:24:48] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:25:03] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:25:18] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:25:33] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:25:48] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:26:03] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:26:18] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:26:33] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:26:48] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:27:03] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:27:18] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:27:33] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:27:48] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:28:03] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:28:18] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:28:33] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:28:48] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:29:03] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:29:18] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:29:33] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:29:48] "GET /perito/4/pratiche HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:30:24] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:30:25] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:30:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:30:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:30:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:31:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:31:25] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:31:40] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:31:55] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:32:10] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:32:47] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:33:47] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:34:47] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:35:14] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:35:14] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:35:16] "GET /periti HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:35:30] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:35:45] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:36:00] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:36:15] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:36:30] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:36:45] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:37:46] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:38:06] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:38:14] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:38:29] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:38:45] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:39:00] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:39:15] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:39:30] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:39:45] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:40:00] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:40:15] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:40:29] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:40:45] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:41:00] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:41:15] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:41:30] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:41:45] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:41:59] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:42:14] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:42:30] "GET /pratiche_assicurazione HTTP/1.1" 200 -
+127.0.0.1 - - [13/May/2026 21:42:45] "GET /pratiche_assicurazione HTTP/1.1" 200 -

@@ -70,9 +70,21 @@ def hash_password(plain: str) -> str:
 
 
 def verifica_password(plain: str, hashed: str) -> bool:
-    """Confronta la password in chiaro con l'hash salvato nel DB."""
-    return bcrypt.checkpw(plain.encode("utf-8"), hashed.encode("utf-8"))
-
+    """
+    Verifica la password:
+    1. Prova con bcrypt (se l'hash inizia con $2b$ o simile).
+    2. Fallback: confronta come stringa semplice (per le vecchie password).
+    """
+    # 1. Tentativo bcrypt
+    if hashed.startswith('$2b$') or hashed.startswith('$2a$') or hashed.startswith('$2y$'):
+        try:
+            return bcrypt.checkpw(plain.encode("utf-8"), hashed.encode("utf-8"))
+        except ValueError:
+            return False
+            
+    # 2. Fallback: confronto in chiaro (per le vecchie password)
+    # Suggerimento: appena l'utente fa login, dovresti aggiornare il suo hash!
+    return plain == hashed
 
 # ── JWT helpers ──────────────────────────────────────────────────────────────
 def _now_utc() -> datetime:
@@ -357,6 +369,15 @@ def login():
         # Verifica password con bcrypt
         if not verifica_password(password, user["password_hash"]):
             return jsonify({"error": "Credenziali non valide"}), 401
+
+        # SE la password era in chiaro, la hashizziamo ora e aggiorniamo il DB
+        if not user["password_hash"].startswith('$2'):
+            nuovo_hash = hash_password(password)
+            cursor.execute(
+                "UPDATE Utente SET password_hash = %s WHERE id = %s",
+                (nuovo_hash, user["id"])
+            )
+            conn.commit()
 
         # Normalizza ruolo
         if isinstance(user.get("ruolo"), set):
