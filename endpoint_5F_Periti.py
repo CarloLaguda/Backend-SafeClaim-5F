@@ -8,7 +8,7 @@ import urllib.parse
 import os
 from dotenv import load_dotenv
 
-app = Flask(__name__)
+app = Flask(_name_)
 CORS(app)
 
 # --- CONFIGURAZIONE DATABASE ---
@@ -49,9 +49,7 @@ def get_mysql():
 def get_pratica(sinistro_id, perito_id):
     try:
         query = {"sinistro_id": sinistro_id, "perito_id": perito_id}
-        print(f"DEBUG query: {query}")  # ← aggiungi questo
         pratica = col_pratiche.find_one(query)
-        print(f"DEBUG risultato: {pratica}")  # ← e questo
         if not pratica:
             return jsonify({"error": "Pratica non trovata"}), 404
         pratica["_id"] = str(pratica["_id"])
@@ -137,15 +135,9 @@ def get_pratiche_perito(perito_id):
 
 @app.route('/sinistro/<id_sinistro>/pratica', methods=['POST'])
 def crea_pratica(id_sinistro):
-    """
-    Crea una pratica per un sinistro.
-    Il perito_id è opzionale: se non fornito la pratica è in stato 'da_assegnare'.
-    Se fornito, viene verificato su MySQL e la pratica va in stato 'assegnata'.
-    """
     data      = request.get_json() or {}
-    perito_id = data.get("perito_id")  # opzionale
+    perito_id = data.get("perito_id")
 
-    # Se il perito è fornito, verifica che esista su MySQL
     if perito_id:
         try:
             conn   = get_mysql()
@@ -157,31 +149,30 @@ def crea_pratica(id_sinistro):
             if not perito_esiste:
                 return jsonify({"error": "Perito non trovato"}), 404
         except Exception:
-            pass  # MySQL non raggiungibile: procediamo senza bloccare
+            pass
 
     stato = "assegnata" if perito_id else "da_assegnare"
 
     pratica_doc = {
-        "sinistro_id":      id_sinistro,
-        "perito_id":        str(perito_id) if perito_id else None,
-        "stato":            stato,
-        "titolo":           data.get("titolo", "Pratica in attesa di assegnazione"),
-        "descrizione":      data.get("descrizione", ""),
-        "tipo_danno":       data.get("tipo_danno"),
-        "stima_danno":      data.get("stima_danno"),
-        "veicolo":          data.get("veicolo"),
+        "sinistro_id":       id_sinistro,
+        "perito_id":         str(perito_id) if perito_id else None,
+        "stato":             stato,
+        "titolo":            data.get("titolo", "Pratica in attesa di assegnazione"),
+        "descrizione":       data.get("descrizione", ""),
+        "tipo_danno":        data.get("tipo_danno"),
+        "stima_danno":       data.get("stima_danno"),
+        "veicolo":           data.get("veicolo"),
         "parti_danneggiate": data.get("parti_danneggiate", []),
-        "conclusione":      data.get("conclusione"),
-        "note_tecniche":    data.get("note_tecniche"),
-        "claim_code":       data.get("claim_code"),
-        "documenti":        data.get("documenti", []),
-        "data_inserimento": datetime.utcnow()
+        "conclusione":       data.get("conclusione"),
+        "note_tecniche":     data.get("note_tecniche"),
+        "claim_code":        data.get("claim_code"),
+        "documenti":         data.get("documenti", []),
+        "data_inserimento":  datetime.utcnow()
     }
 
     result     = col_pratiche.insert_one(pratica_doc)
     pratica_id = str(result.inserted_id)
 
-    # Aggiorna il sinistro con stato e pratica_id
     stato_sinistro = "in_perizia" if perito_id else "da_assegnare"
     sinistro_update = {
         "stato":              stato_sinistro,
@@ -206,14 +197,10 @@ def crea_pratica(id_sinistro):
     }), 201
 
 
-# ── PUT assegna perito a pratica esistente ────────────────────────────────────
+# ── PUT assegna perito a pratica esistente (dall'assicurazione) ───────────────
 
 @app.route('/pratica/<pratica_id>/assegna', methods=['PUT'])
 def assegna_perito_pratica(pratica_id):
-    """
-    L'assicurazione assegna un perito a una pratica in stato 'da_assegnare'.
-    Aggiorna sia la pratica che il sinistro collegato.
-    """
     data = request.get_json()
     if not data or not data.get("perito_id"):
         return jsonify({"error": "perito_id mancante"}), 400
@@ -222,7 +209,6 @@ def assegna_perito_pratica(pratica_id):
 
     perito_id = str(data["perito_id"])
 
-    # Verifica perito su MySQL
     try:
         conn   = get_mysql()
         cursor = conn.cursor()
@@ -233,7 +219,7 @@ def assegna_perito_pratica(pratica_id):
         if not perito_esiste:
             return jsonify({"error": "Perito non trovato"}), 404
     except Exception:
-        pass  # MySQL non raggiungibile: procediamo
+        pass
 
     result = col_pratiche.update_one(
         {"_id": ObjectId(pratica_id)},
@@ -246,7 +232,6 @@ def assegna_perito_pratica(pratica_id):
     if result.matched_count == 0:
         return jsonify({"error": "Pratica non trovata"}), 404
 
-    # Aggiorna anche il sinistro collegato
     pratica = col_pratiche.find_one({"_id": ObjectId(pratica_id)})
     if pratica and pratica.get("sinistro_id"):
         try:
@@ -268,7 +253,95 @@ def assegna_perito_pratica(pratica_id):
     }), 200
 
 
-# ── PUT pratica (upsert) ──────────────────────────────────────────────────────
+# ── PUT accetta / rifiuta pratica (dal perito) ────────────────────────────────
+#
+# Questo è l'endpoint che il frontend chiama quando il perito accetta o rifiuta.
+# Separato dall'endpoint /sinistro/.../pratica per usare direttamente l'_id
+# della pratica, evitando mismatch tra sinistro_id stringa e ObjectId.
+
+@app.route('/pratica/<pratica_id>/perito/<perito_id>', methods=['PUT'])
+def aggiorna_pratica_perito(pratica_id, perito_id):
+    """
+    Il perito accetta (stato → in_perizia) o rifiuta (stato → da_assegnare)
+    una pratica assegnatagli.
+    Body: { "stato": "in_perizia" | "da_assegnare", "_reset_perito": true/false }
+    """
+    if not ObjectId.is_valid(pratica_id):
+        return jsonify({"error": "ID pratica non valido"}), 400
+
+    data = request.get_json() or {}
+    nuovo_stato   = data.get("stato", "in_perizia")
+    reset_perito  = data.get("_reset_perito", False)
+
+    update_fields = {
+        "stato":              nuovo_stato,
+        "data_aggiornamento": datetime.utcnow()
+    }
+    if reset_perito:
+        update_fields["perito_id"] = None
+
+    result = col_pratiche.update_one(
+        {"_id": ObjectId(pratica_id), "perito_id": perito_id},
+        {"$set": update_fields}
+    )
+
+    if result.matched_count == 0:
+        # Tentiamo senza il filtro perito_id per pratica senza perito embedded
+        result = col_pratiche.update_one(
+            {"_id": ObjectId(pratica_id)},
+            {"$set": update_fields}
+        )
+        if result.matched_count == 0:
+            return jsonify({"error": "Pratica non trovata"}), 404
+
+    # Aggiorna anche il sinistro collegato
+    pratica = col_pratiche.find_one({"_id": ObjectId(pratica_id)})
+    if pratica and pratica.get("sinistro_id"):
+        sin_id = pratica["sinistro_id"]
+        stato_sinistro = "in_perizia" if nuovo_stato == "in_perizia" else "aperto"
+        sinistro_update = {
+            "stato":              stato_sinistro,
+            "data_aggiornamento": datetime.utcnow()
+        }
+        if reset_perito:
+            sinistro_update["perito_id"] = None
+        try:
+            col_sinistri.update_one(
+                {"_id": ObjectId(str(sin_id))},
+                {"$set": sinistro_update}
+            )
+        except Exception as e:
+            print(f"[aggiorna_pratica_perito] Errore aggiornamento sinistro: {e}")
+
+    return jsonify({
+        "status":     "ok",
+        "pratica_id": pratica_id,
+        "stato":      nuovo_stato
+    }), 200
+
+
+# ── DELETE pratica (dal perito, via pratica_id) ───────────────────────────────
+
+@app.route('/pratica/<pratica_id>/perito/<perito_id>', methods=['DELETE'])
+def elimina_pratica(pratica_id, perito_id):
+    if not ObjectId.is_valid(pratica_id):
+        return jsonify({"error": "ID pratica non valido"}), 400
+    try:
+        result = col_pratiche.delete_one({
+            "_id": ObjectId(pratica_id),
+            "perito_id": perito_id
+        })
+        if result.deleted_count == 0:
+            # fallback senza filtro perito
+            result = col_pratiche.delete_one({"_id": ObjectId(pratica_id)})
+        if result.deleted_count == 0:
+            return jsonify({"error": "Pratica non trovata"}), 404
+        return jsonify({"status": "eliminata", "pratica_id": pratica_id}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+# ── PUT pratica (upsert via sinistro_id + perito_id) ─────────────────────────
 
 @app.route("/sinistro/<sinistro_id>/perito/<perito_id>/pratica", methods=["PUT"])
 def update_pratica(sinistro_id, perito_id):
@@ -295,24 +368,6 @@ def update_pratica(sinistro_id, perito_id):
     }
     col_pratiche.update_one(query, update_data, upsert=True)
     return jsonify({"status": "success"}), 200
-
-
-# ── DELETE pratica ────────────────────────────────────────────────────────────
-
-@app.route('/pratica/<pratica_id>/perito/<perito_id>', methods=['DELETE'])
-def elimina_pratica(pratica_id, perito_id):
-    if not ObjectId.is_valid(pratica_id):
-        return jsonify({"error": "ID pratica non valido"}), 400
-    try:
-        result = col_pratiche.delete_one({
-            "_id": ObjectId(pratica_id),
-            "perito_id": perito_id
-        })
-        if result.deleted_count == 0:
-            return jsonify({"error": "Pratica non trovata o non appartiene a questo perito"}), 404
-        return jsonify({"status": "eliminata", "pratica_id": pratica_id, "perito_id": perito_id}), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
 
 
 # ── POST rimborso ─────────────────────────────────────────────────────────────
@@ -442,5 +497,5 @@ def get_periti():
 
 # ── Avvio ─────────────────────────────────────────────────────────────────────
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     app.run(host="0.0.0.0", port=8000, debug=True)
