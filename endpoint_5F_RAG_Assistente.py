@@ -1,6 +1,7 @@
 """
 endpoint_5F_RAG_Assistente.py — Porta 12000
-Assistente virtuale per l'automobilista SafeClaim.
+Assistente virtuale SafeClaim con Knowledge Base aggiornata
+alla nuova struttura (sinistri, interventi, preventivi, officine).
 """
 
 from flask import Flask, request, jsonify
@@ -33,7 +34,7 @@ def get_gemini_client():
     return client
 
 # ─────────────────────────────────────────────
-#  KNOWLEDGE BASE — SafeClaim
+#  KNOWLEDGE BASE — SafeClaim (aggiornata)
 # ─────────────────────────────────────────────
 
 KNOWLEDGE_BASE = [
@@ -68,10 +69,49 @@ KNOWLEDGE_BASE = [
         "titolo": "Come apro un sinistro",
         "contenuto": (
             "Per aprire un sinistro accedi alla tua area personale e clicca su 'Nuovo sinistro'. "
-            "Dovrai fornire: la targa del veicolo coinvolto, la data dell'evento, "
-            "una descrizione dettagliata dell'accaduto. "
-            "Il sinistro viene creato con stato APERTO e riceve un ID univoco MongoDB. "
-            "Potrai successivamente aggiungere fotografie del danno."
+            "Dovrai fornire: la targa del veicolo coinvolto, il modello del veicolo, "
+            "la data e l'orario dell'evento, una descrizione dettagliata del danno, "
+            "il nome del cliente, la compagnia assicurativa, il numero sinistro ufficiale "
+            "e i dati di contatto del cliente. "
+            "Il sinistro viene creato con stato 'aperto' e riceve un ID univoco MongoDB. "
+            "Potrai successivamente aggiungere fotografie del danno e gestire il preventivo."
+        )
+    },
+    {
+        "titolo": "Quali sono gli stati di un sinistro",
+        "contenuto": (
+            "Un sinistro SafeClaim passa attraverso questi stati: "
+            "aperto → il sinistro è stato creato; "
+            "assegnato → assegnato a un'officina; "
+            "in_perizia → il perito sta lavorando sulla pratica; "
+            "in_riparazione → il veicolo è presso l'officina convenzionata; "
+            "riparazione_completata → i lavori sono terminati; "
+            "rimborso_proposto → il perito ha definito la stima del danno; "
+            "chiuso → la pratica è conclusa. "
+            "Ogni sinistro ha anche un campo 'priorita' (normale, urgente, critica) "
+            "e un campo 'attivo' per distinguere i casi aperti da quelli archiviati."
+        )
+    },
+    {
+        "titolo": "Come vedo i miei sinistri",
+        "contenuto": (
+            "Dalla tua dashboard personale puoi vedere la lista di tutti i sinistri "
+            "associati alla tua officina o al tuo account. "
+            "I sinistri sono ordinati per data di assegnazione dal più recente al meno recente. "
+            "Puoi filtrare per officina, stato del sinistro e se il sinistro è attivo. "
+            "Cliccando su un sinistro puoi vedere tutti i dettagli: "
+            "immagini caricate, analisi AI, stato pratica, preventivo e interventi."
+        )
+    },
+    {
+        "titolo": "Cos'è il preventivo e come funziona",
+        "contenuto": (
+            "Ogni sinistro contiene un sotto-documento 'preventivo' gestito dall'officina. "
+            "Il preventivo include: data di creazione, costo totale stimato, "
+            "ore di manodopera previste, giorni stimati per la riparazione, "
+            "dettaglio voci di costo (ricambi, manodopera, verniciatura) e riferimento fattura. "
+            "Gli stati del preventivo sono: da_creare → bozza → inviato → approvato. "
+            "Il preventivo può essere aggiornato in qualsiasi momento dall'officina."
         )
     },
     {
@@ -85,40 +125,49 @@ KNOWLEDGE_BASE = [
         )
     },
     {
-        "titolo": "Quali sono gli stati di un sinistro",
+        "titolo": "Cos'è un intervento e come viene gestito",
         "contenuto": (
-            "Un sinistro SafeClaim passa attraverso questi stati: "
-            "APERTO → il sinistro è stato creato dall'automobilista; "
-            "assegnato_a_perito → un perito è stato assegnato al caso; "
-            "in_perizia → il perito sta lavorando sulla pratica; "
-            "in_riparazione → il veicolo è presso un'officina convenzionata; "
-            "rimborso_proposto → il perito ha definito la stima del danno; "
-            "CHIUSO → la pratica è conclusa."
+            "Un intervento rappresenta il lavoro fisico svolto dall'officina su un veicolo. "
+            "Ogni intervento è collegato a un sinistro e include: "
+            "tipo di intervento (meccanica, carrozzeria, elettrica), "
+            "descrizione dei lavori eseguiti, ricambi utilizzati con codice e costo, "
+            "ore di manodopera, foto prima e dopo i lavori, note del tecnico. "
+            "Gli stati di un intervento sono: in_attesa, in_corso, completato. "
+            "Quando un intervento viene completato, lo stato del sinistro si aggiorna automaticamente."
         )
     },
     {
-        "titolo": "Come vedo i miei sinistri",
+        "titolo": "Come aggiungo ricambi a un intervento",
         "contenuto": (
-            "Dalla tua dashboard personale puoi vedere la lista di tutti i sinistri aperti "
-            "e storici associati al tuo account. I sinistri sono ordinati per data dell'evento "
-            "dal più recente al meno recente. Cliccando su un sinistro puoi vedere tutti i dettagli: "
-            "immagini caricate, analisi AI, stato pratica, e informazioni sul perito assegnato."
+            "Durante un intervento l'officina può aggiungere i ricambi utilizzati. "
+            "Per ogni ricambio si specifica: nome del pezzo, codice identificativo e costo. "
+            "I ricambi vengono registrati nella collezione interventi e contribuiscono "
+            "al calcolo del costo totale del preventivo."
+        )
+    },
+    {
+        "titolo": "Come vedo gli interventi della mia officina",
+        "contenuto": (
+            "Dalla dashboard dell'officina puoi visualizzare tutti gli interventi assegnati. "
+            "Puoi filtrare per stato (in_attesa, in_corso, completato). "
+            "Per ogni intervento sono visibili: targa del veicolo, tipo di intervento, "
+            "data di inizio, ricambi utilizzati, ore di manodopera e foto allegate."
         )
     },
     {
         "titolo": "Posso eliminare un sinistro",
         "contenuto": (
-            "Sì, è possibile eliminare un sinistro dalla propria area personale. "
-            "L'eliminazione rimuove anche tutte le perizie collegate al sinistro. "
+            "Sì, è possibile eliminare un sinistro. "
+            "L'eliminazione rimuove anche tutti gli interventi collegati al sinistro. "
             "Attenzione: questa operazione è irreversibile."
         )
     },
     {
         "titolo": "Quanto tempo ci vuole per la gestione del sinistro",
         "contenuto": (
-            "I tempi di gestione dipendono dalla complessità del danno. "
-            "Dopo l'apertura del sinistro, un perito viene assegnato dall'assicuratore. "
-            "Il perito effettua la perizia e propone una stima del danno. "
+            "I tempi di gestione dipendono dalla complessità del danno e dalla disponibilità dell'officina. "
+            "Dopo l'apertura del sinistro, viene assegnata un'officina convenzionata. "
+            "L'officina valuta i danni, crea il preventivo e avvia gli interventi. "
             "In media il processo richiede da qualche giorno a qualche settimana."
         )
     },
@@ -132,19 +181,12 @@ KNOWLEDGE_BASE = [
         )
     },
     {
-        "titolo": "Come vedo i miei veicoli",
-        "contenuto": (
-            "Dalla sezione 'I miei veicoli' puoi visualizzare tutti i veicoli associati al tuo account. "
-            "Per ciascun veicolo sono visibili: targa, marca, modello e anno di immatricolazione. "
-            "Puoi aprire un sinistro direttamente da un veicolo nella lista."
-        )
-    },
-    {
         "titolo": "Come richiedo il soccorso stradale",
         "contenuto": (
             "SafeClaim offre un servizio di soccorso stradale. Per richiedere il soccorso "
             "accedi alla sezione apposita e inserisci la targa del veicolo in panne. "
-            "Puoi anche condividere la tua posizione GPS per facilitare l'intervento. "
+            "Puoi anche condividere la tua posizione GPS per facilitare l'intervento, "
+            "oppure fornire un indirizzo manuale. "
             "La richiesta viene registrata con stato 'in_attesa'."
         )
     },
@@ -153,7 +195,7 @@ KNOWLEDGE_BASE = [
         "contenuto": (
             "Dalla sezione 'Polizze' puoi visualizzare tutte le polizze associate ai tuoi veicoli. "
             "Per ogni polizza sono visibili: numero polizza, compagnia assicurativa, "
-            "date di inizio e scadenza, massimale e tipo di copertura (es. RCA, Kasko)."
+            "date di inizio e scadenza, massimale e tipo di copertura (RCA, Kasko, Full)."
         )
     },
     {
@@ -184,12 +226,21 @@ KNOWLEDGE_BASE = [
         )
     },
     {
-        "titolo": "Il mio veicolo verrà riparato",
+        "titolo": "Come funziona l'analisi AI delle immagini",
         "contenuto": (
-            "Sì, in molti casi il veicolo viene inviato presso un'officina convenzionata. "
-            "Il perito, dopo aver valutato il danno, può disporre la riparazione. "
-            "In SafeClaim puoi seguire lo stato della riparazione dalla pagina del sinistro: "
-            "quando il veicolo è in officina lo stato diventa 'in_riparazione'."
+            "Quando carichi una foto del danno, SafeClaim utilizza Gemini Vision (Google AI) "
+            "per analizzare automaticamente l'immagine. L'analisi identifica: "
+            "il punto d'impatto principale, i componenti danneggiati, "
+            "e la gravità del danno. Il referto viene messo a disposizione del perito. "
+            "L'analisi AI è uno strumento di supporto e non sostituisce il perito umano."
+        )
+    },
+    {
+        "titolo": "SafeClaim è sicuro",
+        "contenuto": (
+            "SafeClaim utilizza connessioni sicure HTTPS per tutte le comunicazioni. "
+            "I dati degli utenti sono memorizzati su database protetti (MySQL e MongoDB Atlas). "
+            "Le immagini dei sinistri vengono archiviate in modo sicuro su Cloudinary."
         )
     },
     {
@@ -198,32 +249,6 @@ KNOWLEDGE_BASE = [
             "Per assistenza puoi contattare SafeClaim tramite la sezione 'Contatti' del sito. "
             "Il team di supporto è disponibile per problemi tecnici, domande sulle polizze, "
             "aggiornamenti sui sinistri e qualsiasi altra necessità."
-        )
-    },
-    {
-        "titolo": "SafeClaim è sicuro",
-        "contenuto": (
-            "SafeClaim utilizza connessioni sicure HTTPS per tutte le comunicazioni. "
-            "I dati degli utenti sono memorizzati su database protetti. "
-            "Le immagini dei sinistri vengono archiviate in modo sicuro su Cloudinary."
-        )
-    },
-    {
-        "titolo": "Come funziona l'analisi AI delle immagini",
-        "contenuto": (
-            "Quando carichi una foto del danno, SafeClaim utilizza Gemini Vision (Google AI) "
-            "per analizzare automaticamente l'immagine. L'analisi identifica: "
-            "il punto d'impatto principale, i componenti danneggiati, "
-            "e la gravità del danno. Il referto viene messo a disposizione del perito."
-        )
-    },
-    {
-        "titolo": "L'analisi AI sostituisce il perito",
-        "contenuto": (
-            "No, l'analisi AI di SafeClaim è uno strumento di supporto e non sostituisce "
-            "la valutazione del perito umano. L'AI fornisce una prima analisi tecnica "
-            "per velocizzare il processo, ma la perizia ufficiale viene sempre effettuata "
-            "da un perito assicurativo certificato."
         )
     },
 ]
@@ -250,7 +275,7 @@ print(f"Indice TF-IDF pronto: {len(KNOWLEDGE_BASE)} chunk, {tfidf_matrix.shape[1
 #  RETRIEVAL
 # ─────────────────────────────────────────────
 
-def recupera_chunk_rilevanti(domanda: str, top_k: int = 3) -> list[dict]:
+def recupera_chunk_rilevanti(domanda: str, top_k: int = 3) -> list:
     query_vec  = vectorizer.transform([domanda])
     similarita = cosine_similarity(query_vec, tfidf_matrix).flatten()
     indici_top = np.argsort(similarita)[::-1][:top_k]
@@ -269,8 +294,8 @@ def recupera_chunk_rilevanti(domanda: str, top_k: int = 3) -> list[dict]:
 # ─────────────────────────────────────────────
 
 SYSTEM_PROMPT = """Sei SafeBot, l'assistente virtuale di SafeClaim, una piattaforma italiana 
-di gestione sinistri assicurativi. Il tuo compito è aiutare gli automobilisti a capire 
-come funziona il sito e come utilizzarlo al meglio.
+di gestione sinistri assicurativi. Il tuo compito è aiutare gli utenti (automobilisti, 
+officine, periti) a capire come funziona il sito e come utilizzarlo al meglio.
 
 Rispondi in modo chiaro, cordiale e professionale in italiano.
 Usa le informazioni fornite nel contesto per rispondere.
@@ -280,7 +305,7 @@ Non inventare informazioni.
 Tieni le risposte concise ma complete (massimo 150 parole).
 """
 
-def genera_risposta_gemini(domanda: str, chunk_rilevanti: list[dict]) -> str:
+def genera_risposta_gemini(domanda: str, chunk_rilevanti: list) -> str:
     import time
 
     if not chunk_rilevanti:
@@ -306,8 +331,8 @@ RISPOSTA:"""
 
     for tentativo in range(1, MAX_TENTATIVI + 1):
         try:
-            client   = get_gemini_client()
-            risposta = client.models.generate_content(
+            c        = get_gemini_client()
+            risposta = c.models.generate_content(
                 model=GEMINI_MODEL,
                 contents=prompt_completo
             )
@@ -326,13 +351,13 @@ RISPOSTA:"""
 #  ENDPOINT
 # ─────────────────────────────────────────────
 
-@app.route('/assistente/chat', methods=['POST'])
+@app.route("/assistente/chat", methods=["POST"])
 def chat_assistente():
     data = request.get_json()
-    if not data or 'domanda' not in data:
+    if not data or "domanda" not in data:
         return jsonify({"error": "Campo 'domanda' obbligatorio"}), 400
 
-    domanda = data['domanda'].strip()
+    domanda = data["domanda"].strip()
     if not domanda:
         return jsonify({"error": "La domanda non può essere vuota"}), 400
     if len(domanda) > 500:
@@ -351,7 +376,7 @@ def chat_assistente():
     }), 200
 
 
-@app.route('/assistente/health', methods=['GET'])
+@app.route("/assistente/health", methods=["GET"])
 def health_check():
     return jsonify({
         "status":        "online",
@@ -361,7 +386,7 @@ def health_check():
     }), 200
 
 
-@app.route('/assistente/argomenti', methods=['GET'])
+@app.route("/assistente/argomenti", methods=["GET"])
 def lista_argomenti():
     return jsonify({
         "argomenti": [chunk["titolo"] for chunk in KNOWLEDGE_BASE],
@@ -369,6 +394,6 @@ def lista_argomenti():
     }), 200
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print("\nSafeBot RAG Assistente avviato su porta 12000")
-    app.run(debug=True, host='0.0.0.0', port=12000)
+    app.run(debug=True, host="0.0.0.0", port=12000)

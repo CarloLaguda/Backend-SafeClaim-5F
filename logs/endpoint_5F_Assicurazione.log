@@ -1,12 +1,8 @@
-Connessione a MongoDB Atlas (FakeClaim) riuscita!
+✅ Connessione a MongoDB Atlas (SafeClaim) riuscita!
  * Serving Flask app 'endpoint_5F_Assicurazione'
  * Debug mode: on
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
- * Running on http://10.0.14.228:5000
+ * Running on http://10.0.14.40:5000
 Press CTRL+C to quit
-127.0.0.1 - - [12/May/2026 19:28:02] "POST /registrazione-completa HTTP/1.1" 409 -
-127.0.0.1 - - [12/May/2026 19:28:26] "POST /registrazione-completa HTTP/1.1" 409 -
-127.0.0.1 - - [12/May/2026 19:29:00] "POST /registrazione-completa HTTP/1.1" 409 -
-127.0.0.1 - - [12/May/2026 19:30:19] "POST /registrazione-completa HTTP/1.1" 409 -

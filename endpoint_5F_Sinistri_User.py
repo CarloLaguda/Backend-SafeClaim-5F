@@ -1,8 +1,12 @@
 """
 endpoint_5F_Sinistri_User.py — Branch main
-Gestione sinistri, soccorso e veicoli.
+Gestione sinistri, interventi e veicoli.
 Le immagini vengono salvate su Cloudinary tramite Storage.py,
 poi analizzate in modo asincrono da Gemini Vision (Google).
+
+STRUTTURA MONGODB (nuova):
+  - Proto_Sinistro_SC  → collezione sinistri
+  - Proto_Intervento_SC → collezione interventi
 
 ROBUSTEZZA: il server si avvia sempre, anche se Gemini, MongoDB
 o MariaDB non sono raggiungibili. Ogni sottosistema ha il suo
@@ -62,25 +66,24 @@ def get_mysql():
 
 # ─────────────────────────────────────────────
 #  CONFIGURAZIONE MONGODB ATLAS
+#  Nuove collezioni: Proto_Sinistro_SC, Proto_Intervento_SC
 # ─────────────────────────────────────────────
 
-col_pratiche = None
-col_perizie  = None
-col_sinistri = None
-soccorso_col = None
+col_sinistri   = None
+col_interventi = None
+soccorso_col   = None
 _MONGO_DISPONIBILE = False
 
 try:
-    MONGO_URI = os.getenv("MONGO_URI")
+    MONGO_URI  = os.getenv("MONGO_URI")
     mongo_client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
-    mongo_db     = mongo_client["FakeClaim"]
-    col_pratiche = mongo_db["Pratica"]
-    col_perizie  = mongo_db["Perizia"]
-    col_sinistri = mongo_db["Sinistri"]
-    soccorso_col = mongo_db["Soccorso"]
+    mongo_db     = mongo_client["SafeClaim"]
+    col_sinistri   = mongo_db["Proto_Sinistro_SC"]
+    col_interventi = mongo_db["Proto_Intervento_SC"]
+    soccorso_col   = mongo_db["Soccorso"]
     mongo_client.admin.command("ping")
     _MONGO_DISPONIBILE = True
-    print("✅ Connessione a MongoDB Atlas (FakeClaim) riuscita!")
+    print("✅ Connessione a MongoDB Atlas (SafeClaim) riuscita!")
 except Exception as e:
     print(f"❌ Errore connessione MongoDB: {e} — le rotte MongoDB risponderanno con 503.")
 
@@ -119,6 +122,34 @@ def _richiedi_mongo():
     if not _MONGO_DISPONIBILE:
         return jsonify({"error": "Database MongoDB non disponibile. Riprova più tardi."}), 503
     return None
+
+def _serializza_sinistro(s: dict) -> dict:
+    """Converte campi non-JSON-serializzabili di un documento sinistro."""
+    s["_id"] = str(s["_id"])
+    for campo in ("data_sinistro", "data_assegnazione"):
+        if isinstance(s.get(campo), datetime):
+            s[campo] = s[campo].isoformat()
+    # Preventivo: data
+    preventivo = s.get("preventivo")
+    if isinstance(preventivo, dict) and isinstance(preventivo.get("data"), datetime):
+        preventivo["data"] = preventivo["data"].isoformat()
+    # Analisi AI (campo opzionale aggiunto da Gemini)
+    analisi = s.get("analisi_ai")
+    if analisi and isinstance(analisi.get("data_analisi"), datetime):
+        analisi["data_analisi"] = analisi["data_analisi"].isoformat()
+    if not analisi:
+        s["analisi_ai"] = {"stato": "non_avviata"}
+    if "immagini" not in s or s["immagini"] is None:
+        s["immagini"] = []
+    return s
+
+def _serializza_intervento(i: dict) -> dict:
+    """Converte campi non-JSON-serializzabili di un documento intervento."""
+    i["_id"] = str(i["_id"])
+    for campo in ("data_inizio", "data_fine"):
+        if isinstance(i.get(campo), datetime):
+            i[campo] = i[campo].isoformat()
+    return i
 
 # ─────────────────────────────────────────────
 #  ANALISI AI IN BACKGROUND
@@ -195,54 +226,72 @@ def analizza_immagine_ai(sinistro_id: str, image_url: str):
                 except Exception as mongo_err:
                     print(f"[AI] Impossibile aggiornare MongoDB dopo errore: {mongo_err}")
 
-# ─────────────────────────────────────────────
-#  ROTTE — SINISTRI
-# ─────────────────────────────────────────────
+# ═════════════════════════════════════════════
+#  ROTTE — SINISTRI  (Proto_Sinistro_SC)
+# ═════════════════════════════════════════════
 
 @app.route("/sinistro", methods=["POST"])
 def apri_sinistro():
+    """
+    Crea un nuovo sinistro.
+
+    Body JSON:
+      officina_id          int       (opzionale)
+      targa                str       obbligatorio
+      modello_veicolo      str
+      descrizione_danno    str       obbligatorio
+      data_sinistro        str       ISO 8601, obbligatorio
+      cliente              str
+      compagnia_assicurativa str
+      numero_sinistro      str
+      telaio               str
+      priorita             str       default 'normale'
+      note                 str
+      contatto_cliente     {telefono, email}
+    """
     err = _richiedi_mongo()
     if err:
         return err
 
-    data = request.json
-    required = ["automobilista_id", "targa", "data_evento", "descrizione"]
+    data = request.json or {}
+    required = ["targa", "data_sinistro", "descrizione_danno"]
     if not all(k in data for k in required):
-        return jsonify({"error": "Campi obbligatori mancanti"}), 400
-
-    posizione = None
-    geo = data.get("geolocalizzazione")
-    if isinstance(geo, dict):
-        lat = geo.get("latitudine", geo.get("lat"))
-        lng = geo.get("longitudine", geo.get("lng"))
-    else:
-        lat = data.get("latitudine", data.get("lat"))
-        lng = data.get("longitudine", data.get("lng"))
-
-    if lat is not None and lng is not None:
-        try:
-            posizione = {"latitudine": float(lat), "longitudine": float(lng)}
-        except (TypeError, ValueError):
-            return jsonify({"error": "Dati di geolocalizzazione non validi"}), 400
+        return jsonify({"error": f"Campi obbligatori mancanti: {required}"}), 400
 
     try:
-        data_evento_dt = datetime.fromisoformat(data["data_evento"]).replace(tzinfo=UTC)
+        data_sinistro_dt = datetime.fromisoformat(data["data_sinistro"])
     except (ValueError, TypeError):
-        return jsonify({"error": "Formato data_evento non valido. Usa YYYY-MM-DD."}), 400
+        return jsonify({"error": "Formato data_sinistro non valido. Usa YYYY-MM-DDTHH:MM:SS."}), 400
 
     try:
         nuovo_sinistro = {
-            "automobilista_id": data["automobilista_id"],
-            "targa":            data["targa"],
-            "data_evento":      data_evento_dt,
-            "descrizione":      data["descrizione"],
-            "stato":            "APERTO",
-            "data_inserimento": datetime.now(UTC),
-            "immagini":         [],
-            "analisi_ai":       None
+            "officina_id":             data.get("officina_id"),
+            "attivo":                  True,
+            "targa":                   data["targa"],
+            "modello_veicolo":         data.get("modello_veicolo"),
+            "descrizione_danno":       data["descrizione_danno"],
+            "data_sinistro":           data_sinistro_dt,
+            "cliente":                 data.get("cliente"),
+            "compagnia_assicurativa":  data.get("compagnia_assicurativa"),
+            "numero_sinistro":         data.get("numero_sinistro"),
+            "telaio":                  data.get("telaio"),
+            "data_assegnazione":       datetime.now(UTC),
+            "priorita":                data.get("priorita", "normale"),
+            "stato_sinistro":          "aperto",
+            "note":                    data.get("note"),
+            "contatto_cliente":        data.get("contatto_cliente", {}),
+            "preventivo": {
+                "data":             None,
+                "costo_totale":     None,
+                "ore_manodopera":   None,
+                "giorni_previsti":  None,
+                "stato":            "da_creare",
+                "dettaglio_voci":   [],
+                "fattura":          None
+            },
+            "immagini":    [],
+            "analisi_ai":  None
         }
-        if posizione is not None:
-            nuovo_sinistro["geolocalizzazione"] = posizione
 
         result = col_sinistri.insert_one(nuovo_sinistro)
         return jsonify({"status": "success", "mongo_id": str(result.inserted_id)}), 201
@@ -250,49 +299,29 @@ def apri_sinistro():
         return jsonify({"error": str(e)}), 500
 
 
-@app.route("/sinistro/<sinistro_id>", methods=["PUT"])
-def aggiorna_sinistro(sinistro_id):
-    err = _richiedi_mongo()
-    if err:
-        return err
-
-    if not ObjectId.is_valid(sinistro_id):
-        return jsonify({"error": "ID non valido"}), 400
-    data = request.get_json()
-    if not data:
-        return jsonify({"error": "Dati mancanti"}), 400
-    try:
-        col_sinistri.update_one(
-            {"_id": ObjectId(sinistro_id)},
-            {"$set": {
-                "descrizione":        data.get("descrizione"),
-                "stato":              data.get("stato"),
-                "data_aggiornamento": datetime.now(UTC)
-            }}
-        )
-        return jsonify({"status": "success"}), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-
 @app.route("/sinistri", methods=["GET"])
 def get_tutti_sinistri():
+    """
+    Lista sinistri. Query params opzionali:
+      officina_id   int   → filtra per officina
+      attivo        bool  → filtra per stato attivo/inattivo
+    """
     err = _richiedi_mongo()
     if err:
         return err
 
     try:
         filtro = {}
-        automobilista_id = request.args.get("automobilista_id")
-        if automobilista_id:
-            filtro["automobilista_id"] = int(automobilista_id)
+        officina_id = request.args.get("officina_id")
+        if officina_id:
+            filtro["officina_id"] = int(officina_id)
+        attivo = request.args.get("attivo")
+        if attivo is not None:
+            filtro["attivo"] = attivo.lower() in ("1", "true", "yes")
 
-        sinistri = list(col_sinistri.find(filtro).sort("data_inserimento", DESCENDING))
+        sinistri = list(col_sinistri.find(filtro).sort("data_assegnazione", DESCENDING))
         for s in sinistri:
-            s["_id"] = str(s["_id"])
-            for campo in ("data_evento", "data_inserimento"):
-                if isinstance(s.get(campo), datetime):
-                    s[campo] = s[campo].isoformat()
+            _serializza_sinistro(s)
         return jsonify(sinistri), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -310,22 +339,44 @@ def get_sinistro_by_id(sinistro_id):
         s = col_sinistri.find_one({"_id": ObjectId(sinistro_id)})
         if not s:
             return jsonify({"error": "Sinistro non trovato"}), 404
+        return jsonify(_serializza_sinistro(s)), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
-        s["_id"] = str(s["_id"])
-        for campo in ("data_evento", "data_inserimento"):
-            if isinstance(s.get(campo), datetime):
-                s[campo] = s[campo].isoformat()
 
-        analisi = s.get("analisi_ai")
-        if analisi and isinstance(analisi.get("data_analisi"), datetime):
-            analisi["data_analisi"] = analisi["data_analisi"].isoformat()
-        if not analisi:
-            s["analisi_ai"] = {"stato": "non_avviata"}
+@app.route("/sinistro/<sinistro_id>", methods=["PUT"])
+def aggiorna_sinistro(sinistro_id):
+    """
+    Aggiorna campi del sinistro.
+    Campi aggiornabili: stato_sinistro, descrizione_danno, note,
+                        priorita, officina_id, attivo, contatto_cliente.
+    """
+    err = _richiedi_mongo()
+    if err:
+        return err
 
-        if "immagini" not in s or s["immagini"] is None:
-            s["immagini"] = []
+    if not ObjectId.is_valid(sinistro_id):
+        return jsonify({"error": "ID non valido"}), 400
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "Dati mancanti"}), 400
 
-        return jsonify(s), 200
+    campi_ammessi = [
+        "stato_sinistro", "descrizione_danno", "note",
+        "priorita", "officina_id", "attivo", "contatto_cliente"
+    ]
+    update_set = {k: data[k] for k in campi_ammessi if k in data}
+    if not update_set:
+        return jsonify({"error": "Nessun campo aggiornabile fornito"}), 400
+
+    try:
+        result = col_sinistri.update_one(
+            {"_id": ObjectId(sinistro_id)},
+            {"$set": update_set}
+        )
+        if result.matched_count == 0:
+            return jsonify({"error": "Sinistro non trovato"}), 404
+        return jsonify({"status": "success", "campi_aggiornati": list(update_set.keys())}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -342,18 +393,348 @@ def elimina_sinistro(sinistro_id):
         result = col_sinistri.delete_one({"_id": ObjectId(sinistro_id)})
         if result.deleted_count == 0:
             return jsonify({"error": "Sinistro non trovato"}), 404
-        perizie_eliminate = col_perizie.delete_many({"sinistro_id": sinistro_id})
+        # Elimina anche gli interventi collegati
+        interventi_eliminati = col_interventi.delete_many({"sinistro_id": sinistro_id})
         return jsonify({
-            "status":            "eliminato",
-            "id":                sinistro_id,
-            "perizie_eliminate": perizie_eliminate.deleted_count
+            "status":               "eliminato",
+            "id":                   sinistro_id,
+            "interventi_eliminati": interventi_eliminati.deleted_count
         }), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
 # ─────────────────────────────────────────────
+#  PREVENTIVO (sotto-documento del sinistro)
+# ─────────────────────────────────────────────
+
+@app.route("/sinistro/<sinistro_id>/preventivo", methods=["PUT"])
+def aggiorna_preventivo(sinistro_id):
+    """
+    Aggiorna il sotto-documento preventivo di un sinistro.
+
+    Body JSON (tutti opzionali):
+      data            str ISO 8601
+      costo_totale    float
+      ore_manodopera  float
+      giorni_previsti int
+      stato           str  (es. 'da_creare', 'bozza', 'inviato', 'approvato')
+      dettaglio_voci  list [{descrizione, quantita, prezzo_unitario}]
+      fattura         str  (riferimento fattura)
+    """
+    err = _richiedi_mongo()
+    if err:
+        return err
+
+    if not ObjectId.is_valid(sinistro_id):
+        return jsonify({"error": "ID sinistro non valido"}), 400
+
+    data = request.get_json() or {}
+    update_fields = {}
+
+    if "data" in data:
+        try:
+            update_fields["preventivo.data"] = datetime.fromisoformat(data["data"])
+        except (ValueError, TypeError):
+            return jsonify({"error": "Formato data preventivo non valido"}), 400
+
+    for campo in ("costo_totale", "ore_manodopera", "giorni_previsti",
+                  "stato", "dettaglio_voci", "fattura"):
+        if campo in data:
+            update_fields[f"preventivo.{campo}"] = data[campo]
+
+    if not update_fields:
+        return jsonify({"error": "Nessun campo preventivo fornito"}), 400
+
+    try:
+        result = col_sinistri.update_one(
+            {"_id": ObjectId(sinistro_id)},
+            {"$set": update_fields}
+        )
+        if result.matched_count == 0:
+            return jsonify({"error": "Sinistro non trovato"}), 404
+        return jsonify({"status": "success", "campi_aggiornati": list(update_fields.keys())}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+# ═════════════════════════════════════════════
+#  ROTTE — INTERVENTI  (Proto_Intervento_SC)
+# ═════════════════════════════════════════════
+
+@app.route("/sinistro/<sinistro_id>/interventi", methods=["GET"])
+def get_interventi_sinistro(sinistro_id):
+    """Restituisce tutti gli interventi associati a un sinistro (per _id stringa)."""
+    err = _richiedi_mongo()
+    if err:
+        return err
+
+    try:
+        interventi = list(col_interventi.find({"sinistro_id": sinistro_id}))
+        for i in interventi:
+            _serializza_intervento(i)
+        return jsonify(interventi), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/officina/<int:officina_id>/interventi", methods=["GET"])
+def get_interventi_officina(officina_id):
+    """
+    Restituisce tutti gli interventi di un'officina.
+    Query param opzionale: stato (es. 'in_corso', 'completato', 'in_attesa')
+    """
+    err = _richiedi_mongo()
+    if err:
+        return err
+
+    try:
+        filtro = {"officina_id": officina_id}
+        stato = request.args.get("stato")
+        if stato:
+            filtro["stato"] = stato
+
+        interventi = list(col_interventi.find(filtro).sort("data_inizio", DESCENDING))
+        for i in interventi:
+            _serializza_intervento(i)
+        return jsonify(interventi), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/intervento/<intervento_id>", methods=["GET"])
+def get_intervento_by_id(intervento_id):
+    err = _richiedi_mongo()
+    if err:
+        return err
+
+    if not ObjectId.is_valid(intervento_id):
+        return jsonify({"error": "ID intervento non valido"}), 400
+    try:
+        i = col_interventi.find_one({"_id": ObjectId(intervento_id)})
+        if not i:
+            return jsonify({"error": "Intervento non trovato"}), 404
+        return jsonify(_serializza_intervento(i)), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/intervento", methods=["POST"])
+def crea_intervento():
+    """
+    Crea un nuovo intervento.
+
+    Body JSON:
+      sinistro_id        str   obbligatorio (_id del sinistro come stringa)
+      officina_id        int   obbligatorio
+      veicolo_targa      str   obbligatorio
+      data_inizio        str   ISO 8601
+      tipo_intervento    str   es. 'meccanica', 'carrozzeria', 'elettrica'
+      descrizione_lavori str
+      ricambi_utilizzati list  [{nome, codice, costo}]
+      manodopera_ore     float
+      foto_prima         list  [url_string]
+      note_tecnico       str
+    """
+    err = _richiedi_mongo()
+    if err:
+        return err
+
+    data = request.get_json() or {}
+    required = ["sinistro_id", "officina_id", "veicolo_targa"]
+    if not all(k in data for k in required):
+        return jsonify({"error": f"Campi obbligatori mancanti: {required}"}), 400
+
+    data_inizio = None
+    if data.get("data_inizio"):
+        try:
+            data_inizio = datetime.fromisoformat(data["data_inizio"])
+        except (ValueError, TypeError):
+            return jsonify({"error": "Formato data_inizio non valido"}), 400
+
+    try:
+        nuovo_intervento = {
+            "sinistro_id":         data["sinistro_id"],
+            "officina_id":         data["officina_id"],
+            "veicolo_targa":       data["veicolo_targa"],
+            "data_inizio":         data_inizio or datetime.now(UTC),
+            "data_fine":           None,
+            "tipo_intervento":     data.get("tipo_intervento"),
+            "descrizione_lavori":  data.get("descrizione_lavori"),
+            "ricambi_utilizzati":  data.get("ricambi_utilizzati", []),
+            "manodopera_ore":      data.get("manodopera_ore", 0),
+            "foto_prima":          data.get("foto_prima", []),
+            "foto_dopo":           [],
+            "note_tecnico":        data.get("note_tecnico"),
+            "stato":               "in_attesa"
+        }
+
+        result = col_interventi.insert_one(nuovo_intervento)
+        # Aggiorna lo stato del sinistro collegato
+        col_sinistri.update_one(
+            {"_id": ObjectId(data["sinistro_id"])} if ObjectId.is_valid(data["sinistro_id"])
+            else {"numero_sinistro": data["sinistro_id"]},
+            {"$set": {"stato_sinistro": "in_riparazione"}}
+        )
+        return jsonify({"status": "success", "mongo_id": str(result.inserted_id)}), 201
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/intervento/<intervento_id>", methods=["PUT"])
+def aggiorna_intervento(intervento_id):
+    """
+    Aggiorna un intervento.
+
+    Body JSON (tutti opzionali):
+      tipo_intervento, descrizione_lavori, ricambi_utilizzati,
+      manodopera_ore, foto_dopo, note_tecnico, stato,
+      data_fine (ISO 8601)
+    """
+    err = _richiedi_mongo()
+    if err:
+        return err
+
+    if not ObjectId.is_valid(intervento_id):
+        return jsonify({"error": "ID intervento non valido"}), 400
+
+    data = request.get_json() or {}
+    campi_ammessi = [
+        "tipo_intervento", "descrizione_lavori", "ricambi_utilizzati",
+        "manodopera_ore", "foto_dopo", "note_tecnico", "stato"
+    ]
+    update_set = {k: data[k] for k in campi_ammessi if k in data}
+
+    if "data_fine" in data:
+        try:
+            update_set["data_fine"] = datetime.fromisoformat(data["data_fine"])
+        except (ValueError, TypeError):
+            return jsonify({"error": "Formato data_fine non valido"}), 400
+
+    if not update_set:
+        return jsonify({"error": "Nessun campo aggiornabile fornito"}), 400
+
+    try:
+        result = col_interventi.update_one(
+            {"_id": ObjectId(intervento_id)},
+            {"$set": update_set}
+        )
+        if result.matched_count == 0:
+            return jsonify({"error": "Intervento non trovato"}), 404
+
+        # Se l'intervento è completato, aggiorna lo stato del sinistro
+        if update_set.get("stato") == "completato":
+            intervento = col_interventi.find_one({"_id": ObjectId(intervento_id)}, {"sinistro_id": 1})
+            if intervento and intervento.get("sinistro_id"):
+                sin_id = intervento["sinistro_id"]
+                try:
+                    col_sinistri.update_one(
+                        {"_id": ObjectId(sin_id)} if ObjectId.is_valid(sin_id) else {"numero_sinistro": sin_id},
+                        {"$set": {"stato_sinistro": "riparazione_completata"}}
+                    )
+                except Exception:
+                    pass
+
+        return jsonify({"status": "success", "campi_aggiornati": list(update_set.keys())}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/intervento/<intervento_id>/foto-dopo", methods=["POST"])
+def aggiungi_foto_dopo(intervento_id):
+    """Aggiunge foto post-intervento tramite Cloudinary."""
+    err = _richiedi_mongo()
+    if err:
+        return err
+
+    if not ObjectId.is_valid(intervento_id):
+        return jsonify({"error": "ID intervento non valido"}), 400
+
+    if not _STORAGE_DISPONIBILE:
+        return jsonify({"error": "Storage Cloudinary non disponibile."}), 503
+
+    files = request.files.getlist("foto") or ([request.files.get("foto")] if request.files.get("foto") else [])
+    if not files:
+        return jsonify({"error": "Nessuna foto fornita"}), 400
+
+    try:
+        intervento = col_interventi.find_one({"_id": ObjectId(intervento_id)})
+        if not intervento:
+            return jsonify({"error": "Intervento non trovato"}), 404
+
+        foto_urls = []
+        for file in files:
+            info = carica_immagine(file.read(), intervento_id)
+            foto_urls.append(info["secure_url"])
+
+        col_interventi.update_one(
+            {"_id": ObjectId(intervento_id)},
+            {"$push": {"foto_dopo": {"$each": foto_urls}}}
+        )
+        return jsonify({"status": "success", "foto_aggiunte": len(foto_urls), "urls": foto_urls}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/intervento/<intervento_id>/ricambio", methods=["POST"])
+def aggiungi_ricambio(intervento_id):
+    """
+    Aggiunge un ricambio alla lista ricambi_utilizzati di un intervento.
+
+    Body JSON:
+      nome    str   obbligatorio
+      codice  str
+      costo   float
+    """
+    err = _richiedi_mongo()
+    if err:
+        return err
+
+    if not ObjectId.is_valid(intervento_id):
+        return jsonify({"error": "ID intervento non valido"}), 400
+
+    data = request.get_json() or {}
+    if not data.get("nome"):
+        return jsonify({"error": "Campo 'nome' obbligatorio"}), 400
+
+    ricambio = {
+        "nome":   data["nome"],
+        "codice": data.get("codice"),
+        "costo":  data.get("costo", 0)
+    }
+
+    try:
+        result = col_interventi.update_one(
+            {"_id": ObjectId(intervento_id)},
+            {"$push": {"ricambi_utilizzati": ricambio}}
+        )
+        if result.matched_count == 0:
+            return jsonify({"error": "Intervento non trovato"}), 404
+        return jsonify({"status": "success", "ricambio": ricambio}), 201
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/intervento/<intervento_id>", methods=["DELETE"])
+def elimina_intervento(intervento_id):
+    err = _richiedi_mongo()
+    if err:
+        return err
+
+    if not ObjectId.is_valid(intervento_id):
+        return jsonify({"error": "ID intervento non valido"}), 400
+    try:
+        result = col_interventi.delete_one({"_id": ObjectId(intervento_id)})
+        if result.deleted_count == 0:
+            return jsonify({"error": "Intervento non trovato"}), 404
+        return jsonify({"status": "eliminato", "id": intervento_id}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+# ═════════════════════════════════════════════
 #  ROTTE — UPLOAD IMMAGINI + ANALISI AI
-# ─────────────────────────────────────────────
+# ═════════════════════════════════════════════
 
 @app.route("/sinistro/<sinistro_id>/immagini", methods=["POST"])
 def aggiungi_immagine(sinistro_id):
@@ -443,53 +824,50 @@ def get_analisi_ai(sinistro_id):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# ─────────────────────────────────────────────
+
+# ═════════════════════════════════════════════
 #  ROTTE — SOCCORSO
-# ─────────────────────────────────────────────
+# ═════════════════════════════════════════════
 
 @app.route("/soccorso", methods=["POST"])
 def crea_richiesta_soccorso():
     data = request.get_json()
-    
-    targa = data.get("targa")
-    id_sinistro = data.get("id_sinistro")
-    id_officina = data.get("id_officina")
-    lat = data.get("lat")
-    lon = data.get("lon")
-    via = data.get("via")  # indirizzo manuale alternativo alla geolocalizzazione
-    orario_arrivo = data.get("orario_arrivo")
-    durata_soccorso = data.get("durata_soccorso")
+
+    targa            = data.get("targa")
+    id_sinistro      = data.get("id_sinistro")
+    id_officina      = data.get("id_officina")
+    lat              = data.get("lat")
+    lon              = data.get("lon")
+    via              = data.get("via")
+    orario_arrivo    = data.get("orario_arrivo")
+    durata_soccorso  = data.get("durata_soccorso")
 
     if not targa:
         return jsonify({"error": "Targa obbligatoria"}), 400
 
-    # Validazione rimossa: posizione ora opzionale
-    # if (lat is None or lon is None) and not via:
-    #     return jsonify({"error": "Posizione obbligatoria: fornire coordinate GPS (lat/lon) o indirizzo manuale (via)"}), 400
-
     conn = None
     try:
-        conn = get_mysql()
+        conn   = get_mysql()
         cursor = conn.cursor(dictionary=True)
 
         cursor.execute("""
-            SELECT v.id AS veicolo_id, a.id AS automobilista_id 
-            FROM Veicolo v 
-            JOIN Automobilista a ON v.automobilista_id = a.id 
+            SELECT v.id AS veicolo_id, a.id AS automobilista_id
+            FROM Veicolo v
+            JOIN Automobilista a ON v.automobilista_id = a.id
             WHERE v.targa = %s
         """, (targa,))
-        
+
         veicolo = cursor.fetchone()
         if veicolo is None:
             return jsonify({"error": "Veicolo non trovato"}), 404
 
         cursor.execute("""
-            INSERT INTO Richiesta_Soccorso 
-            (id_sinistro, id_automobilista, id_officina, id_veicolo_soccorso, 
+            INSERT INTO Richiesta_Soccorso
+            (id_sinistro, id_automobilista, id_officina, id_veicolo_soccorso,
              data_richiesta, orario_arrivo, durata_soccorso, stato)
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
         """, (
-            id_sinistro, 
+            id_sinistro,
             veicolo["automobilista_id"],
             id_officina,
             veicolo["veicolo_id"],
@@ -502,7 +880,6 @@ def crea_richiesta_soccorso():
         richiesta_id = cursor.lastrowid
         conn.commit()
 
-        # Preparazione posizione per MongoDB
         posizione = None
         if lat is not None and lon is not None:
             posizione = {"tipo": "gps", "lat": lat, "lon": lon}
@@ -513,32 +890,32 @@ def crea_richiesta_soccorso():
         if _MONGO_DISPONIBILE and soccorso_col is not None:
             res = soccorso_col.insert_one({
                 "richiesta_mysql_id": richiesta_id,
-                "id_sinistro": id_sinistro,
-                "id_automobilista": veicolo["automobilista_id"],
-                "id_officina": id_officina,
-                "id_veicolo": veicolo["veicolo_id"],
-                "targa": targa,
-                "posizione": posizione,
-                "orario_arrivo": orario_arrivo,
-                "durata_soccorso": durata_soccorso,
-                "stato": "in_attesa",
-                "data_richiesta": datetime.now(timezone.utc)
+                "id_sinistro":        id_sinistro,
+                "id_automobilista":   veicolo["automobilista_id"],
+                "id_officina":        id_officina,
+                "id_veicolo":         veicolo["veicolo_id"],
+                "targa":              targa,
+                "posizione":          posizione,
+                "orario_arrivo":      orario_arrivo,
+                "durata_soccorso":    durata_soccorso,
+                "stato":              "in_attesa",
+                "data_richiesta":     datetime.now(timezone.utc)
             })
             mongo_id = str(res.inserted_id)
 
         return jsonify({
-            "success": True,
-            "richiesta_id": richiesta_id,
-            "mongo_id": mongo_id,
-            "id_sinistro": id_sinistro,
+            "success":         True,
+            "richiesta_id":    richiesta_id,
+            "mongo_id":        mongo_id,
+            "id_sinistro":     id_sinistro,
             "id_automobilista": veicolo["automobilista_id"],
-            "id_officina": id_officina,
-            "id_veicolo": veicolo["veicolo_id"],
-            "posizione": posizione,
-            "orario_arrivo": orario_arrivo,
+            "id_officina":     id_officina,
+            "id_veicolo":      veicolo["veicolo_id"],
+            "posizione":       posizione,
+            "orario_arrivo":   orario_arrivo,
             "durata_soccorso": durata_soccorso,
-            "stato": "in_attesa",
-            "message": "Richiesta di soccorso inviata con successo"
+            "stato":           "in_attesa",
+            "message":         "Richiesta di soccorso inviata con successo"
         }), 201
 
     except Exception as e:
@@ -549,11 +926,12 @@ def crea_richiesta_soccorso():
         if conn:
             conn.close()
 
+
 @app.route("/soccorso/utente/<int:automobilista_id>", methods=["GET"])
 def get_soccorsi_utente(automobilista_id):
     conn = None
     try:
-        conn = get_mysql()
+        conn   = get_mysql()
         cursor = conn.cursor(dictionary=True)
         cursor.execute("""
             SELECT rs.id, rs.id_automobilista, rs.data_richiesta, rs.stato
@@ -573,10 +951,11 @@ def get_soccorsi_utente(automobilista_id):
     finally:
         if conn:
             conn.close()
-            
-# ─────────────────────────────────────────────
-#  ROTTE — VEICOLI
-# ─────────────────────────────────────────────
+
+
+# ═════════════════════════════════════════════
+#  ROTTE — VEICOLI  (MySQL)
+# ═════════════════════════════════════════════
 
 @app.route("/veicoli-utente/<int:user_id>", methods=["GET"])
 def get_veicoli_utente(user_id):
@@ -584,14 +963,13 @@ def get_veicoli_utente(user_id):
     try:
         conn   = get_mysql()
         cursor = conn.cursor(dictionary=True)
-        query  = """
+        cursor.execute("""
             SELECT v.id, v.targa, v.marca, v.modello, v.anno_immatricolazione,
                    a.nome AS nome_proprietario, a.cognome AS cognome_proprietario
             FROM Veicolo v
             JOIN Automobilista a ON v.automobilista_id = a.id
             WHERE a.id_utente = %s
-        """
-        cursor.execute(query, (user_id,))
+        """, (user_id,))
         return jsonify(cursor.fetchall()), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -642,11 +1020,10 @@ def crea_veicolo_utente(user_id):
         if conn:
             conn.close()
 
+
 # ─────────────────────────────────────────────
 #  AVVIO
 # ─────────────────────────────────────────────
-
-
 
 if __name__ == "__main__":
     print("\n📋 Stato sottosistemi all'avvio:")

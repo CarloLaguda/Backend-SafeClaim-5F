@@ -4,18 +4,8 @@
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:11000
- * Running on http://10.0.14.228:11000
+ * Running on http://10.0.14.40:11000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 328-675-780
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Assicurazione.py', reloading
-✅ MongoDB Atlas Connesso!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 328-675-780
- * Detected change in '/workspaces/Backend-SafeClaim-5F/endpoint_5F_Assicurazione.py', reloading
-✅ MongoDB Atlas Connesso!
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 328-675-780
+ * Debugger PIN: 145-135-219
